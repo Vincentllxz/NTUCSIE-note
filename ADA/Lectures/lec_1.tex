@@ -1,0 +1,161 @@
+\chapter{Introduction}
+\lecture{1}{4 Sep. 14:20}{}
+
+\section{Design and Analysis}
+
+\subsection{Design}
+
+\begin{remark}
+    \blue{\textbf{Find the point to cut into the problem.}}
+\end{remark}
+\begin{exercise}[Coffee and Milk]
+        把 500 毫升的咖啡倒入 10 毫升，再從 510 毫升牛奶咖啡取 10 毫升倒入 490 毫升牛奶中，試問兩邊比例？
+\end{exercise}
+\begin{answer} 
+    兩邊都固定 500 毫升，一邊少的必定出現在另一邊，\textbf{切入點對了根本不用計算}
+\end{answer}
+
+\subsection{Analysis}
+
+\begin{exercise}[Card]
+        把牌洗亂（平均）需要幾次？
+\end{exercise}
+\begin{answer}
+    \begin{note}
+        \textbf{定義何為亂？}\\
+        排列出現機率皆為
+        \[
+        \frac{1}{52!}
+        \]
+    \end{note}
+        七次是充分必要條件（嚴謹分析 on paper）$n$ card should shuffle $\frac{3}{2}\log_2 n + \theta$ times.
+\end{answer}
+
+\begin{definition}[亂]
+    With $n$-cards, we have to let the probbability of every combination become 
+    \[
+    \frac{1}{n!}
+    \]
+\end{definition}
+
+\begin{exercise}[Top-in shuffle]
+    Consider Top-in shuffle with the cards. How to get it "randomly" ?
+\end{exercise}
+\begin{answer}
+    Define the $k$-th section to be 初始底牌從底下數上來是 $k$-th card.
+
+    \begin{enumerate}
+        \item bottom $k-1$ cards must be 亂
+        \item 每次都可以用 $n/k$ 次將他洗亂，因為出現機率皆為 $k/n$
+    \end{enumerate}
+
+    We can shuffle $n \cdot H_n$ times.
+\end{answer}
+
+\newpage
+
+\begin{theorem}
+    底下 $k-1$ 張卡片永遠是亂的
+\end{theorem}
+\begin{proof}
+    考慮 top-in shuffle，利用數學歸納法
+    \begin{itemize}
+        \item 第一輪要插入底牌下方，只有 1 個空隙，因此必須插入，因此插入的機率是 \[
+        \frac{1}{1!}
+        \]
+        \item 底下如果有 k 張牌，假設下面 k 張是亂的，表示他的排列 $k!$ 種，每種順序機率都是 \[
+        \frac{1}{k!}
+        \]
+        \item 再插入一張，共有 $k+1$ 個空隙，排起來每種順序出現的機率為 \[
+        \frac{1}{(k+1)} \cdot \frac{1}{k!} = \frac{1}{(k+1)!}
+        \]
+        符合亂的定義
+    \end{itemize}
+\end{proof}
+
+第 $k$ 階段插入到下面都是從 $n$ 個空隙裡面找到 $k$ 個空隙插入，因此出現機率必定為 \(\frac{k}{n}\)，因此需要 shuffle 次數為\[
+\frac{n}{k}
+\]
+接著考慮第 $n$ 階段，底牌不是亂的，因此要再洗一次，因此最終的和為\[
+\sum_{i=1}^{n} \frac{n}{i} = n \cdot \sum_{i=1}^{n}\frac{1}{i} = n\cdot H_n
+\]
+
+\begin{note}
+    choose another card to be "bottom", 可以減少第一次的$1/n$ 就可以少 $n/1$ 次 shuffle. 因此可以把次數減少為：
+    \[
+        n\cdot H_n - n
+    \]
+\end{note}
+
+\begin{remark}
+     \blue{\textbf{簡單的分析點交換就可以造成巨大的影響}}
+\end{remark}
+
+\section{Jargons}
+\begin{definition}[Problems]
+    「問題」(Problem)是一個對應關係，就是一個函數
+    \begin{itemize}
+        \item 演算法核心是在探討問題的解決難易度
+        \item 有些問題確定很難，就不用妄想想出簡單演算法
+    \end{itemize}
+\end{definition}
+
+\begin{definition}[Instance]
+    「個例」(instance)，也就是問題的合法輸入
+\end{definition}
+
+\begin{definition}[Computation Model]
+    「計算模型」(Computation Model)，也就是遊戲規則，同個問題在不同的規則下可能難易度不同
+
+    \begin{itemize}
+        \item Comparision base \& Computation base
+    \end{itemize}
+    
+\end{definition}
+
+\begin{definition}[Algorithm]
+    「演算法」Algorithm is a detail step-by-step instruction
+    \begin{itemize}
+        \item 符合規則
+        \item 詳細步驟
+    \end{itemize}
+\end{definition}
+
+\begin{definition}[Hardness]
+    「難度」(Hardness)，想知道一個「\textbf{問題}」有多難解，用最厲害的一個「\textbf{解法}」，對於每個「\textbf{個例}」，都至少要用多少「\textbf{工夫}」才能解完
+\end{definition}
+
+\begin{itemize}
+    \item 魔方問題：對於所有解法，存在至少一個初始 instance 讓解法需要 20 次才能轉完，切入點是找到一個固定的初始狀態，這是一個已經最佳化的問題
+\end{itemize}
+
+\begin{theorem}[Confirm Hardness]
+    用 \textbf{upper bound} 和 \textbf{lower bound} 去夾起來決定難度
+    \begin{itemize}
+        \item 當 \textbf{upper bound} = \textbf{lower bound} 的時候，我們才知道問題的確切難度
+        \item 有些情況，就算夾起來也不一定可以確定難度
+    \end{itemize}
+\end{theorem}
+\begin{proof}
+    \[
+    \begin{matrix}
+        \boxed{\text{upper bound}}\\
+        \Downarrow \\
+        \\
+        \\
+        \\
+        \Uparrow \\
+        \boxed{\text{lower bound}}
+    \end{matrix}\quad\implies\quad
+    \begin{matrix}
+        \boxed{\text{upper bound}}\\
+        \Downarrow\\
+        \Uparrow \\
+        \boxed{\text{lower bound}}
+    \end{matrix}
+    \]
+\end{proof}
+
+\begin{note}
+    我們在這門課都討論 worst case
+\end{note}

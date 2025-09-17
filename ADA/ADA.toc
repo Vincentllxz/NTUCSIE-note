@@ -1,0 +1,12 @@
+\contentsline {chapter}{\numberline {0}Introduction}{2}{chapter.0}%
+\contentsline {section}{\numberline {0.1}Design and Analysis}{2}{section.0.1}%
+\contentsline {subsection}{\numberline {0.1.1}Design}{2}{subsection.0.1.1}%
+\contentsline {subsection}{\numberline {0.1.2}Analysis}{2}{subsection.0.1.2}%
+\contentsline {section}{\numberline {0.2}Jargons}{3}{section.0.2}%
+\contentsline {chapter}{\numberline {1}Complexity for a Problem}{5}{chapter.1}%
+\contentsline {section}{\numberline {1.1}函數成長率（Rate of Growth）}{5}{section.1.1}%
+\contentsline {section}{\numberline {1.2}成長率的比較}{5}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Big Oh Notation}{6}{section.1.3}%
+\contentsline {subsection}{\numberline {1.3.1}等號左邊也有 Big-Oh}{6}{subsection.1.3.1}%
+\contentsline {section}{\numberline {1.4}Big-Oh 的運算}{7}{section.1.4}%
+\contentsline {section}{\numberline {1.5}More Asymptotic Notation}{9}{section.1.5}%

@@ -1,0 +1,282 @@
+\chapter{Complexity for a Problem}
+\lecture{2}{11 Sep. 13:20}{}
+
+\section{函數成長率（Rate of Growth）}
+
+\begin{exercise}[棋癡國王與文武大臣]
+    國王愛下棋，文武大臣要獎賞
+    \begin{itemize}
+        \item 武大臣每下一個棋子，獎賞多一袋米，起始為一袋米
+        \item 文大臣每下一個棋子，獎賞雙倍，起始為一粒米
+    \end{itemize}
+\end{exercise}
+\begin{answer}
+    棋盤 64 格
+    \begin{itemize}
+        \item 武大臣：$n$ 袋米
+        \item 文大臣：$2^{n}$ 粒米
+    \end{itemize}
+    $2^n$ 的成長率遠遠高於 $n$，單位的影響不及成長率
+\end{answer}
+
+\section{成長率的比較}
+
+\begin{note}
+    雖然 200 年前就有 Asymptotic Notation 的概念，但直到 1970 年代才被演算法分析之父 Donald Ervin Knuth 正式定義到 CS 領域內。
+\end{note}
+
+\begin{exercise}[Why Asymptotic Notation]
+    為什麼要用 Asymptotic Notation？
+\end{exercise}
+\begin{answer}
+    問題難度通常單位不一致
+    \begin{itemize}
+        \item $n=3$ 魔方問題要 20 轉
+        \item $n$ 個信封的老大問題要 $n-1$ 次比較
+    \end{itemize}
+    兩者難度無法比較
+\end{answer}
+
+\begin{definition}[Rate of Growth]
+    \blue{沒有人有明確定義}，但是成長率很好比較，有很多東西也是無法定義但可以比較，e.g. 無限集合可以比大小。
+\end{definition}
+
+\newpage
+
+\section{Big Oh Notation}
+
+\begin{definition}[Big Oh Notation]\label{df:1.3.1}
+    For functions $f, g : \mathbb{N} \rightarrow \mathbb{R}$, we write
+    \[
+        f(n) = O(g(n))
+    \]
+    to satisfy the extistence of positive constants $c$ and $n_0$ such that the inequality
+    \[
+        0 \leq f(n) \leq c \cdot g(n)
+    \]
+    holds for all integer $n \geq n_0$.
+\end{definition}
+
+\begin{note}
+    $f(n), g(n)$ should be non-negative for sufficiently large $n$.
+\end{note}
+
+\vspace{1em}
+
+The definition of \[
+f(n) = O(g(n))
+\]
+says that there exist a positive constant $c$ such that the value of $f(n)$ is upper-bounded by $c \cdot g(n)$ for all sufficiently large positive $n$. \\
+
+\begin{remark}
+    因此 $O(g(n))$ 可以理解成一個成長率不高過 $g$ 的函數所 成的集合
+\end{remark}
+
+\subsection{等號左邊也有 Big-Oh}
+
+\begin{definition}
+    The equality $O(g(n)) = O(h(n))$ signifies that
+    \[
+    f(n) = O(h(n))
+    \]
+    holds for all functions $f(n)$ with
+    \[
+    f(n) = O(g(n))
+    \]
+    i.e. $O(g(n)) = O(h(n))$ signifies that $f(n) = O(g(n))$ implies $f(n) = O(h(n))$.\\
+
+    The equality $=$ in $O(g(n)) = O(h(n))$ is more like $\subseteq$, i.e., $O(g(n)) \subseteq O(h(n))$.
+\end{definition}
+
+\begin{theorem}\label{thm:1.3.1}
+    $O(g(n)) = O(h(n))$ if and only if $g(n) = O(h(n))$.
+\end{theorem}
+\begin{proof}
+Consider the two directions separately.
+\begin{itemize}
+    \item For the $(\Rightarrow)$ case: 
+    For $f(n) = O(g(n))$ signifies that there exist positive constants $c_1$ and $n_1$ such that
+    \[
+        0 \leq f(n) \leq c_1 \cdot g(n), \ \forall n \geq n_1
+    \]
+    For $f(n) = O(h(n))$ signifies that there exist positive constants $c_2$ and $n_2$ such that
+    \[
+        0 \leq f(n) \leq c_2 \cdot h(n), \ \forall n \geq n_2
+    \]
+    
+    \item For the $(\Leftarrow)$ case: 
+    \begin{prev}[\blue{Definition}~\ref{df:1.3.1}]
+        \[
+        g(n) = O(h(n)) \quad \Rightarrow \quad \exists \; c_1, n_1 > 0, \; \forall n \geq n_1, \; 0 \leq g(n) \leq c_1 \cdot h(n)
+        \]
+    \end{prev}
+
+    Let $f$ be the function such that $f(n) = O(g(n))$. Then, by definition, we can deduce that
+    \[
+        \exists \; c_2, n_2 > 0, \; \forall n \geq n_2, \; 0 \leq f(n) \leq c_2 \cdot g(n).
+    \]
+
+    Assume $n \geq \max\{n_1, n_2\}$. Then, we have
+    \[
+        0 \leq f(n) \leq c_2 \cdot g(n) \leq c_2 \cdot (c_1 \cdot h(n)) = (c_1 c_2) \cdot h(n).
+    \]
+
+    Thus, we can conclude that \[
+        f(n) = O(g(n)) = O(h(n))
+    \]
+\end{itemize}
+    Hence, \[
+        O(g(n)) = O(h(n)) \iff g(n) = O(h(n)).
+    \]
+\end{proof}
+
+\section{Big-Oh 的運算}
+
+\begin{exercise}
+    所以，Big-Oh 相加的意思是什麼？
+\end{exercise}
+
+\begin{definition}[Big-Oh Addition]
+    The equality $$O(g_1(n)) + O(g_2(n)) = O(h(n))$$ signifies that the equality
+    \[
+    f_1(n) + f_2(n) = O(h(n))
+    \]
+    holds for any functions $f_1(n)$ and $f_1(n)$ with
+    \[
+    f_1(n) = O(g_1(n))
+    \]
+    \[
+    f_2(n) = O(g_2(n)).
+    \]
+    That is, $f_1(n) = O(g_1(n))$ and $f_2(n) = O(g_2(n))$ together imply $f_1(n) + f_2(n) = O(h(n))$.
+\end{definition}
+    
+
+\begin{remark}
+    雖然 $O(g_1(n)) + O(g_2(n))$ 看起來像是兩個集合的聯集，但相同集合想法\textbf{\red{無法帶到減乘除}}。
+\end{remark}
+
+\begin{definition}[Big-Oh $\circ$] The equality \[
+        O(g_1(n))\circ O(g_2(n)) = O(h(n))
+    \]\[
+        g_1(n) \circ O(g_2(n)) = O(h(n))
+    \]
+    集合的復合操作
+    \begin{notation}
+        $$
+        \{f_1(n)\circ f_2(n) \; | \; f_1(n) \in S_1 \text{ and } f_2(n) \in S_2\}
+        $$
+    \end{notation}
+    可以被理解成
+    \begin{itemize}
+        \item 把 $=$ 解成 $\subseteq$
+        \item 把 $g_1(n)$ 理解成 $\{g_1\}$
+        \item $O(g1(n))$ 解為成長率不超過 $g_1$ 的成長率的所有函數所組成的集合
+    \end{itemize}
+\end{definition}
+
+\newpage
+
+\begin{remark}
+    減乘除應被理解成與剛剛加法類似的模式，而無法被理解為集合的運算
+\end{remark}
+
+\begin{definition}[Big-Oh $-,\ \cdot,\ /$]
+    (Take $-$ as the example) The equality \[ O(g_1(n)) - O(g_2(n)) = O(h(n)) \] signifies the equality \[
+        f_1(n) - f_2(n) = O(h(n))
+    \]
+    holds for any functions $f_1(n)$ and $f_2(n)$ with
+    \[
+        f_1(n) = O(g_1(n))
+    \]
+    \[
+        f_2(n) = O(g_2(n))
+    \]
+\end{definition}
+
+\begin{exercise}
+    Proof or disproof: \[
+        O(n)^{O(\log_2 n)} = O(2^n)
+    \]
+\end{exercise}
+\begin{answer}
+    First, we take $\log$ on both sides:
+    \[
+        \text{LHS} = O(\log n) \cdot O(\log n) = (O(\log n))^2
+    \]    
+    \[
+        \text{RHS} = O(n)
+    \]
+    LHS grows slower than RHS, therefore the original statement is true.
+\end{answer}
+\begin{remark}
+    $\log$ 的底數不影響成長率，因此可忽略。
+\end{remark}
+
+\begin{definition}[Big-Oh套Big-Oh]
+    The equality \[
+        O(O(g(n))) = O(h(n))
+    \]
+    signifies that the equality
+    \[
+        O(f(n)) = O(h(n))
+    \]
+    holds for any function $f$ with \[
+        f(n) = O(g(n))
+    \]
+    i.e. $f(n) = O(g(n))$ implies $O(f(n)) = O(h(n))$.
+\end{definition}
+
+\begin{theorem}
+    $g(n) = O(h(n))$ if and only if $O(O(g(n))) = O(h(n))$
+\end{theorem}
+\begin{proof}
+    Consider the two directions separately.
+    \begin{itemize}
+        \item For the $(\Rightarrow)$ case: 
+        \begin{prev}[\blue{Definition}~\ref{df:1.3.1}]
+            \[
+            g(n) = O(h(n)) \ \Longrightarrow \ \exists \; c_0, n_0 > 0, \; \forall n \geq n_0, \; 0 \leq g(n) \leq c_0 \cdot h(n)
+            \]
+        \end{prev}
+        \(f(n) = O(O(g(n)))\) signifies that for \( c_1, c_2, n_1, n_2 > 0 \)
+        \[
+            \forall n \geq n_1, \; 0 \leq f(n) \leq c_2 \cdot u(n); \quad \forall n \geq n_2, \; 0 \leq u(n) \leq c_1 \cdot g(n)
+        \]
+        Get all together, we have
+        \[
+            \red{0 \leq f(n)} \leq c_2 \cdot (c_1 \cdot g(n))\  \red{\leq c_2 c_1 c_0 \cdot h(n)} \quad \Longrightarrow \quad f(n) = O(h(n))
+        \]
+        Thus, we can conclude that \[
+            O(O(g(n))) = O(h(n))
+        \]
+
+        \item \red{\textbf{(???????????????????)}} For the $(\Leftarrow)$ case: We know that 
+        \(f(n) = O(O(g(n)))\) signifies that for \( c_1, c_2, n_1, n_2 > 0 \)
+        \[
+            \forall n \geq n_1, \; 0 \leq f(n) \leq c_2 \cdot u(n); \quad \forall n \geq n_2, \; 0 \leq u(n) \leq c_1 \cdot g(n)
+        \]
+        , \( f(n) = O(h(n)) \) signifies that for \( c_3, n_3 > 0 \)
+        \[
+            \forall n \geq n_3, \; 0 \leq f(n) \leq c_3 \cdot h(n)
+        \]
+        \red{\textbf{(???????????????????)}} 
+    \end{itemize}
+\end{proof}
+
+\begin{theorem}[Rules of Computation in Big-Oh]
+    The following statements hold for functions $f,g: \mathbb{N} \rightarrow \mathbb{R}$ such that there is a constant $n_0$ such that $f(n)$ and $g(n)$ for any integer $n \geq n_0$:
+    \begin{itemize}
+        \item \textbf{Rule 1}: $f(n) = O(f(n))$.
+        \item \textbf{Rule 2}: If $c$ is a positive constant, then $c \cdot f(n) = O(f(n))$.
+        \item \textbf{Rule 3}: $f(n) = O(g(n))$ if and only if $O(f(n)) = O(g(n))$.
+        \item \textbf{Rule 4}: $O(f(n)) \cdot O(g(n)) = O(f(n) \cdot g(n))$.
+        \item \textbf{Rule 5}: $O(f(n) \cdot g(n)) = f(n) \cdot O(g(n))$
+    \end{itemize}
+\end{theorem}
+\begin{proof}
+    For \textbf{Rule 5}: By the \blue{Definition~\ref{df:1.3.1}}, $u(n) = O(f(n) \cdot g(n))$ signifies that there exist positive constants c_1 and n_1 such that the inequality
+\end{proof}
+
+\section{More Asymptotic Notation}
+
