@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.8.4)  17 SEP 2025 16:09
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.8.4)  17 SEP 2025 22:28
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -2001,9 +2001,29 @@ Package hyperref Info: bookmark level for unknown eg defaults to 0 on input line
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 318.
+
+
+[10]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 362.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 365.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 373.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 376.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 379.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 386.
 )
 
-[10] (./ADA.aux)
+[11] (./ADA.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2022/08/05>
@@ -2022,12 +2042,12 @@ Package logreq Info: Writing requests to 'ADA.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 57981 strings out of 473832
- 1368858 string characters out of 5729482
- 2334664 words of memory out of 5000000
- 80092 multiletter control sequences out of 15000+600000
+ 57995 strings out of 473832
+ 1369181 string characters out of 5729482
+ 2334895 words of memory out of 5000000
+ 80106 multiletter control sequences out of 15000+600000
  624620 words of font info for 127 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  104i,12n,107p,1260b,1576s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on ADA.pdf (12 pages).
+Output written on ADA.pdf (13 pages).

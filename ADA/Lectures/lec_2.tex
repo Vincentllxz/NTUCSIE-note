@@ -329,3 +329,60 @@ Therefore, we may let $n_0(c) = \frac{1}{c} + 1$ and have $n = o(n^2)$ proved.
         \]
     \end{itemize}
 \end{definition}
+
+
+Limit notation 可以幫我們判斷各種 Asymptotic Notation:
+\begin{itemize}
+    \item If \[
+        \lim_{n \rightarrow \infty} \frac{f(n)}{g(n)} = 0
+    \], the we can guess $f(n) = o(g(n))$.
+    \item If \[
+        \lim_{n \rightarrow \infty} \frac{f(n)}{g(n)} = c
+    \], the we can guess $f(n) = \Theta(g(n))$.
+    \item If \[
+        \lim_{n \rightarrow \infty} \frac{f(n)}{g(n)} = \infty
+    \], the we can guess $f(n) = \omega(g(n))$.
+\end{itemize}
+\vspace{1em}
+
+然而，極限不一定應可以推至 Asymptotic Notation:
+\begin{itemize}
+    \item Let $f(n) = g(n) = (-1)^n$. We have \[
+        \lim_{n \rightarrow \infty} \frac{f(n)}{g(n)} = 1,
+    \] but $f(n) \neq O(g(n))$, $f(n) \neq \Omega(g(n))$, and $f(n) \neq \Theta(g(n))$.
+    \item Let $f(n) = (-1)^n$ and $g(n) = n \cdot (-1)^n$. We have \[
+        \lim_{n \rightarrow \infty} \frac{f(n)}{g(n)} = 0,
+    \] but $f(n) \neq o(g(n))$.
+    \item Let $f(n) = 2 + (-1)^n$ and $g(n) = 2-(-1)^n$. We have \[
+        f(n) = \Theta(g(n)),
+    \] but $\lim_{n\rightarrow \infty} \frac{f(n)}{g(n)}$ does not exist.
+\end{itemize}
+
+\begin{exercise}
+    Can we just use $\leq$ instead of $<$ in the definition of $o$ ? 
+\end{exercise}
+\begin{answer}
+    In most part of it will be right. However there will be a special situation:
+    \[
+        o(0) = 0
+    \]
+    which is definetly wrong.
+\end{answer}
+
+\begin{exercise}
+    為何不都用 $\exists \; c_0, n_0$ 或都用 $\forall c, n_0(c)$ ?
+\end{exercise}
+\begin{answer}
+    如果都用 $\exists \; c_0, n_0$，那$o$就會退化，變成$O$而已，並且$<$, $\leq$是沒有太大差別的
+    \vspace{1em}
+    \begin{proof}
+        Suppose that $\hat{n}_0(c)$ is the constant ensured by the $\leq$-version. 
+        We simply let $$n_0(c) = \max(m_0,\hat{n}_0(c/2)).$$ 
+        As a result, for any positive constant $c$, if $n \geq n_0(c)$, we have $g(n) > 0$ and thus
+        \begin{align*}
+            0 < f(n) &\leq \frac{c}{2} \cdot g(n) \\
+                    &< c \cdot g(n).
+        \end{align*}
+    \end{proof}
+證畢，由此可知符號並無太大影響，不可讓$o$退化
+\end{answer}
