@@ -95,13 +95,11 @@ says that there exist a positive constant $c$ such that the value of $f(n)$ is u
 Consider the two directions separately.
 \begin{itemize}
     \item For the $(\Rightarrow)$ case: 
-    For $f(n) = O(g(n))$ signifies that there exist positive constants $c_1$ and $n_1$ such that
-    \[
-        0 \leq f(n) \leq c_1 \cdot g(n), \ \forall n \geq n_1
+    We can easily proof that \[
+        g(n) = O(g(n))
     \]
-    For $f(n) = O(h(n))$ signifies that there exist positive constants $c_2$ and $n_2$ such that
-    \[
-        0 \leq f(n) \leq c_2 \cdot h(n), \ \forall n \geq n_2
+    then we can deduce that \[
+        \red{g(n)} = O(g(n)) = \red{O(h(n))}
     \]
     
     \item For the $(\Leftarrow)$ case: 
@@ -174,8 +172,6 @@ Consider the two directions separately.
         \item $O(g1(n))$ 解為成長率不超過 $g_1$ 的成長率的所有函數所組成的集合
     \end{itemize}
 \end{definition}
-
-\newpage
 
 \begin{remark}
     減乘除應被理解成與剛剛加法類似的模式，而無法被理解為集合的運算
@@ -251,17 +247,14 @@ Consider the two directions separately.
             O(O(g(n))) = O(h(n))
         \]
 
-        \item \red{\textbf{(???????????????????)}} For the $(\Leftarrow)$ case: We know that 
-        \(f(n) = O(O(g(n)))\) signifies that for \( c_1, c_2, n_1, n_2 > 0 \)
-        \[
-            \forall n \geq n_1, \; 0 \leq f(n) \leq c_2 \cdot u(n); \quad \forall n \geq n_2, \; 0 \leq u(n) \leq c_1 \cdot g(n)
+        \item We can easily proof that \[
+            g(n) \subseteq O(g(n)) \subseteq O(O(g(n)))
         \]
-        , \( f(n) = O(h(n)) \) signifies that for \( c_3, n_3 > 0 \)
-        \[
-            \forall n \geq n_3, \; 0 \leq f(n) \leq c_3 \cdot h(n)
+        Then we can get \[
+            g(n) = O(O(g(n))) = O(h(n))
         \]
-        \red{\textbf{(???????????????????)}} 
     \end{itemize}
+    Hence, \( g(n) = O(h(n)) \iff O(O(g(n))) = O(h(n))\)
 \end{proof}
 
 \begin{theorem}[Rules of Computation in Big-Oh]
@@ -275,8 +268,64 @@ Consider the two directions separately.
     \end{itemize}
 \end{theorem}
 \begin{proof}
-    For \textbf{Rule 5}: By the \blue{Definition~\ref{df:1.3.1}}, $u(n) = O(f(n) \cdot g(n))$ signifies that there exist positive constants c_1 and n_1 such that the inequality
+    For \textbf{Rule 5}: By the \blue{Definition~\ref{df:1.3.1}}, $u(n) = O(f(n) \cdot g(n))$ signifies that there exist positive constants $c_1$ and $n_1$ such that the inequality 
+    \[
+        \exists \; c_0, n_0 > 0,\  \forall n \geq n_0,\ 0 \leq u(n) \leq c_0 \cdot f(n) \cdot g(n)
+    \]
+    the definition of $u(n) = f(n) \cdot O(g(n))$ is 
+    \[
+        \exists \; c_1, n_1 > 0,\  \forall n \geq n_1,\ 0 \leq u(n) \leq f(n) \cdot c_1 \cdot g(n)
+    \]
+    which are equivilence to each other.
 \end{proof}
 
 \section{More Asymptotic Notation}
 
+\begin{definition}[Little-oh]
+    For any function $f, g : \mathbb{N} \rightarrow \mathbb{R}$, we write
+    \[
+        f(n) = o(g(n))
+    \]
+    to signify that for any constant $c > 0$, there is a positive constant $n_0(c)$ such that
+    \[
+        0 \leq f(n) < c\cdot g(n)
+    \]
+    holds for each integer $n \geq n_0(c)$
+
+    \begin{note}
+        \(n_0(c)\) is a function of $c$. When we \(n_0(c)\) is a constant, we means that it does not depend on $n$.
+    \end{note}
+\end{definition}
+
+\vspace{1em}
+
+白話來說 $f(n) = o(g(n))$ 的定義是說，不管是多小的常數 $c$，要 $n$ 夠大（i.e., $n \geq n_0(c)$），
+\[
+0 \leq f(n) < c \cdot g(n)
+\]
+都還是成立。
+
+\begin{eg}
+$$n = o(n^2)$$
+\end{eg}
+\vspace{0.5em}
+Observe that for any positive constant $c$, as long as $n > \frac{1}{c}$, we have 
+\[
+0 \leq n < c\cdot n^2
+\]
+Therefore, we may let $n_0(c) = \frac{1}{c} + 1$ and have $n = o(n^2)$ proved.
+
+\begin{definition}[Other notation]
+    The other notation can be defined via $O$ and $o$ notation:
+    \begin{itemize}
+        \item We write $f(n) = \Omega(g(n))$ if \[
+            g(n) = O(f(n)).
+        \]
+        \item We write $f(n) = \Theta(g(n))$ if \[
+            f(n) = O(g(n)) \text{ and } f(n) = \Omega(g(n))
+        \]
+        \item We write $f(n) = \omega(g(n))$ if \[
+            g(n) = o(n)
+        \]
+    \end{itemize}
+\end{definition}

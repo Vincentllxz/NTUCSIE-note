@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.8.4)  17 SEP 2025 02:10
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.8.4)  17 SEP 2025 13:57
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1422,7 +1422,7 @@ Package thmtools Info: Key `mdframed' (with value ` linewidth=2pt, rightline=fal
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
 (thmtools)             that uses `style=thmbluebox' on input line 117.
-Package thmtools Info: Key `mdframed' (with value ` linewidth=2pt, rightline=false, topline=false, bottomline=false, linecolor=CarnationPink!80!black, nobreak=false ')
+Package thmtools Info: Key `mdframed' (with value ` linewidth=2pt, rightline=false, topline=false, bottomline=false, linecolor=RoyalBlue!90!black, nobreak=false ')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
 (thmtools)             that uses `style=thmblueline' on input line 127.
@@ -2150,9 +2150,6 @@ LaTeX Font Warning: Size substitutions with differences
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
 Package rerunfilecheck Info: File `LinearAlgebra.out' has not changed.
 (rerunfilecheck)             Checksum: 4612F2DE9DD4409F33B203AD3D06345F;1915.
 Package logreq Info: Writing requests to 'LinearAlgebra.run.xml'.
@@ -2161,8 +2158,8 @@ Package logreq Info: Writing requests to 'LinearAlgebra.run.xml'.
  ) 
 Here is how much of TeX's memory you used:
  58793 strings out of 473832
- 1384200 string characters out of 5729482
- 2445887 words of memory out of 5000000
+ 1384192 string characters out of 5729482
+ 2445973 words of memory out of 5000000
  80861 multiletter control sequences out of 15000+600000
  647778 words of font info for 180 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
