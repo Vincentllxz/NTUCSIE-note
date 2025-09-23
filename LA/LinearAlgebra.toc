@@ -19,3 +19,8 @@
 \contentsline {section}{\numberline {1.6}Inverse and Transpose}{18}{section.1.6}%
 \contentsline {subsection}{\numberline {1.6.1}The Calculation of $A^{-1}$: Gaussian-Jordan Method}{19}{subsection.1.6.1}%
 \contentsline {subsection}{\numberline {1.6.2}Invertible = Nonsingular}{20}{subsection.1.6.2}%
+\contentsline {section}{\numberline {1.7}Transpose $A^{T}$}{21}{section.1.7}%
+\contentsline {chapter}{\numberline {2}Vector Spaces and Linear Equation}{23}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Vector Spaces and Subspace}{23}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Algebraic Rules of Vector Algebra}{24}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2}subspace}{26}{subsection.2.1.2}%

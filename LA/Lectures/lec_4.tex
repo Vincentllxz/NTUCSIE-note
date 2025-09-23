@@ -1,0 +1,321 @@
+\lecture{4}{23 Sep. 13:20}{}
+
+\section{Transpose $A^{T}$}
+
+\begin{proposition}
+    Here are the proposition of transpose
+    \begin{itemize}
+        \item \( (A+B)^T = A^T + B^T \)
+        \item \( (A^T)^T = A \)
+        \item \( (AB)^T = B^T A^T \)
+        \item \( (A^{-1})^T =  (A^T)^{-1}\)
+    \end{itemize}
+\end{proposition}
+\begin{proof}
+    Here is the proof
+    \begin{enumerate}[label=$\arabic*^\circ$]
+        \item $ ((A+B)^T)_{\blue{ij}} = (A+B)_{\blue{ji}} = A_{ji} + B_{ji} = (A^T + B^T)_{ij}$
+        \item $ ((AB)^T)_{\blue{ij}} = (AB)_{ji} = \boxed{\sum_{\red{k=1}}^{\red{n}} a_{j\red{k}}b_{\red{k}i}}$ \quad
+              $ (B^T A^T)_{\blue{ij}} = \sum_{\red{\ell=1}}^{\red{n}} b^T_{i\red{\ell}}a^T_{\red{\ell}j} = \sum_{\ell=1}^{n} b_{\ell i}a_{j \ell} = \boxed{\sum_{\ell=1}^{n} a_{j\ell}b_{\ell i}}$
+        \item 
+    \end{enumerate}
+\end{proof}
+
+\newpage
+
+\begin{definition}
+    A symmetric matrix is a matrix which equals its own transpose. i.e. $A=A^T$
+    \begin{eg}
+    \[
+    \begin{pmatrix}
+        2 & 1\\
+        1 & 3
+    \end{pmatrix} \ \red{\text{YES}} \ \begin{pmatrix}
+        5 & 4\\
+        1 & 5
+    \end{pmatrix} \ \red{\text{NO}} \ \begin{pmatrix}
+        0 & 0\\
+        0 & 0
+    \end{pmatrix} \ \red{\text{YES}}
+    \]
+    \end{eg}
+\end{definition}
+
+\begin{note}
+    A symmetric matrix is \blue{not necessarily} invertible. If it is invertible, then its inverse is symmetric.
+\end{note}
+
+\begin{theorem}
+    If $A$ is symmetric and if $A$ can be factored as $LDU$, then $A=LDU^T$
+\end{theorem}
+\begin{proof}
+    Here is the proof.
+    \begin{enumerate}[label=$\arabic*^\circ$]
+        \item $A=A^T$, $A=LDU$ $\Rightarrow$ $A^T = (LDU)^T = U^TD^TL^T = A = LDU$
+        \item By theorem \ref{thm:1.5.2}, the theorem is correct.
+    \end{enumerate}
+    
+    $LDU$ is unique if they exist.
+\end{proof}
+
+\chapter{Vector Spaces and Linear Equation}
+
+\section{Vector Spaces and Subspace}
+
+To answer the basic questions about the \red{$\underset{1^\circ}{\text{existence}}$} and \red{$\underset{2^\circ}{\text{uniquness}}$} of the solution of $Ax=b$, we need the concept of vector space.
+
+\[
+\text{Field} \quad \Longrightarrow \quad \text{Vector Space} \quad \Longrightarrow \quad \text{Solution of } Ax=b
+\]
+
+\begin{definition}[Field]
+    Let $F$ be a set with two operations "$+$" and "$\bigcdot$" 
+    i.e. \begin{align*}
+        &+ : F \times F \longrightarrow F \\
+        &\bigcdot : F \times F \longrightarrow F
+    \end{align*}
+    and $+, \bigcdot$ are well-defined functions. If the system \redbox{$(F, +, \bigcdot)$} satisfies the following conditions, the $F$ is called a \redbox{Field}.
+
+    For $a,b,c \in F$
+
+    \begin{enumerate}[label=(\arabic*)]
+        \item $(a + b) + c = a + (b+c)$
+        \item $a + b = b + a$
+        \item $\exists \; 0 \in F \ni a + 0 = 0 + a = a$ \hspace{1em} \grn{單位元素 (1st operation)}
+        \item $\forall a \in F, \ \exists (-a) \in F \ni a + (-a) = 0$ \hspace{1em} \grn{反元素 (1st operation)}
+        \item $(a \cdot b) \cdot c = a \cdot (b \cdot c)$
+        \item  $a \cdot b = b \cdot a$
+        \item $\exists\; 1 \in F \ni a \cdot 1 = 1 \cdot a = a$ \hspace{1em} \grn{單位元素 (2nd operation)}
+        \item $\forall a \neq 0 \in F, \ \exists \; a^{-1} \in F \ni a \cdot a^{-1} = a^{-1} \cdot a = 1$ \hspace{1em} \grn{反元素 (2nd operation)}
+        \item $a \cdot (b + c) = ab + ac$ \hspace{1em} \grn{Distribution Law}
+    \end{enumerate}
+
+\end{definition}
+
+\begin{eg}
+    \[
+        \underset{\text{(real)}}{\mathbb{R}} \red{\text{(YES)}} \ 
+        \underset{\text{(rational)}}{\mathbb{Q}}\red{\text{(YES)}} \ \underset{\text{(integer)}}{\mathbb{Z}} \red{\text{(NO)}} \ 
+        \underset{\text{(complex)}}{\mathbb{C}} \red{\text{(YES)}} \ \; \;  \mathbb{N} \ \red{\text{(NO)}}
+    \]
+\end{eg}
+
+\newpage
+
+\begin{definition}[vector space]
+    Let $V$ be a set and $F$ be a field. \redbox{$V$ is a vector space over $F$} if \blue{$\underset{1^\circ}{\text{addition}}$} and \blue{$\underset{2^\circ}{\text{multiplication by scalar}}$} are defined on $V$ and they satisfy.
+
+    \begin{align*}
+        &+ : V \times V \longrightarrow V \\
+        &\bigcdot : F \times V \longrightarrow V
+    \end{align*}
+
+    \begin{enumerate}[label=(A\arabic*)]
+        \item addition is associated
+        \item addition is commutative
+        \item $\exists$ zero vector \red{$\in V$} $\ni 0 + v = v + 0, \ \red{\forall v \in V}$ 
+        \item $\forall v \in V, \ \exists (-v) \red{\in V} \ni (-v) + v = 0$
+   \end{enumerate}
+   \begin{enumerate}[label=(M\arabic*)]
+        \item $1\cdot v = v, \ \blue{v\in V, \ 1 \in F}$
+        \item $(\lambda \mu) \cdot v = \lambda (\mu v)$ \blue{$v\in V, \ \lambda, \mu \in F$}
+        \item $\lambda(v_1 + v_2) = \lambda v_1 + \lambda v_2$ \blue{$v_1, v_2\in V, \ \lambda \in F$}
+        \item $(\lambda + \mu) v = \lambda v + \mu v$ \blue{$v\in V, \ \lambda, \mu \in F$}
+   \end{enumerate}
+\end{definition}
+
+\subsection{Algebraic Rules of Vector Algebra}
+
+\begin{exercise}
+    $n \in \mathbb{N}$, $\mathbb{R}^n\red{/\mathbb{R}}$ ($\mathbb{R}^n$ over $\mathbb{R}$) is a vector space?
+\end{exercise}
+\begin{answer}
+    \textbf{YES}
+\end{answer}
+
+\begin{eg}
+\[
+\mathbb{C}^n/\mathbb{C},\ \mathbb{C}^n/\mathbb{R}, \ \mathbb{R}/\mathbb{R}
+\]
+\end{eg}
+
+\begin{exercise}
+    $M_{2\times 2}(\mathbb{R})/\mathbb{R}$ is a vector space?
+   \[
+    M_{2\times 2}(\mathbb{R}) =
+    \left\{ 
+    \begin{pmatrix}
+    a & b \\
+    c & d
+    \end{pmatrix}
+    \;\middle|\;
+    a, b, c, d \in \mathbb{R} 
+    \right\}
+    \]
+\end{exercise}
+\begin{answer}
+    \textbf{YES}
+\end{answer}
+
+\begin{exercise}
+    $V$ is a vector space?
+   \[
+    V = \{ \text{all } 3\times 3 \text{ symmetric  matrices over } \mathbb{R} \}
+    \]
+\end{exercise}
+\begin{answer}
+    \textbf{YES}
+\end{answer}
+
+\begin{exercise}
+    $\mathbb{R}^\infty / \mathbb{R}, \mathbb{R}^\infty = \{(a_1, a_2, \cdots\cdots) \;|\; a_i \in \mathbb{R}\}$
+\end{exercise}
+\begin{answer}
+    \textbf{YES}
+\end{answer}
+
+\newpage
+
+\begin{exercise}
+     Let $V = \{f \; | \; f \text{ is a real-valued function defined on } [0,1]\}$ define $(rf)(x) = r \cdot f(x), \ r\in \mathbb{R}$
+\end{exercise}
+\begin{answer}
+    \textbf{YES}
+    \[
+    \text{(zero vector)} = \text{(zero function)}
+    \]
+    i.e. $f(x) = 0, \forall x \in [0,1]$
+\end{answer}
+
+\begin{exercise}
+    $V = \{ \text{all positive } \mathbb{R} \}$ 
+    \[
+    \begin{cases}
+        x \blue{+} y &= xy \\
+        c \blue{\bigcdot} x &= x^c
+    \end{cases}, \quad \text{is } V \text{a v.s. over } \mathbb{R}
+    \]
+\end{exercise}
+\begin{answer}
+    \textbf{YES}
+    \begin{enumerate}[label=$\arabic*^\circ$]
+        \item (A1) $(x+y)+z = x+(y+z)$
+        \item (A2) $(x+y) = xy = yx = (y+x)$
+        \item (A3) zero vector: $x + \red{1} = x$
+        \item (A4) x + $\displaystyle \blue{\frac{1}{x}} = \text{zero vector} = 1$
+        \item (M3) $\lambda(x+y) = (x+y)^\lambda = (xy)^\lambda = x^\lambda y^\lambda = (\lambda x)(\lambda y) = \lambda x + \lambda y$
+        \item (M4) $(\lambda + \mu) \cdot x = x^{(\lambda + \mu)} = x^\lambda\cdot x^\mu = \lambda x \cdot \mu x = \lambda x + \mu x$
+    \end{enumerate}
+    All conditions apply.
+\end{answer}
+
+\newpage
+
+\subsection{subspace}
+
+\begin{definition}[subspace]
+    A \redbox{subspace $W$} of a vector space $(V, +, \bigcdot)$ over $F$ is a nonempty subspace of $V \ni (W, + , \bigcdot)$ itself is a vector space over $F$. $W$ is a subspace of $V$ over $F$ if and only if $W$ is closed under addition and scalar multiplication.
+\end{definition}
+
+\begin{exercise}
+    Does the zero vector belong to subspace?
+\end{exercise}
+\begin{answer}
+    \textbf{YES} \\
+    $W = \{ \text{zero vector} \}$ is the smallest possible vector space.
+\end{answer}
+
+\begin{remark}
+    If $W_1$ and $W_2$ are subspaces of $V$ over $F$. Then $W_1 \cap W_2 \red{\neq} \emptyset$
+\end{remark}
+
+\begin{note}
+If $W$ is a subspace of $V/F$, then we use notation \redbox{$W \leq V$}.
+\end{note}
+
+\begin{exercise}
+$V = \mathbb{R}^2/\mathbb{R}$ ($xy$-plane), What are the subspace of $V$?
+\end{exercise}
+\begin{answer}
+    Here are all subspace of $V$
+    \begin{enumerate}[label=(\roman*)]
+        \item origin (one point)
+        \item $\mathbb{R}^2/\mathbb{R} \leq V$
+        \item all lines through origin
+        \item \sout{2nd quadant} (no zero)
+    \end{enumerate}
+    There are much more example.
+\end{answer}
+
+\begin{exercise}
+$V = M_{n\times n}(\mathbb{R})/\mathbb{R}$
+\begin{align*}
+    &S = \{n\times n \text{symmetric matrix}\} \\
+    &U = \{n\times n \text{upper triangular matrix}\} \\
+    &L = \{n\times n \text{lower triangular matrix}\}
+\end{align*}
+\end{exercise}
+\begin{answer}
+\textbf{YES, YES, YES}
+\end{answer}
+
+\begin{theorem}
+    Let $V$ be a vector space over $F$. A nonempty subset $W$ of $V$ is a subspace of $V$, if and only if for each pair $x, y \in W$ and $\alpha \in F$:
+    \begin{enumerate}[label=$\arabic*^\circ$]
+        \item The zero vector $\in W$.
+        \item $\alpha x + y \in W$
+    \end{enumerate}
+\end{theorem}
+
+\newpage
+
+\begin{eg}
+    \[
+    A_{m\times n}\; x_{n\times 1} = b_{m\times1}
+    \]
+\end{eg}
+The first concern is to find all attainable r.h.s. vector b. For example: 
+\[
+\begin{pmatrix}
+    1 & 4 \\
+    2 & 5 \\
+    3 & 6
+\end{pmatrix} \begin{pmatrix}
+    u \\v
+\end{pmatrix} = \begin{pmatrix}
+    b_1 \\ b_2 \\ b_3
+\end{pmatrix} = \blue{
+    u\begin{pmatrix}
+        1 \\ 2 \\ 3
+    \end{pmatrix} + v \begin{pmatrix}
+        4 \\ 5 \\ 6
+    \end{pmatrix} 
+}
+\]
+
+\begin{theorem}
+    The system is solvable if and only if the vector $b$ can be expressed as a combination of columns of $A$
+\end{theorem}
+
+\begin{note}
+The columns of $A_{m\times n}$ are vectors in $\mathbb{R}^{\red{m}}$, the rows of $A_{m\times n}$ are vectors in $\mathbb{R}^{\red{n}}$. 
+\end{note}
+
+\begin{eg}
+Let $\mathcal{C}(A) = \{ \text{all combinations of columns of } A \}$. Then, $\mathcal{C}(A)$ is a subspace of $\mathbb{R}^{\red{m}}/\mathbb{R}$.
+\end{eg}
+\begin{proof}
+    If $b$ and $b' \in \mathcal{C}(A)$, $\exists \; x, x' \ni Ax = b\ \& \ Ax' = b'$
+    \[
+        \forall \alpha \in \mathbb{R}, \quad A(\alpha x + x') = A(\alpha x) + A(x') = A \alpha x + Ax' = \alpha b + b' \in \mathcal{C}(A)
+    \]
+    $\Longrightarrow\ \mathcal{C}(A) \leq \mathbb{R}^m/\mathbb{R}$
+\end{proof}
+
+\begin{definition}
+    $\mathcal{C}(A)$ is called the \redbox{column space} of $A$. Thus if $b \in \mathcal{C}(A)$, then $Ax=b$ is solvable.
+    \begin{itemize}
+        \item $A_{m \times n} = 0 \ \longrightarrow \ \mathcal{C}(A) = 0_{\red{m \times 1}}$
+        \item $A_{m \times n} = I_m \ \longrightarrow \ \mathcal{C}(A) = \mathbb{R}^m$
+    \end{itemize}
+\end{definition}
