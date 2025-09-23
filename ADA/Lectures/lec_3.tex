@@ -1,0 +1,82 @@
+\lecture{3}{18 Sep. 14:20}{}
+
+\section{問題難度的比較}
+
+
+如果，
+\begin{itemize}
+    \item $P$ 不比 $Q$ 難 且
+    \item $Q$ 不比 $P$ 簡單
+\end{itemize}
+那兩個問題的難度相同
+
+\begin{definition}
+    We say that the (worst-case) time complexity of Problem $P$ is $\Theta(f(n))$ if
+    \begin{itemize}
+        \item the time complexity of Problem $P$ is $O(f(n))$, i.e.
+            \[
+                \text{there \red{exists} an }O(f(n))\text{-time algorithm that solves Problem }P
+            \]
+        \item the time complexity of Problem $P$ is $\Omega(f (n))$, i.e. 
+            \[
+                \text{\red{any} algorithm that solves Problem }P\text{ requires }\Omega(f (n))\text{ time (in the worst case).}
+            \]
+        對於任何演算法，只要存在一組 instance 可以達成，一組 $\Omega(f(n))$ 即可推出
+    \end{itemize}
+\end{definition}
+
+\begin{note}
+若沒有特別說，$n$代表的是 input(instance) size，儲存資料所需的容量
+\end{note}
+
+\begin{note}
+「正確的演算法」就是對於所有合法輸入都可以對應出正確的輸出，的解決問題方法
+\end{note}
+
+\section{演算法複雜度比較}
+
+\section{分析演算法複雜度下界}
+
+\begin{note}
+    儘管有些 case 可以，但 Big-Omega 不可以跟 Big-Oh 一樣分析
+\end{note}
+
+\begin{remark}
+    \redbox{$\Omega$-time 必須要一組一組 instance 分析}
+\end{remark}
+
+\chapter{演算法的設計與分析}
+
+\section{Half Sorted}
+\begin{definition}[Half Sorting Problem]
+    An $n$-element array $A$ is half-sorted if
+    \[
+        A[i] \leq A\left[ \left\lfloor \frac{i}{2} \right\rfloor \right]
+    \]
+    holds for each index $i$ with $2 \leq i \leq n$.
+\end{definition}
+
+\textbf{Half-sorting Problem}:
+\begin{itemize}
+    \item Input: \[
+        \text{An array A of n distinct numbers.}
+    \]
+    \item Output: \[
+        \text{A half-sorted array that is reordered from A.}
+    \]
+\end{itemize}
+
+\begin{note}
+歸約 Reduction（問題重整）
+\end{note}
+
+\begin{note}
+把問題的性質變強，便可以順便證明性質較弱的問題
+\end{note}
+
+\begin{definition}[順調法]
+    
+\end{definition}
+
+算上面算比較少，樹的上下是不對稱的
+

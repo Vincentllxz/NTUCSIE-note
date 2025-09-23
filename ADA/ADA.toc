@@ -10,3 +10,8 @@
 \contentsline {subsection}{\numberline {1.3.1}等號左邊也有 Big-Oh}{6}{subsection.1.3.1}%
 \contentsline {section}{\numberline {1.4}Big-Oh 的運算}{7}{section.1.4}%
 \contentsline {section}{\numberline {1.5}More Asymptotic Notation}{10}{section.1.5}%
+\contentsline {section}{\numberline {1.6}問題難度的比較}{12}{section.1.6}%
+\contentsline {section}{\numberline {1.7}演算法複雜度比較}{12}{section.1.7}%
+\contentsline {section}{\numberline {1.8}分析演算法複雜度下界}{12}{section.1.8}%
+\contentsline {chapter}{\numberline {2}演算法的設計與分析}{13}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Half Sorted}{13}{section.2.1}%

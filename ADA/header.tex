@@ -1,7 +1,7 @@
 % basics
 \usepackage{xeCJK}
 \setCJKmainfont{Kaiti TC} % 新細明體
-\setCJKmainfont{Kaiti TC}[AutoFakeBold=6 , AutoFakeSlant=.2] % 新細明體
+\setCJKmainfont{Kaiti TC}[AutoFakeBold=6 , AutoFakeSlant=.2]
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -15,8 +15,12 @@
 \usepackage{emptypage}
 \usepackage{subcaption}
 \usepackage{svg}
+\usepackage[normalem]{ulem}
 \usepackage[usenames,dvipsnames]{xcolor}
 \input{Math.tex}
+\usepackage{xfrac}
+
+\linespread{1.2}
 
 
 \usepackage{amsmath, amsfonts, mathtools, amsthm, amssymb, mathrsfs}
@@ -364,7 +368,25 @@
 
 \newcommand{\bigcdot}{\mathbin{\vcenter{\hbox{\scalebox{2}{$\cdot$}}}}}
 \newcommand{\red}[1]{\textcolor{red}{#1}}
-\newcommand{\blue}[1]{\textcolor{cyan!80!black}{#1}}
+\newcommand{\blue}[1]{\textcolor{cyan!70!black}{#1}}
+\newcommand{\yel}[1]{\textcolor{Goldenrod!70!black}{#1}}
+\newcommand{\grn}[1]{\textcolor{ForestGreen!70!black}{#1}}
+
+\newcommand{\yelbox}[1]{%
+  {\setlength{\fboxrule}{1pt}%
+   \setlength{\fboxsep}{2pt}%
+   \color{Goldenrod!90!black}\fbox{\normalcolor #1}}}
+
+\newcommand{\bluebox}[1]{%
+  {\setlength{\fboxrule}{1pt}%
+   \setlength{\fboxsep}{2pt}%
+   \color{cyan!80!black}\fbox{\normalcolor #1}}}
+
+\newcommand{\redbox}[1]{%
+  {\setlength{\fboxrule}{1pt}%
+   \setlength{\fboxsep}{2pt}%
+   \color{red}\fbox{\normalcolor #1}}}
+
 
 \newcommand*{\@checkappendixparam}[1]{%
 	\def\@checkappendixparamtmp{#1}%
