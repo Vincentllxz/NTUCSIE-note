@@ -1,0 +1,35 @@
+\lecture{4}{25 Sep. 14:20}{}
+
+\section{Sorting Problem}
+
+\begin{note}
+quick sort
+\end{note}
+
+\begin{note}
+half sort sort
+\end{note}
+
+\subsection{排序問題下界}
+解決了排序問題的下界就可以一次解決
+\begin{itemize}
+    \item The (worst-case) time complexity of the comparison-based sorting problem is $\Omega(n\log n)$.
+    \item The $O(n \log n)$-time analysis for the Half-Sort-Sort algorithm is tight.
+    \item Learning {Reduction}
+\end{itemize}
+
+\begin{definition}[Permutation Problem]
+    For the instance
+    \begin{itemize}
+        \item Input: An array $A$ of $n$ distinct integers.
+        \item Output: Reorder the n-index array $B = [1, 2, \cdots, n]$ such that \[
+        A[B[1]] < A[B[2]] < \cdots < A[B[n]].
+        \]
+    \end{itemize}
+\end{definition}
+\vspace{1em}
+
+排列難度 $\leq$ 排序難度。
+If the comparison-based sorting problem can be solved in $O(f(n))$ time, then so can the comparison-based permutation problem.
+
+\section{Amortized Analysis}

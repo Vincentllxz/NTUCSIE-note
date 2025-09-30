@@ -214,7 +214,7 @@ To answer the basic questions about the \red{$\underset{1^\circ}{\text{existence
 \subsection{subspace}
 
 \begin{definition}[subspace]
-    A \redbox{subspace $W$} of a vector space $(V, +, \bigcdot)$ over $F$ is a nonempty subspace of $V \ni (W, + , \bigcdot)$ itself is a vector space over $F$. $W$ is a subspace of $V$ over $F$ if and only if $W$ is closed under addition and scalar multiplication.
+    A \redbox{subspace $W$} of a vector space $(V, +, \bigcdot)$ over $F$ is a nonempty subset of $V \ni (W, + , \bigcdot)$ itself is a vector space over $F$. $W$ is a subspace of $V$ over $F$ if and only if $W$ is closed under addition and scalar multiplication.
 \end{definition}
 
 \begin{exercise}
@@ -259,7 +259,7 @@ $V = M_{n\times n}(\mathbb{R})/\mathbb{R}$
 \textbf{YES, YES, YES}
 \end{answer}
 
-\begin{theorem}
+\begin{theorem}[\label{thm:2.1.1}]
     Let $V$ be a vector space over $F$. A nonempty subset $W$ of $V$ is a subspace of $V$, if and only if for each pair $x, y \in W$ and $\alpha \in F$:
     \begin{enumerate}[label=$\arabic*^\circ$]
         \item The zero vector $\in W$.
@@ -268,6 +268,8 @@ $V = M_{n\times n}(\mathbb{R})/\mathbb{R}$
 \end{theorem}
 
 \newpage
+
+\subsection{Column Space of $A$}
 
 \begin{eg}
     \[
@@ -319,3 +321,4 @@ Let $\mathcal{C}(A) = \{ \text{all combinations of columns of } A \}$. Then, $\m
         \item $A_{m \times n} = I_m \ \longrightarrow \ \mathcal{C}(A) = \mathbb{R}^m$
     \end{itemize}
 \end{definition}
+

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.8.4)  23 SEP 2025 00:20
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.8.4)  29 SEP 2025 19:54
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -170,9 +170,23 @@ Package fontspec Info:
 
 
 Package fontspec Info: 
+(fontspec)             Could not resolve font "Kaiti TC/I" (it probably
+(fontspec)             doesn't exist).
+
+
+Package fontspec Info: 
+(fontspec)             Could not resolve font "Kaiti TC/BI" (it probably
+(fontspec)             doesn't exist).
+
+
+Package fontspec Info: 
+(fontspec)             Could not resolve font "Kaiti TC/I" (it probably
+(fontspec)             doesn't exist).
+
+
+Package fontspec Info: 
 (fontspec)             Font family 'KaitiTC(1)' created for font 'Kaiti TC'
-(fontspec)             with options
-(fontspec)             [Script={CJK},AutoFakeBold={6},AutoFakeSlant={0.2}].
+(fontspec)             with options [Script={CJK},AutoFakeBold={5}].
 (fontspec)              
 (fontspec)              This font family consists of the following NFSS
 (fontspec)             series/shapes:
@@ -180,11 +194,7 @@ Package fontspec Info:
 (fontspec)             - 'normal' (m/n) with NFSS spec.: <->"Kaiti
 (fontspec)             TC/OT:script=hani;language=dflt;"
 (fontspec)             - 'bold' (b/n) with NFSS spec.: <->"Kaiti
-(fontspec)             TC/OT:script=hani;language=dflt;embolden=6;"
-(fontspec)             - 'italic' (m/it) with NFSS spec.: <->"Kaiti
-(fontspec)             TC/OT:script=hani;language=dflt;slant=0.2;"
-(fontspec)             - 'bold italic' (b/it) with NFSS spec.: <->"Kaiti
-(fontspec)             TC/OT:script=hani;language=dflt;embolden=6;slant=0.2;"
+(fontspec)             TC/OT:script=hani;language=dflt;embolden=5;"
 
 (/usr/local/texlive/2025/texmf-dist/tex/latex/base/inputenc.sty
 Package: inputenc 2024/02/08 v1.3d Input encoding file
@@ -714,7 +724,7 @@ Package: ulem 2019/11/18
 \ULdepth=\dimen269
 )
 
-Package xcolor Warning: Package option `usenames' is obsolete and ignored on input line 20.
+Package xcolor Warning: Package option `usenames' is obsolete and ignored on input line 21.
 
 (/usr/local/texlive/2025/texmf-dist/tex/latex/graphics/dvipsnam.def
 File: dvipsnam.def 2016/06/17 v3.0m Driver-dependent file (DPC,SPQR)
@@ -996,15 +1006,62 @@ File: ppxetex.def 2025/01/30 v0.6e Pdfpages driver for XeTeX (AM)
 \AM@lof@heading=\toks42
 \c@AM@survey=\count485
 \AM@templatesizebox=\box77
+)) (./ListStyle.tex (/usr/local/texlive/2025/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count486
+\lst@gtempboxa=\box78
+\lst@token=\toks43
+\lst@length=\count487
+\lst@currlwidth=\dimen335
+\lst@column=\count488
+\lst@pos=\count489
+\lst@lostspace=\dimen336
+\lst@width=\dimen337
+\lst@newlines=\count490
+\lst@lineno=\count491
+\lst@maxwidth=\dimen338
+ (/usr/local/texlive/2025/texmf-dist/tex/latex/listings/lstpatch.sty
+File: lstpatch.sty 2024/09/23 1.10c (Carsten Heinz)
+) (/usr/local/texlive/2025/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2024/09/23 1.10c (Carsten Heinz)
+\c@lstnumber=\count492
+\lst@skipnumbers=\count493
+\lst@framebox=\box79
+) (/usr/local/texlive/2025/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2024/09/23 1.10c listings configuration
+))
+Package: listings 2024/09/23 1.10c (Carsten Heinz)
+ (/usr/local/texlive/2025/texmf-dist/tex/xelatex/xecjk/xeCJK-listings.sty
+Package: xeCJK-listings 2022/08/05 v3.9.1 xeCJK patch file for listings
+\l__xeCJK_listings_max_char_int=\count494
+\l__xeCJK_listings_flag_int=\count495
+) (/usr/local/texlive/2025/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2025/02/14 v25.4 The multilingual framework for pdfLaTeX, LuaLaTeX and XeLaTeX
+\babel@savecnt=\count496
+\U@D=\dimen339
+\l@unhyphenated=\language91
+ (/usr/local/texlive/2025/texmf-dist/tex/generic/babel/xebabel.def)
+\bbl@readstream=\read4
+\bbl@dirlevel=\count497
+ (/usr/local/texlive/2025/texmf-dist/tex/generic/babel-english/english.ldf
+Language: english 2017/06/06 v3.3r English support from the babel system
+Package babel Info: Hyphen rules for 'canadian' set to \l@english
+(babel)             (\language0). Reported on input line 102.
+Package babel Info: Hyphen rules for 'australian' set to \l@ukenglish
+(babel)             (\language22). Reported on input line 105.
+Package babel Info: Hyphen rules for 'newzealand' set to \l@ukenglish
+(babel)             (\language22). Reported on input line 108.
+)) (/usr/local/texlive/2025/texmf-dist/tex/generic/babel/locale/en/babel-english.tex
+Package babel Info: Importing font and identification data for english
+(babel)             from babel-en.ini. Reported on input line 11.
 )) (/usr/local/texlive/2025/texmf-dist/tex/latex/xfrac/xfrac.sty
 Package: xfrac 2024-06-04 Split-level fractions
-\l__xfrac_slash_box=\box78
-\l__xfrac_tmp_box=\box79
-\l__xfrac_denominator_bot_sep_dim=\dimen335
-\l__xfrac_numerator_bot_sep_dim=\dimen336
-\l__xfrac_numerator_top_sep_dim=\dimen337
-\l__xfrac_slash_left_sep_dim=\dimen338
-\l__xfrac_slash_right_sep_dim=\dimen339
+\l__xfrac_slash_box=\box80
+\l__xfrac_tmp_box=\box81
+\l__xfrac_denominator_bot_sep_dim=\dimen340
+\l__xfrac_numerator_bot_sep_dim=\dimen341
+\l__xfrac_numerator_top_sep_dim=\dimen342
+\l__xfrac_slash_left_sep_dim=\dimen343
+\l__xfrac_slash_right_sep_dim=\dimen344
 \l__xfrac_slash_left_muskip=\muskip23
 \l__xfrac_slash_right_muskip=\muskip24
 
@@ -1032,28 +1089,28 @@ Package: mathtools 2024/10/04 v1.31 mathematical typesetting tools
  (/usr/local/texlive/2025/texmf-dist/tex/latex/mathtools/mhsetup.sty
 Package: mhsetup 2021/03/18 v1.4 programming setup (MH)
 )
-\g_MT_multlinerow_int=\count486
-\l_MT_multwidth_dim=\dimen340
+\g_MT_multlinerow_int=\count498
+\l_MT_multwidth_dim=\dimen345
 \origjot=\skip88
-\l_MT_shortvdotswithinadjustabove_dim=\dimen341
-\l_MT_shortvdotswithinadjustbelow_dim=\dimen342
-\l_MT_above_intertext_sep=\dimen343
-\l_MT_below_intertext_sep=\dimen344
-\l_MT_above_shortintertext_sep=\dimen345
-\l_MT_below_shortintertext_sep=\dimen346
-\xmathstrut@box=\box80
-\xmathstrut@dim=\dimen347
+\l_MT_shortvdotswithinadjustabove_dim=\dimen346
+\l_MT_shortvdotswithinadjustbelow_dim=\dimen347
+\l_MT_above_intertext_sep=\dimen348
+\l_MT_below_intertext_sep=\dimen349
+\l_MT_above_shortintertext_sep=\dimen350
+\l_MT_below_shortintertext_sep=\dimen351
+\xmathstrut@box=\box82
+\xmathstrut@dim=\dimen352
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/amscls/amsthm.sty
 Package: amsthm 2020/05/29 v2.20.6
-\thm@style=\toks43
-\thm@bodyfont=\toks44
-\thm@headfont=\toks45
-\thm@notefont=\toks46
-\thm@headpunct=\toks47
+\thm@style=\toks44
+\thm@bodyfont=\toks45
+\thm@headfont=\toks46
+\thm@notefont=\toks47
+\thm@headpunct=\toks48
 \thm@preskip=\skip89
 \thm@postskip=\skip90
 \thm@headsep=\skip91
-\dth@everypar=\toks48
+\dth@everypar=\toks49
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
 LaTeX Font Info:    Redeclaring math symbol \boxdot on input line 44.
@@ -1065,65 +1122,63 @@ Package: geometry 2020/01/02 v5.9 Page Geometry
  (/usr/local/texlive/2025/texmf-dist/tex/generic/iftex/ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 )
-\Gm@cnth=\count487
-\Gm@cntv=\count488
-\c@Gm@tempcnt=\count489
-\Gm@bindingoffset=\dimen348
-\Gm@wd@mp=\dimen349
-\Gm@odd@mp=\dimen350
-\Gm@even@mp=\dimen351
-\Gm@layoutwidth=\dimen352
-\Gm@layoutheight=\dimen353
-\Gm@layouthoffset=\dimen354
-\Gm@layoutvoffset=\dimen355
-\Gm@dimlist=\toks49
+\Gm@cnth=\count499
+\Gm@cntv=\count500
+\c@Gm@tempcnt=\count501
+\Gm@bindingoffset=\dimen353
+\Gm@wd@mp=\dimen354
+\Gm@odd@mp=\dimen355
+\Gm@even@mp=\dimen356
+\Gm@layoutwidth=\dimen357
+\Gm@layoutheight=\dimen358
+\Gm@layouthoffset=\dimen359
+\Gm@layoutvoffset=\dimen360
+\Gm@dimlist=\toks50
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/cancel/cancel.sty
 Package: cancel 2013/04/12 v2.2 Cancel math terms
 ) (/usr/local/texlive/2025/texmf-dist/tex/generic/systeme/systeme.sty (/usr/local/texlive/2025/texmf-dist/tex/generic/xstring/xstring.sty (/usr/local/texlive/2025/texmf-dist/tex/generic/xstring/xstring.tex
-\xs_counta=\count490
-\xs_countb=\count491
+\xs_counta=\count502
+\xs_countb=\count503
 )
 Package: xstring 2023/08/22 v1.86 String manipulations (CT)
 ) (/usr/local/texlive/2025/texmf-dist/tex/generic/systeme/systeme.tex
-\SYS_code_toks=\toks50
-\SYS_preamble_toks=\toks51
-\SYSeqnum=\count492
+\SYS_code_toks=\toks51
+\SYS_preamble_toks=\toks52
+\SYSeqnum=\count504
 )
 Package: systeme 2025/02/16 v0.35 Mise en forme de systemes d'equations (CT)
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/enumitem/enumitem.sty
 Package: enumitem 2025/02/06 v3.11 Customized lists
 \labelindent=\skip92
-\enit@outerparindent=\dimen356
-\enit@toks=\toks52
-\enit@inbox=\box81
-\enit@count@id=\count493
-\enitdp@description=\count494
+\enit@outerparindent=\dimen361
+\enit@toks=\toks53
+\enit@inbox=\box83
+\enit@count@id=\count505
+\enitdp@description=\count506
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/tools/multicol.sty
 Package: multicol 2024/09/14 v1.9i multicolumn formatting (FMi)
-\c@tracingmulticols=\count495
-\mult@box=\box82
-\multicol@leftmargin=\dimen357
-\c@unbalance=\count496
-\c@collectmore=\count497
-\doublecol@number=\count498
-\multicoltolerance=\count499
-\multicolpretolerance=\count500
-\full@width=\dimen358
-\page@free=\dimen359
-\premulticols=\dimen360
-\postmulticols=\dimen361
+\c@tracingmulticols=\count507
+\mult@box=\box84
+\multicol@leftmargin=\dimen362
+\c@unbalance=\count508
+\c@collectmore=\count509
+\doublecol@number=\count510
+\multicoltolerance=\count511
+\multicolpretolerance=\count512
+\full@width=\dimen363
+\page@free=\dimen364
+\premulticols=\dimen365
+\postmulticols=\dimen366
 \multicolsep=\skip93
 \multicolbaselineskip=\skip94
-\partial@page=\box83
-\last@line=\box84
-\mc@boxedresult=\box85
-\maxbalancingoverflow=\dimen362
-\mult@rightbox=\box86
-\mult@grightbox=\box87
-\mult@firstbox=\box88
-\mult@gfirstbox=\box89
-\@tempa=\box90
-\@tempa=\box91
+\partial@page=\box85
+\last@line=\box86
+\mc@boxedresult=\box87
+\maxbalancingoverflow=\dimen367
+\mult@rightbox=\box88
+\mult@grightbox=\box89
+\mult@firstbox=\box90
+\mult@gfirstbox=\box91
 \@tempa=\box92
 \@tempa=\box93
 \@tempa=\box94
@@ -1158,66 +1213,68 @@ Package: multicol 2024/09/14 v1.9i multicolumn formatting (FMi)
 \@tempa=\box123
 \@tempa=\box124
 \@tempa=\box125
-\c@minrows=\count501
-\c@columnbadness=\count502
-\c@finalcolumnbadness=\count503
-\last@try=\dimen363
-\multicolovershoot=\dimen364
-\multicolundershoot=\dimen365
-\mult@nat@firstbox=\box126
-\colbreak@box=\box127
-\mc@col@check@num=\count504
+\@tempa=\box126
+\@tempa=\box127
+\c@minrows=\count513
+\c@columnbadness=\count514
+\c@finalcolumnbadness=\count515
+\last@try=\dimen368
+\multicolovershoot=\dimen369
+\multicolundershoot=\dimen370
+\mult@nat@firstbox=\box128
+\colbreak@box=\box129
+\mc@col@check@num=\count516
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/multirow/bigdelim.sty
 Package: bigdelim 2024/11/12 v2.9 Create big delimiters in tabular or array
  (/usr/local/texlive/2025/texmf-dist/tex/latex/multirow/multirow.sty
 Package: multirow 2024/11/12 v2.9 Span multiple rows of a table
 \multirow@colwidth=\skip95
-\multirow@cntb=\count505
+\multirow@cntb=\count517
 \multirow@dima=\skip96
-\bigstrutjot=\dimen366
+\bigstrutjot=\dimen371
 )) (/usr/local/texlive/2025/texmf-dist/tex/latex/siunitx/siunitx.sty
 Package: siunitx 2025-02-27 v3.4.6 A comprehensive (SI) units package
-\l__siunitx_number_uncert_offset_int=\count506
-\l__siunitx_number_exponent_fixed_int=\count507
-\l__siunitx_number_min_decimal_int=\count508
-\l__siunitx_number_min_integer_int=\count509
-\l__siunitx_number_round_precision_int=\count510
-\l__siunitx_number_lower_threshold_int=\count511
-\l__siunitx_number_upper_threshold_int=\count512
-\l__siunitx_number_group_first_int=\count513
-\l__siunitx_number_group_size_int=\count514
-\l__siunitx_number_group_minimum_int=\count515
-\l__siunitx_angle_tmp_dim=\dimen367
-\l__siunitx_angle_marker_box=\box128
-\l__siunitx_angle_unit_box=\box129
-\l__siunitx_compound_count_int=\count516
+\l__siunitx_number_uncert_offset_int=\count518
+\l__siunitx_number_exponent_fixed_int=\count519
+\l__siunitx_number_min_decimal_int=\count520
+\l__siunitx_number_min_integer_int=\count521
+\l__siunitx_number_round_precision_int=\count522
+\l__siunitx_number_lower_threshold_int=\count523
+\l__siunitx_number_upper_threshold_int=\count524
+\l__siunitx_number_group_first_int=\count525
+\l__siunitx_number_group_size_int=\count526
+\l__siunitx_number_group_minimum_int=\count527
+\l__siunitx_angle_tmp_dim=\dimen372
+\l__siunitx_angle_marker_box=\box130
+\l__siunitx_angle_unit_box=\box131
+\l__siunitx_compound_count_int=\count528
  (/usr/local/texlive/2025/texmf-dist/tex/latex/translations/translations.sty
 Package: translations 2022/02/05 v1.12 internationalization of LaTeX2e packages (CN)
 )
-\l__siunitx_table_tmp_box=\box130
-\l__siunitx_table_tmp_dim=\dimen368
-\l__siunitx_table_column_width_dim=\dimen369
-\l__siunitx_table_integer_box=\box131
-\l__siunitx_table_decimal_box=\box132
-\l__siunitx_table_uncert_box=\box133
-\l__siunitx_table_before_box=\box134
-\l__siunitx_table_after_box=\box135
-\l__siunitx_table_before_dim=\dimen370
-\l__siunitx_table_carry_dim=\dimen371
-\l__siunitx_unit_tmp_int=\count517
-\l__siunitx_unit_position_int=\count518
-\l__siunitx_unit_total_int=\count519
+\l__siunitx_table_tmp_box=\box132
+\l__siunitx_table_tmp_dim=\dimen373
+\l__siunitx_table_column_width_dim=\dimen374
+\l__siunitx_table_integer_box=\box133
+\l__siunitx_table_decimal_box=\box134
+\l__siunitx_table_uncert_box=\box135
+\l__siunitx_table_before_box=\box136
+\l__siunitx_table_after_box=\box137
+\l__siunitx_table_before_dim=\dimen375
+\l__siunitx_table_carry_dim=\dimen376
+\l__siunitx_unit_tmp_int=\count529
+\l__siunitx_unit_position_int=\count530
+\l__siunitx_unit_total_int=\count531
  (/usr/local/texlive/2025/texmf-dist/tex/latex/tools/array.sty
 Package: array 2024/10/17 v2.6g Tabular extension package (FMi)
-\col@sep=\dimen372
-\ar@mcellbox=\box136
-\extrarowheight=\dimen373
-\NC@list=\toks53
+\col@sep=\dimen377
+\ar@mcellbox=\box138
+\extrarowheight=\dimen378
+\NC@list=\toks54
 \extratabsurround=\skip97
 \backup@length=\skip98
-\ar@cellbox=\box137
+\ar@cellbox=\box139
 )) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryintersections.code.tex (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/libraries/pgflibraryintersections.code.tex (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/libraries/pgflibraryfpu.code.tex)
-\pgf@intersect@solutions=\count520
+\pgf@intersect@solutions=\count532
 )) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryangles.code.tex
 File: tikzlibraryangles.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarypositioning.code.tex
@@ -1225,34 +1282,34 @@ File: tikzlibrarypositioning.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/pgfplots/pgfplots.sty (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplots.revision.tex)
 Package: pgfplots 2021/05/15 v1.18.1 Data Visualization (1.18.1)
  (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplots.code.tex (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplotscore.code.tex
-\t@pgfplots@toka=\toks54
-\t@pgfplots@tokb=\toks55
-\t@pgfplots@tokc=\toks56
-\pgfplots@tmpa=\dimen374
-\c@pgfplots@coordindex=\count521
-\c@pgfplots@scanlineindex=\count522
+\t@pgfplots@toka=\toks55
+\t@pgfplots@tokb=\toks56
+\t@pgfplots@tokc=\toks57
+\pgfplots@tmpa=\dimen379
+\c@pgfplots@coordindex=\count533
+\c@pgfplots@scanlineindex=\count534
  (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/sys/pgfplotssysgeneric.code.tex)) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/libs/pgfplotslibrary.code.tex) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldpgfsupp_loader.code.tex
 Package pgfplots: loading complementary utilities for your pgf version...
-\t@pgf@toka=\toks57
-\t@pgf@tokb=\toks58
-\t@pgf@tokc=\toks59
+\t@pgf@toka=\toks58
+\t@pgf@tokb=\toks59
+\t@pgf@tokc=\toks60
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldpgfsupp_pgfutil-common-lists.tex)) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.code.tex (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsliststructure.code.tex) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsliststructureext.code.tex) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsarray.code.tex
-\c@pgfplotsarray@tmp=\count523
+\c@pgfplotsarray@tmp=\count535
 ) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsmatrix.code.tex) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/numtable/pgfplotstableshared.code.tex
-\c@pgfplotstable@counta=\count524
-\t@pgfplotstable@a=\toks60
+\c@pgfplotstable@counta=\count536
+\t@pgfplotstable@a=\toks61
 ) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsdeque.code.tex) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.code.tex (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.data.code.tex)) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.verb.code.tex) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/libs/pgflibrarypgfplots.surfshading.code.tex
-\c@pgfplotslibrarysurf@no=\count525
+\c@pgfplotslibrarysurf@no=\count537
  (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/sys/pgflibrarypgfplots.surfshading.pgfsys-xetex.def (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/sys/pgflibrarypgfplots.surfshading.pgfsys-dvipdfmx.def
-\c@pgfplotslibrarysurf@streamlen=\count526
+\c@pgfplotslibrarysurf@streamlen=\count538
 )))) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/util/pgfplotscolormap.code.tex (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/util/pgfplotscolor.code.tex)) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplotsstackedplots.code.tex) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplotsplothandlers.code.tex (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplotsmeshplothandler.code.tex (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplotsmeshplotimage.code.tex))) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplots.scaling.code.tex) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplotscoordprocessing.code.tex) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplots.errorbars.code.tex) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplots.markers.code.tex) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplotsticks.code.tex) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplots.paths.code.tex) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.pathreplacing.code.tex (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.pathreplacing.code.tex)) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/libs/tikzlibrarypgfplots.contourlua.code.tex)
-\pgfplots@numplots=\count527
-\pgfplots@xmin@reg=\dimen375
-\pgfplots@xmax@reg=\dimen376
-\pgfplots@ymin@reg=\dimen377
-\pgfplots@ymax@reg=\dimen378
-\pgfplots@zmin@reg=\dimen379
-\pgfplots@zmax@reg=\dimen380
+\pgfplots@numplots=\count539
+\pgfplots@xmin@reg=\dimen380
+\pgfplots@xmax@reg=\dimen381
+\pgfplots@ymin@reg=\dimen382
+\pgfplots@ymax@reg=\dimen383
+\pgfplots@zmin@reg=\dimen384
+\pgfplots@zmax@reg=\dimen385
 ) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryplotmarks.code.tex
 File: tikzlibraryplotmarks.code.tex 2023-01-15 v3.1.10 (3.1.10)
  (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/libraries/pgflibraryplotmarks.code.tex
@@ -1262,11 +1319,11 @@ Invalid UTF-8 byte or sequence at line 284 replaced by U+FFFD.
 Invalid UTF-8 byte or sequence at line 299 replaced by U+FFFD.
 Invalid UTF-8 byte or sequence at line 550 replaced by U+FFFD.
 Package: algorithm2e 2017/07/18 v5.2 algorithms environments
-\c@AlgoLine=\count528
+\c@AlgoLine=\count540
 \algocf@hangindent=\skip99
  (/usr/local/texlive/2025/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty
 Package: ifoddpage 2022/10/18 v1.2 Conditionals for odd/even page detection
-\c@checkoddpage=\count529
+\c@checkoddpage=\count541
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/tools/xspace.sty
 Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/relsize/relsize.sty
@@ -1280,42 +1337,42 @@ Package: relsize 2013/03/29 ver 4.1
 \skiplength=\skip105
 \algomargin=\skip106
 \skipalgocfslide=\skip107
-\algowidth=\dimen381
-\inoutsize=\dimen382
-\inoutindent=\dimen383
-\interspacetitleruled=\dimen384
-\interspacealgoruled=\dimen385
-\interspacetitleboxruled=\dimen386
+\algowidth=\dimen386
+\inoutsize=\dimen387
+\inoutindent=\dimen388
+\interspacetitleruled=\dimen389
+\interspacealgoruled=\dimen390
+\interspacetitleboxruled=\dimen391
 \algocf@ruledwidth=\skip108
-\algocf@inoutbox=\box138
-\algocf@inputbox=\box139
+\algocf@inoutbox=\box140
+\algocf@inputbox=\box141
 \AlCapSkip=\skip109
 \AlCapHSkip=\skip110
 \algoskipindent=\skip111
-\algocf@nlbox=\box140
-\algocf@hangingbox=\box141
-\algocf@untilbox=\box142
+\algocf@nlbox=\box142
+\algocf@hangingbox=\box143
+\algocf@untilbox=\box144
 \algocf@skipuntil=\skip112
-\algocf@capbox=\box143
+\algocf@capbox=\box145
 \algocf@lcaptionbox=\skip113
 \algoheightruledefault=\skip114
 \algoheightrule=\skip115
 \algotitleheightruledefault=\skip116
 \algotitleheightrule=\skip117
-\c@algocfline=\count530
-\c@algocfproc=\count531
-\c@algocf=\count532
-\algocf@algoframe=\box144
-\algocf@algobox=\box145
+\c@algocfline=\count542
+\c@algocfproc=\count543
+\c@algocf=\count544
+\algocf@algoframe=\box146
+\algocf@algobox=\box147
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/thmtools/thmtools.sty
 Package: thmtools 2023/05/04 v0.76
-\thmt@toks=\toks61
-\c@thmt@dummyctr=\count533
+\thmt@toks=\toks62
+\c@thmt@dummyctr=\count545
  (/usr/local/texlive/2025/texmf-dist/tex/latex/thmtools/thm-patch.sty
 Package: thm-patch 2023/05/04 v0.76
  (/usr/local/texlive/2025/texmf-dist/tex/latex/thmtools/parseargs.sty
 Package: parseargs 2023/05/04 v0.76
-\@parsespec=\toks62
+\@parsespec=\toks63
 )) (/usr/local/texlive/2025/texmf-dist/tex/latex/thmtools/thm-kv.sty
 Package: thm-kv 2023/05/04 v0.76
 Package thm-kv Info: Theorem names will be uppercased on input line 42.
@@ -1330,7 +1387,7 @@ Package: thm-listof 2023/05/04 v0.76
 Package: thm-restate 2023/05/04 v0.76
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/thmtools/thm-amsthm.sty
 Package: thm-amsthm 2023/05/04 v0.76
-\thmt@style@headstyle=\toks63
+\thmt@style@headstyle=\toks64
 )) (/usr/local/texlive/2025/texmf-dist/tex/latex/mdframed/mdframed.sty
 Package: mdframed 2013/07/01 1.9b: mdframed
  (/usr/local/texlive/2025/texmf-dist/tex/latex/zref/zref-abspage.sty
@@ -1346,13 +1403,13 @@ Package zref Info: New property list: main on input line 767.
 Package zref Info: New property: default on input line 768.
 Package zref Info: New property: page on input line 769.
 )
-\c@abspage=\count534
+\c@abspage=\count546
 Package zref Info: New property: abspage on input line 67.
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/needspace/needspace.sty
 Package: needspace 2010/09/12 v1.3d reserve vertical space
 )
 \mdf@templength=\skip118
-\c@mdf@globalstyle@cnt=\count535
+\c@mdf@globalstyle@cnt=\count547
 \mdf@skipabove@length=\skip119
 \mdf@skipbelow@length=\skip120
 \mdf@leftmargin@length=\skip121
@@ -1395,11 +1452,11 @@ Package: needspace 2010/09/12 v1.3d reserve vertical space
  (/usr/local/texlive/2025/texmf-dist/tex/latex/mdframed/md-frame-1.mdf
 File: md-frame-1.mdf 2013/07/01\ 1.9b: md-frame-1
 )
-\mdf@frametitlebox=\box146
-\mdf@footnotebox=\box147
-\mdf@splitbox@one=\box148
-\mdf@splitbox@two=\box149
-\mdf@splitbox@save=\box150
+\mdf@frametitlebox=\box148
+\mdf@footnotebox=\box149
+\mdf@splitbox@one=\box150
+\mdf@splitbox@two=\box151
+\mdf@splitbox@save=\box152
 \mdfsplitboxwidth=\skip158
 \mdfsplitboxtotalwidth=\skip159
 \mdfsplitboxheight=\skip160
@@ -1427,93 +1484,93 @@ File: md-frame-1.mdf 2013/07/01\ 1.9b: md-frame-1
 \mdf@horizontalspaceofbox=\skip182
 \mdfsubtitleheight=\skip183
 \mdfsubsubtitleheight=\skip184
-\c@mdfcountframes=\count536
+\c@mdfcountframes=\count548
 
 ****** mdframed patching \endmdf@trivlist
 
 ****** -- success******
 
-\mdf@envdepth=\count537
-\c@mdf@env@i=\count538
-\c@mdf@env@ii=\count539
-\c@mdf@zref@counter=\count540
+\mdf@envdepth=\count549
+\c@mdf@env@i=\count550
+\c@mdf@env@ii=\count551
+\c@mdf@zref@counter=\count552
 Package zref Info: New property: mdf@pagevalue on input line 895.
 )
 Package thmtools Info: Key `mdframed' (with value ` linewidth=2pt, rightline=false, topline=false, bottomline=false, linecolor=ForestGreen, backgroundcolor=cyan!5, nobreak=false ')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=thmgreenbox' on input line 98.
+(thmtools)             that uses `style=thmgreenbox' on input line 100.
 Package thmtools Info: Key `mdframed' (with value ` linewidth=2pt, rightline=false, topline=false, bottomline=false, linecolor=ForestGreen, backgroundcolor=ForestGreen!8, nobreak=false ')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=thmgreen2box' on input line 108.
+(thmtools)             that uses `style=thmgreen2box' on input line 110.
 Package thmtools Info: Key `mdframed' (with value ` linewidth=2pt, rightline=false, topline=false, bottomline=false, linecolor=NavyBlue, backgroundcolor=NavyBlue!5, nobreak=false ')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=thmbluebox' on input line 118.
+(thmtools)             that uses `style=thmbluebox' on input line 120.
 Package thmtools Info: Key `mdframed' (with value ` linewidth=2pt, rightline=false, topline=false, bottomline=false, linecolor=RoyalBlue!90!black, nobreak=false ')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=thmblueline' on input line 128.
+(thmtools)             that uses `style=thmblueline' on input line 130.
 Package thmtools Info: Key `mdframed' (with value ` linewidth=2pt, rightline=false, topline=false, bottomline=false, linecolor=RawSienna, backgroundcolor=RawSienna!5, nobreak=false ')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=thmredbox' on input line 138.
+(thmtools)             that uses `style=thmredbox' on input line 140.
 Package thmtools Info: Key `mdframed' (with value ` linewidth=2pt, rightline=false, topline=false, bottomline=false, linecolor=RawSienna, backgroundcolor=RawSienna!8, nobreak=false ')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=thmred2box' on input line 148.
+(thmtools)             that uses `style=thmred2box' on input line 150.
 Package thmtools Info: Key `mdframed' (with value ` linewidth=2pt, rightline=false, topline=false, bottomline=false, linecolor=SeaGreen, backgroundcolor=SeaGreen!2, nobreak=false ')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=thmgreen3box' on input line 158.
+(thmtools)             that uses `style=thmgreen3box' on input line 160.
 Package thmtools Info: Key `mdframed' (with value ` linewidth=2pt, rightline=false, topline=false, bottomline=false, linecolor=WildStrawberry, backgroundcolor=WildStrawberry!5, nobreak=false ')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=thmpinkbox' on input line 168.
+(thmtools)             that uses `style=thmpinkbox' on input line 170.
 Package thmtools Info: Key `mdframed' (with value ` linewidth=2pt, rightline=false, topline=false, bottomline=false, linecolor=MidnightBlue, backgroundcolor=MidnightBlue!5, nobreak=false ')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=thmblue2box' on input line 178.
+(thmtools)             that uses `style=thmblue2box' on input line 180.
 Package thmtools Info: Key `mdframed' (with value ` linewidth=2pt, rightline=false, topline=false, bottomline=false, linecolor=Gray, backgroundcolor=Gray!5, nobreak=false ')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=notgraybox' on input line 188.
+(thmtools)             that uses `style=notgraybox' on input line 190.
 Package thmtools Info: Key `mdframed' (with value ` linewidth=2pt, rightline=false, topline=false, bottomline=false, linecolor=Gray, nobreak=false ')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=notgrayline' on input line 198.
+(thmtools)             that uses `style=notgrayline' on input line 200.
 Package thmtools Info: Key `numbered' (with value `no')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=thmexplanationbox' on input line 220.
+(thmtools)             that uses `style=thmexplanationbox' on input line 222.
 Package thmtools Info: Key `mdframed' (with value ` linewidth=2pt, rightline=false, topline=false, bottomline=false, linecolor=NavyBlue, backgroundcolor=NavyBlue!1, nobreak=false ')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=thmexplanationbox' on input line 220.
+(thmtools)             that uses `style=thmexplanationbox' on input line 222.
 Package thmtools Info: Key `numbered' (with value `no')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=thmanswerbox' on input line 231.
+(thmtools)             that uses `style=thmanswerbox' on input line 233.
 Package thmtools Info: Key `mdframed' (with value ` linewidth=2pt, rightline=false, topline=false, bottomline=false, linecolor=WildStrawberry, backgroundcolor=WildStrawberry!1, nobreak=false ')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=thmanswerbox' on input line 231.
+(thmtools)             that uses `style=thmanswerbox' on input line 233.
 Package thmtools Info: Key `mdframed' (with value ` linewidth=2pt, rightline=false, topline=false, bottomline=false, linecolor=Violet, backgroundcolor=Violet!1, nobreak=false ')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=conjpurplebox' on input line 241.
-Package thmtools Info: Automatically pulling in `thmdef-mdframed' on input line 244.
+(thmtools)             that uses `style=conjpurplebox' on input line 243.
+Package thmtools Info: Automatically pulling in `thmdef-mdframed' on input line 246.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/thmtools/thmdef-mdframed.sty
 Package: thmdef-mdframed 2023/05/04 v0.76
 )
-\c@definition=\count541
-\c@theorem=\count542
-\c@lemma=\count543
-\c@proposition=\count544
-\c@corollary=\count545
-\c@problem=\count546
-\c@conjecture=\count547
+\c@definition=\count553
+\c@theorem=\count554
+\c@lemma=\count555
+\c@proposition=\count556
+\c@corollary=\count557
+\c@problem=\count558
+\c@conjecture=\count559
  (/usr/local/texlive/2025/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
 Package: fancyhdr 2025/02/07 v5.2 Extensive control of page headers and footers
 \f@nch@headwidth=\skip185
@@ -1530,28 +1587,28 @@ Package: fancyhdr 2025/02/07 v5.2 Extensive control of page headers and footers
 \f@nch@widthL=\skip196
 \f@nch@widthC=\skip197
 \f@nch@widthR=\skip198
-\@temptokenb=\toks64
+\@temptokenb=\toks65
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/todonotes/todonotes.sty
 Package: todonotes 2024/01/05 v1.1.7 Todonotes source and documentation.
 Package: todonotes 2024/01/05
  (/usr/local/texlive/2025/texmf-dist/tex/latex/xkeyval/xkeyval.sty
 Package: xkeyval 2022/06/16 v2.9 package option processing (HA)
  (/usr/local/texlive/2025/texmf-dist/tex/generic/xkeyval/xkeyval.tex (/usr/local/texlive/2025/texmf-dist/tex/generic/xkeyval/xkvutils.tex
-\XKV@toks=\toks65
-\XKV@tempa@toks=\toks66
+\XKV@toks=\toks66
+\XKV@tempa@toks=\toks67
 )
-\XKV@depth=\count548
+\XKV@depth=\count560
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 ))
-\c@@todonotes@numberoftodonotes=\count549
+\c@@todonotes@numberoftodonotes=\count561
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/marginnote/marginnote.sty
 Package: marginnote 2018/08/09 1.4b non floating margin notes for LaTeX
-\c@mn@abspage=\count550
+\c@mn@abspage=\count562
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/appendix/appendix.sty
 Package: appendix 2020/02/08 v1.2c extra appendix facilities
-\c@@pps=\count551
-\c@@ppsavesec=\count552
-\c@@ppsaveapp=\count553
+\c@@pps=\count563
+\c@@ppsavesec=\count564
+\c@@ppsaveapp=\count565
 )) (/usr/local/texlive/2025/texmf-dist/tex/latex/adjustbox/adjustbox.sty
 Package: adjustbox 2025/02/26 v1.3c Adjusting TeX boxes (trim, clip, ...)
  (/usr/local/texlive/2025/texmf-dist/tex/latex/adjustbox/adjcalc.sty
@@ -1560,37 +1617,40 @@ Package: adjcalc 2012/05/16 v1.1 Provides advanced setlength with multiple back-
 Package: trimclip 2025/02/21 v1.2a Trim and clip general TeX material
  (/usr/local/texlive/2025/texmf-dist/tex/latex/collectbox/collectbox.sty
 Package: collectbox 2022/10/17 v0.4c Collect macro arguments as boxes
-\collectedbox=\box151
+\collectedbox=\box153
 )
-\tc@llx=\dimen387
-\tc@lly=\dimen388
-\tc@urx=\dimen389
-\tc@ury=\dimen390
+\tc@llx=\dimen392
+\tc@lly=\dimen393
+\tc@urx=\dimen394
+\tc@ury=\dimen395
 Package trimclip Info: Using driver 'tc-xetex.def'.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/adjustbox/tc-xetex.def
 File: tc-xetex.def 2019/01/04 v2.2 Clipping driver for xetex
 ))
-\adjbox@Width=\dimen391
-\adjbox@Height=\dimen392
-\adjbox@Depth=\dimen393
-\adjbox@Totalheight=\dimen394
-\adjbox@pwidth=\dimen395
-\adjbox@pheight=\dimen396
-\adjbox@pdepth=\dimen397
-\adjbox@ptotalheight=\dimen398
+\adjbox@Width=\dimen396
+\adjbox@Height=\dimen397
+\adjbox@Depth=\dimen398
+\adjbox@Totalheight=\dimen399
+\adjbox@pwidth=\dimen400
+\adjbox@pheight=\dimen401
+\adjbox@pdepth=\dimen402
+\adjbox@ptotalheight=\dimen403
  (/usr/local/texlive/2025/texmf-dist/tex/latex/varwidth/varwidth.sty
 Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
-\@vwid@box=\box152
-\sift@deathcycles=\count554
-\@vwid@loff=\dimen399
-\@vwid@roff=\dimen400
+\@vwid@box=\box154
+\sift@deathcycles=\count566
+\@vwid@loff=\dimen404
+\@vwid@roff=\dimen405
 )) (/usr/local/texlive/2025/texmf-dist/tex/latex/oberdiek/centernot.sty
 Package: centernot 2016/05/16 v1.4 Centers the not symbol horizontally (HO)
 )
-\@quotelevel=\count555
-\@quotereset=\count556
-Package translations Info: No language package found. I am going to use `english' as default language. on input line 13.
- (./ADA.aux)
+
+Package biblatex Warning: 'babel/polyglossia' detected but 'csquotes' missing.
+(biblatex)                Loading 'csquotes' recommended.
+
+\@quotelevel=\count567
+\@quotereset=\count568
+(./ADA.aux)
 \openout1 = `ADA.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 13.
@@ -1693,6 +1753,7 @@ Package hyperref Info: Link coloring ON on input line 13.
 \openout5 = `ADA.out'.
 
 Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/pdflscape/pdflscape.sty
 Package: pdflscape 2022-10-27 v0.13 Display of landscape pages in PDF
@@ -1703,6 +1764,8 @@ Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
 )
 Package pdflscape Info: Auto-detected driver: dvipdfm (xetex) on input line 98.
 ))
+\c@lstlisting=\count569
+
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
 *geometry* verbose mode - [ preamble ] result:
@@ -2071,33 +2134,82 @@ Package mdframed Info: mdframed detected package amsthm
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 33.
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 41.
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 45.
 
 
 [12]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 87.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 108.
+
+
+[13]
 Chapter 2.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 51.
+(mdframed)              on input line 121.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 70.
+(mdframed)              on input line 139.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 74.
+(mdframed)              on input line 145.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 77.
+(mdframed)              on input line 159.
+
+
+[14
+
+]
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 168.
+
+
+Package xeCJK Warning: Unknown CJK family `\CJKttdefault' is being ignored.
+(xeCJK)                
+(xeCJK)                Try to use `\setCJKmonofont[<...>]{<...>}' to define
+(xeCJK)                it.
+
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 169.
+(/usr/local/texlive/2025/texmf-dist/tex/latex/lm/t1lmtt.fd
+File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 191.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 194.
+
+
+[15]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 221.
+File: Figures/tree.png Graphic file (type bmp)
+<Figures/tree.png>
+
+
+[16]
+
+[17]) (./Lectures/lec_4.tex
+Package marginnote Info: Margin note 22.1 is on absolute page 22 on input line 2.
+Package marginnote Info: right page because not two side mode on input line 2.
+Package marginnote Info: xpos seems to be 72.2698pt on input line 2.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 6.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 10.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 21.
 )
 
-[13
-
-] (./ADA.aux)
+[18] (./ADA.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2022/08/05>
@@ -2106,22 +2218,19 @@ L3 programming layer <2022/08/05>
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
 Package rerunfilecheck Info: File `ADA.out' has not changed.
-(rerunfilecheck)             Checksum: B3FDB2D8E8C8237D1D815823DBAB170E;1832.
+(rerunfilecheck)             Checksum: EFDBA6667B86C828D113F5268E04777B;2266.
 Package logreq Info: Writing requests to 'ADA.run.xml'.
 \openout1 = `ADA.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 58259 strings out of 473832
- 1375615 string characters out of 5729482
- 2348579 words of memory out of 5000000
- 80357 multiletter control sequences out of 15000+600000
- 624734 words of font info for 129 fonts, out of 8000000 for 9000
+ 60812 strings out of 473832
+ 1418342 string characters out of 5729482
+ 2539359 words of memory out of 5000000
+ 82868 multiletter control sequences out of 15000+600000
+ 625374 words of font info for 131 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 104i,12n,107p,1260b,1574s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 104i,12n,107p,1260b,4458s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on ADA.pdf (15 pages).
+Output written on ADA.pdf (20 pages).
