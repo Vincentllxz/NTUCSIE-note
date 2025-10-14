@@ -1,0 +1,137 @@
+\documentclass{article}
+\input{header.tex}
+
+\usepackage{adjustbox}
+\usepackage{centernot}
+
+\title{MATH-4006 Calculus 1 class 14 , Homework 5 常見錯誤}
+\author{B13902126 胡允升}
+\date{}  
+\setlength{\parindent}{0pt}
+
+
+\begin{document}
+\fontsize{12pt}{16pt}\selectfont
+
+\maketitle  
+\noindent\rule{\linewidth}{0.4pt}
+\textbf{For the writing style}:
+
+\noindent\rule{\linewidth}{0.4pt}
+\textbf{再再再再再再次提醒拜託各位寫題目的時候}
+\begin{itemize}
+    \item 如果是用電子檔寫題目可以「新開一頁」，把答案寫在下一頁
+    \item 如果是用紙本，可以拿一張新的紙把題目標清楚
+    \item 標示清楚計算過程
+\end{itemize}
+以減少助教眼壓。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\vspace{2em}
+
+\noindent\rule{\linewidth}{0.4pt}
+\textbf{For studying（關於課程網上的影片）}:
+
+\noindent\rule{\linewidth}{0.4pt}
+
+教授上課不一定能夠 cover 到所有題目，助教們在 NTUCOOL 上都會放上「詳解」影片，\textbf{請務必要觀看}，在這次題目中，有不少題都是教授上課沒有 cover 到的講義內容變化題，明顯的很多人並沒有觀看助教們錄好的影片，希望大家能夠確實觀看，才能在期考拿下高分。
+
+\noindent\rule{\linewidth}{0.4pt}
+
+
+\newpage
+
+\section{4-(b)}
+
+\begin{problem}
+For each of the following limits, firstly write down which kinds of indeterminate powers ($1^\infty$ or $0^0$ or $\infty^0$) it is. Then compute them by using the L'Hospital's Rule appropriately.
+\[
+\lim_{x \rightarrow \infty} \left(\frac{2}{\pi} \tan^{-1}(x) \right)^{x}
+\]
+\end{problem}
+\vspace{-12pt}
+\begin{cor}
+	\[ e^{-\frac{2}{\pi}} \]
+\end{cor}
+
+\begin{reason}
+	這是一個「$1^\infty$」型式。
+
+令
+\[
+y = \left( \frac{2}{\pi} \tan^{-1} x \right)^x .
+\]
+
+\begin{align*}
+\lim_{x \to \infty} \ln y
+&= \lim_{x \to \infty} 
+\frac{\ln\left( \frac{2}{\pi} \tan^{-1} x \right)}{\frac{1}{x}} \\[1ex]
+&\overset{0/0}{=}
+\lim_{x \to \infty}
+\frac{\frac{\pi}{2 \tan^{-1}(x)} \cdot \frac{2}{\pi} \cdot \frac{1}{1+x^2}}{-\frac{1}{x^2}} \\[1ex]
+&= \lim_{x \to \infty}
+\frac{-x^2}{\tan^{-1}(x)(1+x^2)} \\[1ex]
+&= \lim_{x \to \infty}
+\frac{1}{\tan^{-1}(x)} \cdot \frac{-x^2}{1+x^2} \\[1ex]
+&= \frac{1}{\pi/2} \cdot (-1) \\[1ex]
+&= -\frac{2}{\pi}.
+\end{align*}
+
+由此可得
+\[
+\lim_{x \to \infty} \left( \frac{2}{\pi} \tan^{-1} x \right)^x
+= e^{-\frac{2}{\pi}} .
+\]
+
+\end{reason}
+
+\newpage
+
+\section{5}
+
+\begin{problem}
+Prove that the equation $$2\tan^{-1} x + e^x = 0$$ has a unique solution in $x$.
+\end{problem}
+\vspace{-12pt}
+\begin{wrong}
+	只用嚴格遞增 (Strictly Increasing) 說明
+\end{wrong}
+\vspace{-12pt}
+\begin{cor}
+	用 IVT (Intermediate Value Theorem) 中間值定理說明他有解，再用 MVT (Mean Value Theorem) 平均值定理說明解唯一（或是 Strictly Increasing）
+\end{cor}
+
+\begin{reason}
+	（英文版請見詳解，中文有點難懂）\\
+	要證明解唯一，我們必須證明兩個部分：
+	\begin{itemize}
+		\item \textbf{存在性}：因為 $F$ 是連續函數，
+		\[
+		F(-1) = -\frac{\pi}{2} + \frac{1}{e} < 0, \qquad
+		F(1) = \frac{\pi}{2} + e > 0，
+		\]
+		根據中間值定理（IVT, Intermediate Value Theorem），在 $(-1, 1)$ 之間必定存在某個 $c$ 使得 $F(c) = 0$。
+		
+		\item \textbf{唯一性}：假設 $\alpha$ 與 $\beta$ 是 $F(x) = 0$ 的兩個不同解。  
+		根據洛爾定理（Rolle's Theorem），在 $\alpha$ 與 $\beta$ 之間必定存在某個 $d$ 使得 $F'(d) = 0$。  
+		
+		然而，
+		\[
+		F'(x) = \frac{2}{1 + x^2} + e^x \neq 0 \quad \text{對所有 } x \text{皆成立}。
+		\]
+		這導致矛盾，因此方程式至多只能有一個解。
+	\end{itemize}
+
+	因此，這個方程式在 $(-1, 1)$ 之間有唯一解。
+
+	\begin{note}
+		第二部分\textbf{Uniqueness} 也可以用 Strictly Increasing 說明，但其實 Strictly Increasing 導致解唯一也只是 MVT 的一個推論而已。
+	\end{note}
+\end{reason}
+
+\[
+\Huge \blue{\textbf{請務對照講義 p47，以及（我錄的）影片}}
+\]
+
+\end{document}

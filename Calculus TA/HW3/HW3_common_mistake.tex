@@ -1,0 +1,170 @@
+\documentclass{article}
+\input{header.tex}
+
+\usepackage{adjustbox}
+\usepackage{centernot}
+
+\title{MATH-4006 Calculus 1 class 14 , Homework 3 常見錯誤}
+\author{B13902126 胡允升}
+\date{}  
+\setlength{\parindent}{0pt}
+
+
+\begin{document}
+\fontsize{12pt}{16pt}\selectfont
+
+\maketitle  
+\noindent\rule{\linewidth}{0.4pt}
+\textbf{For the writing style}:
+
+\noindent\rule{\linewidth}{0.4pt}
+再次提醒拜託各位寫題目的時候
+\begin{itemize}
+    \item 如果是用電子檔寫題目可以「新開一頁」，把答案寫在下一頁
+    \item 如果是用紙本，可以拿一張新的紙把題目標清楚
+\end{itemize}
+以減少助教眼壓
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\section{1-(b)}
+
+\begin{problem}
+Consider the fucntion
+\[
+Q(x) = \lim_{h \to 0} \frac{1 + x + x^2 + x e^x}{1 - x + x^2 - x e^x} 
+\]
+Evaluate $Q'(0).$ \\
+(\texttt{Hint}: it's easier to compute this by the definition of derivative.)
+\end{problem}
+\vspace{-12pt}
+\begin{wrong}
+	直接微分
+\end{wrong}
+\vspace{-12pt}
+\begin{cor}
+用定義作答
+\end{cor}
+
+\begin{reason}
+題目有請大家使用微分的定義作答，請不要直接把它微分
+
+\[
+Q'(0) 
+= \lim_{h \to 0} \frac{Q(h) - Q(0)}{h} 
+= \lim_{h \to 0} \frac{\frac{1 + h + h^2 + h e^h}{1 - h + h^2 - h e^h} - 1}{h} 
+= \lim_{h \to 0} \frac{2 + 2e^h}{1 - h + h^2 - h e^h} 
+= 4.
+\]
+
+\end{reason}
+
+\newpage
+
+\section{2-(a)}
+
+\begin{problem}
+Prove that
+\[
+	f(x) = \sin(x^{1/3})
+\]
+is not differentiable at $x=0$.
+\end{problem}
+\vspace{-12pt}
+\begin{wrong}[1]
+\[
+\lim_{h \to 0} \frac{f(h) - f(0)}{h} \quad \text{Does Not Exists}
+\]
+\end{wrong}
+\vspace{-12pt}
+\begin{wrong}[2]
+\[
+\lim_{h \to 0} f'(h) \quad \text{Does Not Exists}
+\]
+\end{wrong}
+\vspace{-12pt}
+\begin{cor}
+\[
+\lim_{h \to 0} \frac{f(h) - f(0)}{h} = +\infty
+\]
+, hence, $f(x)$ is not differentiable at $x=0$.
+\end{cor}
+
+\begin{reason}
+	As
+	\[
+	\lim_{h \to 0} \frac{f(h) - f(0)}{h} 
+	= \lim_{h \to 0} \frac{\sin(h^{1/3}) - 0}{h} 
+	= \lim_{h \to 0} \frac{\sin(h^{1/3})}{h^{1/3}} \cdot \frac{1}{h^{2/3}} 
+	= +\infty.
+	\]
+	, hence $f(x)$ is not differentiable at $x=0$.
+	\vspace{0.5em}
+	\begin{note}
+	\red{Wrong (2)} is incorrect. 因為這個陳述只證明了 $f'(x)$ 在 $x=0$ 是不連續的，並沒有證明他的 differentiability
+	\end{note}
+	\vspace{0.5em}
+
+\end{reason}
+
+\newpage
+
+\section{5}
+\begin{problem}
+Consider the following function:
+\[
+f(x) =
+\begin{cases}
+x^2, & \text{if } x \le 2, \\[6pt]
+mx + b, & \text{if } x > 2.
+\end{cases}
+\]
+
+It is known that \( f \) is differentiable everywhere. Find the values of \( m \) and \( b \).
+
+\end{problem}
+\vspace{-12pt}
+\begin{cor}
+	$m=4, b=-4$
+\end{cor}
+
+\begin{reason}
+	因為可微分性蘊含連續性，所以函數 $f$ 在 $x = 2$ 處是連續的。
+	這意味著依定義有
+	\[
+	\lim_{x \to 2^+} f(x) = f(2),
+	\]
+	因此我們得到 $2m + b = 4$。
+
+	接著，$f$ 在 $x = 2$ 可微分，這等價於極限
+	\[
+	\lim_{x \to 2} \frac{f(x) - f(2)}{x - 2}
+	\]
+	存在，這蘊含了
+	\[
+	\lim_{x \to 2^-} \frac{f(x) - f(2)}{x - 2}
+	= \lim_{x \to 2^+} \frac{f(x) - f(2)}{x - 2}.
+	\]
+
+	因此我們得到
+	\[
+	\lim_{x \to 2^-} \frac{x^2 - 4}{x - 2}
+	= \lim_{x \to 2^+} \frac{mx + b - 4}{x - 2}
+	= \lim_{x \to 2^+} \frac{mx - 2m}{x - 2}.
+	\]
+
+	最後一個等式來自於我們已知 $2m + b = 4$。因此 $m = 4$。
+	將其代入 $2m + b = 4$，得到 $b = -4$。
+	\begin{note}
+	將
+	\[
+	\lim_{x \to 2^+} f'(x) = \lim_{x \to 2^-} f'(x)
+	\]
+	這樣設定是不正確的 —— 雖然你可能會得到相同的答案，
+	但那只是因為「剛好」給定的 $f'(x)$ 是連續的；
+	在一般情況下並不一定如此。
+	\end{note}
+
+\end{reason}
+
+\end{document}

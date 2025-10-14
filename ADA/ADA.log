@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.8.4)  29 SEP 2025 19:54
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.8.4)  9 OCT 2025 16:07
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -2207,9 +2207,27 @@ Package mdframed Info: mdframed detected package amsthm
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 21.
+) (./Lectures/lec_5.tex
+
+[18]
+Package marginnote Info: Margin note 23.1 is on absolute page 23 on input line 4.
+Package marginnote Info: right page because not two side mode on input line 4.
+Package marginnote Info: xpos seems to be 72.2698pt on input line 4.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 6.
+
+
+[19]
+Chapter 3.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 17.
 )
 
-[18] (./ADA.aux)
+[20
+
+] (./ADA.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2022/08/05>
@@ -2218,19 +2236,28 @@ L3 programming layer <2022/08/05>
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package rerunfilecheck Info: File `ADA.out' has not changed.
-(rerunfilecheck)             Checksum: EFDBA6667B86C828D113F5268E04777B;2266.
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+
+Package rerunfilecheck Warning: File `ADA.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `ADA.out':
+(rerunfilecheck)             Before: EFDBA6667B86C828D113F5268E04777B;2266
+(rerunfilecheck)             After:  5E69D72DA26AAD76D193D0CCFCD45708;2898.
 Package logreq Info: Writing requests to 'ADA.run.xml'.
 \openout1 = `ADA.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 60812 strings out of 473832
- 1418342 string characters out of 5729482
- 2539359 words of memory out of 5000000
- 82868 multiletter control sequences out of 15000+600000
+ 60821 strings out of 473832
+ 1418514 string characters out of 5729482
+ 2539423 words of memory out of 5000000
+ 82874 multiletter control sequences out of 15000+600000
  625374 words of font info for 131 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  104i,12n,107p,1260b,4458s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on ADA.pdf (20 pages).
+Output written on ADA.pdf (22 pages).
