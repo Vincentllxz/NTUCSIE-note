@@ -163,14 +163,259 @@ If we let $a, b$ be the left and right parentheses respectively, then $L(G_2)$ i
     \end{itemize}
 \end{eg}
 
-First consider the string $a + a \times a$:
+Consider the string $a + a \times a$:
 
+\begin{figure}[H]
+    \centering
+    \begin{forest}
+    for tree={
+        parent anchor=south,
+        child anchor=north,
+        if n children=0{
+          font=\itshape,
+          tier=terminal,
+        }{},
+      }    
+      [$E$
+       [$E$
+        [$T$
+         [$F$
+          [$a$]
+         ]
+        ]
+       ]
+       $[+]$
+       [$T$
+        [$T$
+         [$F$
+          [$a$]
+         ]
+        ]
+        [$\times$]
+        [$F$
+         [$a$]
+        ]
+       ]
+      ]
+    \end{forest}
+    \caption{Parse tree of $a + a \times a$}
+\end{figure}
 
+Consider the string $(a + a) \times a$:
 
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[node distance = {10mm}, scale=0.7, every node/.style={transform shape}] 
+    \tikzstyle{main}=[fill=white,draw=white,minimum size=0.5cm]
+    \node[main] (E1) {$E$}; 
+    \node[main] (T2) [below right = 0.5cm and 0.2 cm of E1] {$T$};
+    \node[main] (T3) [below left=0.2cm and 1.0cm of T2] {$T$}; 
+    \node[main] (F3) [below right=0.2cm and 0.8cm of T2] {$F$};
+    \node[main] (F4) [below of=T3] {$F$};
+    \node[main] (E5) [below of=F4] {$E$};
+    \node[main] (E6) [below left=0.2cm and 0.3cm  of E5] {$E$};
+    \node[main] (T6) [below right=0.2cm and 0.3cm  of E5] {$T$};
+    \node[main] (T7) [below =0.3cm of E6] {$T$};
+    \node[main] (F7) [below =0.3cm of T6] {$F$};
+    \node[main] (F8) [below =0.3cm of T7] {$F$};
+    \node[main] (a1) [below =0.3cm of F8] {$a$};
+    \node[main] (leftpar) [left of=a1] {$($};
+    \node[main] (sum) [right =0.35cm of a1] {$+$};
+    \node[main] (a2) [right =0.35cm of sum] {$a$};
+    \node[main] (rightpar) [right of= a2] {$)$};
+    \node[main] (times) [right of=rightpar] {$\times$};
+    \node[main] (a3) [right of=times]{$a$};
+
+    \draw (E1) to [out=315,in=120,looseness=0.3] (T2); 
+    \draw (T2) to [out=325,in=135,looseness=0.5] (F3); 
+    \draw (F3) to [out=285,in=90,looseness=1.0] (a3);
+    \draw (T2) to [out=290,in=90,looseness=1.0] (times);
+    \draw (T2) to [out=215,in=45,looseness=0.3] (T3);
+    \draw (F4) to [out=315,in=90,looseness=1.0] (rightpar);
+    \draw (F4) to [out=225,in=90,looseness=1.0] (leftpar);
+    \draw (T3) to (F4);
+    \draw (F4) to (E5);
+    \draw (E5) to [out=190,in=70,looseness=0.3] (E6);
+    \draw (E5) to [out=350,in=110,looseness=0.3] (T6);
+    \draw (E6) to  (T7);
+    \draw (T6) to (F7);
+    \draw (T7) to (F8);
+    \draw (F8) to (a1);
+    \draw (E5) to (sum);
+    \draw (F7) to (a2);
+    \end{tikzpicture}
+    \caption{Parse tree of $(a + a) \times a$}
+\end{figure}
 
 \newpage
 
+\begin{note}
+    The example above shows that CFGs can express operator precedence and associativity.
+\end{note}
 
+\subsection{Design of CFGs}
+We can design CFGs in many methods. Here are some common patterns:
+\begin{itemize}
+    \item Combining smaller parts:
+    \begin{eg}
+        $L(G) = \{ a^n b^n \mid n \geq 0 \} \ \cup \ \{ b^n a^n \mid n \geq 0 \}$
+    \end{eg}
+    We can let the rule $R$ be:
+    \begin{align*}
+        S_1 &\to a S_1 b \mid \epsilon \\
+        S_2 &\to b S_2 a \mid \epsilon \\
+        S &\to S_1 \mid S_2 \\
+    \end{align*}
+    \item From DFA:
+    \begin{lemma}
+        For any regular language $A$, there exists a CFG $G$ such that $L(G) = A$. The rules of CFG can be 
+        \begin{align*}
+            R_i &\to aR_j \quad \text{for each transition } \delta(q_i, a) = q_j \\
+            R_i &\to \epsilon \quad \text{if } q_i \in F
+        \end{align*}
+    \end{lemma}
+    The difference is that CFG allows the format
+    \[
+    R_i \to a R_j b
+    \]
+    But DFA only allows
+    \[
+    R_i \to a R_j
+    \]
+    where we treat $R_i$ as the state and let $\delta(R_i, a) = R_j$.
+\end{itemize}
+
+\subsection{Parse Trees and Ambiguity}
+If we let the rules of $G_3$ be
+\begin{align*}
+    \langle \text{expr} \rangle &\to \langle \text{expr} \rangle + \langle \text{expr} \rangle \mid \langle \text{expr} \rangle \times \langle \text{expr} \rangle \mid ( \langle \text{expr} \rangle ) \mid a
+\end{align*}
+We can see the following two parse trees for $a + a \times a$:
+\begin{figure}[H]
+    \centering
+    \begin{tabular}{ccc}
+    \begin{forest}
+    for tree={
+        parent anchor=south,
+        child anchor=north,
+        if n children=0{
+        font=\itshape,
+        tier=terminal,
+        }{},
+    }    
+    [E
+    [E 
+        [E
+        [a]
+        ]
+        [+]
+        [E
+        [a]
+        ]
+    ]
+    [$\times$]
+    [E
+        [a
+        ]
+    ]
+    ]
+    \end{forest}
+    &&
+    \begin{forest}
+    for tree={
+        parent anchor=south,
+        child anchor=north,
+        if n children=0{
+        font=\itshape,
+        tier=terminal,
+        }{},
+    }    
+    [E
+    [E 
+        [a]
+    ]
+    [+]
+    [E
+        [E
+        [a]
+        ]
+        [$\times$]
+        [E
+        [a
+        ]
+        ]
+    ]
+    ]
+    \end{forest}
+    \end{tabular}
+    \caption{Two different parse trees for $a + a \times a$ under ambiguous grammar}
+\end{figure}
+
+This is called \textbf{ambiguity}. A CFG is \textbf{ambiguous} if there exists some string with two or more different parse trees. The above $G_3$ is \textbf{unambiguous}, $G_3'$ with new rules is \textbf{ambiguous}.
+
+\newpage
+
+However, an unambiguous grammar may also generate same parse tree but different derivations.
+Consider $G_3$:
+\begin{itemize}
+    \item We can do derivation
+    \begin{align*}
+        \langle \text{expr} \rangle &\Rightarrow \langle \text{expr} \rangle + \langle \text{term} \rangle \\
+        &\Rightarrow \langle \text{expr} \rangle + \langle \text{term} \rangle \times \langle \text{factor} \rangle
+    \end{align*}
+    \item We can also do derivation
+    \begin{align*}
+        \langle \text{expr} \rangle &\Rightarrow \langle \text{expr} \rangle + \langle \text{term} \rangle \\
+        &\Rightarrow \langle \text{term} \rangle + \langle \text{term} \rangle 
+    \end{align*}
+\end{itemize}
+which is not considered ambiguous. So we have the following definition:
+
+\begin{definition}[leftmost derivation]
+    A \textbf{leftmost derivation} is a derivation where at each step, the leftmost variable is replaced.
+\end{definition}
+
+Then we can have the formal definition of ambiguity:
+
+\begin{definition}[Ambiguous]
+    $w$ is \textbf{ambiguous} if there exists two or more different leftmost derivations.
+\end{definition}
+
+\begin{definition}[Inherent Ambiguity]
+    A language is \textbf{inherently ambiguous} if it only has ambiguous grammars.
+\end{definition}
+
+\begin{eg}
+    Consider the language
+    \[
+    L = \{ a^i b^j c^k \mid i = j \text{ or } j = k \}
+    \]
+\end{eg}
+We can consider the string $a^2 b^2 c^2$. It can be generated by two different leftmost derivations. First we consider $$S \Rightarrow S_1 \mid S_2$$
+\begin{itemize}
+    \item Using $i = j$:
+    \begin{align*}
+        S_1 &\to A C \\
+        A &\to a A b \mid \epsilon \\
+        C &\to c\,C \mid \epsilon
+    \end{align*}
+    the derivation is
+    \[
+    S_1 \Rightarrow AC \Rightarrow a A b C \Rightarrow a a A b b C \Rightarrow a a b b C \Rightarrow a a b b c C \Rightarrow a a b b c c
+    \]
+    \item Using $j = k$:
+    \begin{align*}
+        S_2 &\to A' C' \\
+        A' &\to a\,A' \mid \epsilon \\
+        C' &\to b\,C'\,c \mid \epsilon
+    \end{align*}
+    the derivation is
+    \[
+    S_2 \Rightarrow A' C' \Rightarrow a A' C' \Rightarrow a a A' b C' c \Rightarrow a a bb C' cc \Rightarrow a a bb  cc
+    \]
+\end{itemize}
+
+\newpage
 
 \section{Chomsky Normal Form}
 

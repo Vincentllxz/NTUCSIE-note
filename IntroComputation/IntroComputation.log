@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.8.4)  18 OCT 2025 21:14
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.8.4)  19 OCT 2025 00:10
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -2270,34 +2270,36 @@ Package mdframed Info: mdframed detected package amsthm
 
 
 [21]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 253.
+Package mdframed Info: Not enough space on this page on input line 254.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 261.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 271.
 
-[22]) (./Lectures/lec_6.tex
+
+[22]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 374.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 380.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 384.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 389.
+
 
 [23]
-Chapter 3.
 
-
-[24
-
-]
-Chapter 4.
-
-
-[25
-
-]
-Chapter 5.
-
-
-[26
-
-]
-Chapter 6.
-)
-
-[27
-
-] (./IntroComputation.aux)
+[24]) (./Lectures/lec_6.tex) (./IntroComputation.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2022/08/05>
@@ -2307,18 +2309,18 @@ L3 programming layer <2022/08/05>
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package rerunfilecheck Info: File `IntroComputation.out' has not changed.
-(rerunfilecheck)             Checksum: EBC14EBB670D2504FF5574DD2E3CD7B5;4539.
+(rerunfilecheck)             Checksum: 559A9E65298880C77CF0EE5750C1BBA8;1928.
 Package logreq Info: Writing requests to 'IntroComputation.run.xml'.
 \openout1 = `IntroComputation.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 72451 strings out of 473832
- 1730414 string characters out of 5729482
- 2701097 words of memory out of 5000000
- 94439 multiletter control sequences out of 15000+600000
+ 72879 strings out of 473832
+ 1738551 string characters out of 5729482
+ 2701424 words of memory out of 5000000
+ 94867 multiletter control sequences out of 15000+600000
  638740 words of font info for 132 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  150i,18n,134p,1607b,4547s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on IntroComputation.pdf (29 pages).
+Output written on IntroComputation.pdf (26 pages).
