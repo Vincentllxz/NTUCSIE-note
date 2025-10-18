@@ -1,0 +1,144 @@
+\lecture{4}{2025-09-22}{}
+
+\section{Pumping lemma}
+
+\subsection{Non regular language}
+Some languages cannot be recognized by DFA such as,
+\[
+    \{0^n 1^n \mid n \geq 0\}
+\]
+We might remember \#0 first, but \# of possible $n$'s is  $\infty$, so we have some method to prove that the language is non-regular.
+
+\begin{theorem}[pumping lemma]
+    If $A$ is regular, $\exists p \text{ such that } \forall s \in A, |s| \geq p$,
+    \[
+        \exists x, y, z, \text{ such that } s = xyz \text{ and}
+    \]
+    \begin{enumerate}[label=$\arabic*^\circ$]
+        \item $\forall i \geq 0, xy^iz \in A$
+        \item $|y| > 0$
+        \item $|xy| \leq p$
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+Skip, which is on the slides.
+\end{proof}
+
+\newpage
+
+\subsection{Example for Pumping Lemma}
+
+\begin{exercise}
+    Show that the language $L = \{0^n 1^n \mid n \geq 0\}$ is not regular using the pumping lemma.
+\end{exercise}
+\begin{answer}
+    Now consider the string 
+    \[
+        s = 0^p1^p
+    \]
+    We know that $|s| \geq p$. By the lemma, $s$ can be split into $xyz$ such that
+    \[
+    xy^i z \in B, \forall i \geq 0, \quad |y| > 0, \quad \text{ and } |xy| \leq p
+    \]
+
+    \begin{enumerate}[label=$\arabic*^\circ$]
+    \item If 
+    \(
+        y = 0 \cdots 0
+    \),
+    then
+    \[
+        xy = 0 \cdots 0 
+        \quad\text{and}\quad 
+        z = 0 \cdots 0\, 1 \cdots 1.
+    \]
+    Thus,
+    \[
+        xy^2 z : \#0 > \#1.
+    \]
+    Hence \( xy^2 z \notin B \), a contradiction.
+
+    \item If 
+    \(
+        y = 1 \cdots 1
+    \),
+    then similarly
+    \[
+        xy^2 z \notin B 
+        \quad\text{as}\quad 
+        \#0 < \#1.
+    \]
+
+    \item If 
+    \(
+        y = 0 \cdots 0\, 1 \cdots 1
+    \),
+    then
+    \[
+        xy^2 z \notin B 
+        \quad\text{since it is not of the form } 0^*1^*.
+    \]
+\end{enumerate}
+
+\begin{note}
+    Just pick one is sufficient to show the answer.
+\end{note}
+
+\end{answer}
+
+
+\begin{exercise}
+    Show that the language $C = \{w \mid \#0 = \#1\}$ is not regular using the pumping lemma.
+\end{exercise}
+\begin{answer}
+    We can use the situation in the pevious example, consider \[
+        s = 0^p1^p
+    \]
+    We can't proof the third condition due to $C = \{w \mid \#0 = \#1\}$ which just require the $\#0 = \#1$. \\
+    Then we can use the third condition
+    \[
+        |xy| \leq p
+    \]
+    which means $y$ are strict into the first $0^p$ we can only consider the first case.
+    \[
+        |xy| \leq p \Rightarrow y = 0 \cdots 0 \text{ in } s = 0^p 1^p
+    \]
+    Then, 
+    \[
+        xy^2 z \notin C
+    \]
+\end{answer}
+
+\begin{lemma}
+    When using pumping lemma, we usually use contradiction, so we use
+    \[
+        \forall p\;
+        \exists s \in A,\; |s| \ge p,\;
+        \Bigl[
+        \forall x, y, z\;
+        \Bigl(
+            (s = xyz \wedge |y| > 0 \wedge |xy| \le p)
+            \;\rightarrow\;
+            \exists i \ge 0,\; xy^i z \notin A
+        \Bigr)
+        \Bigr].
+    \]
+    Use the claim and the first, second condition to get the negation of the third condition.
+\end{lemma}
+
+\newpage
+
+\begin{exercise}
+    $D=\{1^{n^2}\mid n \geq 0\}$ is not regular
+\end{exercise}
+\begin{answer}
+    We pick 
+    \[
+        s = 1^{p^2} \in D
+    \]
+    Then, if $s = xyz, |xy| \leq p, |y| > 0$, we can get
+    \[
+        p^2 < |xy^2z| \leq p^2 + p \leq (p+1)^2
+    \]
+    hence, $xy^2z \notin D$.
+\end{answer}

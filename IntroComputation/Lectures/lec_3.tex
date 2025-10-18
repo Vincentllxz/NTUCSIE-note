@@ -1,0 +1,261 @@
+\lecture{3}{2025-09-15}{}
+
+\section{Regular expressions}
+
+A regualar expression is a tool to describe a language.
+
+\begin{definition}[Regular expressions]
+    $R$ is a regular expressions if it is one of the following expressions: 
+    \begin{enumerate}[label=(\arabic*)]
+        \item $a$, where $a \in \Sigma$
+        \item $\epsilon$ $(\epsilon \notin \Sigma)$
+        \item $\emptyset$
+        \item $R_1 \cup R_2$,  where $R_1, R_2$ are regular expressions
+        \item $R_1 \circ R_2$, where $R_1, R_2$ are regular expressions
+        \item $R_1^*$,  where $R_1$ is a regular expression
+    \end{enumerate}
+\end{definition}
+
+If their is no parentheses, we follow the order of:
+\[
+\boxed{\texttt{Kleene star}} \rightarrow \boxed{\texttt{Concatenation}} \rightarrow \boxed{\texttt{Union}}
+\]
+
+\newpage
+
+\begin{remark}
+    \[
+        R^+ = RR^*, \quad R^+ \cup \{\epsilon\} = R^*
+    \]
+\end{remark}
+
+For $\emptyset$ and $\epsilon$, we have 
+\begin{itemize}
+    \item $\epsilon$: empty string
+    \item $\emptyset$: empty language (language without any string)
+    \begin{align*}
+        &(0 \cup \epsilon)1^*=01^* \cup 1^* \\
+        &(0 \cup \emptyset)1^*=01^* \\
+        &\emptyset 1^* = 1^* \emptyset = \emptyset
+    \end{align*}
+    
+\end{itemize}
+
+
+\begin{eg}
+Here are some examples,
+\begin{itemize}
+    \item 
+    Strings that start and end with the same symbol:
+    \begin{equation*}
+        0 \Sigma^*0 \cup 1 \Sigma^*1\cup 0 \cup 1
+    \end{equation*}
+    \item $(\Sigma \Sigma)^*$: strings with even length
+    \item $R\cup \emptyset=R$
+    \item $R \circ \epsilon=R$
+    \item $\emptyset^*=\{\epsilon\}$
+\end{itemize}
+\end{eg}
+
+Floating point numbers can also be represented by regular expressions. For example,
+\[
+(+\cup-\cup\epsilon)(DD^*\cup DD^*.D^*\cup D^*.DD^*), \text{ where } D = \{0, \ldots,9\}
+\]
+
+\begin{eg}
+\begin{align*}
+    & 72 \in DD^*\\
+    & 2.1 \in DD^*.D^*\\
+    &  7. \in DD^*.D^*\\
+    & .01 \in D^*.DD^*
+\end{align*}
+\end{eg}
+
+\begin{lemma}
+    Language by a regular expression $\Longrightarrow$ Regular (described by an automaton)
+\end{lemma}
+\begin{proof}
+    The proof is by induction,
+    \begin{itemize}
+        \item $R = a \in \Sigma$ can be recognize by
+        \begin{center}
+            \begin{tikzpicture}[node distance=2cm, ->, >=Stealth, on grid, auto]
+                \node[state, initial] (q1) {};
+                \node[state, accepting, right of=q1] (q2) {};
+    
+                \draw (q1) edge[above] node{$a$} (q2);
+            \end{tikzpicture}
+        \end{center}
+        \begin{align*}
+            & N = (\{q_1,q_2\}, \Sigma, \delta, q_1, \{q_2\}) \\
+            & \delta(q_1,a)= \{q_2\} \\
+            & \delta(r,b)=\emptyset, r \neq q_1\mbox{ or } b \neq a
+        \end{align*}
+
+        \item $R = \epsilon$
+        \begin{center}
+            \begin{tikzpicture}[node distance=2cm, ->, >=Stealth, on grid, auto]
+                \node[state, initial, accepting] (q1) {};
+            \end{tikzpicture}
+        \end{center}
+        \begin{align*}
+            & N=(\{q_1\},\Sigma,\delta, q_1, \{q_1\}) \\
+            & \delta(q_1,a)=\emptyset, \forall a
+        \end{align*}
+
+        \item $R = \emptyset$
+        \begin{center}
+            \begin{tikzpicture}[node distance=2cm, ->, >=Stealth, on grid, auto]
+                \node[state, initial] (q1) {};
+            \end{tikzpicture}
+        \end{center}
+        \begin{align*}
+            &N=(\{q\}, \Sigma, \delta, q, \emptyset)\\
+            &\delta(r,a)=\emptyset, \forall r, a
+        \end{align*}
+
+        \item $R=R_1\cup R_2, \ R=R_1 \circ R_2, \ R=R_1^*$ have proof by NFA.
+    \end{itemize}
+\end{proof}
+
+\subsection{Convert a DFA to a regular expression}
+
+The idea is:
+\begin{enumerate}[label=$\arabic*^\circ$]
+    \item DFA $\longrightarrow$ GNFA
+    \item Remove states from GNFA until only the start and accept states.
+\end{enumerate}
+
+\begin{exercise}
+Convert the following DFA into regular expression.
+\begin{center}
+    \begin{tikzpicture}[node distance=2.5cm, ->, >=Stealth, on grid, auto]
+        \node[state, initial] (1) {1};                    
+        \node[state, accepting, right of=1] (2) {2};
+        \node[state, accepting, below right of=1] (3) {3};              
+
+        \draw (1) edge[bend left=10, above] node{$a$} (2);
+        \draw (2) edge[bend left=10, below] node{$a$} (1);
+        \draw (1) edge[bend left=10, right] node{$b$} (3);
+        \draw (3) edge[bend left=10, below] node{$b$} (1);    
+        
+        \draw (2) edge[loop above] node{$b$} (2);
+        \draw (3) edge[right] node{$a$} (2);        
+    \end{tikzpicture}
+\end{center}
+\end{exercise}
+\begin{answer}
+First, convert to GNFA:
+\begin{center}
+\begin{tikzpicture}[node distance=2.5cm, ->, >=Stealth, on grid, auto]
+    \node[state, initial] (s) {$s$};
+
+    \node[state, above right of=s] (1) {1};                    
+    \node[state, right of=1] (2) {2};
+    \node[state, below right of=1] (3) {3};              
+    \node[state, accepting, below right of=2] (a) {$a$};        
+
+    \draw (1) edge[bend left=10, above] node{$a$} (2);
+    \draw (2) edge[bend left=10, below] node{$a$} (1);
+    \draw (1) edge[bend left=10, right] node{$b$} (3);
+    \draw (3) edge[bend left=10, below] node{$b$} (1);    
+
+    \draw (2) edge[loop above] node{$b$} (2);
+    \draw (3) edge[right] node{$a$} (2);        
+
+    \draw (s) edge[above] node{$\epsilon$} (1);        
+
+    \draw (2) edge[above] node{$\epsilon$} (a);        
+    \draw (3) edge[below] node{$\epsilon$} (a);
+\end{tikzpicture}
+\end{center}
+
+Next, is to remove the states one by one. We skip, so we can get the answer:
+\[
+(a(aa\cup b)^* ab \cup b)
+((ba \cup a)(aa \cup b)^* ab \cup bb)^*((ba \cup a)
+    (aa\cup b)^* \cup \epsilon) \cup a(aa \cup b)^*
+\]
+which is very complicated.
+\end{answer}
+
+\begin{definition}[Generalized NFA(GNFA)]
+    We define a GNFA as a 5-tuple
+    \[
+        G = (Q, \Sigma, \delta, q_{start}, q_{accept})
+    \]
+    where
+    \begin{itemize}
+        \item $F$ is not a se, but a single accept state $q_{accept}$
+        \item $\delta$ function is:
+        \[
+            (Q-\{q_{accept}\}) \times (Q-\{q_{start}\})\rightarrow R
+        \]
+        where $R$ is all regular expressions over $\Sigma$.
+        \item Two new states:
+        \begin{align*}
+            &q_{start} \rightarrow q_0 \text{ with }\epsilon \\
+            &\text{any } q \in F \rightarrow q_{accept}\text{ with }\epsilon
+        \end{align*}
+    \end{itemize}
+\end{definition}
+
+Consider $q_{\text{rip}}$ is the state being removed
+\begin{center}
+    \begin{tikzpicture}[node distance=2.5cm, ->, >=Stealth, on grid, auto]
+    \node[state] (qi) {$q_i$};
+    \node[state, right of=qi] (qj) {$q_j$};
+    \node[state, below right of=qi] (qr) {$q_{\text{rip}}$};  
+
+    \draw (qi) edge[bend right, left] node{$R_1$} (qr);
+    \draw (qi) edge[bend left, above] node{$R_4$} (qj);  
+    \draw (qr) edge[bend right, right] node{$R_3$} (qj);
+    \draw (qr) edge[loop below, right] node{$R_2$} (qr);            
+    \end{tikzpicture}
+\end{center}
+
+The new regular expression between $q_i$ and $q_j$ is
+
+\begin{center}
+\begin{tikzpicture}[node distance=2.5cm, ->, >=Stealth, on grid, auto]
+  \node[state] (qi) {$q_i$};
+  \node[state, right of=qi, xshift=3cm] (qj) {$q_j$};        
+
+  \draw (qi) edge[above] node{$(R_1)(R_2)^*(R_3)\cup (R_4)$} (qj);          
+  \end{tikzpicture}
+\end{center}
+
+We can wrote the whole process into a algorithm.
+
+\begin{algorithm}[H]
+\caption{\textsc{convert}$(G)$ — State-Elimination from GNFA to RE}
+\KwIn{$G=(Q,\Sigma,\delta,q_s,q_a)$ a GNFA}
+\KwOut{A regular expression $R$ for the language of $G$}
+\BlankLine
+
+$k \gets |Q|$\;  \tcp*{number of states}
+
+\If{$k=2$}{
+    \Return $\delta(q_s,q_a)$ \tcp*{the (single) edge label from $q_s$ to $q_a$}
+}
+
+Choose any $q_{\mathrm{rip}} \in Q \setminus \{q_s,q_a\}$\;
+$Q' \gets Q \setminus \{q_{\mathrm{rip}}\}$\;
+Initialize $\delta'$ as the restriction of $\delta$ to $Q' \times Q'$\;
+\BlankLine
+
+\ForEach{$q_i \in Q' \setminus \{q_a\}$}{
+    \ForEach{$q_j \in Q' \setminus \{q_s\}$}{
+        $R_1 \gets \delta(q_i, q_{\mathrm{rip}})$\;
+        $R_2 \gets \delta(q_{\mathrm{rip}}, q_{\mathrm{rip}})$\;
+        $R_3 \gets \delta(q_{\mathrm{rip}}, q_j)$\;
+        $R_4 \gets \delta(q_i, q_j)$\;
+        $\delta'(q_i, q_j) \gets R_4 \;\cup\; \big(R_1\, R_2^{*}\, R_3\big)$\;
+    }
+}
+\BlankLine
+
+$G' \gets (Q', \Sigma, \delta', q_s, q_a)$\;
+\Return \textsc{convert}$(G')$\;
+
+\end{algorithm}

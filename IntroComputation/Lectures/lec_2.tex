@@ -1,0 +1,415 @@
+\lecture{2}{2025-09-08}{}
+
+\section{Nondeterministic Finite Automata (NFA)}
+
+First, we see a NFA that accept strings with 1 in 3rd position from the end,
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[->, node distance=2cm, >=Stealth, on grid, auto]
+    \node[state,initial] (q_1) {$q_1$};
+    \node[state] (q_2) [right of=q_1] {$q_2$};
+    \node[state] (q_3) [right of=q_2] {$q_{3}$};
+    \node[state,accepting] (q_4) [right of=q_3] {$q_{4}$};    
+    
+      \path (q_1) edge[loop above] node {$0,1$} (q_1)
+            (q_1) edge[above]  node {$1$} (q_2)
+            (q_2) edge[above]  node {$0,\epsilon$} (q_3)
+            (q_3) edge[above]  node {$1$} (q_4)
+            (q_4) edge[loop below] node {$0,1$} (q_4);
+    \end{tikzpicture}
+    \caption{NFA machine}
+\end{figure}
+
+\begin{itemize}
+    \item $\delta$ is not a function, i.e. $\delta(q_1, 1) = q_1 \text{ or } q_2$
+    \item $\epsilon$ between $q_2, q_3$ means $q_2$ can move to $q_3$ without any input
+\end{itemize}
+
+\newpage
+
+We can transport NFA to DFA by some method, for example, for the above NFA we can have:
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[->, node distance=3cm, >=Stealth, on grid, auto]
+    \node[state, initial] (000) {$q_{000}$};
+    \node[state, accepting, right of=000] (100) {$q_{100}$};
+    \node[state, right of=100] (010) {$q_{010}$};
+    \node[state, accepting, right of=010] (110) {$q_{110}$};
+    \node[state, below of=000] (001) {$q_{001}$};
+    \node[state, accepting, right of=001] (101) {$q_{101}$};
+    \node[state, right of=101] (011) {$q_{011}$};
+    \node[state, accepting, right of=011] (111) {$q_{111}$};
+
+    \draw (000) edge[loop above] node{$0$} (000)
+    (000) edge[left] node{$1$} (001)
+    (100) edge[above] node{$0$} (000)
+    (100) edge[above] node{$1$} (001)
+
+    (010) edge[bend right=10,above] node{$1$} (101)
+    (010) edge[above] node{$0$} (100)
+
+    (110) edge[bend right,above] node{$0$} (100)
+    (110) edge[above] node{$1$} (101)
+
+    (001) edge[bend right,below] node{$1$} (011)
+    (001) edge[above] node{$0$} (010)
+
+    (101) edge[bend right=10,below] node{$0$} (010)
+    (101) edge[above] node{$1$} (011)
+
+    (011) edge[above] node{$1$} (111)
+    (011) edge[above] node{$0$} (110)
+
+    (111) edge[loop right, below] node{$1$} (111)
+    (111) edge[right] node{$0$} (110);
+
+    \end{tikzpicture}
+    \caption{NFA machine transport to DFA}
+\end{figure}
+
+We can record it in three bits, it will be complicated.
+
+\begin{definition}[power set]
+    \[
+    P(Q) = \{ X | X \in Q \}
+    \]
+    which contain all the $2^{|Q|}$ combinations.
+\end{definition}
+
+\begin{definition}[Nondeterministic Finite Automata (NFA)]
+    We define a NFA as a 5-tuple
+    \[
+        M = (Q, \Sigma_{\epsilon}, \delta, q_0, F)
+    \]
+    where
+    \begin{itemize}
+        \item $Q$: Set of states (\red{Finite})
+        \item $\Sigma_{\epsilon} = \Sigma \cup \{\epsilon\}$
+        \item $\delta$: $Q \times \Sigma_{\epsilon} \rightarrow P(Q)$
+        \item $q_0 \in Q$
+        \item $F \subset Q$
+    \end{itemize}
+\end{definition}
+
+\begin{theorem}
+    We have $w$
+    \[
+        w = y_1\cdots y_m \quad \text{where } y_i \in \Sigma_{\epsilon}
+    \]
+    A sequence $r_0\cdots r_m$ such that
+    \begin{enumerate}[label=(\arabic*)]
+        \item $r_0 = q_0$
+        \item $r_{i+1} = \delta(r_i, y_{i+1}),\quad i = [0, n-1]$
+        \item $r_n \in F$
+    \end{enumerate}
+\end{theorem}
+
+\begin{note}
+    So $m$ may not be the original length (as $y_i$ may be $\epsilon$)
+\end{note}
+
+\subsection{Equivalence of DFA and NFA}
+
+From DFA $\Rightarrow$ NFA. Formally DFA is not an NFA due to $\Sigma$ and $\Sigma_{\epsilon}$. but we can easily handle this by adding
+\[
+    q_i, \epsilon \rightarrow \emptyset
+\]
+
+For NFA $\Rightarrow$ DFA, we have the example on the slides on a graph.
+
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[->, node distance=3cm, >=Stealth, on grid, auto]
+        
+        \node[state, initial, accepting] (q1) {$q_1$};
+        \node[state, below left of=q1] (q2) {$q_2$};
+        \node[state, below right of=q1] (q3) {$q_3$};
+        
+        \draw (q1) edge[left] node{$b$} (q2)
+        (q2) edge[loop left, left] node{$a$} (q2)
+        (q1) edge[bend right, left] node{$\epsilon$} (q3)
+        (q2) edge[below] node{$a, b$} (q3)
+        (q3) edge[bend right, right] node{$a$} (q1);
+
+    \end{tikzpicture}
+    \caption{NFA example}
+\end{figure}
+
+\[
+    \Downarrow
+\]
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[->, node distance=3cm, >=Stealth, on grid, auto]
+        
+        \node[state, initial, initial where=left, accepting] (13) {$\{1, 3\}$};
+        \node[state, below of=13] (2) {$\{2\}$};
+        \node[state, right of=13] (3) {$\{3\}$};
+        \node[state, right of=3] (phi) {$\emptyset$};
+        \node[state, right of=2] (23) {$\{2, 3\}$};
+        \node[state, accepting, right of=23] (123) {$\{1, 2, 3\}$};
+        \draw
+        (phi) edge[loop above] node{$a, b$} (phi)
+        (2)
+        edge[above] node{$a$} (23)
+        (2)
+        edge[above] node{$b$} (3)
+        (3)
+        edge[above] node{$b$} (phi)
+        (3)
+        edge[above] node{$a$} (13)
+        (13) edge[loop above] node{$a$} (13)
+        (13) edge[left] node{$b$} (2)
+        (23) edge[bend left, above] node{$a$} (123)
+        (23) edge[right] node{$b$} (3)
+        (123) edge[loop right] node{$a$} (123)
+        (123) edge[bend left, below] node{$b$} (23);
+
+    \end{tikzpicture}
+    \caption{DFA convertion example}
+\end{figure}
+
+\begin{itemize}
+    \item Remove the states that are not reachable.
+    \item Remove the states that not handle the $\epsilon$ transition. For example, the start state
+    \[
+        \{ q_1 \} \ \red{\text{wrong}} \quad \rightarrow \quad \{ q_1, q_3 \} \ \text{\grn{correct}}
+    \]
+\end{itemize}
+
+\begin{definition}
+    \[
+    E(\{ q_0 \}) = \{q_0\} \cup \{\text{states reached by $\epsilon$ from $q_0$}\}
+    \]
+\end{definition}
+
+\vspace{2em}
+
+Then we can redefine the procedure formally.
+
+\newpage
+
+\begin{theorem}
+    Given a NFA
+    \[
+        M = (Q,\Sigma, \delta, q_0, F)
+    \]
+    We can convert it to a DFA
+    \[
+        M' = (Q', \Sigma, \delta', q'_0, F')
+    \]
+    where 
+    \begin{itemize}
+        \item $Q' = P(Q)$
+        \item $q'_0 \in P(Q) = E(\{q_0\})$
+        \item $F' = \{ R \mid R \in Q', R \cap F \neq \emptyset \}$
+        \item $\delta'$: 
+        \[
+            \delta'(R, a) = \bigcup_{r \in R} E(\delta(r, a))
+        \]
+    \end{itemize}
+\end{theorem}
+
+\subsection{Closure under reqular operations}
+
+We give two NFAs $N_1, N_2$, 
+\begin{align*}
+    &N_1 =(Q_1, \Sigma, \delta_1, q_1, F_1) \\
+    &N_2 =(Q_2, \Sigma, \delta_2, q_2, F_2)
+\end{align*}
+note that $\epsilon \notin \Sigma$, and the graph of them are:
+
+
+\begin{figure}[H]
+    \centering
+    \begin{tabular}{llllll}
+        $N_1$ &&&&& $N_2$\\
+    \begin{tikzpicture}[node distance=3cm, every node/.style={scale=0.5}]
+    \node[state, initial] (1) {$q_1$};
+    \node[state, above right of=1, yshift=-1.4cm] (2) {};
+    \node[state, below right of=1, yshift=1.4cm] (3) {};
+    \node[state, right of=1, xshift= 1.4cm] (6) {};
+    \node[state, accepting, above right of=6, yshift=-1cm] (4) {};
+    \node[state, accepting, below right of=6, yshift=1cm] (5) {};
+    \end{tikzpicture}
+        &&&&& \begin{tikzpicture}[node distance=3cm, every node/.style={scale=0.5}]
+    \node[state, initial] (01) {$q_2$};
+    \node[state, above right of=01, yshift=-1.4cm] (02) {};
+    \node[state, below right of=01, yshift=1.2cm] (03) {};
+    \node[state, right of= 01, xshift= 1cm] (06) {};
+    \node[state, accepting, above right of=06, yshift=-1cm] (04) {};
+    \node[state, accepting, below right of=06, yshift=1cm] (05) {};
+    \node[state, accepting, right of=06, xshift=1.7cm] (04) {};
+    \end{tikzpicture}
+    \end{tabular}
+    \caption{$N_1, N_2$}
+\end{figure}
+
+\begin{itemize}
+    \item \textbf{Union}: We can contrruct the $N_1 \cup N_2$ in
+    
+    
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}[node distance=3cm, every node/.style={scale=0.5}, ->, >=Stealth, on grid, auto]
+        \node[state, initial] (0) {$q_0$};    
+        \node[state, above right of=0] (1) {$q_1$};
+        \node[state, above right of=1, yshift=-1.4cm] (2) {};
+        \node[state, below right of=1, yshift=1.4cm] (3) {};
+        \node[state, right of=1, xshift= 1.4cm] (6) {};
+        \node[state, accepting, above right of=6, yshift=-1cm] (4) {};
+        \node[state, accepting, below right of=6, yshift=1cm] (5) {};
+        \node[state, below right of=0] (01) {$q_2$};
+        \node[state, above right of=01, yshift=-1.4cm] (02) {};
+        \node[state, below right of=01, yshift=1.2cm] (03) {};
+        \node[state, right of= 01, xshift= 1cm] (06) {};
+        \node[state, accepting, above right of=06, yshift=-1cm] (04) {};
+        \node[state, accepting, below right of=06, yshift=1cm] (05) {};
+        \node[state, accepting, right of=06, xshift=1.7cm] (04) {};
+    
+        \path (0) edge[above] node {$\epsilon$} (1);
+        \path (0) edge[below] node {$\epsilon$} (01);
+        \end{tikzpicture}
+    \caption{$N_1 \cup N_2$}
+    \end{figure}
+
+    \begin{proposition}[Construction of Union]
+        New NFA is
+        \[
+            N_1 \cup N_2 = (Q,\; \Sigma,\; \delta,\; q_0,\; F)
+        \] 
+        where
+        \begin{itemize}[label=$\circ$]
+            \item $Q = Q_1 \cup Q_2 \cup \{ q_0 \}$
+            \item $\delta: $
+            \[
+                \delta(q, a) = \begin{cases}
+                    \delta_1(q, a) & q \in Q_1 \\
+                    \delta_2(q, a) & q \in Q_2 \\
+                    \{q_1, q_2 \} & q = q_0, a = \epsilon \\
+                    \emptyset & q = q_0, a \neq \epsilon
+                \end{cases}
+            \]
+            \item $F = F_1 \cup F_2$
+        \end{itemize}
+    \end{proposition}
+
+    \item \textbf{Concatenation}: We can construct the $N_1 \circ N_2$ in
+    
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}[node distance=3cm, every node/.style={scale=0.5}, ->, >=Stealth, on grid, auto]
+        \node[state, initial] (1) {};
+        \node[state, above right of=1, yshift=-1.4cm] (2) {};
+        \node[state, below right of=1, yshift=1.4cm] (3) {};
+        \node[state, right of=1, xshift= 1.4cm] (6) {};
+        \node[state, above right of=6, yshift=-1cm] (4) {};
+        \node[state, below right of=6, yshift=1cm] (5) {};
+        \node[state, right of=6, xshift=2cm] (01) {};
+        \node[state, above right of=01, yshift=-1.4cm] (02) {};
+        \node[state, below right of=01, yshift=1.2cm] (03) {};
+        \node[state, right of= 01, xshift= 1cm] (06) {};
+        \node[state, accepting, above right of=06, yshift=-1cm] (04) {};
+        \node[state, accepting, below right of=06, yshift=1cm] (05) {};
+        \node[state, accepting, right of=06, xshift=1.7cm] (04) {};
+
+        \path (4) edge[above] node {$\epsilon$} (01);
+        \path (5) edge[below] node {$\epsilon$} (01);
+        \end{tikzpicture}
+    \caption{$N_1 \circ N_2$}
+    \end{figure}
+
+    \begin{proposition}[Construction of Concatenation]
+        New NFA is
+        \[
+            N_1 \circ N_2 = (Q,\; \Sigma,\; \delta,\; q_0,\; F)
+        \] 
+        where
+        \begin{itemize}[label=$\circ$]
+            \item $Q = Q_1 \cup Q_2$
+            \item $\delta: $
+            \[
+                \delta(q, a) = \begin{cases}
+                    \delta_1(q, a) & q \in Q_1 \ F_1 \\
+                    \delta_2(q, a) & q \in Q_2 \\
+                    \delta_1(q, \epsilon) \cup \{ q_2 \} & q \in F_1, a = \epsilon \\
+                    \delta_1(q, \epsilon)& q \in F_1, a \neq \epsilon \\
+                \end{cases}
+            \]
+            \item $q_0 = q_1$
+            \item $F =F_2$
+        \end{itemize}
+    \end{proposition}
+    
+    \item \textbf{Kleene star}: $N_1^*$ can also accept $\{ \emptyset \}$, then we can construct the $N_1^*$ in
+
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}[node distance=3cm, every node/.style={scale=0.5}, ->, >=Stealth, on grid, auto]
+        \node[state, initial, accepting] (0) {};  
+        \node[state, right of=0] (1) {};
+        \node[state, above right of=1, yshift=-1.4cm] (2) {};
+        \node[state, below right of=1, yshift=1.4cm] (3) {};
+        \node[state, right of=1, xshift= 1.4cm] (6) {};
+        \node[state, above right of=6, accepting, yshift=-1cm] (4) {};
+        \node[state, below right of=6, accepting, yshift=1cm] (5) {};
+
+        \path (4) edge[bend right=35, above] node {$\epsilon$} (1);
+        \path (5) edge[bend left=35, below] node {$\epsilon$} (1);
+        \path (0) edge[above] node {$\epsilon$} (1);
+        \end{tikzpicture}
+    \caption{$N_1^*$}
+    \end{figure}
+
+    \begin{proposition}[Construction of Kleene Star]
+        New NFA is
+        \[
+            N_1^* = (Q_1,\; \Sigma,\; \delta_1,\; q_0,\; F_1)
+        \] 
+        where
+        \begin{itemize}[label=$\circ$]
+            \item $Q = Q_1 \cup \{q_0\}$
+            \item $\delta: $
+            \[
+                \delta(q, a) = \begin{cases}
+                    \delta_1(q, a) & q \in Q_1 \ F_1 \\
+                    \delta_1(q, a) \cup \{q_1\} & q \in F_1, a = \epsilon \\
+                    \delta_1(q, \epsilon) & q \in F_1, a \neq \epsilon \\
+                    \{q_1\} & q = q_0, a = \epsilon \\
+                    \emptyset & q = q_0, a \neq \epsilon
+                \end{cases}
+            \]
+            \item $F =F_1 \cup \{q_0\}$
+        \end{itemize}
+    \end{proposition}    
+\end{itemize}
+
+\begin{note}
+    Some operations are also closed under regular languages,
+    \begin{itemize}[label=$\circ$]
+        \item \textbf{Intersection:}
+        \[
+            A_1 \cap A_2
+        \]
+        Use the product automaton (the same construction as for Union).
+        A string is accepted if and only if the state is in the accept states of both $N_1$ and $N_2$ at the same time.
+
+        \item \textbf{Set Difference:}
+        \[
+            A_1 - A_2
+        \]
+        Use the product automaton as well.
+        A string is accepted if the state is in the accept states of $N_1$ but \emph{not} in the accept states of $N_2$.
+
+        \item \textbf{Complement:}
+        \[
+            A_1^c = \Sigma^* - A_1
+        \]
+        Since $\Sigma^*$ is regular and the class of regular languages is closed under set difference,
+        $A_1^c$ is also regular.
+    \end{itemize} 
+\end{note}

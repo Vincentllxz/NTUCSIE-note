@@ -1,0 +1,309 @@
+\chapter{Basic Knowledge}
+\lecture{1}{2025-09-01}{}
+
+\section{Mathematical Notions}
+
+\subsection{Set \& its operation}
+
+\begin{definition}[Set]
+    Omitted    
+\end{definition}
+
+\begin{definition*}[Sequence \& Tuple]
+Here are some definitions of basic containers
+
+\begin{definition}[Sequence]
+    Sequence is the objects in order, which have two properties:
+    \begin{itemize}
+        \item Order: \[
+        (1, 2, 3) \neq (2, 1, 3)
+        \]
+        \item Repetition: \[
+        \text{Sequence}:(1, 2, 3) \neq (1, 1, 2,3)
+        \]
+        \[
+        \text{Set}: \{1, 2, 3\} = \{1, 1, 2, 3\}
+        \]
+    \end{itemize}
+\end{definition}
+
+\begin{definition}[Tuple]
+    Finite sequence, \((1, 2, 3)\) is a 3-tuple
+\end{definition}
+    
+\end{definition*}
+
+\begin{definition}[Cartesian Product]
+    Here is the Cartesian Product between two sets. We define
+    \[
+    A = \{1, 2\}, \ B = \{x, y\}
+    \]
+    then,
+    \[
+    A \times B = \{(1, x),(1, y),(2, x),(2, y)\}
+    \]
+\end{definition}
+
+\newpage
+
+\subsection{Function \& Relation}
+
+\begin{definition}[Function]
+    Function is a machine with single output.
+\end{definition}
+
+
+\begin{definition*}[Equivalence Relations]
+Here are the properties of Equivalence Relations.
+\begin{definition}[reflexive]
+    \[
+    \forall x, \ xRx
+    \]
+\end{definition}
+\begin{definition}[symmetric]
+    \[
+    \forall x,y, \ xRy \ \Longleftrightarrow \ yRx
+    \]
+\end{definition}
+\begin{definition}[transitive]
+    \[
+    xRy,\ yRz \ \Longrightarrow \ xRz
+    \]
+\end{definition}    
+\end{definition*}
+
+\begin{eg}
+    \[
+    i \equiv_{7} j, \ \text{ if }\ 0 = i - j \mod 7 
+    \]
+\end{eg}
+\begin{itemize}
+    \item Reflexive
+    \[
+    i-i = 0 \mod 7
+    \]
+    \item Symmetric
+    \[
+    i-j = 7a, \ j-i = -7a
+    \]
+    \item Transitive
+    \[
+    i - j = 7a,\ j - k = 7b \ \Longrightarrow \ i - k = 7(a + b)
+    \]
+\end{itemize}
+
+\subsection{String \& Languages}
+
+\begin{definition*}[String \& Languages]
+    Here is the definition of Language.
+    \begin{eg}[Alphabet]
+        \[
+        \{0, 1\}
+        \]
+    \end{eg}
+    \begin{eg}[String]
+        \[
+        01000
+        \]
+    \end{eg}
+    \begin{definition}[Language]
+        Set of Strings
+        \[
+        L(A)
+        \]
+        is the language of $A$
+    \end{definition}
+\end{definition*}
+
+\newpage
+
+\section{Definitions, Theorems, and Proofs}
+
+\begin{itemize}
+    \item \textbf{Definition}: Introduce new concept.
+    \item \textbf{Statement}: A sentence that is either true or flase.
+    \item \textbf{Theorem}: A statement that is true.
+    \begin{itemize}
+        \item \textbf{Lemma}: A ``helping'' theorem.
+        \item \textbf{Corllary}: A theorem that follows easily from another theorem.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Proof by Construction}
+\begin{proposition}
+    Sum of degrees of every graph is even
+\end{proposition}
+\begin{proof}
+    Each edge contributes 2 nodes, so
+    \[
+    \sum_{v \in V} \deg(v) = 2 \times |E|
+    \]
+    Hence, the sum of degrees of every graph is even.
+\end{proof}
+
+\begin{note}
+    The implication is the definition of graphs.
+\end{note}
+
+\subsection{Proof by Contradiction}
+
+Assume the statement is false, then deduce a contradiction.
+
+\subsection{Proof by Induction}
+
+\begin{itemize}
+    \item Basis: Prove for $n=0$ or $n=1$ or some trivial case.
+    \item Inductive Step: Assume true for $n=k$ (Induction Hypothesis), prove for $n=k+1$.
+\end{itemize}
+
+\chapter{Regular Languages}
+
+\section{Deterministic Finite Automata (DFA)}
+
+\begin{itemize}
+    \item Automaton: single
+    \item Automata: plural
+\end{itemize}
+
+\begin{definition}[Deterministic Finite Automata (DFA)]
+    We define a DFA as a 5-tuple
+    \[
+    (Q,\, \Sigma,\, \delta,\, q_0,\, F)
+    \] 
+    where
+    \begin{itemize}
+        \item $Q$: Set of states (\red{Finite})
+        \item $\Sigma$: Alphabet (i.e. set of input characters) (\red{Finite})
+        \item $\delta$: $Q \times \Sigma \rightarrow Q$: Transition Function
+        \item $q_0 \in Q$: Start state
+        \item $F \subset Q$: Set of accept states
+    \end{itemize}
+\end{definition}
+
+\vspace{3em}
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[node distance=3.5cm, ->, >=Stealth, on grid, auto]
+      \node[state,initial] (q_1) {$q_1$};
+      \node[state,accepting, right of=q_1] (q_2)  {$q_2$};
+      \node[state, right of=q_2] (q_3)  {$q_3$};
+    
+      \draw (q_1) edge[loop above]    node {$0$} (q_1)
+            (q_1) edge[above]  node {$1$} (q_2)
+            (q_2) edge[loop above]    node {$1$} (q_2)
+            (q_2) edge[bend left, above] node {$0$} (q_3)
+            (q_3) edge[bend left, below] node {$0,1$} (q_2);
+    \end{tikzpicture}
+    \caption{A state diagram}
+\end{figure}
+
+If we call this machine $M$, then we have.
+
+\[
+M = (Q, \Sigma, \delta, q_0, F)
+\]
+
+\newpage
+
+For the example given above,
+
+\begin{gather*}
+    Q=\{q_1,q_2, q_3\}\\
+    \Sigma=\{0,1\}\\
+    q_0 = q_1 \\
+    F=\{q_2\}
+\end{gather*}
+
+
+The $\delta$ function:
+\begin{center}
+\begin{tabular}{c|cc}
+    & 0 & 1\\ \hline
+    $q_1$ & $q_1$ & $q_2$\\
+    $q_2$ & $q_3$ & $q_2$\\
+    $q_3$ & $q_2$ & $q_2$
+\end{tabular}
+\end{center}
+
+\begin{definition}
+    The language that recognize by a Machine $M$ is denoted as \[
+        L(M) = A
+    \]
+    We say $A$ is recognizeed (accepted) by $M$.
+\end{definition}
+
+\subsection{Definition of Computation}
+
+Let, 
+\begin{itemize}
+    \item $M = (Q,\ \Sigma,\ \delta,\ q_0,\ F)$ be a finite automaton.
+    \item $w = w_1, \cdots, w_n$ be a string over $\Sigma$.
+\end{itemize}
+
+\begin{theorem}
+    $M$ accepts $w$ if $\exists$ states $r_0 \cdots r_n$ such that
+    \begin{enumerate}[label=(\arabic*)]
+        \item $r_0 = q_0$
+        \item $r_{i+1} = \delta(r_i, w_{i+1}),\quad i = [0, n-1]$
+        \item $r_n \in F$
+    \end{enumerate}
+\end{theorem}
+
+\begin{definition}[Regular Language]
+    A language is regular if recognized by some automata.
+\end{definition}
+
+\subsection{Regular Operations}
+
+\begin{definition*}
+Assume $A, B$ are given languages,
+\begin{definition}[Union]
+    \[
+        A \cup B = \{ w \;|\; w \in A \lor w \in B \}
+    \]
+\end{definition}
+\begin{definition}[Concatenation]
+    \[
+        A \circ B = \{ w_1w_2 \;|\; w_1 \in A, w_2 \in B \}
+    \]
+\end{definition}
+\begin{definition}[Kleene Star]
+    \[
+        A^* = \{ w_1 \cdots w_k \;|\; k \geq 0, w_i \in A \}
+    \]
+    which can also be defined as
+    \[
+        \bigcup_{i=1}^\infty A_i = \{\epsilon\} \cup A \cup A^2 \cup A^3 \cup \cdots, \quad A^0 = \{\epsilon\}, \ A^n = \{wv \;|\; w \in A^{n-1}, v \in A\}
+    \]
+\end{definition}
+\end{definition*}
+
+\begin{definition}[closed]
+    We say an operation $R$ is closed if the following property holds if
+    \[
+        x \in A, y \in A, \text{ then } xRy \in A
+    \]
+\end{definition}
+
+\begin{theorem}
+    Regular languages are closed under the union, concatenation, and Kleene star.
+\end{theorem}
+\begin{proof}
+We define two machines as follows
+\begin{eqnarray*}
+    && M_1 =(Q_1, \Sigma, \delta_1, q_1, F_1)\\
+    && M_2 =(Q_2, \Sigma, \delta_2, q_2, F_2)\\
+\end{eqnarray*}
+if we union them, we can define a new machine
+\[
+M_1 \cup M_2 = \begin{cases}
+    M = (Q, \Sigma, \delta, q_0, F) \\
+    Q = \{ (r_1, r_2) \;|\; r_1 \in Q_1, r_2 \in Q_2 \}\\
+    \delta((r_1, r_2), a) = (\delta_1(r_1, a), \delta_2(r_2, a))\\
+    q_0 = (q_1, q_2) \\
+    F = \{ (r_1, r_2) \;|\; r_1 \in F_1 \text{ or } r_2 \in F_2 \}
+\end{cases}
+\]
+Hence, regular languages are closed under union.
+\end{proof}
