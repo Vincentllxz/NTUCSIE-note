@@ -138,6 +138,16 @@
 ]{thmredbox}
 
 \declaretheoremstyle[
+	headfont=\bfseries\sffamily\color{Goldenrod!80!black}, bodyfont=\normalfont,
+	mdframed={
+			linewidth=2pt,
+			rightline=false, topline=false, bottomline=false,
+			linecolor=Goldenrod!80!black, backgroundcolor=Goldenrod!5,
+			nobreak=false
+		}
+]{thmred3box}
+
+\declaretheoremstyle[
 	headfont=\bfseries\sffamily\color{RawSienna!70!black}, bodyfont=\normalfont,
 	mdframed={
 			linewidth=2pt,
@@ -242,7 +252,7 @@
 
 \declaretheorem[style=thmgreenbox, name=Definition, numberwithin=section]{definition}
 \declaretheorem[style=thmgreen2box, name=Definition, numbered=no]{definition*}
-\declaretheorem[style=thmredbox, name=Theorem, numberwithin=section]{theorem}
+\declaretheorem[style=thmred3box, name=Theorem, numberwithin=section]{theorem}
 \declaretheorem[style=thmred2box, name=Theorem, numbered=no]{theorem*}
 \declaretheorem[style=thmredbox, name=Lemma, numberwithin=section]{lemma}
 \declaretheorem[style=thmredbox, name=Proposition, numberwithin=section]{proposition}

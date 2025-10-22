@@ -33,4 +33,9 @@
 \contentsline {subsection}{\numberline {2.3.1}Spanning a Subspace}{35}{subsection.2.3.1}%
 \contentsline {subsection}{\numberline {2.3.2}Basis}{35}{subsection.2.3.2}%
 \contentsline {section}{\numberline {2.4}The Four Fundamental Subspaces}{37}{section.2.4}%
-\contentsline {subsection}{\numberline {2.4.1}Row space}{37}{subsection.2.4.1}%
+\contentsline {subsection}{\numberline {2.4.1}Row space $\mathcal {C}(A^T)$}{37}{subsection.2.4.1}%
+\contentsline {subsection}{\numberline {2.4.2}Nullspace $\mathcal {N}(A)$}{38}{subsection.2.4.2}%
+\contentsline {subsection}{\numberline {2.4.3}Column space $\mathcal {C}(A)$}{38}{subsection.2.4.3}%
+\contentsline {subsection}{\numberline {2.4.4}Left nullspace $\mathcal {N}(A^T)$}{39}{subsection.2.4.4}%
+\contentsline {section}{\numberline {2.5}Graph and Network}{42}{section.2.5}%
+\contentsline {section}{\numberline {2.6}Linear Transformation}{42}{section.2.6}%

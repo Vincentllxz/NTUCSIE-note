@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.8.4)  14 OCT 2025 15:59
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.8.4)  21 OCT 2025 20:12
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1477,51 +1477,55 @@ Package thmtools Info: Key `mdframed' (with value ` linewidth=2pt, rightline=fal
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
 (thmtools)             that uses `style=thmredbox' on input line 138.
+Package thmtools Info: Key `mdframed' (with value ` linewidth=2pt, rightline=false, topline=false, bottomline=false, linecolor=Goldenrod!80!black, backgroundcolor=Goldenrod!5, nobreak=false ')
+(thmtools)             is not a known style key.
+(thmtools)             Will pass this to every \declaretheorem
+(thmtools)             that uses `style=thmred3box' on input line 148.
 Package thmtools Info: Key `mdframed' (with value ` linewidth=2pt, rightline=false, topline=false, bottomline=false, linecolor=RawSienna, backgroundcolor=RawSienna!8, nobreak=false ')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=thmred2box' on input line 148.
+(thmtools)             that uses `style=thmred2box' on input line 158.
 Package thmtools Info: Key `mdframed' (with value ` linewidth=2pt, rightline=false, topline=false, bottomline=false, linecolor=SeaGreen, backgroundcolor=SeaGreen!2, nobreak=false ')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=thmgreen3box' on input line 158.
+(thmtools)             that uses `style=thmgreen3box' on input line 168.
 Package thmtools Info: Key `mdframed' (with value ` linewidth=2pt, rightline=false, topline=false, bottomline=false, linecolor=WildStrawberry, backgroundcolor=WildStrawberry!5, nobreak=false ')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=thmpinkbox' on input line 168.
+(thmtools)             that uses `style=thmpinkbox' on input line 178.
 Package thmtools Info: Key `mdframed' (with value ` linewidth=2pt, rightline=false, topline=false, bottomline=false, linecolor=MidnightBlue, backgroundcolor=MidnightBlue!5, nobreak=false ')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=thmblue2box' on input line 178.
+(thmtools)             that uses `style=thmblue2box' on input line 188.
 Package thmtools Info: Key `mdframed' (with value ` linewidth=2pt, rightline=false, topline=false, bottomline=false, linecolor=Gray, backgroundcolor=Gray!5, nobreak=false ')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=notgraybox' on input line 188.
+(thmtools)             that uses `style=notgraybox' on input line 198.
 Package thmtools Info: Key `mdframed' (with value ` linewidth=2pt, rightline=false, topline=false, bottomline=false, linecolor=Gray, nobreak=false ')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=notgrayline' on input line 198.
+(thmtools)             that uses `style=notgrayline' on input line 208.
 Package thmtools Info: Key `numbered' (with value `no')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=thmexplanationbox' on input line 220.
+(thmtools)             that uses `style=thmexplanationbox' on input line 230.
 Package thmtools Info: Key `mdframed' (with value ` linewidth=2pt, rightline=false, topline=false, bottomline=false, linecolor=NavyBlue, backgroundcolor=NavyBlue!1, nobreak=false ')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=thmexplanationbox' on input line 220.
+(thmtools)             that uses `style=thmexplanationbox' on input line 230.
 Package thmtools Info: Key `numbered' (with value `no')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=thmanswerbox' on input line 231.
+(thmtools)             that uses `style=thmanswerbox' on input line 241.
 Package thmtools Info: Key `mdframed' (with value ` linewidth=2pt, rightline=false, topline=false, bottomline=false, linecolor=WildStrawberry, backgroundcolor=WildStrawberry!1, nobreak=false ')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=thmanswerbox' on input line 231.
+(thmtools)             that uses `style=thmanswerbox' on input line 241.
 Package thmtools Info: Key `mdframed' (with value ` linewidth=2pt, rightline=false, topline=false, bottomline=false, linecolor=Violet, backgroundcolor=Violet!1, nobreak=false ')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=conjpurplebox' on input line 241.
-Package thmtools Info: Automatically pulling in `thmdef-mdframed' on input line 244.
+(thmtools)             that uses `style=conjpurplebox' on input line 251.
+Package thmtools Info: Automatically pulling in `thmdef-mdframed' on input line 254.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/thmtools/thmdef-mdframed.sty
 Package: thmdef-mdframed 2023/05/04 v0.76
 )
@@ -2559,10 +2563,80 @@ Package mdframed Info: mdframed detected package amsthm
 (mdframed)              on input line 256.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 306.
-)
+(mdframed)              on input line 305.
+) (./Lectures/lec_7.tex
+Package marginnote Info: Margin note 41.1 is on absolute page 42 on input line 2.
+Package marginnote Info: right page because not two side mode on input line 2.
+Package marginnote Info: xpos seems to be 72.2698pt on input line 2.
 
-[37] (./LinearAlgebra.aux)
+Underfull \hbox (badness 10000) in paragraph at lines 5--6
+
+ []
+
+
+
+[37]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 9.
+
+Underfull \hbox (badness 10000) in paragraph at lines 10--12
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 22--23
+
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 41.
+
+
+[38]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 77.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 91.
+File: Figures/grah.png Graphic file (type bmp)
+<Figures/grah.png>
+
+
+[39]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 110.
+Package mdframed Info: Not enough space on this page on input line 122.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 206.
+Package mdframed Info: Not enough space on this page on input line 214.
+
+
+[40]
+Package mdframed Info: Not enough space on this page on input line 214.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 216.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 243.
+
+
+[41]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 295.
+Package mdframed Info: Not enough space on this page on input line 308.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 317.
+
+
+[42]) (./LinearAlgebra.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2022/08/05>
@@ -2578,19 +2652,25 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
-Package rerunfilecheck Info: File `LinearAlgebra.out' has not changed.
-(rerunfilecheck)             Checksum: E36F9E0C25F50D30DC1DE213E197456D;3205.
+
+Package rerunfilecheck Warning: File `LinearAlgebra.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `LinearAlgebra.out':
+(rerunfilecheck)             Before: 689D666AF04B389E73FD5B118D19C15D;4544
+(rerunfilecheck)             After:  D535D8227D129FB1F44D610F0665637D;3514.
 Package logreq Info: Writing requests to 'LinearAlgebra.run.xml'.
 \openout1 = `LinearAlgebra.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 61361 strings out of 473832
- 1429411 string characters out of 5729482
- 2506447 words of memory out of 5000000
- 83388 multiletter control sequences out of 15000+600000
+ 61412 strings out of 473832
+ 1430492 string characters out of 5729482
+ 2507242 words of memory out of 5000000
+ 83434 multiletter control sequences out of 15000+600000
  647786 words of font info for 181 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  104i,21n,107p,1270b,4494s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on LinearAlgebra.pdf (39 pages).
+Output written on LinearAlgebra.pdf (44 pages).
