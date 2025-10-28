@@ -8,7 +8,7 @@ A regualar expression is a tool to describe a language.
     $R$ is a regular expressions if it is one of the following expressions: 
     \begin{enumerate}[label=(\arabic*)]
         \item $a$, where $a \in \Sigma$
-        \item $\epsilon$ $(\epsilon \notin \Sigma)$
+        \item $\varepsilon$ $(\varepsilon \notin \Sigma)$
         \item $\emptyset$
         \item $R_1 \cup R_2$,  where $R_1, R_2$ are regular expressions
         \item $R_1 \circ R_2$, where $R_1, R_2$ are regular expressions
@@ -25,16 +25,16 @@ If their is no parentheses, we follow the order of:
 
 \begin{remark}
     \[
-        R^+ = RR^*, \quad R^+ \cup \{\epsilon\} = R^*
+        R^+ = RR^*, \quad R^+ \cup \{\varepsilon\} = R^*
     \]
 \end{remark}
 
-For $\emptyset$ and $\epsilon$, we have 
+For $\emptyset$ and $\varepsilon$, we have 
 \begin{itemize}
-    \item $\epsilon$: empty string
+    \item $\varepsilon$: empty string
     \item $\emptyset$: empty language (language without any string)
     \begin{align*}
-        &(0 \cup \epsilon)1^*=01^* \cup 1^* \\
+        &(0 \cup \varepsilon)1^*=01^* \cup 1^* \\
         &(0 \cup \emptyset)1^*=01^* \\
         &\emptyset 1^* = 1^* \emptyset = \emptyset
     \end{align*}
@@ -52,14 +52,14 @@ Here are some examples,
     \end{equation*}
     \item $(\Sigma \Sigma)^*$: strings with even length
     \item $R\cup \emptyset=R$
-    \item $R \circ \epsilon=R$
-    \item $\emptyset^*=\{\epsilon\}$
+    \item $R \circ \varepsilon=R$
+    \item $\emptyset^*=\{\varepsilon\}$
 \end{itemize}
 \end{eg}
 
 Floating point numbers can also be represented by regular expressions. For example,
 \[
-(+\cup-\cup\epsilon)(DD^*\cup DD^*.D^*\cup D^*.DD^*), \text{ where } D = \{0, \ldots,9\}
+(+\cup-\cup\varepsilon)(DD^*\cup DD^*.D^*\cup D^*.DD^*), \text{ where } D = \{0, \ldots,9\}
 \]
 
 \begin{eg}
@@ -92,7 +92,7 @@ Floating point numbers can also be represented by regular expressions. For examp
             & \delta(r,b)=\emptyset, r \neq q_1\mbox{ or } b \neq a
         \end{align*}
 
-        \item $R = \epsilon$
+        \item $R = \varepsilon$
         \begin{center}
             \begin{tikzpicture}[node distance=2cm, ->, >=Stealth, on grid, auto]
                 \node[state, initial, accepting] (q1) {};
@@ -163,10 +163,10 @@ First, convert to GNFA:
     \draw (2) edge[loop above] node{$b$} (2);
     \draw (3) edge[right] node{$a$} (2);        
 
-    \draw (s) edge[above] node{$\epsilon$} (1);        
+    \draw (s) edge[above] node{$\varepsilon$} (1);        
 
-    \draw (2) edge[above] node{$\epsilon$} (a);        
-    \draw (3) edge[below] node{$\epsilon$} (a);
+    \draw (2) edge[above] node{$\varepsilon$} (a);        
+    \draw (3) edge[below] node{$\varepsilon$} (a);
 \end{tikzpicture}
 \end{center}
 
@@ -174,7 +174,7 @@ Next, is to remove the states one by one. We skip, so we can get the answer:
 \[
 (a(aa\cup b)^* ab \cup b)
 ((ba \cup a)(aa \cup b)^* ab \cup bb)^*((ba \cup a)
-    (aa\cup b)^* \cup \epsilon) \cup a(aa \cup b)^*
+    (aa\cup b)^* \cup \varepsilon) \cup a(aa \cup b)^*
 \]
 which is very complicated.
 \end{answer}
@@ -194,8 +194,8 @@ which is very complicated.
         where $R$ is all regular expressions over $\Sigma$.
         \item Two new states:
         \begin{align*}
-            &q_{start} \rightarrow q_0 \text{ with }\epsilon \\
-            &\text{any } q \in F \rightarrow q_{accept}\text{ with }\epsilon
+            &q_{start} \rightarrow q_0 \text{ with }\varepsilon \\
+            &\text{any } q \in F \rightarrow q_{accept}\text{ with }\varepsilon
         \end{align*}
     \end{itemize}
 \end{definition}

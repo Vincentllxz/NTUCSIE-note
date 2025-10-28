@@ -14,7 +14,7 @@ First, we see a NFA that accept strings with 1 in 3rd position from the end,
     
       \path (q_1) edge[loop above] node {$0,1$} (q_1)
             (q_1) edge[above]  node {$1$} (q_2)
-            (q_2) edge[above]  node {$0,\epsilon$} (q_3)
+            (q_2) edge[above]  node {$0,\varepsilon$} (q_3)
             (q_3) edge[above]  node {$1$} (q_4)
             (q_4) edge[loop below] node {$0,1$} (q_4);
     \end{tikzpicture}
@@ -23,7 +23,7 @@ First, we see a NFA that accept strings with 1 in 3rd position from the end,
 
 \begin{itemize}
     \item $\delta$ is not a function, i.e. $\delta(q_1, 1) = q_1 \text{ or } q_2$
-    \item $\epsilon$ between $q_2, q_3$ means $q_2$ can move to $q_3$ without any input
+    \item $\varepsilon$ between $q_2, q_3$ means $q_2$ can move to $q_3$ without any input
 \end{itemize}
 
 \newpage
@@ -81,13 +81,13 @@ We can record it in three bits, it will be complicated.
 \begin{definition}[Nondeterministic Finite Automata (NFA)]
     We define a NFA as a 5-tuple
     \[
-        M = (Q, \Sigma_{\epsilon}, \delta, q_0, F)
+        M = (Q, \Sigma_{\varepsilon}, \delta, q_0, F)
     \]
     where
     \begin{itemize}
         \item $Q$: Set of states (\red{Finite})
-        \item $\Sigma_{\epsilon} = \Sigma \cup \{\epsilon\}$
-        \item $\delta$: $Q \times \Sigma_{\epsilon} \rightarrow P(Q)$
+        \item $\Sigma_{\varepsilon} = \Sigma \cup \{\varepsilon\}$
+        \item $\delta$: $Q \times \Sigma_{\varepsilon} \rightarrow P(Q)$
         \item $q_0 \in Q$
         \item $F \subset Q$
     \end{itemize}
@@ -96,7 +96,7 @@ We can record it in three bits, it will be complicated.
 \begin{theorem}
     We have $w$
     \[
-        w = y_1\cdots y_m \quad \text{where } y_i \in \Sigma_{\epsilon}
+        w = y_1\cdots y_m \quad \text{where } y_i \in \Sigma_{\varepsilon}
     \]
     A sequence $r_0\cdots r_m$ such that
     \begin{enumerate}[label=(\arabic*)]
@@ -107,14 +107,14 @@ We can record it in three bits, it will be complicated.
 \end{theorem}
 
 \begin{note}
-    So $m$ may not be the original length (as $y_i$ may be $\epsilon$)
+    So $m$ may not be the original length (as $y_i$ may be $\varepsilon$)
 \end{note}
 
 \subsection{Equivalence of DFA and NFA}
 
-From DFA $\Rightarrow$ NFA. Formally DFA is not an NFA due to $\Sigma$ and $\Sigma_{\epsilon}$. but we can easily handle this by adding
+From DFA $\Rightarrow$ NFA. Formally DFA is not an NFA due to $\Sigma$ and $\Sigma_{\varepsilon}$. but we can easily handle this by adding
 \[
-    q_i, \epsilon \rightarrow \emptyset
+    q_i, \varepsilon \rightarrow \emptyset
 \]
 
 For NFA $\Rightarrow$ DFA, we have the example on the slides on a graph.
@@ -130,7 +130,7 @@ For NFA $\Rightarrow$ DFA, we have the example on the slides on a graph.
         
         \draw (q1) edge[left] node{$b$} (q2)
         (q2) edge[loop left, left] node{$a$} (q2)
-        (q1) edge[bend right, left] node{$\epsilon$} (q3)
+        (q1) edge[bend right, left] node{$\varepsilon$} (q3)
         (q2) edge[below] node{$a, b$} (q3)
         (q3) edge[bend right, right] node{$a$} (q1);
 
@@ -175,7 +175,7 @@ For NFA $\Rightarrow$ DFA, we have the example on the slides on a graph.
 
 \begin{itemize}
     \item Remove the states that are not reachable.
-    \item Remove the states that not handle the $\epsilon$ transition. For example, the start state
+    \item Remove the states that not handle the $\varepsilon$ transition. For example, the start state
     \[
         \{ q_1 \} \ \red{\text{wrong}} \quad \rightarrow \quad \{ q_1, q_3 \} \ \text{\grn{correct}}
     \]
@@ -183,7 +183,7 @@ For NFA $\Rightarrow$ DFA, we have the example on the slides on a graph.
 
 \begin{definition}
     \[
-    E(\{ q_0 \}) = \{q_0\} \cup \{\text{states reached by $\epsilon$ from $q_0$}\}
+    E(\{ q_0 \}) = \{q_0\} \cup \{\text{states reached by $\varepsilon$ from $q_0$}\}
     \]
 \end{definition}
 
@@ -221,7 +221,7 @@ We give two NFAs $N_1, N_2$,
     &N_1 =(Q_1, \Sigma, \delta_1, q_1, F_1) \\
     &N_2 =(Q_2, \Sigma, \delta_2, q_2, F_2)
 \end{align*}
-note that $\epsilon \notin \Sigma$, and the graph of them are:
+note that $\varepsilon \notin \Sigma$, and the graph of them are:
 
 
 \begin{figure}[H]
@@ -271,8 +271,8 @@ note that $\epsilon \notin \Sigma$, and the graph of them are:
         \node[state, accepting, below right of=06, yshift=1cm] (05) {};
         \node[state, accepting, right of=06, xshift=1.7cm] (04) {};
     
-        \path (0) edge[above] node {$\epsilon$} (1);
-        \path (0) edge[below] node {$\epsilon$} (01);
+        \path (0) edge[above] node {$\varepsilon$} (1);
+        \path (0) edge[below] node {$\varepsilon$} (01);
         \end{tikzpicture}
     \caption{$N_1 \cup N_2$}
     \end{figure}
@@ -290,8 +290,8 @@ note that $\epsilon \notin \Sigma$, and the graph of them are:
                 \delta(q, a) = \begin{cases}
                     \delta_1(q, a) & q \in Q_1 \\
                     \delta_2(q, a) & q \in Q_2 \\
-                    \{q_1, q_2 \} & q = q_0, a = \epsilon \\
-                    \emptyset & q = q_0, a \neq \epsilon
+                    \{q_1, q_2 \} & q = q_0, a = \varepsilon \\
+                    \emptyset & q = q_0, a \neq \varepsilon
                 \end{cases}
             \]
             \item $F = F_1 \cup F_2$
@@ -317,8 +317,8 @@ note that $\epsilon \notin \Sigma$, and the graph of them are:
         \node[state, accepting, below right of=06, yshift=1cm] (05) {};
         \node[state, accepting, right of=06, xshift=1.7cm] (04) {};
 
-        \path (4) edge[above] node {$\epsilon$} (01);
-        \path (5) edge[below] node {$\epsilon$} (01);
+        \path (4) edge[above] node {$\varepsilon$} (01);
+        \path (5) edge[below] node {$\varepsilon$} (01);
         \end{tikzpicture}
     \caption{$N_1 \circ N_2$}
     \end{figure}
@@ -336,8 +336,8 @@ note that $\epsilon \notin \Sigma$, and the graph of them are:
                 \delta(q, a) = \begin{cases}
                     \delta_1(q, a) & q \in Q_1 \ F_1 \\
                     \delta_2(q, a) & q \in Q_2 \\
-                    \delta_1(q, \epsilon) \cup \{ q_2 \} & q \in F_1, a = \epsilon \\
-                    \delta_1(q, \epsilon)& q \in F_1, a \neq \epsilon \\
+                    \delta_1(q, \varepsilon) \cup \{ q_2 \} & q \in F_1, a = \varepsilon \\
+                    \delta_1(q, \varepsilon)& q \in F_1, a \neq \varepsilon \\
                 \end{cases}
             \]
             \item $q_0 = q_1$
@@ -358,9 +358,9 @@ note that $\epsilon \notin \Sigma$, and the graph of them are:
         \node[state, above right of=6, accepting, yshift=-1cm] (4) {};
         \node[state, below right of=6, accepting, yshift=1cm] (5) {};
 
-        \path (4) edge[bend right=35, above] node {$\epsilon$} (1);
-        \path (5) edge[bend left=35, below] node {$\epsilon$} (1);
-        \path (0) edge[above] node {$\epsilon$} (1);
+        \path (4) edge[bend right=35, above] node {$\varepsilon$} (1);
+        \path (5) edge[bend left=35, below] node {$\varepsilon$} (1);
+        \path (0) edge[above] node {$\varepsilon$} (1);
         \end{tikzpicture}
     \caption{$N_1^*$}
     \end{figure}
@@ -377,10 +377,10 @@ note that $\epsilon \notin \Sigma$, and the graph of them are:
             \[
                 \delta(q, a) = \begin{cases}
                     \delta_1(q, a) & q \in Q_1 \ F_1 \\
-                    \delta_1(q, a) \cup \{q_1\} & q \in F_1, a = \epsilon \\
-                    \delta_1(q, \epsilon) & q \in F_1, a \neq \epsilon \\
-                    \{q_1\} & q = q_0, a = \epsilon \\
-                    \emptyset & q = q_0, a \neq \epsilon
+                    \delta_1(q, a) \cup \{q_1\} & q \in F_1, a = \varepsilon \\
+                    \delta_1(q, \varepsilon) & q \in F_1, a \neq \varepsilon \\
+                    \{q_1\} & q = q_0, a = \varepsilon \\
+                    \emptyset & q = q_0, a \neq \varepsilon
                 \end{cases}
             \]
             \item $F =F_1 \cup \{q_0\}$

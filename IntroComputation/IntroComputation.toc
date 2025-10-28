@@ -27,3 +27,11 @@
 \contentsline {subsection}{\numberline {2.1.3}Design of CFGs}{22}{subsection.2.1.3}%
 \contentsline {subsection}{\numberline {2.1.4}Parse Trees and Ambiguity}{22}{subsection.2.1.4}%
 \contentsline {section}{\numberline {2.2}Chomsky Normal Form}{24}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Procedure of Converting CFG to CNF}{25}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}Infinite Loop in Converting}{25}{subsection.2.2.2}%
+\contentsline {section}{\numberline {2.3}Pushdown Automata}{26}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}Formal definition of PDA}{27}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}Nondeterministic situation}{27}{subsection.2.3.2}%
+\contentsline {subsection}{\numberline {2.3.3}Converting CFL to PDA}{29}{subsection.2.3.3}%
+\contentsline {subsection}{\numberline {2.3.4}Converting PDA to CFL}{30}{subsection.2.3.4}%
+\contentsline {subsection}{\numberline {2.3.5}Procedure of converting PDA to CFL}{32}{subsection.2.3.5}%
