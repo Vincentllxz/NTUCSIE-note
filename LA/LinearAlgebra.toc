@@ -39,3 +39,8 @@
 \contentsline {subsection}{\numberline {2.4.4}Left nullspace $\mathcal {N}(A^T)$}{39}{subsection.2.4.4}%
 \contentsline {section}{\numberline {2.5}Graph and Network}{42}{section.2.5}%
 \contentsline {section}{\numberline {2.6}Linear Transformation}{42}{section.2.6}%
+\contentsline {subsection}{\numberline {2.6.1}Notation of Linear Transformation}{42}{subsection.2.6.1}%
+\contentsline {subsection}{\numberline {2.6.2}Matrix Representation of Linear Transformations}{45}{subsection.2.6.2}%
+\contentsline {subsection}{\numberline {2.6.3}Rotation $Q$, Projection $P$, Reflection $R$}{46}{subsection.2.6.3}%
+\contentsline {chapter}{\numberline {3}Orthogonality}{49}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Perpendicular Vectors and Orthogonal Subspaces}{49}{section.3.1}%

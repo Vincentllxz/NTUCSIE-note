@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.8.4)  21 OCT 2025 20:12
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.8.4)  29 OCT 2025 15:16
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1477,7 +1477,7 @@ Package thmtools Info: Key `mdframed' (with value ` linewidth=2pt, rightline=fal
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
 (thmtools)             that uses `style=thmredbox' on input line 138.
-Package thmtools Info: Key `mdframed' (with value ` linewidth=2pt, rightline=false, topline=false, bottomline=false, linecolor=Goldenrod!80!black, backgroundcolor=Goldenrod!5, nobreak=false ')
+Package thmtools Info: Key `mdframed' (with value ` linewidth=2pt, rightline=false, topline=false, bottomline=false, linecolor=Goldenrod!80!black, backgroundcolor=Goldenrod!10, nobreak=false ')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
 (thmtools)             that uses `style=thmred3box' on input line 148.
@@ -2564,8 +2564,10 @@ Package mdframed Info: mdframed detected package amsthm
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 305.
-) (./Lectures/lec_7.tex
-Package marginnote Info: Margin note 41.1 is on absolute page 42 on input line 2.
+
+
+[37]) (./Lectures/lec_7.tex
+Package marginnote Info: Margin note 42.1 is on absolute page 42 on input line 2.
 Package marginnote Info: right page because not two side mode on input line 2.
 Package marginnote Info: xpos seems to be 72.2698pt on input line 2.
 
@@ -2573,9 +2575,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 5--6
 
  []
 
-
-
-[37]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 9.
@@ -2633,10 +2632,143 @@ Package mdframed Info: mdframed detected package amsthm
 Package mdframed Info: Not enough space on this page on input line 308.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 317.
+(mdframed)              on input line 319.
 
 
-[42]) (./LinearAlgebra.aux)
+[42]) (./Lectures/lec_8.tex
+Package marginnote Info: Margin note 47.1 is on absolute page 47 on input line 2.
+Package marginnote Info: right page because not two side mode on input line 2.
+Package marginnote Info: xpos seems to be 72.2698pt on input line 2.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 3.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 14.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 24.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 45.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 62.
+
+
+[43]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 73.
+Package mdframed Info: Not enough space on this page on input line 79.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 86.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 101.
+
+
+[44]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 139.
+Package mdframed Info: Not enough space on this page on input line 146.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 151.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 166.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 176.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 209.
+
+
+[45]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 233.
+Package mdframed Info: Not enough space on this page on input line 236.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 268.
+
+
+[46]
+Overfull \hbox (5.6595pt too wide) detected at line 491
+[]
+ []
+
+
+Overfull \hbox (32.87328pt too wide) detected at line 513
+[]
+ []
+
+
+
+[47]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 650.
+
+
+[48]
+Chapter 3.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 682.
+
+Underfull \hbox (badness 10000) in paragraph at lines 692--694
+
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 694.
+
+
+[49
+
+]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 711.
+Package mdframed Info: Not enough space on this page on input line 723.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 725.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 729.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 733.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 742.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 750.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 760.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 767.
+
+
+[50]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 782.
+Package mdframed Info: Not enough space on this page on input line 790.
+)
+
+[51] (./LinearAlgebra.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2022/08/05>
@@ -2649,28 +2781,19 @@ LaTeX Font Warning: Size substitutions with differences
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-
-Package rerunfilecheck Warning: File `LinearAlgebra.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `LinearAlgebra.out':
-(rerunfilecheck)             Before: 689D666AF04B389E73FD5B118D19C15D;4544
-(rerunfilecheck)             After:  D535D8227D129FB1F44D610F0665637D;3514.
+Package rerunfilecheck Info: File `LinearAlgebra.out' has not changed.
+(rerunfilecheck)             Checksum: 7F3440EDBC1208A9F0510FAC30DAFD72;3920.
 Package logreq Info: Writing requests to 'LinearAlgebra.run.xml'.
 \openout1 = `LinearAlgebra.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 61412 strings out of 473832
- 1430492 string characters out of 5729482
- 2507242 words of memory out of 5000000
- 83434 multiletter control sequences out of 15000+600000
- 647786 words of font info for 181 fonts, out of 8000000 for 9000
+ 61613 strings out of 473832
+ 1434565 string characters out of 5729482
+ 2508442 words of memory out of 5000000
+ 83627 multiletter control sequences out of 15000+600000
+ 647810 words of font info for 184 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  104i,21n,107p,1270b,4494s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on LinearAlgebra.pdf (44 pages).
+Output written on LinearAlgebra.pdf (53 pages).
