@@ -1,0 +1,175 @@
+\newpage
+\section{Deterministic Pushdown Automata}
+\lecture{7}{2025-11-03}{}
+
+PDA is non-deterministic in general. However, there is a special class of PDA called \red{Deterministic} Pushdown Automata (DPDA). From Ch.1 we know
+\[
+    \text{DFA} \equiv \text{NFA}
+\]
+but
+\[
+    \text{DPDA} \neq \text{PDA} \ \Longrightarrow \text{CFL} \neq \text{DCFL}
+\]
+
+\begin{definition}[Deterministic Pushdown Automaton (DPDA)]
+    A deterministic pushdown automaton (DPDA) is a 6-tuple \[
+    M = (Q, \Sigma, \Gamma, \delta, q_0, F)
+    \] where
+    \begin{itemize}
+        \item \(Q\): States
+        \item \(\Sigma\): Input alphabet
+        \item \(\Gamma\): Stack alphabet
+        \item \(\delta\): Transition function
+        \[
+            Q \times \Sigma_{\varepsilon} \times \Gamma_{\varepsilon} \to (Q \times \Gamma_{\varepsilon}) \cup \{ \emptyset \}
+        \]
+        \item \(q_0 \in Q\): Start state
+        \item \(F \subset Q\): Set of accepting states
+    \end{itemize}
+\end{definition}
+
+To build a DPDA, we first look at the different between PDA and DPDA.
+\begin{prev}
+    For PDA, 
+    \[
+        \delta: Q \times \Sigma_{\varepsilon} \times \Gamma_{\varepsilon} \to \mathcal{P}(Q \times \Gamma_{\varepsilon})
+    \]
+\end{prev}
+\begin{note}
+    In DPDA, for \(\forall q \in Q, a \in \Sigma, x, \gamma \in \Gamma\), at most and at least one of the following is true:
+    \[
+        \delta(q, a, x) = (p, \gamma), \quad \delta(q, a, \varepsilon) = (p, \gamma), \quad \delta(q, \varepsilon, x) = (p, \gamma), \quad \delta(q, \varepsilon, \varepsilon) = (p, \gamma)
+    \]
+    the rest must be \(\emptyset\).
+\end{note}
+
+\subsection{Acceptance, Rejection of DPDA}
+
+The Rejection of DPDA is similar to PDA, which should only happen when
+\begin{itemize}
+    \item Not end at an accept state after the last symbol.
+    \item DPDA fails to read the input
+    \begin{enumerate}
+        \item \texttt{pop} an empty stack
+        \item Endless $\varepsilon$-transition
+    \end{enumerate}
+\end{itemize}
+
+\newpage
+
+\begin{eg}
+    $L = \{ 0^n 1^n \mid n \geq 0\}$
+\end{eg}
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[node distance=2.5cm, ->, >=Stealth, auto]
+    \node[state,initial,accepting] (q_1) {$q_1$};
+    \node[state] (q_2) [right of=q_1] {$q_2$};
+    \node[state] (q_3) [below of=q_2] {$q_{3}$};
+    \node[state,accepting] (q_4) [left of=q_3] {$q_{4}$};      
+    \path 
+    (q_1) edge[above]  node {$\epsilon, \epsilon \rightarrow \$ $} (q_2)
+    (q_2) edge[loop right]  node {$0,\epsilon \rightarrow 0$} (q_2)
+    (q_2) edge[right]  node {$1, 0 \rightarrow \epsilon$} (q_3)
+    (q_3) edge[loop right]  node {$1, 0 \rightarrow \epsilon$} (q_3)  
+    (q_3) edge[below] node {$\epsilon, \$ \rightarrow \epsilon$} (q_4);
+    \end{tikzpicture}
+    \caption{DPDA for \(L = \{ 0^n 1^n \mid n \geq 0\}\)}
+\end{figure}
+
+The Transition function is defined as follows:
+\begin{center}
+    
+    \begin{tabular}{l|ccc|ccc|ccc}
+    &
+    \multicolumn{3}{c|}{0} &
+    \multicolumn{3}{c|}{1} &
+    \multicolumn{3}{c}{$\epsilon$}\\ \hline
+    & 0 & \$ & $\epsilon$ 
+    & 0 & \$ & $\epsilon$ 
+    & 0 & \$ & $\epsilon$ \\ \hline
+    $q_1$ &$\emptyset$&$\emptyset$&$\emptyset$&$\emptyset$&$\emptyset$&
+    $\emptyset$&$\emptyset$&$\emptyset$& $(q_2,\$)$\\
+    $q_2$ &$\emptyset$&$\emptyset$&$(q_2,0)$&$(q_3,\epsilon)$&$q_r$&
+    $\emptyset$&$\emptyset$&$\emptyset$& $\emptyset$\\
+    $q_3$ &$q_r$&$\emptyset$&$\emptyset$&$(q_3,\epsilon)$&$\emptyset$&$\emptyset$&$\emptyset$&$(q_4,\epsilon)$&$\emptyset$ \\
+    $q_4$ &$q_r$&$q_r$&$\emptyset$&$q_r$&$q_r$&$\emptyset$&$\emptyset$&$\emptyset$&$\emptyset$ \\ 
+    $q_r$ &$q_r$&$q_r$&$\emptyset$&$q_r$&$q_r$&$\emptyset$&$\emptyset$&$\emptyset$&$\emptyset$ \\ 
+    \end{tabular}
+\end{center}
+
+To find this transition table, for instance, 
+\begin{itemize}
+    \item consider the state \(q_1\):
+    \[
+        \delta(q_1, \varepsilon, \varepsilon) = (q_2, \$)
+    \]
+    then we can implies that
+    \[
+        \delta(q_1, a, \gamma) = \delta(q_1, a, \varepsilon) = \delta(q_1, \varepsilon, \gamma) = \emptyset, \quad \forall a \in \Sigma = \{0,1\},\ \gamma \in \Gamma = \{0, \$\}
+    \]
+    \item consider the state \(q_2\):
+    \[
+        \delta(q_2, 1, 0) = (q_3, \varepsilon)
+    \]
+    then we can implies that
+    \begin{center}
+        \begin{tabular}{l|ccc|ccc|ccc}
+        &
+        \multicolumn{3}{c|}{0} &
+        \multicolumn{3}{c|}{1} &
+        \multicolumn{3}{c}{$\epsilon$}\\ \hline
+        & 0 & \$ & $\epsilon$ 
+        & 0 & \$ & $\epsilon$ 
+        & 0 & \$ & $\epsilon$ \\ \hline
+        $q_2$ &$\emptyset$&$\emptyset$&$(q_2,0)$&$(q_3, \epsilon)$& $\red{\neq \emptyset}$ &$\emptyset$
+        &$\emptyset$&$\emptyset$& $\emptyset$\\
+        \end{tabular}
+    \end{center}
+    due to \[
+        \delta(q_2, 1, \varepsilon) = \delta(q_2, \varepsilon, 0) = \delta(q_2, \varepsilon, \varepsilon) = \emptyset
+    \]
+    Formally we have \[
+        \delta(q_2, 1, \$) = (q_r, \varepsilon)
+    \]
+\end{itemize}
+
+For the string \(011\), the computation of the DPDA is as follows:
+\begin{equation*}
+    q_1 \xrightarrow{\epsilon} q_2, \{\$\} \
+q_1 \xrightarrow{0} q_2, \{0,\$\} \
+q_1 \xrightarrow{1} q_3, \{\$\}\
+q_1 \xrightarrow{\epsilon} q_4, \emptyset
+\end{equation*}
+Follow the graph,
+\[
+    \delta(q_4, 1, \epsilon) \text{ and } \delta(q_4, \epsilon, \epsilon) = \emptyset
+\]
+hence, the DPDA rejects \(011\).
+
+\newpage
+
+% \chapter{The Church-Turing Thesis}
+
+% \section{Turing Machines}
+% \section{Multitape Turing Machines}
+% \section{Nondeterministic Turing Machines}
+% \section{Hilbert's problems}
+
+% \chapter{Decidability}
+
+% \section{Decidability}
+% \section{Halting Problem}
+
+% \chapter{Reducibility}
+
+% \section{Reducibility}
+% \section{Computation Histories}
+
+% \chapter{Complexity Theory}
+
+% \section{Big-O Notation}
+% \section{Time Complexity}
+% \section{Languages in P}
+% \section{Languages in NP}

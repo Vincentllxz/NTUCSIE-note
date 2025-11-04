@@ -35,3 +35,5 @@
 \contentsline {subsection}{\numberline {2.3.3}Converting CFL to PDA}{29}{subsection.2.3.3}%
 \contentsline {subsection}{\numberline {2.3.4}Converting PDA to CFL}{30}{subsection.2.3.4}%
 \contentsline {subsection}{\numberline {2.3.5}Procedure of converting PDA to CFL}{32}{subsection.2.3.5}%
+\contentsline {section}{\numberline {2.4}Deterministic Pushdown Automata}{35}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}Acceptance, Rejection of DPDA}{35}{subsection.2.4.1}%

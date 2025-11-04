@@ -44,3 +44,8 @@
 \contentsline {subsection}{\numberline {2.6.3}Rotation $Q$, Projection $P$, Reflection $R$}{46}{subsection.2.6.3}%
 \contentsline {chapter}{\numberline {3}Orthogonality}{49}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Perpendicular Vectors and Orthogonal Subspaces}{49}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Orthogonal Subspaces}{52}{subsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.1.2}The Matrix and the Subspaces}{54}{subsection.3.1.2}%
+\contentsline {section}{\numberline {3.2}Inner Product and Projections onto Lines}{55}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Inner Product and Schwarz Inequality}{55}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}Projections of Rank One}{56}{subsection.3.2.2}%

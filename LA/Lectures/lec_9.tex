@@ -1,0 +1,407 @@
+\lecture{9}{4 Nov. 13:20}{}
+
+\begin{definition}[inner product space]
+    An \redbox{inner product space} is a real or complex vector space (i.e. a vector space over the field $\mathbb{R}$ or $\mathbb{C}$) together with a specified inner product on that space.
+\end{definition}
+
+\begin{definition}[orthogonal]
+    In an inner product space $V$, $\mathbf{x}$ is \redbox{orthogonal} to $\mathbf{y}$ if $\langle \mathbf{x}, \mathbf{y} \rangle = 0$. A set $S$ of vectors in $V$ is called \redbox{orthogonal set} if all pairs of distinct vectors in $S$ are orthogonal. An \redbox{orthonormal set} is an orthogonal set of unit vectors.
+    \[
+    \langle \mathbf{v}, \mathbf{v} \rangle = \| \mathbf{v} \|^2 = 1, \quad \forall \mathbf{v} \in S 
+    \]
+\end{definition}
+
+\begin{proposition}
+    An orthogonal set of nonzero vectors is linearly independent.
+\end{proposition}
+\begin{proof}
+    Let $v_1, \cdots, v_n$ be nonzero distinct vectors in $S$, and $c_1, \cdots, c_n \in \mathbb{F}$
+    \[
+        c_1 v_1 + c_2 v_2 + \cdots + c_n v_n = \sum_{i=1}^{n} c_i v_i = y
+    \]
+    \[
+        \langle y, v_j \rangle = \left\langle \sum_{i=1}^{n} c_i v_i, v_j \right\rangle = \sum_{i=1}^{n} c_i \langle v_i, v_j \rangle = c_j \langle v_j, v_j \rangle = c_j \| v_j \|^2
+    \]
+    Then we have $y=0 \Longleftrightarrow c_j = 0, \ \forall j$
+    \[
+        \therefore \{ v_1, v_2, \cdots, v_n \} \text{ is linearly independent.}
+    \]
+\end{proof}
+
+\begin{eg}
+    $\{ e_1, e_2, \cdots, e_n \}$ is an orthonormal set (basis) for $\mathbb{R}^n$
+\end{eg}
+
+In $\mathbb{R}^2$,
+\begin{enumerate}[label=$\arabic*^\circ$]
+    \item $\{ e_1, e_2 \}$
+    \item $\left\{ \frac{1}{\sqrt{5}}\begin{pmatrix} 1 \\ 2 \end{pmatrix}, \frac{1}{\sqrt{5}}\begin{pmatrix} 2 \\ 1 \end{pmatrix} \right\}$
+    \item $\left\{ \begin{pmatrix} \cos \theta \\ \sin \theta \end{pmatrix}, \begin{pmatrix} -\sin \theta \\ \cos \theta \end{pmatrix} \right\}$
+\end{enumerate}
+
+
+\newpage
+\subsection{Orthogonal Subspaces}
+
+\begin{definition}[3B]
+    Let $W_1$ and $W_2$ be subspaces of an inner product space $V$. We say that $W_1$ is \redbox{orthogonal} to $W_2$ ($W_1 \perp W_2$) if
+    \[
+        \langle \mathbf{w}_1, \mathbf{w}_2 \rangle = 0, \quad \forall \mathbf{w}_1 \in W_1, \forall \mathbf{w}_2 \in W_2
+    \]
+\end{definition}
+
+\begin{note}
+    In $\mathbb{R}^3$, the $xy$-plane is \red{NOT} orthogonal to the $yz$-plane. Because vectors along the $y$-axis are in both planes, and their inner product is not zero.
+
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}[>=stealth, line join=round]
+        % 軸線
+        \draw[->] (0,0,0) -- (3,0,0) node[below right] {$x$};
+        \draw[->, red] (0,0,0) -- (0,3,0) node[left] {$y$};
+        \draw[->] (0,0,0) -- (0,0,3) node[above] {$z$};
+    
+        % 原點
+        \fill (0,0,0) circle (1pt) node[left] {$O$};
+        \end{tikzpicture}
+        \caption{The $xy$-plane and the $yz$-plane in $\mathbb{R}^3$}
+    \end{figure}
+
+\end{note}
+
+\begin{eg}
+    In $\mathbb{R}^3$, the subspace spanned by $(1, 2, 3)^{\T}$ is orthogonal to the subspace spanned by $(1, 1, -1)^{\T}$. 
+\end{eg}
+
+\begin{eg}
+    In $\mathbb{R}^3$, the subspace spanned by $(1, 2, 3)^{\T}$ is orthogonal to the subspace spanned by $\{(1, 1, -1)^{\T}, (5, -4, 1)^{\T} \}$.
+\end{eg}
+
+\begin{theorem}[3C]
+    $A_{m \times n}$ The row space is orthogonal to the null space (in $\mathbb{R}^n$), and the column space is orthogonal to the left null space (in $\mathbb{R}^m$).
+\end{theorem}
+\begin{proof}
+    This is the proof.
+    \begin{enumerate}[label=$\arabic*^\circ$]
+        \item \begin{itemize}
+            \item $\mathbf{v} \in \text{row space}$ of $A$, then we have $\mathbf{b} = A^{\T} y$ for some $y \in \mathbb{R}^m$.
+            \item $\mathbf{w} \in \text{null space}$ of $A$, then we have $A \mathbf{w} = 0$.
+        \end{itemize}
+        \[
+            \mathbf{v}^{\T} \mathbf{w} = (A^{\T} y)^{\T} \mathbf{w} = y^{\T} (A \mathbf{w}) = y^{\T} 0 = 0
+        \]
+        \item \begin{itemize}
+            \item $b \in \mathcal{C}(A)\ \implies \ Ax = b$ is solvable.
+            \item $y \in \mathcal{N}(A^{\T}) \implies A^{\T} y = 0$.
+        \end{itemize}
+        \[
+            b^{\T} y = (Ax)^{\T} y = x^{\T} (A^{\T} y) = x^{\T} 0 = 0
+        \]
+    \end{enumerate}
+\end{proof}
+
+\newpage
+
+\begin{eg}
+    \[
+        A = \begin{pmatrix}
+            1 & 3 & 4 \\
+            5 & 2 & 7
+        \end{pmatrix}_{2 \times 3} \quad \longrightarrow \quad U = \begin{pmatrix}
+            \redbox{1} & 3 & 4 \\
+            0 & \redbox{-13} & -13
+        \end{pmatrix}_{2 \times 3}
+    \]
+\end{eg}
+\begin{itemize}
+    \item $\mathcal{C}(A) = \text{span}\left\{ \begin{pmatrix} 1 \\ 5 \end{pmatrix}, \begin{pmatrix} 3 \\ 2 \end{pmatrix}\right\}$,\quad $\rank = 2$
+    \item $\mathcal{C}(A^{\T}) = \text{span}\left\{ \begin{pmatrix} 1 \\ 3 \\ 4 \end{pmatrix}, \begin{pmatrix} 5 \\ 2 \\ 7 \end{pmatrix}\right\}$, \quad$\rank = 2$
+    \item $\mathcal{N}(A) = \text{span}\left\{ \begin{pmatrix} 1 \\ 1 \\ -1 \end{pmatrix} \right\}$, \quad$n - \rank = 1$
+    \item $\mathcal{N}(A^{\T}) = \text{span}\left\{ \begin{pmatrix} 0 \\ 0 \end{pmatrix} \right\}$, \quad$m - \rank = 0$
+\end{itemize}
+\[
+    \boxed{\mathcal{C}(A) \perp \mathcal{N}(A^{\T}) \in \mathbb{R}^2} \quad \boxed{\mathcal{C}(A^{\T}) \perp \mathcal{N}(A) \in \mathbb{R}^3}
+\]
+
+\begin{note}
+    The nullspace $\mathcal{N}(A)$ doesn't contain "some" of vectors orthogonal to the row space. It contain "every" such vector.
+\end{note}
+
+\begin{proposition}
+    Let $V$ be an inner product space, and let $W$ be a subspace of $V$. Then the set is defined
+    \[
+        U = \{ \mathbf{v} \in V \mid \langle \mathbf{v}, \mathbf{w} \rangle = 0, \forall \mathbf{w} \in W \}
+    \]
+    Then $U$ is a subspace of $V$.
+\end{proposition}
+
+\begin{definition}
+    The subspace $U$ is called the \redbox{orthogonal complement} of $W$ in $V$, denoted by $W^{\perp}$ ($W$-perp). By definition of nullspace $\mathcal{N}(A)$, we have
+    \[
+        \mathcal{N}(A) = (\mathcal{C}(A^{\T}))^{\perp}, \quad \text{ or } \mathcal{C}(A^{\T}) = (\mathcal{N}(A))^{\perp}
+    \]
+\end{definition}
+
+\begin{theorem}[(3D) Fundamental Theorem of Linear Algorithm]
+    The $\underset{\blue{W}}{\text{nullspace}}$ is the orthogonal complement of the $\underset{\blue{V(W^\perp)}}{\text{row space}}$ in $\underset{\blue{V}}{\mathbb{R}^n}$, and the $\underset{\blue{W}}{\text{left nullspace}}$ is the orthogonal complement of the $\underset{\blue{V(W^\perp)}}{\text{column space}}$ in $\underset{\blue{V}}{\mathbb{R}^m}$.
+\end{theorem}
+
+\begin{proposition}[3E]
+    The equation $Ax = b$ is solvable if and only if
+    \[
+        b^{\T} y = 0, \quad \forall y \in \mathcal{N}(A^{\T})
+    \]
+\end{proposition}
+
+\begin{note}
+    Solvability of $Ax = b$:
+    \begin{itemize}
+        \item Direct approach: $b$ must be a combination of the columns of $A$.
+        \item Indirect approach: $b$ must be orthogonal to every vector that is orthogonal to the columns of $A$.
+    \end{itemize}
+\end{note}
+
+\newpage
+
+\subsection{The Matrix and the Subspaces}
+
+$U$ and $W$ can be orthogonal without being complements when their dimensions are too small. In $\mathbb{R}^3$
+
+\begin{figure}[H]
+    \centering
+\begin{tikzpicture}[scale=1.2,>=Stealth]
+  % 標題
+  \node[above] at (2,1.7) {$\boxed{U \neq W^{\perp}}$};
+  
+  % 坐標軸
+  \draw[->,thick] (-1,0)--(2,0) node[below right] {$U$ (axis)};
+  \draw[->,thick] (0,-0.5)--(0,1.5) node[above left] {$W$};
+  
+  % 虛線背景（表示其他維度）
+    \draw[dashed,gray] (-1.2,-0.8)--(1.8,1);
+    \end{tikzpicture}
+    \hspace{2cm}
+    % 圖 (ii): W = U⊥
+    \begin{tikzpicture}[scale=1.2,>=Stealth]
+    % 標題
+    \node[above] at (2,1.7) {$\boxed{W = U^{\perp}}$};
+    
+    \fill[green!20!yellow!30,draw=green!50!black!60,thick]
+    (-0.8,-0.2) -- (2.2,-0.2) -- (1.7,0.4) -- (-1.3,0.4) -- cycle;
+    
+    % 坐標軸
+    \draw[->,thick] (-1,0)--(2,0) node[below right] {$U$ (plane)};
+    \draw[->,thick] (0,-0.5)--(0,1.5) node[above left] {$W$};
+    \end{tikzpicture}
+    \caption{Orthogonal but not complements}
+\end{figure}
+
+\[
+    W = U^{\perp} \ \implies \ U = W^{\perp} \ \text{or} \ U^{\perp \perp} = U
+\]
+When the space is split into orthogonal parts (i.e. $V = U + W = U + U^{\perp}$), so every vector ($x = x_U + x_{U^{\perp}}$).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{Figures/grah.png}
+    \caption{Fundamental Theorem of Linear Algebra}
+\end{figure}
+
+\begin{proposition}[3F]
+    The mapping from row space to column space is actually invertible. Every matrix $A_{m \times n}$ transforms its row space to its column space. (On these $r$-dimensional subspaces, $A$ is invertible.)
+    \[
+        A_{m \times n} : \underset{\yel{x}}{\mathbb{R}^{\blue{n}}} \xrightarrow{A} \underset{\yel{Ax = b}}{\mathbb{R}^{\blue{m}}} \quad Ax = b
+    \]
+    \[
+        A^{\T}_{n \times m} : \underset{\yel{b}}{\mathbb{R}^{\blue{m}}} \xrightarrow{A^{\T}} \underset{\yel{A^{\T}b = 0}}{\mathbb{R}^{\blue{n}}} \quad A^{\T} b \overset{?}{=} x \quad \red{x = A^{-1}b}
+    \]
+\end{proposition}
+
+\newpage
+
+\begin{itemize}
+    \item $A^{\T}$ moves the space correctly but NOT the individual vectors.
+    \item When $A^{-1}$ fails to exist, we can substitute. It's called the \red{pseudoinverse}, denoted by $A^{+}$.
+    \[
+        \begin{cases}
+            A^+ A x = x, & \forall x \in \mathcal{C}(A^{\T}) \\
+            A^+ b = 0, & \forall b \in \mathcal{N}(A^{\T})
+        \end{cases}
+    \]
+\end{itemize}
+
+\section{Inner Product and Projections onto Lines}
+
+Inner product $x^{\T}y = \begin{cases}
+    =0, & \text{if } x \perp y \\
+    \neq 0 &
+\end{cases}$
+
+\begin{exercise}
+    Practical applications? \\
+    Least squares solution to an overdetermined system. i.e. given a vector $b$ not falling in the desired space, we have to project to the subspace. Then we get the approximate solution.
+\end{exercise}
+
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[scale=1.5,>=Stealth, line cap=round, line join=round]
+    
+      % 平面 (淺藍色)
+      \fill[blue!10!white] (-1.2,-0.2) -- (1.8,-0.2) -- (1.2,0.6) -- (-1.8,0.6) -- cycle;
+      \node[below right, blue!40!black] at (-1.2,0.4) {subspace};
+    
+    
+      % 藍色向量 v
+      \draw[->,very thick,blue] (0,0)--(1,1.4) node[above right,blue] {$\vec{v}$};
+    
+      % 向量在平面上的紅色投影
+      \draw[dashed,red!70!black] (1,1.4)--(1.1,0.2);
+      \draw[->,very thick,red] (0,0)--(1.1,0.2) node[below right,red] {$\mathrm{proj}_{\text{subspace}}(\vec{v})$};
+    
+      % 投影輔助線
+      \draw[dotted,red!50!black] (1.1,0.2)--(0,0);
+    
+    \end{tikzpicture}
+    \caption{Projection onto a subspace (in $\mathbb{R}^3$)}
+\end{figure}
+
+\begin{exercise}
+    Practical applications? \\
+    A formula for the projection, we need the basis.
+\end{exercise}
+
+\subsection{Inner Product and Schwarz Inequality}
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[scale=1.4,>=Stealth, line cap=round, line join=round]
+
+  % 坐標軸
+  \draw[->,thick] (-0.3,0)--(3,0) node[below right] {$x$};
+  \draw[->,thick] (0,-0.3)--(0,2.3) node[left] {$y$};
+
+  % 向量 a
+  \draw[->,very thick,blue!70!black] (0,0)--(2.2,0.7) node[right ,black] {$a(a_1,a_2)$};
+
+  % 向量 b
+  \draw[->,very thick,green!60!black] (0,0)--(1.0,1.8) node[above ,black] {$b(b_1,b_2)$};
+
+  % 角度 α, β, θ
+  % α (紅色)
+  \draw[->,red!80!black,thick] (0.6,0) arc[start angle=0,end angle=19,radius=0.6];
+  \node[red!80!black] at (0.55,-0.22) {$\alpha$};
+
+  % β (藍色，修正角度)
+  \draw[->,blue!80!black,thick] (0.45,0.8) arc[start angle=70,end angle=0,radius=0.9];
+  \node[blue!80!black] at (0.38,1.05) {$\beta$};
+
+  % θ (綠色)
+  \draw[->,green!50!black,thick] (1.1,0.35) arc[start angle=19,end angle=63,radius=0.95];
+  \node[green!50!black] at (1.33,0.8) {$\theta$};
+
+
+  % 放右邊公式（用固定位置避免 xshift 錯誤）
+  \node[anchor=west,align=left] at (4.5,1.0) {%
+    $\displaystyle \sin \alpha = \frac{a_2}{\|\mathbf{a}\|}, \quad
+    \cos \alpha = \frac{a_1}{\|\mathbf{a}\|},$\\[6pt]
+    $\displaystyle \sin \beta = \frac{b_2}{\|\mathbf{b}\|}, \quad
+    \cos \beta = \frac{b_1}{\|\mathbf{b}\|}. $};
+
+\end{tikzpicture}
+    \caption{Angle between two vectors in $\mathbb{R}^2$}
+\end{figure}
+
+\[
+    \cos \theta = \cos(\beta - \alpha) = \cos \beta \cos \alpha + \sin \beta \sin \alpha = \frac{a_1 b_1 + a_2 b_2}{\|a\| \|b\|} = \frac{a^{\T} b}{\|a\| \|b\|}
+\]
+
+\newpage
+
+\begin{proposition}[3G]
+    The cosine of the angle between any two vectors $a, b \in \mathbb{R}^n$ is 
+    \[
+        \cos \theta = \frac{a^{\T} b}{\|a\| \|b\|}
+    \]
+    If we consider the relationship between $\|a\|, \|b\|$ and $\|b-a\|$, then we have \[
+        \|b-a\|^2 = \|a\|^2 + \|b\|^2 - 2 \|a\| \|b\| \cos \theta \ \text{ \blue{(Law of Cosines)} }
+    \]
+\end{proposition}
+
+\textbf{Projection onto a Line}:
+\begin{align*}
+    (b-p) \perp a &\Longleftrightarrow (b-p)^{\T} a = 0 \Longleftrightarrow (b-\alpha a)^{\T} a = 0 \\
+    &\Longleftrightarrow b^{\T} a - \alpha a^{\T} a = 0 \Longleftrightarrow \alpha = \frac{a^{\T} b}{a^{\T} a} \\
+\end{align*}
+
+\begin{proposition}[3H]
+    The projection of $b$ onto the line through $0 \& a$ is 
+    \[
+        p = \frac{a^{\T} b}{a^{\T} a} \cdot a
+    \]
+\end{proposition}
+
+\begin{theorem}[3I Schwarz Inequality]
+    For any two vectors in inner product space satisfy the \textbf{Cauchy-Schwarz inequality}:
+    \[
+        |a^{\T} b| \leq \|a\| \|b\|
+    \]
+    with equality if and only if $b = \alpha a$, for some $\alpha \in \mathbb{F}$.
+\end{theorem}
+\begin{proof}
+    \begin{align*}
+        \| b - p \|^2 &= \| b - \frac{a^{\T} b}{a^{\T} a} a \|^2 = b^{\T} b - 2 \cdot \frac{(a^{\T} b)^2}{a^{\T} a} + \left( \frac{a^{\T} b}{a^{\T} a} \right)^2 aa^{\T} \\
+        &= \frac{(b^{\T} b)(a^{\T} a) - (a^{\T} b)^2}{a^{\T} a} \geq 0
+    \end{align*}
+    \[
+        \implies |a^{\T} b| \leq \|a\| \|b\|
+    \]
+    and the equality holds $\Longleftrightarrow \ \|b-p\| = 0 \Longleftrightarrow b = p = \alpha a$.
+\end{proof}
+
+\begin{eg}
+    Project $(1, 1, 1) \to (1, 2, 3)$
+\end{eg}
+
+\[
+    p = \frac{a^{\T} b}{a^{\T} a} a = \frac{6}{14} \begin{pmatrix} 1 \\ 2 \\ 3 \end{pmatrix} = \begin{pmatrix} 3/7 \\ 6/7 \\ 9/7 \end{pmatrix}
+\]
+
+\subsection{Projections of Rank One}
+\begin{exercise}
+    What is the matrix this linear transformation that maps $b$ to $p$
+    \[
+        p = \frac{a^{\T} b}{a^{\T} a} \cdot a = \frac{a a^{\T}}{a^{\T} a} b
+    \]
+    The projection matrix is $\displaystyle P = \frac{a a^{\T}}{a^{\T} a}$
+\end{exercise}
+
+\begin{note}
+    Here are some properties of $P$:
+    \begin{enumerate}[label=$\arabic*^\circ$]
+        \item $P$ is symmetric: $P^{\T} = P$
+        \item $P^2 = P$ (idempotent)
+    \end{enumerate}
+\end{note}
+\begin{proof}
+    Here are the proofs:
+    \begin{enumerate}[label=$\arabic*^\circ$]
+        \item $\displaystyle P^{\T} = \left( \frac{a a^{\T}}{a^{\T} a} \right)^{\T} = \frac{(a^{\T})^{\T} a^{\T}}{a^{\T} a} = \frac{a a^{\T}}{a^{\T} a} = P$
+        \item $\displaystyle P^2 = \left( \frac{a a^{\T}}{a^{\T} a} \right) \left( \frac{a a^{\T}}{a^{\T} a} \right) = \frac{a a^{\T} a a^{\T}}{(a^{\T} a)^2} = \frac{a (a^{\T} a) a^{\T}}{(a^{\T} a)^2} = \frac{a a^{\T}}{a^{\T} a} = P$
+    \end{enumerate}
+\end{proof}
+
+\begin{itemize}
+    \item $\rank(P) = 1$, nullspace of $P$ is the space orthogonal to $a$. i.e.
+    \[
+        \mathcal{N}(P) \perp \mathcal{C}(P)
+    \]
+    which is not general. It is right here because $\mathcal{C}(P) = \mathcal{C}(P^{\T}) = \text{span}(a)$.
+\end{itemize}
+
+\begin{remark}[Scaling]
+    Project $b$ onto $a$, which can be scaled arbitrarily. i.e. project onto $\alpha a$
+    \[
+        p = \frac{a'a'^{\T}}{a'^{\T}a'} = \frac{(\alpha a)(\alpha a)^{\T}}{(\alpha a)^{\T} (\alpha a)}  = \frac{\alpha^2 aa^{\T}}{\alpha^2 a^{\T} a} = \frac{aa^{\T}}{a^{\T} a} = p \quad (\text{remains the same})
+    \]
+\end{remark}
