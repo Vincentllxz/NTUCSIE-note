@@ -1,0 +1,585 @@
+\lecture{10}{18 Nov. 13:20}{}
+
+\section{Projections and Least Squares Applications}
+
+\[
+    \begin{cases}
+        a_1x = b_1 \\
+        a_2x = b_2 \\
+        a_3x = b_3
+    \end{cases} \qquad \begin{pmatrix}
+        a_1 \\
+        a_2 \\
+        a_3
+    \end{pmatrix} x = \begin{pmatrix}
+        b_1 \\
+        b_2 \\
+        b_3
+    \end{pmatrix}
+\]
+
+\[
+E^2 = (a_1x - b_1)^2 + (a_2x - b_2)^2 + (a_3x - b_3)^2
+\]
+\begin{enumerate}[label=$\arabic*^\circ$]
+    \item if \(b = \begin{pmatrix}
+                a_1 \\
+                a_2 \\
+                a_3
+          \end{pmatrix} x_0\) then \(E^2 = 0\)
+    \item Or consider
+    \begin{align*}
+        &\frac{dE^2}{dx} = 2[a_1(a_1x - b_1) + a_2(a_2x - b_2) + a_3(a_3x - b_3)] = 0 \\[3pt]
+        &\Rightarrow \bar{x} = \frac{a_1b_1 + a_2b_2 + a_3b_3}{a_1^2 + a_2^2 + a_3^2} = \underset{\alpha}{\boxed{\frac{a^Tb}{a^Ta}}}
+    \end{align*}
+    Hence, we call the projection of \(b\) onto \(a\) as \(p_a b = \bar{x} a = \frac{a^Tb}{a^Ta} a\), which is also calles the \redbox{least squares solution}.
+    \[
+        a^T(b-\bar{x}a) = 0 = a^Tb - \bar{x} a^Ta
+    \]
+\end{enumerate}
+
+\newpage
+
+\subsection{Least Squares Problem with Several Variables}
+
+\[
+    A_{m \times n} x_{n \times 1} = b_{m \times 1} \quad (m > n)
+\]
+
+\begin{itemize}
+    \item If \(b \in \text{Col}(A)\), then the system is solvable.
+    \item If the equations contain errors, then $b$ might not belong to \(\mathcal{C}(A)\)
+    \[
+        A_{3 \times 2} = \begin{pmatrix}
+            a_{11} & a_{12} \\
+            a_{21} & a_{22} \\
+            a_{31} & a_{32}
+        \end{pmatrix}
+    \]
+\end{itemize}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=2,>=Stealth, line cap=round, line join=round]
+
+% === 參數 (你可以自由修改) ===
+\def\projx{0.6}
+\def\projy{-0.3}
+
+% 藍色向量 b 的終點 (讓他在投影點正上方一些)
+\def\bx{0.6}
+\def\by{0.8}
+
+% --- 基底向量 (Col1, Col2) ---
+\draw[->, thick] (0,0) -- (1.4,0) node[right] {$\text{Col1} = \begin{pmatrix}
+    a_{11} \\ a_{21} \\ a_{31}
+\end{pmatrix}
+$};
+\draw[->, thick] (0,0) -- (-0.8,-0.6) node[left] {$\text{Col2} = \begin{pmatrix}
+    a_{12} \\ a_{22} \\ a_{32}
+\end{pmatrix}
+$};
+
+% --- b 向量 ---
+\draw[->, very thick, blue] (0,0) -- (\bx,\by) node[above right, blue] {$\vec{b}$};
+
+% --- 垂直線 (黑色虛線) ---
+\draw[dotted, thick] (\bx,\by) -- (\projx,\projy);
+
+% --- 投影 p = b' ---
+\draw[->, very thick, red] (0,0) -- (\projx,\projy)
+    node[below right, red] {$p = A\bar{x} = b'$};
+
+% --- b -> p 的垂線 (紅色虛線) ---
+\draw[dashed, red] (\bx,\by) -- (\projx,\projy);
+
+\end{tikzpicture}
+\caption{Projection of $\vec{b}$ onto the span of the columns of $A$}
+\end{figure}
+
+\begin{itemize}
+    \item $Ax = b$ has error, $b \notin \mathcal{C}(A)$
+    \item $Ax = b'$ is solvable $\quad \implies b' \in \mathcal{C}(A) \ \Leftrightarrow \ \exists \ \bar{x}_{n \times 1} \ni A\bar{x} = p = b'$
+\end{itemize}
+
+\begin{note}
+    To find $x$, we do it in three ways:
+    \begin{enumerate}[label=$\arabic*^\circ$]
+        \item The vectors perpendicular to $\mathcal{C}(A)$ are in $\mathcal{N}(A^T)$
+        \[
+            A^T(b - A\bar{x}) = 0 \ \Rightarrow \ A^TA\bar{x} = A^Tb
+        \]
+        \item The error vector must be perpendicular to each \redbox{column} of $A$. \\
+        If \(
+            A = [a_1 \ a_2 \ \cdots \ a_n]
+        \)
+        \[
+            \begin{cases}
+                a_1^T(b - A\bar{x}) = 0 \\
+                a_2^T(b - A\bar{x}) = 0 \\
+                \vdots \\
+                a_n^T(b - A\bar{x}) = 0
+            \end{cases} \quad \Rightarrow \quad A^T(b - A\bar{x}) = 0 \quad \Rightarrow \quad A^TA\bar{x} = A^Tb \ \blue{(A'x' = b')}
+        \]
+        \item The third way is to differentiate the sum of squares.
+        \[
+            E^2 = \|Ax - b\|^2 = (Ax - b)^T(Ax - b) \quad \Rightarrow \quad A^TAx - A^Tb = 0 \quad \Rightarrow \quad A^TA\bar{x} = A^Tb
+        \]
+    \end{enumerate}
+\end{note}
+
+\newpage
+
+\begin{proposition}[3L]
+    The least-squares solution to an inconsistent system $Ax = b$ of $m$ equations in $n$ unknowns satisfies \[
+        \boxed{A^TA\bar{x} = A^Tb}
+    \]
+    The above equation is referred to the \redbox{Normal Equation}.
+\end{proposition}
+
+\begin{note}
+    The properties of $A^TA$:
+    \begin{enumerate}[label=$\arabic*^\circ$]
+        \item $A^TA$ is symmetric.
+        \begin{proof}
+            \(
+                (A^TA)^T = A^T(A^T)^T = A^TA
+            \)
+        \end{proof}
+        \item The $(i, j)^{\text{th}}$ entry of $A^TA$ is the inner product of the $i^{\text{th}}$ and $j^{\text{th}}$ columns of $A$.
+        \item $A^TA$ has the same nullspace of $A$ (i.e., $\mathcal{N}(A^TA) = \mathcal{N}(A)$).
+        \begin{proof}
+            We follow the two directions:
+            \begin{itemize}
+                \item $Ax = 0 \quad \implies \quad A^TAx = 0 \qquad \therefore \ \mathcal{N}(A) \subseteq \mathcal{N}(A^TA)$
+                \item if $A^TAx = 0$, then
+                \[
+                    x^TA^TAx = (Ax)^T(Ax) = \|Ax\|^2 = 0 \quad \Rightarrow \quad Ax = 0 \qquad \therefore \ \mathcal{N}(A^TA) \subseteq \mathcal{N}(A)
+                \]
+            \end{itemize}
+            Proof complete.
+        \end{proof}
+        \item $A^TA$ is positive definite, i.e., for any non-zero vector $x$,
+        \[
+            x^TA^TAx = (Ax)^T(Ax) = \|Ax\|^2 \geq 0
+        \]
+        with equality if and only if $Ax = 0$.
+    \end{enumerate}
+\end{note}
+
+\begin{proposition}[3L (conti.)]
+    The least-squares solution to the inconsistent system $Ax = b$ is the solution of the normal equation $$A^TA\bar{x} = A^Tb$$
+\end{proposition}
+
+\begin{proposition}[3M]
+    If the columns of $A$ are linearly independent (rank = $n$), then $A^TA$ is invertible and \[\bar{x} = (A^TA)^{-1} A^T b\]
+    The projection of $b$ onto $\mathcal{C}(A)$ is therefore
+    \[
+        p_{\mathcal{C}(A)} = A\bar{x} = A(A^TA)^{-1} A^T b
+    \]
+\end{proposition}
+\begin{proof}
+    We consider $\rank(A) = r = n \ \implies \ \mathcal{N}(A) = \{0\} \ \implies \ \mathcal{C}(A^TA) = \{0\}$
+    \[
+        \therefore \text{ rank of } A^TA = n \text{ which means } A^TA \text{ has full rank.}
+    \]
+    \[
+        \therefore A^TA \text{ is invertible.}
+    \]
+\end{proof}
+
+\begin{note}
+    If $\rank(A) < n$, then $A^TA$ is singular and the linear system has infinitely many solutions.
+\end{note}
+
+\begin{eg}
+    \[
+        A = \begin{pmatrix}
+            1 & 2 \\
+            1 & 3 \\
+            0 & 0
+        \end{pmatrix}_ {3 \times 2}, \quad b = \begin{pmatrix}
+            4 \\
+            5 \\
+            6
+        \end{pmatrix}_{3 \times 1}, \quad Ax = b
+    \]
+\end{eg}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=2,>=Stealth, line cap=round, line join=round]
+
+% === 參數 (你可以自由修改) ===
+\def\projx{0.6}
+\def\projy{-0.3}
+
+% 藍色向量 b 的終點 (讓他在投影點正上方一些)
+\def\bx{0.6}
+\def\by{0.8}
+
+% === Basis vectors for span ===
+\def\xvec{{1.0,0}}
+\def\yvec{{-0.6,-0.4}}
+
+% 原四個頂點
+\pgfmathsetmacro{\Ax}{0}
+\pgfmathsetmacro{\Ay}{0}
+
+\pgfmathsetmacro{\Bx}{1.0}
+\pgfmathsetmacro{\By}{0}
+
+\pgfmathsetmacro{\Cx}{0.4}
+\pgfmathsetmacro{\Cy}{-0.4}
+
+\pgfmathsetmacro{\Dx}{-0.6}
+\pgfmathsetmacro{\Dy}{-0.4}
+
+% 中心點
+\pgfmathsetmacro{\CtrX}{0.2}
+\pgfmathsetmacro{\CtrY}{-0.2}
+
+% 擴張倍率
+\pgfmathsetmacro{\k}{1.5}
+
+% 擴張後的四個點
+\pgfmathsetmacro{\Axn}{\CtrX + \k*(\Ax - \CtrX)}
+\pgfmathsetmacro{\Ayn}{\CtrY + \k*(\Ay - \CtrY)}
+
+\pgfmathsetmacro{\Bxn}{\CtrX + \k*(\Bx - \CtrX)}
+\pgfmathsetmacro{\Byn}{\CtrY + \k*(\By - \CtrY)}
+
+\pgfmathsetmacro{\Cxn}{\CtrX + \k*(\Cx - \CtrX)}
+\pgfmathsetmacro{\Cyn}{\CtrY + \k*(\Cy - \CtrY)}
+
+\pgfmathsetmacro{\Dxn}{\CtrX + \k*(\Dx - \CtrX)}
+\pgfmathsetmacro{\Dyn}{\CtrY + \k*(\Dy - \CtrY)}
+
+% --- 平行四邊形 ---
+\fill[blue!10]
+    (\Axn,\Ayn)
+    -- (\Bxn,\Byn)
+    -- (\Cxn,\Cyn)
+    -- (\Dxn,\Dyn)
+    -- cycle;
+
+
+
+% --- 基底向量 (Col1 = x, Col2 = y) ---
+\draw[->, thick] (0,0) -- (1.0,0) node[right] {$x$};
+\draw[->, thick] (0,0) -- (-0.6,-0.4) node[left] {$y$};
+
+% --- b 向量 ---
+\draw[->, very thick, blue] (0,0) -- (\bx,\by) node[above right, blue] {$\vec{b}$};
+
+% --- 垂直線 (黑色虛線) ---
+\draw[dotted, thick] (\bx,\by) -- (\projx,\projy);
+
+% --- 投影 p = b' ---
+\draw[->, very thick, red] (0,0) -- (\projx,\projy)
+    node[below right, red] {$p = \begin{pmatrix}
+        4 \\ 5 \\ 0
+    \end{pmatrix}$};
+
+% --- b -> p 的垂線 (紅色虛線) ---
+\draw[dashed, red] (\bx,\by) -- (\projx,\projy);
+
+\end{tikzpicture}
+\caption{Projection of $\vec{b}$ onto the span of the columns of $A$}
+\end{figure}
+
+\begin{enumerate}[label=$\arabic*^\circ$]
+    \item $\bar{x} = (A^TA)^{-1} A^T b \begin{pmatrix}
+        2 \\ 1
+    \end{pmatrix} \ \implies \ p = A \bar{x} = \begin{pmatrix}
+        4 \\ 5 \\ 0
+    \end{pmatrix}$
+    \item $\mathcal{C}(A) = \text{span}\left\{\begin{pmatrix}
+        1 \\ 1 \\ 0
+    \end{pmatrix}, \begin{pmatrix}
+        2 \\ 3 \\ 0
+    \end{pmatrix}\right\} = xy-\text{plane} \qquad \therefore p = \begin{pmatrix}
+        4 \\ 5 \\ 0
+    \end{pmatrix}$
+\end{enumerate}
+
+\begin{remark}
+    \begin{enumerate}[label=$\arabic*^\circ$]
+        \item The normal equation $A^TA\bar{x} = A^Tb$ is indeed consistent.
+        \item If $b \in \mathcal{C}(A)$, then $p = \blue{b}$.
+        \item Suppose $b \perp \mathcal{C}(A)$, then $p = \blue{0}$.
+        \item When $A$ is square and invertiblem, then $\mathcal{C}(A) = \blue{\mathbb{R}^n}$
+        \[
+            p = A(A^TA)^{-1} A^T b = \blue{b}
+        \]
+        \item If $A_{m \times 1} = a$, then $A^TA = a^Ta$
+        \[
+            \bar{x} = (a^Ta)^{-1} a^T b = \frac{a^T b}{a^T a} = \alpha
+        \]
+    \end{enumerate}
+\end{remark}
+
+\subsection{Projection Matrices}
+Let $A$ be an $m \times n$ matrix over $\mathbb{R}$, $\mathcal{C}(A) \leq \mathbb{R}^m$. \\
+Let $b \notin \mathcal{C}(A)$, the closest point to $b$ in $\mathcal{C}(A)$ is $\blue{p = A(A^TA)^{-1}A^T b}$. \\
+Let $\mathcal{P} = A(A^TA)^{-1}A^T$. \\
+i.e. The matrix projects any vector $b$ onto $\mathcal{C}(A)$. \\
+i.e. $p = \mathcal{P} b$ is the component of $b$ in $\mathcal{C}(A)$. \\
+i.e. $b - \mathcal{P}b$ (error) is the component of $b$ in orthogonal complement $\mathcal{N}(A^T)$.
+
+\begin{corollary}
+    \[
+        I = \underset{\text{projection onto } \mathcal{C}(A)}{\mathcal{P}} + \underset{\text{projection onto } \mathcal{C}(A)^\perp}{(I - \mathcal{P})}
+    \]
+\end{corollary}
+
+\begin{theorem}[3N]  
+    Here are some properties of projection matrix
+    \begin{enumerate}
+        \item $\mathcal{P}^2 = \mathcal{P}$
+        \item $\mathcal{P}^T = \mathcal{P}$
+    \end{enumerate}
+\end{theorem}
+
+\subsection{Least Square Fitting of Data}
+\[
+    C + Dt = b
+\]
+Given $m$ data points 
+\[
+    \begin{cases}
+        C + Dt_1 = b_1 \\
+        C + Dt_2 = b_2 \\
+        \vdots \\
+        C + Dt_m = b_m
+    \end{cases} 
+    \quad \Rightarrow \quad
+    \begin{pmatrix}
+        1 & t_1 \\
+        1 & t_2 \\
+        \vdots & \vdots \\
+        1 & t_m
+    \end{pmatrix} \begin{pmatrix}
+        C \\ D
+    \end{pmatrix} = \begin{pmatrix}
+        b_1 \\ b_2 \\ \vdots \\ b_m
+    \end{pmatrix}
+\]
+\begin{align*}
+    \Longrightarrow \min E^2 &= \|b - (C+Dt)\|^2 = \|b - Ax\|^2\\
+    &= \sum_{i=1}^m (b_i - C - Dt_i)^2
+\end{align*}
+
+\begin{eg}
+    $(t_i, b_i): (\underset{\red{t_1}}{-1}, \underset{\red{b_1}}{1}), (\underset{\red{t_2}}{1}, \underset{\red{b_2}}{1}), (\underset{\red{t_3}}{2}, \underset{\red{b_3}}{3})$
+\end{eg}
+
+\[
+    A = \begin{pmatrix}
+        1 & -1 \\
+        1 & 1 \\
+        1 & 2
+    \end{pmatrix}, \quad x = \begin{pmatrix}
+        C \\ D
+    \end{pmatrix}, \quad b = \begin{pmatrix}
+        1 \\ 1 \\ 3
+    \end{pmatrix} \quad \Rightarrow \quad \bar{x} = \begin{pmatrix}
+        \bar{C} \\ \bar{D}
+    \end{pmatrix} = (A^TA)^{-1} A^T b = \begin{pmatrix}
+        \frac{9}{7} \\ \frac{4}{7}
+    \end{pmatrix}
+\]
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[scale=1.2,>=Stealth, line cap=round, line join=round]
+        % Axes
+        \draw[thick,->] (-2,0) -- (4.5,0) node[right] {$t$};
+        \draw[thick,->] (0,-1) -- (0,4.5) node[above] {$b$};
+    
+        % ===== Line b = 1 + (4/9)t =====
+        \pgfmathsetmacro{\bmin}{1 + 4*(-2)/9}
+        \pgfmathsetmacro{\bmax}{1 + 4*(4)/9}
+        \draw[green!70!black,thick] (-2,\bmin) -- (4,\bmax);
+        \node[green!60!black] at (4,3) {$\frac{9}{9} + \frac{4}{9}t = b$};
+    
+        % ===== T1 =====
+        \coordinate (T1) at (-0.5,1.1);
+        \pgfmathsetmacro{\TOneProjY}{1 + 4*(-0.5)/9}
+        \coordinate (T1proj) at (-0.5, \TOneProjY);
+    
+        % ===== T2 =====
+        \coordinate (T2) at (1,0.4);
+        \pgfmathsetmacro{\TTwoProjY}{1 + 4*(1)/9}
+        \coordinate (T2proj) at (1, \TTwoProjY);
+    
+        % ===== T3 =====
+        \coordinate (T3) at (3,3.1);
+        \pgfmathsetmacro{\TThreeProjY}{1 + 4*(3)/9}
+        \coordinate (T3proj) at (3, \TThreeProjY);
+    
+        % Red projected points on line
+        \foreach \P in {T1proj, T2proj, T3proj}{
+            \fill[red] (\P) circle (3pt);
+        }
+    
+        % Blue original points
+        \foreach \P in {T1, T2, T3}{
+            \fill[blue] (\P) circle (3pt);
+        }
+    
+        % Red dashed vertical projections
+        \draw[red,dashed] (T1) -- (T1proj);
+        \draw[red,dashed] (T2) -- (T2proj);
+        \draw[red,dashed] (T3) -- (T3proj);
+    
+        % Labels
+        \node[blue] at ($(T1)+(0.3,-0.2)$) {$(t_1,b_1)$};
+        \node[blue] at ($(T2)+(0.4,-0.3)$) {$(t_2,b_2)$};
+        \node[blue] at ($(T3)+(0.0,0.3)$) {$(t_3,b_3)$};
+    
+        % Bottom p-values
+        \node[red] at (1,-0.7)
+           {$p_1=\frac{5}{9},\quad p_2=\frac{13}{9},\quad p_3=\frac{17}{9}$};
+    \end{tikzpicture}
+    \caption{Least Squares Line Fitting}
+\end{figure}
+
+\[
+    \mathcal{P} = A(A^TA)^{-1} A^T = \frac{1}{14} \begin{pmatrix}
+        13 & 3 & -2 \\
+        3 & 5 & 6 \\
+        -2 & 6 & 10
+    \end{pmatrix}_{3 \times 3} \quad \Rightarrow \quad p = \mathcal{P} b = \frac{1}{7}\begin{pmatrix}
+        5 \\ 13 \\ 17
+    \end{pmatrix}
+\]
+
+\[
+    \therefore \ \text{error vector} = b - p = \frac{1}{7} \begin{pmatrix}
+        2 \\ -6 \\ 4
+    \end{pmatrix}
+\]
+
+\[
+    P = \frac{1}{14} \begin{pmatrix}
+        13 & 3 & -2 \\
+        3 & 5 & 6 \\
+        -2 & 6 & 10
+    \end{pmatrix} \longrightarrow U = \frac{1}{14} \begin{pmatrix}
+        \boxed{13} & 3 & -2 \\
+        0 & \boxed{\frac{56}{13}} & \frac{84}{13} \\
+        0 & 0 & 0
+    \end{pmatrix} \implies \mathcal{C}(P) = \text{span}\left\{\begin{pmatrix}
+        13 \\ 3 \\ -2
+    \end{pmatrix}, \begin{pmatrix}
+        3 \\ 5 \\ 6
+    \end{pmatrix}\right\} \implies x-3y+2z=0
+\]
+
+\[
+    \mathcal{C}(A) = \text{span}\left\{\begin{pmatrix}
+        1 \\ 1 \\ 1
+    \end{pmatrix}, \begin{pmatrix}
+        -1 \\ 1 \\ 2
+    \end{pmatrix}\right\} \implies x-3y+2z=0 \quad \implies \quad \blue{\mathcal{C}(P) = \mathcal{C}(A)}
+\]
+
+\section{Orthogonal Bases, Orthogonal Matrices and Gram-Schmidt Orthogonalization}
+
+\begin{recall}
+    The vectors $q_1, q_2, \cdots q_k$ are orthognormal if \[
+        q_i^T q_j = \begin{cases}
+            1 & i = j \\
+            0 & i \neq j
+        \end{cases}
+    \]
+\end{recall}
+
+\subsection{Orthogonal Matrices}
+\begin{definition}[3Q]
+    An \redbox{orthognoral matrix $Q$} is a square matrix satisfying \(Q^TQ = I\). If \(Q = [q_1 \ q_2 \ \cdots \ q_n]\), then \[
+        Q^T Q = \begin{pmatrix}
+            q_1^T \\
+            q_2^T \\
+            \vdots \\
+            q_n^T
+        \end{pmatrix} (q_1 \ q_2 \ \cdots \ q_n) = \begin{pmatrix}
+            \underset{\red{=1}}{\boxed{q_1^T q_1}} & \underset{\yel{=0}}{\boxed{q_1^T q_2}} & \cdots & q_1^T q_n \\
+            q_2^T q_1 & \underset{\red{=1}}{\boxed{q_2^T q_2}} & \cdots & q_2^T q_n \\
+            \vdots & \vdots & \ddots & \vdots \\
+            q_n^T q_1 & q_n^T q_2 & \cdots & q_n^T q_n
+        \end{pmatrix}_{n \times n} = I_n
+    \]
+    i.e. The columns of \(Q\) are orthonormal and $Q^{-1} = Q^T$.
+\end{definition}
+
+\begin{eg}
+    Here are some examples:
+    \begin{itemize}
+        \item Rotation matrix \( \begin{pmatrix}
+            \cos \theta & -\sin \theta \\
+            \sin \theta & \cos \theta
+        \end{pmatrix} \) \red{YES}
+        \item Permutation matrix \( \begin{pmatrix}
+            0 & 1 & 0 \\
+            1 & 0 & 0 \\
+            0 & 0 & 1
+        \end{pmatrix} \) \red{YES}
+    \end{itemize}
+\end{eg}
+
+\newpage
+
+\begin{proposition}[3R]
+    Here are some properties
+    \begin{itemize}
+        \item \(\|Qx\| = \|x\|, \quad \forall x\)
+        \item \( \langle Qx, Qy \rangle = \langle x, y \rangle, \forall x, y \)
+    \end{itemize}
+    The properties preserve
+    \begin{enumerate}[label=$\arabic*^\circ$]
+        \item length
+        \item inner product
+        \item angle (since \(\displaystyle \cos \theta = \frac{\langle x, y \rangle}{\|x\| \|y\|}\))
+    \end{enumerate}
+\end{proposition}
+
+\begin{remark}
+    Since $Q^{-1} = Q^T$, we also have $QQ^T = I$. Therefore, the rows of a square matrix are orthonormal whenever the columns are orthonormal.
+\end{remark}
+
+\vspace{1em}
+
+We've learned that any vector is a combination of basis vectors. The problem becomes how to find the coefficients of the combination. \\[2pt]
+
+Let $\{q_1, q_2, \cdots, q_n\}$ be an orthonormal basis, then for any vector $b$
+\[
+    b = x_1 q_1 + x_2 q_2 + \cdots + x_n q_n
+\]
+try to compute $x_i$'s:
+\[
+    q_1^T b = x_1 \underset{\red{1}}{q_1^T q_1} + x_2 \underset{\red{0}}{q_1^T q_2} + \cdots + x_n \underset{\red{0}}{q_1^T q_n} = x_1
+\]
+Similarly, we have \( x_i = q_i^T b, \ i = 1, 2, \cdots, n \). i.e.
+\[
+    \boxed{b = (q_1^T b) q_1 + (q_2^T b) q_2 + \cdots + (q_n^T b) q_n}
+\]
+for the matrix form
+\[
+    b = (q_1 \ q_2 \ \cdots \ q_n) \begin{pmatrix}
+        x_1 \\ x_2 \\ \vdots \\ x_n
+    \end{pmatrix} = Qx \qquad \quad x = Q^{-1}b = Q^Tb = \begin{pmatrix}
+        q_1^T b \\ q_2^T b \\ \vdots \\ q_n^T b
+    \end{pmatrix}
+\]
+
+\begin{recall}
+    $\displaystyle \mathcal{P} = \frac{a^Tb}{a^Ta} \cdot a$
+\end{recall}
+
+Therefore, we can rewrite $b$ as 
+\[
+    \boxed{b = \frac{q_1^T b}{q_1^T q_1} q_1 + \frac{q_2^T b}{q_2^T q_2} q_2 + \cdots + \frac{q_n^T b}{q_n^T q_n} q_n = \mathcal{P}_{q_1} b + \mathcal{P}_{q_2} b + \cdots + \mathcal{P}_{q_n} b} \quad (\text{since } q_i^T q_i = 1)
+\]
+i.e. The sum of the projections of $b$ onto each basis vector equals to $b$ itself.

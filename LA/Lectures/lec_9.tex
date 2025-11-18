@@ -138,7 +138,7 @@ In $\mathbb{R}^2$,
 \begin{definition}
     The subspace $U$ is called the \redbox{orthogonal complement} of $W$ in $V$, denoted by $W^{\perp}$ ($W$-perp). By definition of nullspace $\mathcal{N}(A)$, we have
     \[
-        \mathcal{N}(A) = (\mathcal{C}(A^{\T}))^{\perp}, \quad \text{ or } \mathcal{C}(A^{\T}) = (\mathcal{N}(A))^{\perp}
+        \mathcal{N}(A) = (\mathcal{C}(A^{\T}))^{\perp}, \quad \text{ or } \quad \mathcal{C}(A) = (\mathcal{N}(A^{\T}))^{\perp}
     \]
 \end{definition}
 
@@ -344,7 +344,7 @@ Inner product $x^{\T}y = \begin{cases}
 \begin{theorem}[3I Schwarz Inequality]
     For any two vectors in inner product space satisfy the \textbf{Cauchy-Schwarz inequality}:
     \[
-        |a^{\T} b| \leq \|a\| \|b\|
+        |a^{\T} b| \leq \|\mathbf{a}\| \|\mathbf{b}\| \quad \text{ or } | \langle \mathbf{a}, \mathbf{b} \rangle | \leq \| \mathbf{a} \| \| \mathbf{b} \|
     \]
     with equality if and only if $b = \alpha a$, for some $\alpha \in \mathbb{F}$.
 \end{theorem}
@@ -389,6 +389,7 @@ Inner product $x^{\T}y = \begin{cases}
         \item $\displaystyle P^{\T} = \left( \frac{a a^{\T}}{a^{\T} a} \right)^{\T} = \frac{(a^{\T})^{\T} a^{\T}}{a^{\T} a} = \frac{a a^{\T}}{a^{\T} a} = P$
         \item $\displaystyle P^2 = \left( \frac{a a^{\T}}{a^{\T} a} \right) \left( \frac{a a^{\T}}{a^{\T} a} \right) = \frac{a a^{\T} a a^{\T}}{(a^{\T} a)^2} = \frac{a (a^{\T} a) a^{\T}}{(a^{\T} a)^2} = \frac{a a^{\T}}{a^{\T} a} = P$
     \end{enumerate}
+    Proof complete.
 \end{proof}
 
 \begin{itemize}

@@ -49,3 +49,9 @@
 \contentsline {section}{\numberline {3.2}Inner Product and Projections onto Lines}{55}{section.3.2}%
 \contentsline {subsection}{\numberline {3.2.1}Inner Product and Schwarz Inequality}{55}{subsection.3.2.1}%
 \contentsline {subsection}{\numberline {3.2.2}Projections of Rank One}{56}{subsection.3.2.2}%
+\contentsline {section}{\numberline {3.3}Projections and Least Squares Applications}{57}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Least Squares Problem with Several Variables}{58}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}Projection Matrices}{60}{subsection.3.3.2}%
+\contentsline {subsection}{\numberline {3.3.3}Least Square Fitting of Data}{61}{subsection.3.3.3}%
+\contentsline {section}{\numberline {3.4}Orthogonal Bases, Orthogonal Matrices and Gram-Schmidt Orthogonalization}{62}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}Orthogonal Matrices}{62}{subsection.3.4.1}%

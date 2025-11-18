@@ -252,7 +252,7 @@
 
 \declaretheorem[style=thmgreenbox, name=Definition, numberwithin=section]{definition}
 \declaretheorem[style=thmgreen2box, name=Definition, numbered=no]{definition*}
-\declaretheorem[style=thmred3box, name=Theorem, numberwithin=section]{theorem}
+\declaretheorem[style=thmredbox, name=Theorem, numberwithin=section]{theorem}
 \declaretheorem[style=thmred2box, name=Theorem, numbered=no]{theorem*}
 \declaretheorem[style=thmredbox, name=Lemma, numberwithin=section]{lemma}
 \declaretheorem[style=thmredbox, name=Proposition, numberwithin=section]{proposition}
@@ -261,6 +261,7 @@
 \declaretheorem[style=thmpinkbox, name=Problem, numbered=no]{problem*}
 \declaretheorem[style=thmblue2box, name=Claim, numbered=no]{claim}
 \declaretheorem[style=conjpurplebox, name=Conjecture, numberwithin=section]{conjecture}
+\declaretheorem[style=conjpurplebox, name=Recall, numbered=no]{recall}
 
 \renewcommand\theHdefinition{\thesection.\arabic {definition}}
 \renewcommand\theHtheorem{\thesection.\arabic {theorem}}
@@ -277,9 +278,9 @@
 	\normalfont \topsep-2\p@\@plus6\p@\relax
 	\trivlist
 	\item[\hskip\labelsep
-	            \color{Goldenrod!70!black}\sffamily\bfseries
+	            \color{RawSienna!70!black}\sffamily\bfseries
 	            #1\@addpunct{.}]\ignorespaces
-	\begin{mdframed}[linewidth=2pt,rightline=false, topline=false, bottomline=false,linecolor=Goldenrod!70!black, backgroundcolor=Goldenrod!1]
+	\begin{mdframed}[linewidth=2pt,rightline=false, topline=false, bottomline=false,linecolor=RawSienna!70!black, backgroundcolor=RawSienna!1]
 		}{%
 		\popQED\endtrivlist\@endpefalse
 	\end{mdframed}
