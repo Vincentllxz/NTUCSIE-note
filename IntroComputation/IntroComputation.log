@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.8.4)  17 NOV 2025 01:42
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.8.4)  24 NOV 2025 10:23
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -2506,9 +2506,14 @@ Package mdframed Info: mdframed detected package amsthm
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 400.
-)
+) (./Lectures/lec_9.tex
+Package marginnote Info: right page because not two side mode on input line 2.
+Package marginnote Info: xpos seems to be \@mn@currxpos  on input line 2.
 
-[42] (./IntroComputation.aux)
+
+[42])
+
+[43] (./IntroComputation.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2022/08/05>
@@ -2517,19 +2522,28 @@ L3 programming layer <2022/08/05>
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package rerunfilecheck Info: File `IntroComputation.out' has not changed.
-(rerunfilecheck)             Checksum: DE0E1FC7863F8EB41D0831DA0162E868;2590.
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+
+Package rerunfilecheck Warning: File `IntroComputation.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `IntroComputation.out':
+(rerunfilecheck)             Before: DE0E1FC7863F8EB41D0831DA0162E868;2590
+(rerunfilecheck)             After:  7C61C6646EE6EB74906BEB462C3BBF87;3145.
 Package logreq Info: Writing requests to 'IntroComputation.run.xml'.
 \openout1 = `IntroComputation.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 73455 strings out of 473832
- 1750387 string characters out of 5729482
- 2714005 words of memory out of 5000000
- 95435 multiletter control sequences out of 15000+600000
+ 73460 strings out of 473832
+ 1750473 string characters out of 5729482
+ 2714006 words of memory out of 5000000
+ 95437 multiletter control sequences out of 15000+600000
  638740 words of font info for 132 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  150i,18n,134p,1607b,4547s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on IntroComputation.pdf (44 pages).
+Output written on IntroComputation.pdf (45 pages).

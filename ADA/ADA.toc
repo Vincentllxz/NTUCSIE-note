@@ -20,10 +20,24 @@
 \contentsline {subsection}{\numberline {2.1.1}排序法 Sorting method}{14}{subsection.2.1.1}%
 \contentsline {subsection}{\numberline {2.1.2}順調法}{16}{subsection.2.1.2}%
 \contentsline {subsection}{\numberline {2.1.3}逆調法}{16}{subsection.2.1.3}%
-\contentsline {section}{\numberline {2.2}Sorting Problem}{18}{section.2.2}%
-\contentsline {subsection}{\numberline {2.2.1}排序問題下界}{18}{subsection.2.2.1}%
-\contentsline {section}{\numberline {2.3}Amortized Analysis}{18}{section.2.3}%
-\contentsline {chapter}{\numberline {3}Advanced Analysis Techniques}{20}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Greedy Algorithm}{20}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Devide and Conquer}{20}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Dynamic Programming}{20}{section.3.3}%
+\contentsline {section}{\numberline {2.2}Sorting Problem}{16}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}排序問題下界}{16}{subsection.2.2.1}%
+\contentsline {section}{\numberline {2.3}Amortized Analysis}{17}{section.2.3}%
+\contentsline {chapter}{\numberline {3}Advanced Analysis Techniques}{18}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Greedy Algorithm}{18}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Devide and Conquer}{18}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Dynamic Programming}{18}{section.3.3}%
+\contentsline {chapter}{\numberline {4}Graph Theory: Path and Shortest Path Problems}{19}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Single-Source Shortest Path Problem}{19}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Bellman-Ford Algorithm}{20}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}Lawler's Algorithm}{21}{subsection.4.1.2}%
+\contentsline {subsection}{\numberline {4.1.3}Dijkstra's algorithm}{22}{subsection.4.1.3}%
+\contentsline {section}{\numberline {4.2}All-Pairs Shortest Path Problem}{23}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}A Naive DP Solution}{24}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}Floyd and Warshall's DP algorithm}{24}{subsection.4.2.2}%
+\contentsline {subsection}{\numberline {4.2.3}Johnson's Reweighting Technique}{25}{subsection.4.2.3}%
+\contentsline {chapter}{\numberline {5}Graph Theory: Maximum Flow Problem}{28}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Ford–Fulkerson's Algorithm}{29}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Edmonds-Karp Algorithm}{33}{section.5.2}%
+\contentsline {chapter}{\numberline {6}Computational Geometry}{34}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Nearest Point Pair}{34}{section.6.1}%

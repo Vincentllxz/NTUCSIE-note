@@ -1,0 +1,250 @@
+\chapter{Graph Theory: Path and Shortest Path Problems}
+
+\lecture{8}{30 Oct. 14:20}{}
+
+\begin{definition}[path]
+    Let $G$ be an $n$-vertex $m$-weighted directed graph with weight $w$ \red{(which can be positive, negative or zero)}. The weight of a path $P$ of $G$ is defined as
+    \[
+        w(P) = \sum_{xy \in E(P)} w(xy)
+    \]
+    For vertices $u$ and $v$ of $G$, we call a path of $G$ from $u$ to $v$ a \textbf{uv-path} of G.
+\end{definition}
+
+\begin{definition}[distance]
+    For vertices $u$ and $v$ of $G$, the \textbf{distance} from $u$ to $v$ in $G$, denoted by $d_G(u,v)$, is defined as
+    \[
+        d_G(u,v) = \begin{cases}
+            \infty & \text{if there is no uv-path in $G$}\\
+            w(P) & \forall Q \in \text{uv-paths}, \ w(P) \leq w(Q) \\
+            -\infty & \text{otherwise}
+        \end{cases}
+    \]
+    \begin{com}[1]
+        這個 $P$ 就叫做 \textbf{shortest $uv$-path}
+    \end{com}
+    \begin{com}[2]
+        真正的 path 是不允許重複經過點的。這裡定義的 path 其實在真正的 graph theory 裡面叫做 \textbf{walk}。$V(P)$, $E(P)$ 都是 multiset。
+    \end{com}
+\end{definition}
+
+\section{Single-Source Shortest Path Problem}
+\begin{problem}[Single-Source Distance Problem]
+    Given
+    \begin{itemize}
+        \item Input: a directed graph $G$ with edge weights $w: E(G) \to \mathbb{R}$ and a \textbf{source} vertex $r \in V(G)$.
+        \item Output: $d_G(r, v)$ for all vertices $v \in V(G)$.
+    \end{itemize}
+\end{problem}
+
+\begin{note}
+    我們可以用下面這個問題可以規約 (reduce) 到上面的問題
+\end{note}
+
+\begin{problem}[Single-Source Shortest Path Problem]
+    Given
+    \begin{itemize}
+        \item Input: a directed graph $G$ with edge weights $w: E(G) \to \mathbb{R}$ and a \textbf{source} vertex $r \in V(G)$.
+        \item Output: a (shortest-path) tree $T$ of $G$ rooted at $r$ such that if $G$ contains a shortest $rv$-path of $G$, then $rv$-path of $T$ is a shortest $rv$-path of $G$.
+    \end{itemize}
+\end{problem}
+
+所以我們應該要解決 Single-Source Distance Problem，先做兩個假設 $m = \Omega(n)$
+\begin{com}[1]
+    我們可以用 DFS 先處理掉 $r$ 無法到達的點，所以可以假設
+    \[
+        d_G(r,v) < \infty, \ \forall v \in V(G)
+    \]
+\end{com}
+
+\begin{com}[2]
+    $r$ 固定，簡寫 $d(v) := d_G(r,v)$
+\end{com}
+
+\subsection{Bellman-Ford Algorithm}
+
+\begin{idea}
+    For each vertex $v \in V(G)$, we use $d[v]$ to estimate $d(v)$.
+    \begin{itemize}
+        \item Initialization
+        \[
+            d[i] = \begin{cases}
+                0 & i = r\\
+                \infty & \text{otherwise}
+            \end{cases}
+        \]
+        \item Repeat \red{$n-1$} times \text{relaxation} step: for each edge $uv \in E(G)$, 更新 
+        \[
+            d[v] = \min\{d[v],\ d[u] + w(uv)\}
+        \]
+        \item Relaxation 結束後，For each edge $uv \in E(G)$, if $d[v] > d[u] + w(uv)$, then \[
+            d[v] = -\infty
+        \]
+        \item For each vertex $v \in V(G)$, 如果他可以被任何 $u$ which $d[u] = -\infty$ reach（DFS $O(m+n)$），則
+        \[
+            d[v] = -\infty
+        \]
+    \end{itemize}
+    \begin{note}
+        The running time is $O(mn)$.
+    \end{note}
+\end{idea}
+\begin{proof}
+    我們先做一些觀察
+    \begin{obs}[1]
+        在 $n-1$ 次 relaxation 後，$\forall v \in V(G), \ d[v] \geq d(v)$，永遠不會小於真正的 $d(v)$.
+    \end{obs}
+    \begin{obs}[2]
+        If $P$ is a shortest $rs$-path of $G$ for some $s \in V(G)$, 
+        \begin{itemize}
+            \item 在這條 $rs$-path 上的每一個 $v$ of $P$，這條 $rv$-path 也會是 shortest $rv$-path of $G$.
+            \item 對於每一個 edge $uv$ of $P$, if 在先前的 relaxation step 後，會有
+            \[
+                d[u] = d(u) 
+            \]
+            在這次 relaxation step 後，會有
+            \[
+                d[v] = d(v)
+            \]
+        \end{itemize}
+    \end{obs}
+    現在我們來證明 Bellman-Ford Algorithm 的正確性。我們分三種情況討論，Case 1 已經在之前就證明可以用 DFS 處理掉了。
+    \begin{itemize}
+        \item Case 2: $d(v) \neq -\infty$. Let $P$ be a shortest $rv$-path of $G$. for each vertex $u_j$ of $P$, where $j = 0, 1, \ldots, |V(P)|-1$, $u_0 = r$ and $u_{|V(P)|-1} = v$. 根據我們的 Obs.2，我們知道在第 $i$ 次 relaxation step 後\[
+            d[u_j] = d(u_j) \quad \forall j \in \{0, \cdots, \min(i, |V(P)|-1)\}
+        \]        
+        \item Case 3: $d(v) = -\infty$: 因為到達不了的點一經被處理掉了，因此必定存在 $rv$-path $P$ of $G$, which contain a cycle $C$ such that $w(C) < 0$. 所以我們可以
+        \begin{claim}
+            At the end of $n$-th round,
+            \[
+                d[u] = -\infty \quad \forall u \in V(C)
+            \] 
+            By $u \in V(P)$, we have $d[v] = -\infty$ at the end.
+        \end{claim}
+        To prove this claim, we assume for contradiction. The $n$-th of round 並沒有成功更新 $d[u]$ for all $u \in V(C)$. 我們嘗試對每一個邊做 relaxation 都應該失敗。Thus,
+        \[
+            d[x] + w(xy) \geq d[y] \quad \forall xy \in E(C)
+        \]
+        把 $C$ 上所有這種 inequality 全部加起來，我們會得到
+        \[
+            \sum_{xy \in E(C)} w(xy) \geq 0
+        \]
+        contradiction to $w(C) < 0$.
+    \end{itemize}
+    Hence, Bellman-Ford Algorithm is correct.
+\end{proof}
+
+\subsection{Lawler's Algorithm}
+
+\begin{remark}
+    針對 Acyclic Graph 的 Algorithm，Since the input graph has no cycle, it has no negative cycle.
+\end{remark}
+
+\begin{idea}
+    只需要 One Relaxation Step 就可以了
+    \begin{itemize}
+        \item 用 $O(m+n)$ 做一次 Topological Sort on the input directed acyclic graph $G$ to get a topological order $u_i,\ \forall i \in \{1, \ldots, n\}$
+        \item Initialization\[
+            d[u_i] = \begin{cases}
+                0 & i = 0 (d[r] = 0)\\
+                \infty & \text{otherwise}
+            \end{cases}
+        \]
+        \item For $i$ from $1$ to $n$, we do relaxation step for each $u_iv$ 
+        \[
+            d[v] = \min\{d[v],\ d[u_i] + w(u_iv)\}
+        \]
+    \end{itemize}
+    \begin{note}
+        The running time is $O(m+n)$.
+    \end{note}
+\end{idea}
+\begin{proof}
+    因為這是一個 DAG，所以做完一次 Topological Sort 後，我們就可以知道每個點的 outgoing edge 順序，也就是知道他們在 shortest path 裡面的順序，因此即便我們不知道這條 $u_iv$-path 在哪裡，但我們可以保證在我們處理到 $u_i$ 的時候，$d[u_i]$ 已經是正確的 $d(u_i)$ 了。因此我們只需要做一次 relaxation step 就可以了。
+\end{proof}
+
+\subsection{Dijkstra's algorithm}
+
+\begin{remark}
+    本質上是針對 Non-Negative Weighted Graph 的 Greedy Algorithm，可以做更近一步的簡化，Since the input graph has no negative edge, it has no negative cycle.
+\end{remark}
+
+\begin{idea}
+    One round of estimate improvement suffices, although we cannot rely on topological sort (since $G$ may contain cycles).
+    \begin{itemize}
+        \item Initialization
+        \[
+            d[v] = \begin{cases}
+                0 & v = r\\
+                \infty & \text{otherwise}
+            \end{cases}
+        \]
+        \item 有 $n$ 次 iteration，每次 iteration 從還沒被處理過的點中選出 $d[u]$ 最小的點 $u$，並對 $u$ 的每一個 outgoing edge $uv$ 做 relaxation
+    \end{itemize}
+    \begin{note}
+        The running time is $O(m + n\log n)$.
+    \end{note}
+\end{idea}
+\begin{proof}
+    Let's prove the correctness by contradiction.
+    \begin{enumerate}[label=$\arabic*^\circ$]
+        \item Let $v$ be the first vertex selected in $S$ with $d[v] \neq d(v)$. We have 
+        \[
+            d[v] > d(v)
+        \]
+        接下來我們考慮 $v$ 被加入 $S$ 的情況
+        \item Let $P$ be the shortest $rv$-path of $G$.
+        \item Let $xy$ be an arbitrary edge of $P$ such that $x \in S$ and $y \notin S$. (必定存在因為 $r \in S$ 而 $v \notin S$)
+        \item 因為我們正要處理 $v$，所以 $xy$ is already processed, we have \[
+            d[y] = d(y) ,\ y \neq v
+        \]
+        \item Since $G$ are nonnegative and $y$ precedes $v$ in $P$, we have
+        \[
+            d[y] \leq d(v) 
+        \]
+        \item By $1^\circ$, $5^\circ$, and $4^\circ$ we have
+        \[
+            d[v] > d(v) \geq d[y] = d(y)
+        \]
+        which contradicts the selection of $v$. 我們就不該選到 $v$ 因為他並不是最小的那個，還有一個 $y$ 更小
+    \end{enumerate}
+    Hence, Dijkstra's algorithm is correct.
+\end{proof}
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[->, >=stealth,thick]
+
+    % --- Black/white region S (ellipse) ---
+    \fill[black!10] (-1,-1.2) ellipse (2.6 and 1.8);
+    \draw[black] (-1,-1.2) ellipse (2.6 and 1.8);
+
+    % --- Nodes (black/white circles) ---
+    \node[circle,draw=black,fill=white,inner sep=3pt] (r) at (-2,-2) {$r$};
+    \node[circle,draw=black,fill=white,inner sep=3pt] (x) at (0.5,-0.3) {$x$};
+    \node[circle,draw=black,fill=white,inner sep=3pt] (y) at (2,-0.2) {$y$};
+    \node[circle,draw=black,fill=white,inner sep=3pt] (v) at (2,-2.7) {$v$};
+
+    % --- Black path r -> x -> y -> v ---
+    \draw[black,line width=1.4pt]
+    (r) .. controls (-5,-0.4) and (0,-1) .. (x)
+        .. controls (1,-0.1) and (1.2,-0.1) .. (y)
+        .. controls (0,-1.4) and (0,-0.8) .. (v);
+
+    % --- Yellow result box -> now black/white ---
+    \node[rectangle,rounded corners,draw=black,fill=white,
+        inner sep=6pt,text width=3.9cm] 
+        at (3.8,2)
+        {$d[y] = d(y) \le d(v) < d[v]$};
+
+    \node[rectangle,rounded corners,draw=black,fill=white,
+        inner sep=6pt,text width=1.7cm] 
+        at (3.3,-1.5)
+        {已知 $y \neq v$};
+
+    % --- Label for S (black/white box) ---
+    \node[rectangle,draw=black,fill=white,rounded corners,
+        inner sep=4pt] 
+        at (-1.5,1.2) {正確聯盟 $S$};
+    \end{tikzpicture}
+    \caption{Dijkstra's Algorithm Correctness}
+\end{figure}

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.8.4)  9 NOV 2025 18:31
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.8.4)  24 NOV 2025 09:20
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -2190,12 +2190,8 @@ Package mdframed Info: mdframed detected package amsthm
 (mdframed)              on input line 221.
 File: Figures/tree.png Graphic file (type bmp)
 <Figures/tree.png>
-
-
-[16]
-
-[17]) (./Lectures/lec_4.tex
-Package marginnote Info: Margin note 22.1 is on absolute page 22 on input line 2.
+) (./Lectures/lec_4.tex
+Package marginnote Info: Margin note 20.1 is on absolute page 20 on input line 2.
 Package marginnote Info: right page because not two side mode on input line 2.
 Package marginnote Info: xpos seems to be 72.2698pt on input line 2.
 Package mdframed Info: mdframed detected package amsthm 
@@ -2209,23 +2205,328 @@ Package mdframed Info: mdframed detected package amsthm
 (mdframed)              on input line 21.
 ) (./Lectures/lec_5.tex
 
-[18]
+[16]
+
+[17]
+Chapter 3.
+Package marginnote Info: Margin note 22.1 is on absolute page 22 on input line 5.
+Package marginnote Info: right page because not two side mode on input line 5.
+Package marginnote Info: xpos seems to be 72.2698pt on input line 5.
+) (./Lectures/lec_8.tex
+
+[18
+
+]
+Chapter 4.
 Package marginnote Info: Margin note 23.1 is on absolute page 23 on input line 4.
 Package marginnote Info: right page because not two side mode on input line 4.
 Package marginnote Info: xpos seems to be 72.2698pt on input line 4.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 6.
-
-
-[19]
-Chapter 3.
+(mdframed)              on input line 5.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 17.
+(mdframed)              on input line 13.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 22.
+Package hyperref Info: bookmark level for unknown com defaults to 0 on input line 22.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 24.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 25.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 27.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 31.
+Package hyperref Info: bookmark level for unknown problem defaults to 0 on input line 31.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 40.
+
+
+[19
+
+]
+Package mdframed Info: Not enough space on this page on input line 41.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 43.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 52.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 59.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 66.
+Package hyperref Info: bookmark level for unknown idea defaults to 0 on input line 66.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 88.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 89.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 92.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 93.
+Package hyperref Info: bookmark level for unknown obs defaults to 0 on input line 93.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 95.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 96.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 109.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 117.
+Package hyperref Info: bookmark level for unknown claim defaults to 0 on input line 117.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 122.
+
+
+[20]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 139.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 143.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 158.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 159.
+
+
+[21]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 162.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 168.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 172.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 184.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 185.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 188.
+Package mdframed Info: Box was splittet wrong
+ starting loop to iterate the splitting point
+(mdframed)              on input line 211.
+
+
+[22]) (./Lectures/lec_9.tex
+Package marginnote Info: Margin note 27.1 is on absolute page 27 on input line 2.
+Package marginnote Info: right page because not two side mode on input line 2.
+Package marginnote Info: xpos seems to be 72.2698pt on input line 2.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 5.
+
+
+[23]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 79.
+Package mdframed Info: Not enough space on this page on input line 81.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 86.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 96.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 109.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 110.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 116.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 155.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 169.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 170.
+
+
+[24]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 175.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 181.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 182.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 193.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 205.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 206.
+
+
+[25]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 283.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 288.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 289.
+Package mdframed Info: Not enough space on this page on input line 295.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 297.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 331.
+Package hyperref Info: bookmark level for unknown recall defaults to 0 on input line 331.
+
+
+[26]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 342.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 356.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 357.
+Package mdframed Info: Not enough space on this page on input line 358.
+
+
+[27]
+Chapter 5.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 363.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 374.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 378.
+Package hyperref Info: bookmark level for unknown definition* defaults to 0 on input line 378.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 379.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 393.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 394.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 399.
+
+
+[28
+
+]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 407.
+Package hyperref Info: bookmark level for unknown intuition defaults to 0 on input line 407.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 410.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 422.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 426.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 431.
+Package hyperref Info: bookmark level for unknown lemma defaults to 0 on input line 431.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 439.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 440.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 444.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 462.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 463.
+Package mdframed Info: Box was splittet wrong
+ starting loop to iterate the splitting point
+(mdframed)              on input line 464.
+
+
+[29]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 490.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 500.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 506.
+
+
+[30]
+Package mdframed Info: Not enough space on this page on input line 513.
+) (./Lectures/lec_10.tex
+Package marginnote Info: Margin note 35.1 is on absolute page 35 on input line 2.
+Package marginnote Info: right page because not two side mode on input line 2.
+Package marginnote Info: xpos seems to be 72.2698pt on input line 2.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 8.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 12.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 23.
+
+
+[31]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 41.
+Package mdframed Info: Not enough space on this page on input line 42.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 63.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 73.
+
+
+[32]
+
+[33]
+Chapter 6.
 )
 
-[20
+[34
 
 ] (./ADA.aux)
  ***********
@@ -2237,21 +2538,24 @@ L3 programming layer <2022/08/05>
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+Package rerunfilecheck Warning: File `ADA.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
 
-Package rerunfilecheck Info: File `ADA.out' has not changed.
-(rerunfilecheck)             Checksum: 5E69D72DA26AAD76D193D0CCFCD45708;2898.
+Package rerunfilecheck Info: Checksums for `ADA.out':
+(rerunfilecheck)             Before: 33C06FEAF12AB0E518B9C96B3A311999;4368
+(rerunfilecheck)             After:  BFFCB44B3DA4FBE92B824DC07B3F0D8F;4536.
 Package logreq Info: Writing requests to 'ADA.run.xml'.
 \openout1 = `ADA.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 60822 strings out of 473832
- 1418525 string characters out of 5729482
- 2539470 words of memory out of 5000000
- 82875 multiletter control sequences out of 15000+600000
- 625374 words of font info for 131 fonts, out of 8000000 for 9000
+ 61535 strings out of 473832
+ 1433239 string characters out of 5729482
+ 2545376 words of memory out of 5000000
+ 83571 multiletter control sequences out of 15000+600000
+ 645980 words of font info for 171 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 104i,12n,107p,1260b,4458s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 104i,18n,107p,1260b,4475s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on ADA.pdf (22 pages).
+Output written on ADA.pdf (36 pages).
