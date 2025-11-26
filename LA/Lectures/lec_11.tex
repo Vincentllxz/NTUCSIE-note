@@ -1,0 +1,446 @@
+\newpage
+
+\lecture{11}{25 Nov. 13:20}{}
+
+\subsection{Rectangular Matrices with Orthogonal Columns}
+
+\[
+    Ax = b, \quad \text{where } A \text{ is not neccessarily square.}
+\]
+
+Similarly, we may have a system $Qx = b$, where $Q_{m\times n}$ is NOT square and $m > n$.
+
+\begin{note}
+    \[
+        Q^TQ = \begin{pmatrix}
+            q_1^T \\
+            \vdots \\
+            q_n^T
+        \end{pmatrix} \begin{pmatrix}
+            q_1 & \cdots & q_n
+        \end{pmatrix} = \begin{pmatrix}
+            1 & \cdots & 0 \\
+            \vdots & \ddots & \vdots \\
+            0 & \cdots & 1
+        \end{pmatrix} = I_n
+    \]
+    In this case, $Q^T$ is the left inverse of $Q$.
+\end{note}
+
+\begin{proposition}[3S]
+    If $Q$ has orthonormal columns, then the least squares problem is easy.
+    \begin{itemize}
+        \item $Q_{m\times n}$: has no solution for most $b$ \hfill \blue{$\longleftrightarrow \quad Ax = b$}
+        \item $Q^TQ\bar{x} = Q^Tb$: normal equation \hfill \blue{$\longleftrightarrow \quad A^TA\bar{x} = A^Tb$}
+        \item $\bar{x} = Q^Tb$: least squares solution
+        \item \begin{align*}
+        p = Q\bar{x} &= QQ^Tb = (q_1 \ \cdots \ q_n) \begin{pmatrix}
+            q_1^T \\
+            \vdots \\
+            q_n^T
+        \end{pmatrix} b \\
+        &= \sum_{i=1}^n (q_i^Tb) q_i:\text{ projection of } b \text{ onto } C(Q) \qquad \blue{\longleftrightarrow \quad p = A\bar{x}}
+        \end{align*}
+        \item $P = QQ^T$ \hfill \blue{$\longleftrightarrow \quad P = A(A^TA)^{-1}A^T$}
+    \end{itemize}
+\end{proposition}
+
+\subsection{The Gram-Schmidt Process}
+
+\begin{recall}
+    $S = \{x_1, \cdots, x_n\}$ is an orthognoral subset if $V$ if $\forall i \neq j, \langle x_i, x_j \rangle = 0$ and $S$ is orthonormal if additionally \[\langle x_i, x_i \rangle = \delta_{ij} = \blue{\begin{cases}
+        1, & i = j \\
+        0, & i \neq j
+    \end{cases}}\]
+    \begin{notation}
+        $\| x \| = \sqrt{\langle x, x \rangle}$ is called the \redbox{norm} of $x$. ($\langle x, x \rangle > 0$, if $x \neq 0$)
+    \end{notation}
+\end{recall}
+
+\begin{note}
+    There are many norms,
+    \begin{itemize}
+        \item 1-norm: $\| x \|_1 = \sum_{i=1}^n |x_i|$
+        \item 2-norm: $\| x \|_2 = \sqrt{\sum_{i=1}^n x_i^2}$
+        \item $\infty$-norm: $\| x \|_\infty = \max_{1 \leq i \leq n} |x_i|$
+    \end{itemize}
+\end{note}
+
+\newpage
+
+\begin{theorem}[1]
+    Let $V$ be an inner product space and let $S = \{x_1 \cdots x_n\}$ be an orthogonal subset of non-zero vectors. If \[
+        y = \sum_{i=1}^k a_i x_i,
+    \] then \[
+        a_j = \frac{\langle y, x_j \rangle}{\| x_j \|^2} \quad \text{for } j = 1, \cdots, n. \qquad (\text{i.e. } y = \sum_{i=1}^k \frac{\langle y, x_j \rangle}{\| x_j \|^2} x_j)
+    \]
+\end{theorem}
+\begin{proof}
+    Since \[ \langle y_i, x_j \rangle = \sum_{i = 1}^{k} \ = a_j \]
+    Thus, \[
+        a_j = \frac{\langle y, x_j \rangle}{\| x_j \|^2}.
+    \]
+\end{proof}
+
+\begin{corollary}[1]
+    If $S$ is, then \[
+        y = \sum_{i=1}^k \langle y, x_j \rangle x_j.
+    \]
+\end{corollary}
+\begin{corollary}[2]
+    If $S$ is an orthonormal set of non-zero vectors, then $S$ is linearly independent.
+\end{corollary}
+
+\begin{eg}
+    In $\mathbb{R}^3$, $\displaystyle \left\{\frac{1}{\sqrt{2}}(1, 1, 0), \frac{1}{\sqrt{3}}(1, -1, 1), \frac{1}{\sqrt{6}}(-1, 1, 2)\right\}$. Find the orthognormal set.
+\end{eg}
+\vspace{1em}
+
+Given $\displaystyle (1,2,3) = \frac{3}{\sqrt{2}}\left[ \frac{1}{\sqrt{2}} (1,1,0) \right] + \frac{2}{\sqrt{3}}\left[ \frac{4}{\sqrt{3}} (1,-1,1) \right] + \frac{2}{\sqrt{6}}\left[ \frac{1}{\sqrt{6}} (-1,1,2) \right]$.
+
+\begin{remark}
+    Suppose $\{y_1, y_2\}$ is linearly independent set. We would like to construct an orthogonal set, $\{x_1, x_2\}$, that spans the same subspace. One way is to take $x_1 = y_1$ and $x_2 = y_2 - p$, where $p$ is the projection of $y_2$ onto $y_1$.
+    \[
+        p = \frac{\langle y_2, y_1 \rangle}{\| y_1 \|^2} y_1
+    \]
+    In other words, we take \[
+        x_2 = y_2 - \frac{\langle y_2, y_1 \rangle}{\| y_1 \|^2} y_1.
+    \]
+\end{remark}
+
+\begin{theorem}[2. extend to n vectors]
+    Let $V$ be an inner product space and let $S = \{y_1, \cdots, y_m\}$ be a linearly independent subset of $V$. Define $S' = \{
+        x_1, \cdots, x_m
+    \}$ where \[
+        \underset{\text{Gram-Schmidt Orthogonalization}}{\boxed{x_1 = y_1, \quad x_k = y_k - \sum_{i=1}^{k-1} \frac{\langle y_k, x_i \rangle}{\| x_i \|^2} x_i, \quad \text{ for } 2 \leq k \leq m.}}
+    \]
+    THen $S'$ is an orthogonal set of non-zero vectors such that \[
+        \text{span}(S') = \text{span}(S).
+    \]
+\end{theorem}
+\begin{proof}
+    Supplymentary notes.
+\end{proof}
+\newpage
+\begin{eg}
+    In $\mathbb{R}^3$, let $y_1 = (1,1,0)$, $y_2 = (2,0,1)$, $y_3 = (2,2,1)$. Find an orthogonal basis for $x_1, x_2, x_3$.
+\end{eg}
+
+\begin{itemize}
+    \item $\displaystyle x_1 = y_1 = (1,1,0)$
+    \item $\displaystyle x_2 = y_2 - \frac{\langle y_2, x_1 \rangle}{\| x_1 \|^2} x_1 = (2,0,1) - \frac{2}{2}(1,1,0) = (1,-1,1)$
+    \item $\displaystyle x_3 = y_3 - \frac{\langle y_3, x_1 \rangle}{\| x_1 \|^2} x_1 - \frac{\langle y_3, x_2 \rangle}{\| x_2 \|^2} x_2 = (-\frac{1}{3}, \frac{1}{3}, \frac{2}{3})$
+\end{itemize}
+
+\subsection{The Factorization $A = QR$}
+
+\[
+    A = (a_1 \mid \cdots \mid a_n)_{m\times n} \longrightarrow Q = (q_1 \mid \cdots \mid q_n)_{m\times n} \quad Q^TQ = I_n
+\]
+
+\begin{theorem}[3U]
+    Every $m\times n$ matrix $A$ with linearly independent columns can be factored as \[
+        A = Q_{m \times n}R_{n \times n}
+    \]
+    The columns of $Q$ are orthognormal and $R$ is an invertible upper-triangular matrix. When $m=n$ and all matrices are square, $Q$ is orthogonal.
+\end{theorem}
+\begin{proof}
+    We use Gram-Schmidt Orthogonalization process to construct $Q$ and $R$.
+    \begin{prev}[Theorem (2)]
+        \[
+            \red{q_j'} = a_j - \blue{\sum_{i=1}^{j-1} \frac{\langle a_j, q_i \rangle}{\| q_i \|^2} \cdot q_i}, \quad q_j = \frac{q_j'}{\| q_j' \|}
+        \]
+    \end{prev}
+    Let $a_1, \cdots, a_n$ be the columns of $A$. By Gram-Schmidt Orthogonalization process, we can construct orthonormal vectors 
+    \[
+    q_1, \cdots, q_n \ni \text{span}\{q_1, \cdots, q_n\} = \text{span}\{a_1, \cdots, a_n\}\text{ for }j = 1, \cdots, n
+    \]
+    So \[
+        \blue{a_j = (q^Ta) \cdot q_1 + \cdots + (q_{j-1}^Ta) \cdot q_{j-1}} + \red{\|q_j'\| \cdot q_j} \quad (\text{i.e. linear combination of } q_j's)
+    \]
+    \[
+        A = (a_1 \mid \cdots \mid a_n) = (q_1 \mid \cdots \mid q_n) \begin{pmatrix}
+            \|q_1'\| & q_1^Ta_2 & \cdots & q_1^Ta_n \\
+            0 & \|q_2'\| & \cdots & q_2^Ta_n \\
+            \vdots & \vdots & \ddots & \vdots \\
+            0 & 0 & \cdots & \|q_n'\|
+        \end{pmatrix} = QR
+    \]
+    \begin{align*}
+        &j = 1: \ a_1 = \|q_1'\| \cdot q_1 \\
+        &j = 2: \ a_2 = (q_1^Ta_2) \cdot q_1 + \|q_2'\| \cdot q_2 \\
+        &\vdots \\
+        &j = n: \ a_n = (q_1^Ta_n) \cdot q_1 + (q_2^Ta_n) \cdot q_2 + \cdots + (q_{n-1}^Ta_n) \cdot q_{n-1} + \|q_n'\| \cdot q_n
+    \end{align*}
+    i.e. $R$ is invertible since its diagonal entries are non-zero. 
+\end{proof}
+
+\newpage
+
+\begin{eg}
+    \[
+        A = \begin{pmatrix}
+            1 & -2 & -3 \\
+            2 & 0 & -3 \\
+            2 & 4 & 3
+        \end{pmatrix} \qquad 
+        a_1 = \begin{pmatrix}
+            1 \\ 2 \\ 2
+        \end{pmatrix},\ a_2 = \begin{pmatrix}
+            -2 \\ 0 \\ 4
+        \end{pmatrix},\ a_3 = \begin{pmatrix}
+            -3 \\ -3 \\ 3
+        \end{pmatrix}
+    \]
+\end{eg}
+
+\begin{enumerate}[label=$\arabic*^\circ$]
+    \item $\displaystyle q_1' = a_1 = \begin{pmatrix}
+        1 \\ 2 \\ 2
+    \end{pmatrix}, \quad q_1 = \frac{q_1'}{\|q_1'\|
+    } = \frac{1}{3} \begin{pmatrix}
+        1 \\ 2 \\ 2
+    \end{pmatrix}$
+    \item $\displaystyle q_2' = a_2 - \langle a_2, q_1 \rangle \cdot q_1 = \begin{pmatrix}
+        -2 \\ 0 \\ 4
+    \end{pmatrix} - \blue{2} \cdot \frac{1}{3} \begin{pmatrix}
+        1 \\ 2 \\ 2
+    \end{pmatrix} = \frac{1}{3} \begin{pmatrix}
+        -8 \\ -4 \\ 8
+    \end{pmatrix}, \quad q_2 = \frac{q_2'}{\|q_2'\|} = \frac{1}{12} \begin{pmatrix}
+        -8 \\ -4 \\ 8
+    \end{pmatrix}$
+    \item $\displaystyle q_3' = a_3 - \langle a_3, q_1 \rangle \cdot q_1 - \langle a_3, q_2 \rangle \cdot q_2 = \begin{pmatrix}
+        -3 \\ -3 \\ 3
+    \end{pmatrix} - \blue{(-1)} \cdot \frac{1}{3} \begin{pmatrix}
+        1 \\ 2 \\ 2
+    \end{pmatrix} - \blue{5} \cdot \frac{1}{3} \begin{pmatrix}
+        -2 \\ -1 \\ 2
+    \end{pmatrix} = \frac{1}{3} \begin{pmatrix}
+        2 \\ -2 \\ 1
+    \end{pmatrix}, \quad q_3 = \frac{q_3'}{\|q_3'\|} = \frac{1}{1} \begin{pmatrix}
+        2/3 \\ -2/3 \\ 1/3
+    \end{pmatrix}$
+    \item Thus, \[
+        A = \begin{pmatrix}
+            1 & -2 & -3 \\
+            2 & 0 & -3 \\
+            2 & 4 & 3
+        \end{pmatrix} = \underset{\yel{\text{orthognormal columns}}}{\begin{pmatrix}
+            \vert & \vert & \vert \\
+            q_1 & q_2 & q_3 \\
+            \vert & \vert & \vert
+        \end{pmatrix}} \underset{\red{\text{invertible upper-triangular record Gram-Schmidt}}}{\begin{pmatrix}
+            3 & 2 & -1 \\
+            0 & 4 & 5 \\
+            0 & 0 & 1
+        \end{pmatrix}} = QR
+    \]
+\end{enumerate}
+
+\begin{remark}
+    $A$: linearly independent columns \[
+        Ax = b \quad \text{inconsistent}
+    \]
+    \begin{align*}
+        &\longrightarrow \quad A^TA\bar{x} = A^Tb \quad &(A=QR \rightarrow A^TA = R^TQ^TQR = R^TR) \\
+        &\longrightarrow \quad R^TR\bar{x} = A^Tb \quad &(R \text{ is invertible}) \\
+        &\longrightarrow \quad R\bar{x} = Q^Tb
+    \end{align*}
+    i.e. $\underset{Ax = b}{\text{inconsistent}} \to \underset{R\bar{x} = Q^Tb}{\text{consistent}}$
+\end{remark}
+
+\chapter{Determinant}
+
+\section{Introduction to Determinants}
+
+\begin{enumerate}[label=(\Alph*)]
+    \item A test for invertivility
+    \[
+        \begin{cases}
+            \text{If } \det A = 0, & A \text{ is singular} \\
+            \text{If } \det A \neq 0, & A \text{ is invertible}
+        \end{cases}
+    \]   
+    The most important application is whether $\det(A - \lambda I) = 0$ (characteristic polynomial). We shall see that $\det(A - \lambda I)$ is a polynomial of degree $n$ in $\lambda$.
+    \item The determinant gives formulas for the pivots i.e. \[
+        \text{determinant} = \pm(\text{product of pivots})
+    \]
+    \item The determinant measures the dependence of $A^{-1}b$ on each entry of $b$ (Cramer's rule). If one parameter in changed in an experiment, or one observation is corrected, the influence coefficients on $x = A^{-1}b$ is a ratio of determinants.
+\end{enumerate}
+
+\section{The Properties of Determinants}
+\begin{definition}[determinant]
+    Let $A$ be an $n \times n$ square matrix over $F$. The determinant of $A$ is a function \[
+        \det: M_{n \times n}(F) \to F
+    \]
+    satisfies the following conditions:
+    \begin{enumerate}[label=(\roman*)]
+        \item The $\det A$ is a \red{linear function} if the i-th row $(i = 1, 2, \cdots, n)$when the other $(n-1)$ rows are held fixed. i.e. if \[
+            \det A = D(A_1, \cdots, A_i, \cdots, A_n) \text{where } A_i \text{ is the } i\text{-th row of } A,
+        \]
+        then \begin{align*}
+            &\det(A_1, \cdots, A_{i-1}, \alpha A_i + A_i', A_{i+1}, \cdots, A_n) \\ = &\alpha \det(A_1, \cdots, A_{i-1}, A_i, A_{i+1}, \cdots, A_n) + \det(A_1, \cdots, A_{i-1}, A_i', A_{i+1}, \cdots, A_n)
+        \end{align*}
+        \begin{eg}
+            \[
+                \det \begin{pmatrix}
+                    a+a' & b + b' \\
+                    c & d
+                \end{pmatrix} = \det \begin{pmatrix}
+                    a' & b \\
+                    c & d
+                \end{pmatrix} + \det \begin{pmatrix}
+                    a & b' \\
+                    c & d
+                \end{pmatrix}
+            \]
+        \end{eg}
+        \item $\det I = 1$
+        \item $\det(P_{ij}A) = -\det A$, where $P_{ij}A$ is the permutation matrix.
+        \item $\det A = 0$, if $A$ has two identical rows.
+        \item $\det(EA) = \det A$, if $E$ is the elementary operation of subtracting a multiple of one row from another row.
+        \begin{proof}
+            For the following steps,
+            \begin{align*}
+                &\det(A_1, \cdots, A_{i-1}, \alpha A_i + A_j, A_{i+1}, \cdots, A_n) \\ &\overset{\text{(i)}}{=} \alpha \det(A_1, \cdots, A_{i-1}, A_i, A_{i+1}, \cdots, A_n) + \det(A_1, \cdots, A_{i-1}, A_j, A_{i+1}, \cdots, A_n) \\
+                &\overset{\text{(iv)}}{=} \alpha \det(A) + 0 = \det(A)
+            \end{align*}
+            i.e. $\det(EA) = \det A$.
+        \end{proof}
+        \item If $A$ has a row of zeros, then $\det A = 0$.
+        \begin{proof}
+            (v) + (iv)
+        \end{proof}
+        \item If $A$ is triangular, then $\det A = a_{11}a_{22} \cdots a_{nn}$
+        \begin{proof}
+            Here is the steps
+            \begin{enumerate}[label=$\arabic*^\circ$]
+                \item $\displaystyle \det A \overset{\text{(v)}}{=} \det \begin{pmatrix}
+                    a_{11} & a_{12} & \cdots & a_{1n} \\
+                    0 & a_{22} & \cdots & a_{2n} \\
+                    \vdots & \vdots & \ddots & \vdots \\
+                    0 & 0 & \cdots & a_{nn}
+                \end{pmatrix} \overset{\text{(i)}}{=} a_{11} \det \begin{pmatrix}
+                    a_{22} & \cdots & a_{2n} \\
+                    \vdots & \ddots & \vdots \\
+                    0 & \cdots & a_{nn}
+                \end{pmatrix} = \cdots \overset{\text{(ii)}}{=} \prod_{i=1}^{n} a_{ii}$
+                \item If $a_{jj} = 0$, by (v), the $j$-th row can be converted to a zero row, thus by (vi), $\det A = 0$.
+            \end{enumerate}
+        \end{proof}
+        \item If $A$ is singular$ \ \iff \ \det A = 0$. $\qquad$ If $A$ is invertible $ \ \iff \ \det A \neq 0$.
+        \begin{proof}
+            Let
+            \[
+                A \xrightarrow{\blue{E_1 E_2 \cdots}} U
+            \]
+            \[
+                \det A \overset{\text{(iii)}}{=} \det U \overset{\text{(vii)}}{=} \red{\pm}\ d_1 d_2 \cdots d_n
+            \]
+        \end{proof}
+        \item $\det(AB) = \det A \cdot \det B$
+        \newpage
+        \item $\det(A^T) = \det A$
+        \begin{proof}
+            We separately consider two cases:
+            \begin{itemize}
+                \item Case1: A is singular $\iff \ A^T$ is singular.
+                \item Case2: A is nonsigular $\implies\ PA = LDU$
+                \begin{enumerate}[label=$\arabic*^\circ$]
+                    \item $(\det P)(\det A) = \det L \det D \det U = \det D$
+                    \item $(PA)^T = (LDU)^T$ and thus \[
+                        (\det A^T)(\det P^T) = \det D^T \implies \det A^T = \det D = \det A
+                    \]
+                \end{enumerate}
+                \begin{note}
+                    $PP^T = I \ \implies \ (\det P)(\det P^T) = \det I = 1$ and $\det P, \ \det P^T \in \{1, -1\}$
+                \end{note}
+            \end{itemize}
+            Done.
+        \end{proof}
+    \end{enumerate}
+\end{definition}
+
+\begin{eg}
+    \[
+        A_n = \begin{pmatrix}
+            2 & -1 & 0 & \cdots & 0 & 0 \\
+            -1 & 2 & -1 & \cdots & 0 & 0 \\
+            0 & -1 & 2 & \cdots & 0 & 0 \\
+            \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\
+            0 & 0 & 0 & \cdots & 2 & -1 \\
+            0 & 0 & 0 & \cdots & -1 & 2
+        \end{pmatrix}_{n \times n} = L \begin{pmatrix}
+            2 & 0 & 0 & \cdots & 0 & 0 \\
+            0 & \frac{3}{2} & 0 & \cdots & 0 & 0 \\
+            0 & 0 & \frac{4}{3} & \cdots & 0 & 0 \\
+            \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\
+            0 & 0 & 0 & \cdots & \frac{n}{n-1} & 0 \\
+            0 & 0 & 0 & \cdots & 0 & \frac{n+1}{n}
+        \end{pmatrix} U
+    \]
+\end{eg}
+Thus, \[
+    \det A_n = 2 \cdot \frac{3}{2} \cdot \frac{4}{3} \cdots \frac{n}{n-1} \cdot \frac{n+1}{n} = n + 1.
+\]
+
+\section{Formulas for the Determinant}
+
+\begin{proposition}[4A]
+    If $A$ is nonsingular, then \(A = P^{-1}LDU\) and \[
+        \det A = \pm (\text{product of pivots})
+    \]
+\end{proposition}
+
+\begin{eg}
+    \[
+        \begin{pmatrix}
+            a & b \\
+            c & d
+        \end{pmatrix} = \begin{pmatrix}
+            1 & 0 \\
+            c/a & 1
+        \end{pmatrix} \begin{pmatrix}
+            a & 0 \\
+            0 & \frac{ad - bc}{a}
+        \end{pmatrix} \begin{pmatrix}
+            1 & b/a \\
+            0 & 1
+        \end{pmatrix} \quad \implies \quad \det \begin{pmatrix}
+            a & b \\
+            c & d
+        \end{pmatrix} = ad - bc
+    \]
+\end{eg}
+
+\begin{eg}
+    \begin{align*}
+        \det \begin{pmatrix}
+            a & b \\
+            c & d
+        \end{pmatrix} &= \det \begin{pmatrix}
+            a & 0 \\
+            c & d
+        \end{pmatrix} + \det \begin{pmatrix}
+            0 & b \\
+            c & d
+        \end{pmatrix} \\
+        &= \det \begin{pmatrix}
+            a & 0 \\
+            c & 0
+        \end{pmatrix} + \det \begin{pmatrix}
+            a & 0 \\
+            0 & d
+        \end{pmatrix} + \det \begin{pmatrix}
+            0 & b \\
+            c & 0
+        \end{pmatrix} + \det \begin{pmatrix}
+            0 & b \\
+            0 & d
+        \end{pmatrix} \\
+    \end{align*}
+\end{eg}
+
+Thus, \blue{the non-zero terms have to come in different columns}
+    

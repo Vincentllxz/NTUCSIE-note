@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.8.4)  22 NOV 2025 15:35
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.8.4)  24 NOV 2025 14:06
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -306,13 +306,6 @@ LaTeX Font Info:    ... okay on input line 7.
 [3]
 
 [4]
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <9> on input line 328.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 328.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 328.
-
 
 [5] (./Grpah.aux)
  ***********
@@ -321,11 +314,11 @@ L3 programming layer <2025-01-18>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 13332 strings out of 473832
- 284565 string characters out of 5729482
- 665417 words of memory out of 5000000
- 36184 multiletter control sequences out of 15000+600000
- 560724 words of font info for 50 fonts, out of 8000000 for 9000
+ 13317 strings out of 473832
+ 284413 string characters out of 5729482
+ 666417 words of memory out of 5000000
+ 36175 multiletter control sequences out of 15000+600000
+ 558901 words of font info for 44 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  117i,5n,121p,412b,724s stack positions out of 10000i,1000n,20000p,200000b,200000s
 

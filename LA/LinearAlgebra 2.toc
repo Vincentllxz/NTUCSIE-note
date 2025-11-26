@@ -56,9 +56,3 @@
 \contentsline {section}{\numberline {3.4}Orthogonal Bases, Orthogonal Matrices and Gram-Schmidt Orthogonalization}{62}{section.3.4}%
 \contentsline {subsection}{\numberline {3.4.1}Orthogonal Matrices}{62}{subsection.3.4.1}%
 \contentsline {subsection}{\numberline {3.4.2}Rectangular Matrices with Orthogonal Columns}{64}{subsection.3.4.2}%
-\contentsline {subsection}{\numberline {3.4.3}The Gram-Schmidt Process}{64}{subsection.3.4.3}%
-\contentsline {subsection}{\numberline {3.4.4}The Factorization $A = QR$}{66}{subsection.3.4.4}%
-\contentsline {chapter}{\numberline {4}Determinant}{68}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Introduction to Determinants}{68}{section.4.1}%
-\contentsline {section}{\numberline {4.2}The Properties of Determinants}{68}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Formulas for the Determinant}{70}{section.4.3}%

@@ -312,12 +312,12 @@
 \draw[dashed] (0,3.0) -- (4,3.0);
 
 % main(): &r &p
-\node at (2,2) {main(): \&r, \&p};
+\node at (2,2) {{\texttt{main(): \&r, \&p}}};
 \draw[thick] (0,2.5) -- (4,2.5);
 
 % f(): &k
 \draw[dashed] (0,1.5) -- (4,1.5);
-\node at (2,1.1) {f(): \&k};
+\node at (2,1.1) {{\texttt{f(): \&k}}};
 
 % stack downward arrow
 \draw[->,thick] (2,0.8) -- (2,0.1);
@@ -325,20 +325,20 @@
 
 % heap p
 \draw[dashed] (0,-0.9) -- (4,-0.9);
-\node at (2,-1.4) {$p$};
+\node at (2,-1.4) {\texttt{p}};
 
 \draw[thick] (0,-1.8) -- (4,-1.8);
 
 % uninitialized global/static
-\node at (2,-2.2) {\&gu (0)};
+\node at (2,-2.2) {\texttt{\&gu (0)}};
 \draw[thick] (0,-2.6) -- (4,-2.6);
 
 % initialized global/static
-\node at (2,-3.0) {\&gi (7), \&s (1)};
+\node at (2,-3.0) {\texttt{\&gi (7)}, \texttt{\&s (1)}};
 \draw[thick] (0,-3.4) -- (4,-3.4);
 
 % text / instructions
-\node at (2,-3.8) {main(), f(), exit()};
+\node at (2,-3.8) {\texttt{main()}, \texttt{f()}, \texttt{exit()}};
 
 % Address labels
 \node[anchor=south] at (2,4.2) {\bf High address};

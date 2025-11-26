@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.8.4)  24 NOV 2025 10:23
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.8.4)  25 NOV 2025 16:18
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -2990,9 +2990,152 @@ Underfull \hbox (badness 10000) in paragraph at lines 554--555
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 578.
+) (./Lectures/lec_11.tex
+
+[63]
+Package marginnote Info: Margin note 68.1 is on absolute page 68 on input line 4.
+Package marginnote Info: right page because not two side mode on input line 4.
+Package marginnote Info: xpos seems to be 72.2698pt on input line 4.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 14.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 30.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 51.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 56.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 57.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 61.
+
+
+[64]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 71.
+Package mdframed Info: Not enough space on this page on input line 77.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 79.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 85.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 90.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 95.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 102.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 111.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 122.
+
+
+[65]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 126.
+Package mdframed Info: Not enough space on this page on input line 127.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 141.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 148.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 149.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 153.
+
+
+[66]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 181.
+Package mdframed Info: Not enough space on this page on input line 195.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 242.
+
+
+[67]
+Chapter 4.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 273.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 286.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 298.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 304.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 310.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 313.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 314.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 317.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 331.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 334.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 341.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 346.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 357.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 358.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 361.
+Package mdframed Info: Box was splittet wrong
+ starting loop to iterate the splitting point
+(mdframed)              on input line 363.
+
+
+[68
+
+]
+
+[69]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 366.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 390.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 397.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 418.
 )
 
-[63] (./LinearAlgebra.aux)
+[70] (./LinearAlgebra.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2022/08/05>
@@ -3006,18 +3149,18 @@ LaTeX Font Warning: Size substitutions with differences
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package rerunfilecheck Info: File `LinearAlgebra.out' has not changed.
-(rerunfilecheck)             Checksum: 24C1DCC27A324F434B475850AC5F069A;4900.
+(rerunfilecheck)             Checksum: EC556FD3EFA6E91E0B8869639A0CD32B;5618.
 Package logreq Info: Writing requests to 'LinearAlgebra.run.xml'.
 \openout1 = `LinearAlgebra.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 61920 strings out of 473832
- 1440330 string characters out of 5729482
- 2511248 words of memory out of 5000000
- 83927 multiletter control sequences out of 15000+600000
- 653352 words of font info for 186 fonts, out of 8000000 for 9000
+ 62005 strings out of 473832
+ 1442238 string characters out of 5729482
+ 2521803 words of memory out of 5000000
+ 84005 multiletter control sequences out of 15000+600000
+ 653376 words of font info for 189 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 104i,21n,107p,1270b,4543s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 104i,21n,107p,1270b,4573s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on LinearAlgebra.pdf (65 pages).
+Output written on LinearAlgebra.pdf (72 pages).
