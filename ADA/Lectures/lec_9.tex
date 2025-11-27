@@ -458,10 +458,31 @@
     \] we know $f'(uv)$ can not exceed $c(uv)$, so\[ f'(uv) \leq c(uv) \tag{2} \] by (1) and (2), we have \[ f(uv) < c(uv) \] which means \[ c_{R(f)}(uv) = c(uv) - f(uv) > 0 \]
     Therefore, all edges in $R(f)$ along path $P$ have positive capacities. Which is a $st$-path in $R(f)$, contradicting the assumption that $d_{R(f)} = \infty$.
 
-    \begin{com}
-        第二個不會
-    \end{com}
+    Now we start to prove the second property. We need to show that $f + g$ satisfies capacity constraint and conservation law.
+    \begin{itemize}
+        \item Capacity constraint: For any $uv \in E(G)$, we havee some constraint:
+        \begin{itemize}
+            \item $g(uv) < c_{R(f)}(uv) = c(uv) - f(uv) \leq c(uv)$
+            \item $g(vu) \leq c_{R(f)}(vu) = f(uv)$
+        \end{itemize}
+        to maximize $(f + g)(uv)$, we set $g(uv)$ to its maximum and $g(vu)$ to its minimum, so we have
+        \[
+            (f + g)(uv) = f(uv) + g(uv) - g(vu) \leq f(uv) + (c(uv) - f(uv)) - 0 = c(uv)
+        \]
+        \item Conservation law: For any $v \in V(G) \setminus \{s, t\}$, we have
+        \begin{align*}
+            \sum_{uv \in E(G)} (f + g)(uv) 
+            &= \ \sum_{uv \in E(G)} (f(uv) + g(uv) - g(vu)) \\ 
+            &= \sum_{uv \in E(G)} f(uv) + \sum_{uv \in E(G)} g(uv) - \sum_{uv \in E(G)} g(vu) \\ 
+            &= \sum_{uv \in E(G)} f(uv) + 0 \tag{by conservation law of $g$} \\ 
+            &= \sum_{vu \in E(G)} f(vu) \tag{by conservation law of $f$} \\
+            &= \sum_{vu \in E(G)} (f(vu) + g(vu) - g(uv)) \tag{by conservation law of $g$} \\
+            &= \sum_{vu \in E(G)} (f + g)(vu)
+        \end{align*}
+    \end{itemize}
 \end{proof}
+
+\newpage
 
 \begin{algorithm}[H]
     \DontPrintSemicolon
@@ -470,7 +491,14 @@
     \KwOut{A maximum flow $f$.}
 
     Initialize $f(u,v) \gets 0$ for all $(u,v)\in E$\;
-    Compute residual capacity $c_{R(f)}(u,v)=c(u,v)-f(u,v)$ for all $(u,v)$\;
+    Compute residual capacity 
+    \[
+        c_{R(f)}(uv) = \begin{cases}
+            c(uv) - f(uv) & \text{if } f(uv) < c(uv)  \\
+            f(uv) & \text{if } f(uv) > 0
+        \end{cases}
+    \]
+    \;
 
     \While{$\exists\ st-\text{augmenting path } P$ in  $R(f)$}{
         Obtain an $st$-path $P$ of $R(f)$, let \(
@@ -491,7 +519,7 @@
     We separately prove three things:
     \begin{itemize}
         \item Initialization: $f$ is a valid flow in $G$ with value $0$.
-        \item \red{According to Lemma 5.1.1}: In every round $g$ is a valid flow in $R(f)$, so $f + g$ is a valid $st$-flow in $G$.
+        \item According to Lemma 5.1.1（關鍵觀察）: In every round $g$ is a valid flow in $R(f)$, so $f + g$ is a valid $st$-flow in $G$.
         \item Termination: When the algorithm terminates, $d_{R(f)}(s,t) = \infty$, so by \blue{Lemma 5.1.1}, $f$ is a maximum $st$-flow in $G$.
     \end{itemize}
     Proof complete.
