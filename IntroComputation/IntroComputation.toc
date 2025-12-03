@@ -53,3 +53,19 @@
 \contentsline {subsection}{\numberline {3.4.2}Hilbert's 10th problem}{47}{subsection.3.4.2}%
 \contentsline {subsection}{\numberline {3.4.3}Description of Turing machines}{48}{subsection.3.4.3}%
 \contentsline {chapter}{\numberline {4}Decidability}{49}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Decidability}{49}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}$A_{\text {DFA}}$ is Decidable}{50}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}$A_{\text {NFA}}$ is Decidable}{50}{subsection.4.1.2}%
+\contentsline {subsection}{\numberline {4.1.3}$A_{\text {REX}}$ is Decidable}{50}{subsection.4.1.3}%
+\contentsline {subsection}{\numberline {4.1.4}$E_{\text {DFA}}$ is Decidable}{50}{subsection.4.1.4}%
+\contentsline {subsection}{\numberline {4.1.5}$EQ_{\text {DFA}}$ is Decidable}{51}{subsection.4.1.5}%
+\contentsline {subsection}{\numberline {4.1.6}$A_{\text {CFG}}$ is Decidable}{51}{subsection.4.1.6}%
+\contentsline {subsection}{\numberline {4.1.7}$E_{\text {CFG}}$ is Decidable}{52}{subsection.4.1.7}%
+\contentsline {subsection}{\numberline {4.1.8}$EQ_{\text {CFG}}$ is Undecidable}{52}{subsection.4.1.8}%
+\contentsline {section}{\numberline {4.2}Halting Problem}{53}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Diagonalization Method}{53}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}NOT Turing-Recognizable}{55}{subsection.4.2.2}%
+\contentsline {subsection}{\numberline {4.2.3}Halting Problem is Undecidable}{55}{subsection.4.2.3}%
+\contentsline {subsection}{\numberline {4.2.4}co-Turing-Recognizable}{57}{subsection.4.2.4}%
+\contentsline {chapter}{\numberline {5}Reducibility}{58}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Reducibility}{58}{section.5.1}%

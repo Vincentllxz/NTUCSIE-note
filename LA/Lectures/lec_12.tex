@@ -1,0 +1,562 @@
+\newpage
+
+\lecture{12}{2 Dec. 13:20}{}
+
+\begin{align*}
+    \begin{vmatrix}
+        a_{11} & a_{12} & a_{13} \\
+        a_{21} & a_{22} & a_{23} \\
+        a_{31} & a_{32} & a_{33}
+    \end{vmatrix} &= \overset{\yel{(1,2,3)}}{\begin{vmatrix}
+        a_{11} & 0 & 0 \\
+        0 & a_{22} & 0 \\
+        0 & 0 & a_{33}
+    \end{vmatrix}} + \overset{\yel{(2,3,1)}}{\begin{vmatrix}
+        0 & a_{12} & 0 \\
+        0 & 0 & a_{23} \\
+        a_{31} & 0 & 0
+    \end{vmatrix}} + \overset{\yel{(3,1,2)}}{\begin{vmatrix}
+        0 & 0 & a_{13} \\
+        a_{21} & 0 & 0 \\
+        0 & a_{32} & 0
+    \end{vmatrix}} \\[6pt]
+    &+ \overset{\yel{(2,1,3)}}{\begin{vmatrix}
+        0 & a_{12} & 0 \\
+        a_{21} & 0 & 0 \\
+        0 & 0 & a_{33}
+    \end{vmatrix}} + \overset{\yel{(3,2,1)}}{\begin{vmatrix}
+        0 & 0 & a_{13} \\
+        0 & a_{22} & 0 \\
+        a_{31} & 0 & 0
+    \end{vmatrix}} + \overset{\yel{(1,3,2)}}{\begin{vmatrix}
+        a_{11} & 0 & 0 \\
+        0 & 0 & a_{23} \\
+        0 & a_{32} & 0
+    \end{vmatrix}} \\[6pt]
+    &= a_{11}a_{22}a_{33} \begin{vmatrix}
+        1 & 0 & 0 \\
+        0 & 1 & 0 \\
+        0 & 0 & 1
+    \end{vmatrix} + a_{12}a_{23}a_{31} \begin{vmatrix}
+        0 & 1 & 0 \\
+        0 & 0 & 1 \\
+        1 & 0 & 0
+    \end{vmatrix} + a_{13}a_{21}a_{32} \begin{vmatrix}
+        0 & 0 & 1 \\
+        1 & 0 & 0 \\
+        0 & 1 & 0
+    \end{vmatrix} \\[6pt]
+    &+ a_{12}a_{21}a_{33} \begin{vmatrix}
+        0 & 1 & 0 \\
+        1 & 0 & 0 \\
+        0 & 0 & 1
+    \end{vmatrix} + a_{13}a_{22}a_{31} \begin{vmatrix}
+        0 & 0 & 1 \\
+        0 & 1 & 0 \\
+        1 & 0 & 0
+    \end{vmatrix} + a_{11}a_{23}a_{32} \begin{vmatrix}
+        1 & 0 & 0 \\
+        0 & 0 & 1 \\
+        0 & 1 & 0
+    \end{vmatrix}
+\end{align*}
+
+\[
+    \yel{\implies n! \text{ ways to permute the numbers } 1, 2, \ldots, n}
+\]
+
+
+\begin{corollary}
+    \[
+        \det(A) = \sum_{\sigma \in S_n} \left( \sgn(\sigma) \prod_{i=1}^n a_{i, \sigma(i)} \right)
+    \]
+    where \( S_n \) is the set of all permutations on \( \{1, 2, \ldots, n\} \) and \( \sgn(\sigma) \) is the sign of the permutation \( \sigma \).
+    \[
+        |S_n| = n!
+    \]
+\end{corollary}
+
+In other words $\det(A)$ is the sum of \( n! \) terms and for each term, every row and column cintributes to exactly one element. So it is not difficult to see that \[
+    \det A = a_{11} A_{11} + a_{12} A_{12} + \ldots + a_{1n} A_{1n}
+\]
+where \[ A_{1j} = (-1)^{1+j} M_{1j} \] is the \textbf{\red{cofactor}} of \( a_{1j} \), and \( M_{1j} \) is the submatrix of \( A \) obtained by deleting the \( 1 \)-th row and \( j \)-th column.
+
+Similarly, 
+
+\begin{proposition}[4B]
+    \[
+        \det A = a_{i1} A_{i1} + a_{i2} A_{i2} + \ldots + a_{in} A_{in}
+    \]
+    where \[ A_{ij} = (-1)^{i+j} M_{ij} \] is the \textbf{\red{cofactor}} of \( a_{ij} \). \( M_{ij} \) is the submatrix of \( A \) obtained by deleting the \( i \)-th row and \( j \)-th column.
+\end{proposition}
+
+\newpage
+
+\begin{eg}
+    \[
+        A = \begin{pmatrix}
+            1 & 2 & 5 & 4 \\
+            3 & 6 & 4 & 2 \\
+            0 & 3_{\red{32}} & 0 & 4_{\red{34}} \\
+            -1 & 2 & 2 & 3
+        \end{pmatrix}
+    \]
+\end{eg}
+
+\begin{align*}
+    \det A &= 3 (-1)^{3+2} \cdot \det M_{32} + 4 (-1)^{3+4} \cdot \det M_{34} \\[6pt]
+    &= (-3) \begin{vmatrix}
+        1 & 5 & 4 \\
+        3 & 4 & 2 \\
+        -1 & 2 & 3
+    \end{vmatrix} + (-4) \begin{vmatrix}
+        1 & 2 & 5 \\
+        3 & 1 & 4 \\
+        -1 & 2 & 2
+    \end{vmatrix} \\[6pt]
+    &= (-3) [1(8) + 5(-1)(11) + 4(10)] + (-4) [1(-6) + 2(10)(-1) + 5(7)] \\
+    &= -15
+\end{align*}
+
+\[
+    \because \det A = \det A^T
+\]
+so we can also expand along columns. i.e.
+\[
+    \det A = a_{1j} A_{1j} + a_{2j} A_{2j} + \ldots + a_{nj} A_{nj}
+\]
+
+\section{Appplications of Determinants}
+
+\begin{enumerate}[label=(\Alph*)]
+    \item The computation of $A^{-1}$
+    
+    \[
+        \overset{\blue{A}}{\begin{pmatrix}
+            a_{11} & a_{12} & \ldots & a_{1n} \\
+            a_{21} & a_{22} & \ldots & a_{2n} \\
+            \vdots & \vdots & \ddots & \vdots \\
+            a_{n1} & a_{n2} & \ldots & a_{nn}
+        \end{pmatrix}} \overset{\blue{\operatorname{adj}(A)\ \text{adjugate matrix}}}{\begin{pmatrix}
+            A_{11} & A_{21} & \ldots & A_{n1} \\
+            A_{12} & A_{22} & \ldots & A_{n2} \\
+            \vdots & \vdots & \ddots & \vdots \\
+            A_{1n} & A_{2n} & \ldots & A_{nn}
+        \end{pmatrix}} = \det(A) I_n
+    \]
+
+    \[
+        a_{11} A_{21} + a_{12} A_{2 2} + \ldots + a_{1n} A_{2 n} = \det(B)
+    \]
+
+    \[
+        B = \begin{pmatrix}
+            \red{a_{11}} & \red{a_{12}} & \red{\ldots} & \red{a_{1n}} \\
+            \blue{a_{11}} & \yel{a_{12}} & \yel{\ldots} & \yel{a_{1n}} \\
+            \blue{\vdots} & \yel{\vdots} & \yel{\ddots} & \yel{\vdots} \\
+            \blue{a_{n1}} & \yel{a_{n2}} & \yel{\ldots} & \yel{a_{nn}}
+        \end{pmatrix}
+    \]
+
+    \begin{proposition}[4C]
+        \[
+            A \cdot \operatorname{adj}(A) = \det(A) I_n
+        \]
+        If \( \det(A) \neq 0 \), then
+        \[
+            A^{-1} = \frac{1}{\det(A)} \operatorname{adj}(A)
+        \]
+        If \( \det(A) = 0 \), then \( A \) is not invertible.
+    \end{proposition}
+
+    \newpage
+
+    \item The solution of system of linear equations
+    
+    \begin{theorem}[4D - Cramer's Rule]
+        If \( A \) is an invertible \( n \times n \) matrix, then the unique solution of the system of equations \( A \mathbf{x} = \mathbf{b} \) is \( \mathbf{x} = A^{-1} \mathbf{b} \) and \[
+            x_j = \frac{\det(A_j)}{\det(A)} \quad \text{,where } B_j = \begin{pmatrix}
+                a_{11} & a_{12} & \ldots & a_{1,j-1} & \red{b_1} & a_{1,j+1} & \ldots & a_{1n} \\
+                a_{21} & a_{22} & \ldots & a_{2,j-1} & \red{b_2} & a_{2,j+1} & \ldots & a_{2n} \\
+                \vdots & \vdots & \ddots & \vdots & \red{\vdots} & \vdots & \ddots & \vdots \\
+                a_{n1} & a_{n2} & \ldots & a_{n,j-1} & \underset{\red{\text{j-th column}}}{\red{b_n}} & a_{n,j+1} & \ldots & a_{nn}
+            \end{pmatrix}
+        \]
+    \end{theorem}
+    \vspace{-1em}
+    \begin{proof}
+        Let \[
+            \det B_j = \sum_{i=1}^n b_i A_{ij}
+        \]
+        Since \( A \) is invertible, by Proposition 4C, we have \[
+            A^{-1} = \frac{1}{\det A} \operatorname{adj}(A)
+        \]
+        Thus, \[
+            \begin{pmatrix}
+                x_1 \\
+                x_2 \\
+                \vdots \\
+                x_n
+            \end{pmatrix} = \frac{1}{\det A} \begin{pmatrix}
+                A_{11} & A_{21} & \ldots & A_{n1} \\
+                A_{12} & A_{22} & \ldots & A_{n2} \\
+                \vdots & \vdots & \ddots & \vdots \\
+                A_{1n} & A_{2n} & \ldots & A_{nn}
+            \end{pmatrix} \begin{pmatrix}
+                b_1 \\
+                b_2 \\
+                \vdots \\
+                b_n
+            \end{pmatrix} = \frac{1}{\det A} \begin{pmatrix}
+                \det B_1 \\
+                \det B_2 \\
+                \vdots \\
+                \det B_n
+            \end{pmatrix}
+        \]
+    \end{proof}
+
+    \item Volume of parallelepipeds
+    
+    \[
+        AA^T = \begin{pmatrix}
+            \text{--- } \mathbf{a_1} \text{ ---} \\
+            \text{--- } \mathbf{a_2} \text{ ---} \\
+            \vdots \\
+            \text{--- } \mathbf{a_n} \text{ ---}
+        \end{pmatrix} \begin{pmatrix}
+            \vert & \vert & & \vert \\
+            \mathbf{a_1} & \mathbf{a_2} & \ldots & \mathbf{a_n} \\
+            \vert & \vert & & \vert
+        \end{pmatrix} = \begin{pmatrix}
+            \ell_1^2 & 0 & \ldots & 0 \\
+            0 & \ell_2^2 & \ldots & 0 \\
+            \vdots & \vdots & \ddots & \vdots \\
+            0 & 0 & \ldots & \ell_n^2
+        \end{pmatrix} \quad \ell_i: \text{ length of } \mathbf{a_i}
+    \]
+    \[
+        \det(AA^T) = (\det A)^2 = \ell_1^2 \ell_2^2 \ldots \ell_n^2
+    \]
+    \[
+        \therefore \ \text{If rows of } A \text{ are mutually perpendicular, } |\det A| = \ell_1 \ell_2 \ldots \ell_n
+    \]
+
+    \item A formula for pivots
+    
+    \begin{proposition}[4E]
+        If \(A\) is factored into $LDU$, then upper left corners satisfy
+        \[
+            A_k = L_k D_k U_k
+        \]
+        For every $k$, the submatrix \( A_k \) is going through a Gaussian elimination of its own.
+        \[
+            \begin{pmatrix}
+                L_k & 0 \\
+                B & C
+            \end{pmatrix} \begin{pmatrix}
+                D_k & 0 \\
+                0 & E
+            \end{pmatrix} \begin{pmatrix}
+                U_k & F \\
+                0 & G
+            \end{pmatrix} = \begin{pmatrix}
+                L_k D_k U_k & L_k D_k F \\
+                B D_k U_k & B D_k F + C E G
+            \end{pmatrix} = A
+        \]
+        The pivot entries ate all nonzero whenever the numbers of \(\det A_k\)'s are all nonzero.
+    \end{proposition}
+
+    \begin{note}
+        \[
+            \det A_k = (\det L_k) \cdot (\det D_k) \cdot (\det U_k) = \det(D_k) = \det D_k = d_{11} d_{22} \ldots d_{kk}
+        \]
+    \end{note}
+
+    \newpage
+
+    \begin{notation}
+        \[
+            d_k = \frac{\det A_k}{\det A_{k-1}} \quad \text{for } k = 1, 2, \ldots, n \quad (\det A_0 := 1)
+        \]
+    \end{notation}
+
+    Gaussian Elimination can be carried out without row exchanges if and only if leading submatrices \( A_1, A_2, \ldots, A_n \) are all nonzero.
+    \[
+        d_1 d_2 \ldots d_k = \frac{\det A_1}{\det A_0} \cdot \frac{\det A_2}{\det A_1} \cdot \ldots \cdot \frac{\det A_n}{\det A_{n-1}} = \det A_n = \det A
+    \]
+\end{enumerate}
+
+
+\chapter{Eigenvalues and Eigenvectors}
+
+\section{Introduction}
+
+\begin{exercise}
+    What are the eigenvalues of a matrix and how useful are they?
+\end{exercise}
+
+\vspace{1em}
+
+Consider a matrix \( A = \begin{pmatrix}
+    1 & 1 \\
+    -2 & 4
+\end{pmatrix} \), then \( A \) can be treated as a linear transformation on \( \mathbb{R}^2 \) that maps each vector \(\mathbf{v}\) to \(T(\mathbf{v}) = \mathbf{u}\).
+i.e. \[
+    \mathbf{v} = \begin{pmatrix}
+        x_1 \\
+        x_2
+    \end{pmatrix}\ \overset{T}{\longmapsto}\ T(\mathbf{v}) =  \mathbf{u} = A \mathbf{v}
+\]
+and we can get \[
+    A \mathbf{v} = \lambda \mathbf{v}
+\]
+
+\begin{definition}
+    Let \(A\) be an \( n \times n \) matrix. If there exists a nonzero vector \( \mathbf{v} \) s.t. \[
+        A \mathbf{v} = \lambda \mathbf{v}
+    \] for some scalar \( \lambda \), then \( \lambda \) is called an \textbf{\red{eigenvalue}} of \( A \) and \( \mathbf{v} \) is called an \textbf{\red{eigenvector}} of \( A \) corresponding to \( \lambda \).
+\end{definition}
+
+\begin{theorem}[5A]
+    \[
+       A \mathbf{v} = \lambda \mathbf{v} \iff \det (A - \lambda I) = 0
+    \]
+    and for each eigenvalue $\lambda$ exists at least one (nonzero) eigenvector $\mathbf{x}$ associated with it.
+\end{theorem}
+\begin{proof}
+    We separately prove the two directions.
+    \begin{itemize}
+        \item[\( \implies \)] By definition, $\exists\ $ nonzero vector \( \mathbf{x} \) s.t. \( A \mathbf{x} = \lambda \mathbf{x} \). This means, \[
+            A \mathbf{x} - \lambda I \mathbf{x} = 0
+        \] has nonzero solution, so $A - \lambda I$ must be singular. i.e. 
+        \[
+            \det(A - \lambda I) = 0
+        \]
+        \item[\( \impliedby \)] If \(\det(A - \lambda I) = 0\), then \(A - \lambda I\) has nontrivial solution(s) $\mathbf{v}$. Hence, \[
+            A\mathbf{v} = \lambda \mathbf{v}
+        \]
+        implies that \( \lambda \) is an eigenvalue of \( A \) with eigenvector \( \mathbf{v} \).
+    \end{itemize}
+    Proof complete.
+\end{proof}
+
+
+\begin{remark}
+    Eigenvectors are (by definition) nonzero vectors and for each eigenvalue, its corresponding eigenvectors are \textbf{\red{NEVER}} unique. 
+    e.g. \[
+        A(\alpha \mathbf{v}) = \alpha A \mathbf{v} = \alpha \lambda \mathbf{v} = \lambda (\alpha \mathbf{v}) \quad \forall \alpha \neq 0
+    \]
+\end{remark}
+
+\begin{note}
+    An \( n \times n \) matrix \( A \) can have at most \( n \) distinct (real or complex) eigenvalues.
+\end{note}
+
+\begin{definition}
+    \[
+        \det (A - \lambda I) = 0
+    \]
+    is called the \textbf{characteristic equation} of \( A \) and the polynomial \[
+        p(\lambda) = \det (A - \lambda I)
+    \] is called the \textbf{characteristic polynomial} of $ A$. For each eigenvalue \( \lambda \), the \textbf{eigenspace} corresponding to \( \lambda \) is defined as \[
+        E_\lambda = \{ \mathbf{v} \in \mathbb{R}^n : A \mathbf{v} = \lambda \mathbf{v} \}
+    \]
+    which is the null space of \( A - \lambda I \).
+\end{definition}
+
+\begin{eg}
+    \[
+        A = \begin{pmatrix}
+            1 & 1 \\
+            -2 & 4
+        \end{pmatrix}
+    \]
+\end{eg}
+
+\[
+    A - \lambda I = \begin{pmatrix}
+        1 - \lambda & 1 \\
+        -2 & 4 - \lambda
+    \end{pmatrix} \ \implies \ |A - \lambda I| = (1 - \lambda)(4 - \lambda) - (-2)(1) = 0 \ \implies \ \lambda^2 - 5 \lambda + 6 = 0
+\]
+
+
+\begin{eg}
+    \[
+        A = \begin{pmatrix}
+            3 & 0 \\
+            0 & 2
+        \end{pmatrix}
+    \]
+\end{eg}
+\vspace{1em}
+\[
+    \lambda = 3, 2
+\]
+
+\begin{eg}
+    Projection matrix \[
+        P = \begin{pmatrix}
+            0.5 & 0.5 \\
+            0.5 & 0.5
+        \end{pmatrix}
+    \]
+\end{eg}
+
+\[
+    \det(P - \lambda I) = \begin{vmatrix}
+        0.5 - \lambda & 0.5 \\
+        0.5 & 0.5 - \lambda
+    \end{vmatrix} = (\lambda - 1) \lambda = 0
+\]
+
+\newpage
+
+\begin{enumerate}[label=$\arabic*^\circ$]
+    \item $\lambda_1 = 1$, $P - \lambda_1 I = \begin{pmatrix} 0.5 - 1 & 0.5 \\ 0.5 & 0.5 - 1 \end{pmatrix} = \begin{pmatrix} -0.5 & 0.5 \\ 0.5 & -0.5 \end{pmatrix}$
+    \[
+        \implies \begin{cases} 
+            \begin{pmatrix}
+                -0.5 & 0.5 \\
+                0.5 & -0.5
+            \end{pmatrix} x_1 = 0 \ \implies \ x_1 = \begin{pmatrix}
+                1 \\ 1
+            \end{pmatrix} \\[20pt]
+            \begin{pmatrix}
+                0.5 & 0.5 \\
+                0.5 & 0.5
+            \end{pmatrix} x_2 = 0 \ \implies \ x_2 = \begin{pmatrix}
+                1 \\ -1
+            \end{pmatrix}
+        \end{cases}
+    \]
+    \item $\lambda_2 = 0$, $P - \lambda_2 I = P$
+\end{enumerate}
+
+\begin{eg}
+    \(A\) is triangular\[
+        \det (A - \lambda I) = \begin{vmatrix}
+            a_{11} - \lambda & 0 & \ldots & 0 \\
+            0 & a_{22} - \lambda & \ldots & 0 \\
+            \vdots & \vdots & \ddots & \vdots \\
+            0 & 0 & \ldots & a_{nn} - \lambda
+        \end{vmatrix} = \prod_{i=1}^n (a_{ii} - \lambda) = 0
+    \]
+    Therefore, the eigenvalues of a triangular matrix are the entries on its main diagonal.
+\end{eg}
+
+\begin{theorem}[5B]
+    The sum of the $n$ eigenvalues equals the sum of the $n$ diagonal entries:
+    \[
+        \tr(A) = \sum_{i=1}^n a_{ii} = \sum_{i=1}^n \lambda_i
+    \]
+    Furthermore, the product of the $n$ eigenvalues equals the product of the $n$ diagonal entries:
+    \[
+        \det(A) = \prod_{i=1}^n a_{ii} = \prod_{i=1}^n \lambda_i
+    \]
+\end{theorem}
+\begin{proof}
+    We separately prove the two parts.
+    \begin{itemize}
+        \item[(1)] $p_A(x) = (\lambda_1 - x)(\lambda_2 - x)\dots(\lambda_n - x) = (-x)^n + (\lambda_1 + \lambda_2 + \dots + \lambda_n)(-x)^{n-1} + \dots$ \\
+        The coefficient of $(-x)^{n-1}$ in $p_A(x)$ is $\lambda_1 + \lambda_2 + \dots + \lambda_n$.
+
+        \item[(2)] Let $A = \begin{pmatrix}
+        a_{11} & a_{12} & \cdots & a_{1n} \\
+        a_{21} & a_{22} & \ddots & \vdots \\
+        \vdots & \vdots & \ddots & \vdots \\
+        a_{n1} & a_{n2} & \cdots & a_{nn}
+        \end{pmatrix}$
+
+        \begin{align*}
+        p_A(x) &= \det(A - xI) = \det \begin{pmatrix}
+        a_{11} - x & a_{12} & \cdots & a_{1n} \\
+        a_{21} & a_{22} - x & \cdots & a_{2n} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        a_{n1} & a_{n2} & \cdots & a_{nn} - x
+        \end{pmatrix} \\
+        &= (a_{11} - x) \times C_{11} + a_{12} \times C_{12} + \dots + a_{1n} \times C_{1n}, \text{ where } C_{1j} \text{ is the cofactor of } a_{1j}.
+        \end{align*}
+
+        For $C_{1j}, \forall j = 2, 3, \dots, n$, the highest power of $(-x)$ is $n-2$.
+
+        For example, $C_{12} = (-1)^{1+2} \det \begin{pmatrix}
+        a_{21} & a_{23} & \cdots & a_{2n} \\
+        a_{31} & a_{33} - x & \cdots & a_{3n} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        a_{n1} & a_{n3} & \cdots & a_{nn} - x
+        \end{pmatrix}$.
+
+        So $C_{1j}, \forall j = 2, 3, \dots, n$ can't generate the $(-x)^{n-1}$ term. \\
+        The coefficient of $(-x)^{n-1}$ in $p_A(x)$ is equal to the coefficient of $(-x)^{n-1}$ in
+        \[
+        (a_{11} - x) \times \det \begin{pmatrix}
+        a_{22} - x & a_{23} & \cdots & a_{2n} \\
+        a_{32} & a_{33} - x & \cdots & a_{3n} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        a_{n2} & a_{n3} & \cdots & a_{nn} - x
+        \end{pmatrix}.
+        \]
+
+        Similarly, \\
+        the coefficient of $(-x)^{n-1}$ in $(a_{11} - x) \times \det \begin{pmatrix}
+        a_{22} - x & a_{23} & \cdots & a_{2n} \\
+        a_{32} & a_{33} - x & \ddots & a_{3n} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        a_{n2} & a_{n3} & \cdots & a_{nn} - x
+        \end{pmatrix}$
+
+        is equal to the coefficient of $(-x)^{n-1}$ in
+        \[
+        (a_{11} - x)(a_{22} - x) \times \det \begin{pmatrix}
+        a_{33} - x & a_{34} & \cdots & a_{3n} \\
+        a_{43} & a_{44} - x & \cdots & a_{4n} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        a_{n3} & a_{n4} & \cdots & a_{nn} - x
+        \end{pmatrix}.
+        \]
+
+        Therefore, the coefficient of $(-x)^{n-1}$ in $p_A(x)$ will be equal to the coefficient of $(-x)^{n-1}$ in $(a_{11} - x)(a_{22} - x) \dots (a_{nn} - x)$. \\
+        i.e. the coefficient of $(-x)^{n-1}$ in $p_A(x)$ is $a_{11} + a_{22} + \dots + a_{nn} = tr(A)$.
+
+        By (1) (2), we have $\lambda_1 + \lambda_2 + \dots + \lambda_n = tr(A)$.
+    \end{itemize}
+
+    Next, we prove the product part.
+    \begin{align*}
+        p_A(x) &= \det(A - xI) = (\lambda_1 - x)(\lambda_2 - x)\dots(\lambda_n - x). \\
+        \Rightarrow p_A(0) &= \det(A) = \lambda_1 \lambda_2 \dots \lambda_n
+    \end{align*}
+\end{proof}
+
+\newpage
+
+Let us summarize some properties of eigenvalues and eigenvectors.
+\begin{enumerate}[label=(\arabic*)]
+    \item To each eigenvalue, there is an eigenvector corresponding to it, and to each eigenvector, there is an eigenvalue corresponding to it.
+    \item An eigenvalue	\red{can be} zero. However, an eigenvector can \red{never} be the zero vector.
+    \item If $Ax = \lambda x$, then  $A(\alpha x) = \lambda (\alpha x)$ \\[6pt]
+    i.e. any scalar multiple of an eigenvector is \red{still} an eigenvector corresponding to \red{the same} eigenvalue. However, there \red{can be} independent eigenvectors associated with the same eigenvalue.
+    \item \begin{theorem}
+        The following statements are equivalent:
+        \begin{enumerate}[label=(\alph*)]
+            \item \( \lambda \) is an eigenvalue of \( A \).
+            \item \( \det(A - \lambda I) = \blue{0} \).
+            \item \( A - \lambda I \) is not \blue{singular}.
+        \end{enumerate}
+    \end{theorem}
+    \item The eigenvalue of $A$ are the roots of its characteristic polynomial $p(\lambda) = \det(A - \lambda I) = 0$.
+    \item If $\lambda$ is an eigenvalue of $A$, then the corresponding eigenvectors is the solution(s) of the linear system $(A - \lambda I)x = 0$.
+    \item If $\lambda$ is an eigenvalue of $A$, then the nullspace of $(A - \lambda I)$ is called the eigenspace corresponding to $\lambda$.
+    \item $\lambda$ may be a repeated root of the characteristic polynomial. Thus multiplicity of repetition is called the \textbf{algebraic multiplicity} of the eigenvalue. The dimension of the eigenspace corresponding to $\lambda$ is called the \textbf{geometric multiplicity} of the eigenvalue.
+    \item If $A$ is a matrix over $\mathbb{R}$, $A$ may have no eigenvalues in $\mathbb{R}$. e.g.
+    \[
+        A = \begin{pmatrix}
+            0 & -1 \\
+            1 & 0
+        \end{pmatrix}
+    \] 
+    However, if we allow complex eigenvalues and eigenvectors, then every real matrix has at least one eigenvalue in $\mathbb{C}$.
+\end{enumerate}

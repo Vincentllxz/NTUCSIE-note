@@ -45,4 +45,10 @@
 \contentsline {section}{\numberline {6.2}Convex Hull}{40}{section.6.2}%
 \contentsline {subsection}{\numberline {6.2.1}Application of Convex Hull: Farthest Point Pair}{41}{subsection.6.2.1}%
 \contentsline {chapter}{\numberline {7}B-tree, 23-tree, 234-tree, RB-tree}{42}{chapter.7}%
-\contentsline {chapter}{\numberline {8}Hashing, Finger Pringting Function}{43}{chapter.8}%
+\contentsline {section}{\numberline {7.1}RB-tree}{42}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Balance Tree (B-tree)}{43}{section.7.2}%
+\contentsline {chapter}{\numberline {8}Hashing, Randomized Algorithm \& Communication Complexity}{44}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Hashing}{44}{section.8.1}%
+\contentsline {section}{\numberline {8.2}Randomized Algorithm \& Communication Complexity}{45}{section.8.2}%
+\contentsline {chapter}{\numberline {9}P \& NP}{47}{chapter.9}%
+\contentsline {section}{\numberline {9.1}P-class \& NP-class}{47}{section.9.1}%

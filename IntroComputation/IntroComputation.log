@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.8.4)  26 NOV 2025 08:43
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.8.4)  3 DEC 2025 21:35
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -2606,11 +2606,188 @@ Package mdframed Info: mdframed detected package amsthm
 
 [48]
 Chapter 4.
+Package marginnote Info: Margin note 53.1 is on absolute page 53 on input line 4.
+Package marginnote Info: right page because not two side mode on input line 4.
+Package marginnote Info: xpos seems to be 72.2698pt on input line 4.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 10.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 11.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 15.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 16.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 20.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 21.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 25.
+
+
+[49
+
+]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 33.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 41.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 56.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 66.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 74.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 82.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 89.
+Package mdframed Info: Box was splittet wrong
+ starting loop to iterate the splitting point
+(mdframed)              on input line 101.
+
+
+[50]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 110.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 116.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 141.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 147.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 151.
+
+
+[51]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 163.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 169.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 198.
+
+Underfull \hbox (badness 10000) in paragraph at lines 203--204
+
+ []
+
+
+
+[52]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 232.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 237.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 243.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 249.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 254.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 263.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 272.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 280.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 283.
+
+
+[53]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 290.
+Package mdframed Info: Not enough space on this page on input line 294.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 297.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 366.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 370.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 399.
+Package mdframed Info: Not enough space on this page on input line 403.
+
+
+[54]
+Package mdframed Info: Not enough space on this page on input line 403.
+
+Underfull \hbox (badness 10000) in paragraph at lines 407--408
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 420--422
+
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 430.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 437.
+
+
+[55]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 466.
+
+
+[56]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 522.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 527.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 531.
+) (./Lectures/lec_11.tex
+
+[57]
+Chapter 5.
 Package marginnote Info: right page because not two side mode on input line 4.
 Package marginnote Info: xpos seems to be \@mn@currxpos  on input line 4.
 )
 
-[49
+[58
 
 ] (./IntroComputation.aux)
  ***********
@@ -2624,14 +2801,8 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
-
-Package rerunfilecheck Warning: File `IntroComputation.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `IntroComputation.out':
-(rerunfilecheck)             Before: C392F1594BC8C3D90C0F10AF87CE5781;3150
-(rerunfilecheck)             After:  5FCA4A01256080C53D6C6FC22976C565;3254.
+Package rerunfilecheck Info: File `IntroComputation.out' has not changed.
+(rerunfilecheck)             Checksum: 583597C4CA58DFD5CA149A8ED8FD620B;3721.
 Package logreq Info: Writing requests to 'IntroComputation.run.xml'.
 \openout1 = `IntroComputation.run.xml'.
 
@@ -2641,12 +2812,12 @@ Package logreq Info: Writing requests to 'IntroComputation.run.xml'.
 ### semi simple group (level 1) entered at line 32 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 73562 strings out of 473832
- 1752677 string characters out of 5729482
- 2722003 words of memory out of 5000000
- 95536 multiletter control sequences out of 15000+600000
- 638740 words of font info for 132 fonts, out of 8000000 for 9000
+ 73776 strings out of 473832
+ 1756564 string characters out of 5729482
+ 2723912 words of memory out of 5000000
+ 95745 multiletter control sequences out of 15000+600000
+ 644726 words of font info for 134 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 150i,19n,134p,1607b,4547s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 150i,19n,134p,1607b,4635s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on IntroComputation.pdf (51 pages).
+Output written on IntroComputation.pdf (60 pages).
