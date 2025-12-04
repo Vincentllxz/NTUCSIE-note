@@ -10,17 +10,32 @@ If we have a algorithm, we want to check if the problem is solvable or not on th
     We first give some definitions of the languages.
     \begin{definition}[$A$]
         $A$ is the language \[
-            A = \{ \langle M, w \rangle \mid M: \text{ TM that accepts } w \}
+            A = \{ \langle M, w \rangle \mid M \text{ accepts } w \}
         \]
     \end{definition}
     \begin{definition}[$E$]
         $E$ is the language \[
-            E = \{ \langle M \rangle \mid M: \text{ TM},\ L(M) = \emptyset \}
+            E = \{ \langle M \rangle \mid M: L(M) = \emptyset \}
         \]
     \end{definition}
     \begin{definition}[$EQ$]
         $EQ$ is the language \[
-            EQ = \{ \langle M_1, M_2 \rangle \mid M_1, M_2: \text{ TM},\ L(M_1) = L(M_2) \}
+            EQ = \{ \langle M_1, M_2 \rangle \mid M_1, M_2: L(M_1) = L(M_2) \}
+        \]
+    \end{definition}
+    \begin{definition}[$HALT$]
+        $HALT$ is the language \[
+            HALT = \{ \langle M, w \rangle \mid M: L(M) \text{ halts on } w \}
+        \]
+    \end{definition}
+    \begin{definition}[$REGULAR$]
+        $REGULAR$ is the language \[
+            REGULAR = \{ \langle M \rangle \mid M: L(M) \text{ is regular} \}
+        \]
+    \end{definition}
+    \begin{definition}[$ALL$]
+        $ALL$ is the language \[
+            ALL = \{ \langle M \rangle \mid M: L(M) = \Sigma^* \}
         \]
     \end{definition}
 \end{definition*}
