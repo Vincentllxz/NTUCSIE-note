@@ -79,6 +79,18 @@
 \contentsline {subsection}{\numberline {5.2.4}ALL$_{\text {CFG}}$ is Undecidable}{62}{subsection.5.2.4}%
 \contentsline {chapter}{\numberline {6}Complexity Theory}{64}{chapter.6}%
 \contentsline {section}{\numberline {6.1}Big-O Notation}{64}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Time Complexity}{64}{section.6.2}%
-\contentsline {section}{\numberline {6.3}Languages in P}{64}{section.6.3}%
-\contentsline {section}{\numberline {6.4}Languages in NP}{64}{section.6.4}%
+\contentsline {subsection}{\numberline {6.1.1}Analysis of Algorithms}{64}{subsection.6.1.1}%
+\contentsline {subsection}{\numberline {6.1.2}small o Notation}{66}{subsection.6.1.2}%
+\contentsline {section}{\numberline {6.2}Time Complexity}{68}{section.6.2}%
+\contentsline {subsection}{\numberline {6.2.1}Multi-tape TM and Time Complexity}{68}{subsection.6.2.1}%
+\contentsline {section}{\numberline {6.3}Languages in P}{70}{section.6.3}%
+\contentsline {subsection}{\numberline {6.3.1}PATH Problem}{70}{subsection.6.3.1}%
+\contentsline {subsection}{\numberline {6.3.2}Relatively Prime Problem}{70}{subsection.6.3.2}%
+\contentsline {section}{\numberline {6.4}Languages in NP}{72}{section.6.4}%
+\contentsline {subsection}{\numberline {6.4.1}Hamiltonian Path Problem}{72}{subsection.6.4.1}%
+\contentsline {subsection}{\numberline {6.4.2}Compositeness Problem}{72}{subsection.6.4.2}%
+\contentsline {subsection}{\numberline {6.4.3}Verifier}{72}{subsection.6.4.3}%
+\contentsline {subsection}{\numberline {6.4.4}Class NP}{73}{subsection.6.4.4}%
+\contentsline {subsection}{\numberline {6.4.5}NP $\equiv $ Polynomial-time NTM}{74}{subsection.6.4.5}%
+\contentsline {subsection}{\numberline {6.4.6}SUBSET-SUM Problem}{74}{subsection.6.4.6}%
+\contentsline {subsection}{\numberline {6.4.7}P versus NP and NP-completeness}{75}{subsection.6.4.7}%
