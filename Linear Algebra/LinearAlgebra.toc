@@ -1,67 +1,76 @@
 \babel@toc {english}{}\relax 
-\contentsline {chapter}{\numberline {0}Introduction}{2}{chapter.0}%
-\contentsline {section}{\numberline {0.1}Geometry}{2}{section.0.1}%
-\contentsline {section}{\numberline {0.2}Abstract Algebra}{2}{section.0.2}%
-\contentsline {section}{\numberline {0.3}Applied Science}{2}{section.0.3}%
-\contentsline {chapter}{\numberline {1}Matrices and Gaussian Elimination}{3}{chapter.1}%
-\contentsline {section}{\numberline {1.1}Introduction}{3}{section.1.1}%
-\contentsline {subsection}{\numberline {1.1.1}Four aspects to follow}{3}{subsection.1.1.1}%
-\contentsline {section}{\numberline {1.2}Geometry of Linear Equation}{4}{section.1.2}%
-\contentsline {subsection}{\numberline {1.2.1}Singular Case}{7}{subsection.1.2.1}%
-\contentsline {subsection}{\numberline {1.2.2}Fundamental Linear Algebra Theorem (Geometry form)}{8}{subsection.1.2.2}%
-\contentsline {section}{\numberline {1.3}An Example of Gaussian Elimination}{8}{section.1.3}%
-\contentsline {section}{\numberline {1.4}Matrix Notation and Matrix Multiplication}{10}{section.1.4}%
-\contentsline {subsection}{\numberline {1.4.1}The Matrix Form of One Elimination Step}{11}{subsection.1.4.1}%
-\contentsline {subsection}{\numberline {1.4.2}Matrix Multiplication}{12}{subsection.1.4.2}%
-\contentsline {section}{\numberline {1.5}Triangular Factors and Row Exchanges}{14}{section.1.5}%
-\contentsline {subsection}{\numberline {1.5.1}Triangular Factorization}{15}{subsection.1.5.1}%
-\contentsline {subsection}{\numberline {1.5.2}One Linear System = Two Triangular Systems}{16}{subsection.1.5.2}%
-\contentsline {subsection}{\numberline {1.5.3}Row Excahnge and Permutation Matrices}{17}{subsection.1.5.3}%
-\contentsline {section}{\numberline {1.6}Inverse and Transpose}{18}{section.1.6}%
-\contentsline {subsection}{\numberline {1.6.1}The Calculation of $A^{-1}$: Gaussian-Jordan Method}{19}{subsection.1.6.1}%
-\contentsline {subsection}{\numberline {1.6.2}Invertible = Nonsingular}{20}{subsection.1.6.2}%
-\contentsline {section}{\numberline {1.7}Transpose $A^{T}$}{21}{section.1.7}%
-\contentsline {chapter}{\numberline {2}Vector Spaces and Linear Equation}{23}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Vector Spaces and Subspace}{23}{section.2.1}%
-\contentsline {subsection}{\numberline {2.1.1}Algebraic Rules of Vector Algebra}{24}{subsection.2.1.1}%
-\contentsline {subsection}{\numberline {2.1.2}subspace}{26}{subsection.2.1.2}%
-\contentsline {subsection}{\numberline {2.1.3}Column Space of $A$}{27}{subsection.2.1.3}%
-\contentsline {subsection}{\numberline {2.1.4}Nullspace of $A$}{27}{subsection.2.1.4}%
-\contentsline {section}{\numberline {2.2}The Solution of $m$ Equations in $n$ Unknows}{28}{section.2.2}%
-\contentsline {subsection}{\numberline {2.2.1}Steps to oobtain the solution to $Ax=b$}{32}{subsection.2.2.1}%
-\contentsline {section}{\numberline {2.3}Linear Independence, Basis and Dimension}{32}{section.2.3}%
-\contentsline {subsection}{\numberline {2.3.1}Spanning a Subspace}{35}{subsection.2.3.1}%
-\contentsline {subsection}{\numberline {2.3.2}Basis}{35}{subsection.2.3.2}%
-\contentsline {section}{\numberline {2.4}The Four Fundamental Subspaces}{37}{section.2.4}%
-\contentsline {subsection}{\numberline {2.4.1}Row space $\mathcal {C}(A^T)$}{37}{subsection.2.4.1}%
-\contentsline {subsection}{\numberline {2.4.2}Nullspace $\mathcal {N}(A)$}{38}{subsection.2.4.2}%
-\contentsline {subsection}{\numberline {2.4.3}Column space $\mathcal {C}(A)$}{38}{subsection.2.4.3}%
-\contentsline {subsection}{\numberline {2.4.4}Left nullspace $\mathcal {N}(A^T)$}{39}{subsection.2.4.4}%
-\contentsline {section}{\numberline {2.5}Graph and Network}{42}{section.2.5}%
-\contentsline {section}{\numberline {2.6}Linear Transformation}{42}{section.2.6}%
-\contentsline {subsection}{\numberline {2.6.1}Notation of Linear Transformation}{42}{subsection.2.6.1}%
-\contentsline {subsection}{\numberline {2.6.2}Matrix Representation of Linear Transformations}{45}{subsection.2.6.2}%
-\contentsline {subsection}{\numberline {2.6.3}Rotation $Q$, Projection $P$, Reflection $R$}{46}{subsection.2.6.3}%
-\contentsline {chapter}{\numberline {3}Orthogonality}{49}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Perpendicular Vectors and Orthogonal Subspaces}{49}{section.3.1}%
-\contentsline {subsection}{\numberline {3.1.1}Orthogonal Subspaces}{52}{subsection.3.1.1}%
-\contentsline {subsection}{\numberline {3.1.2}The Matrix and the Subspaces}{54}{subsection.3.1.2}%
-\contentsline {section}{\numberline {3.2}Inner Product and Projections onto Lines}{55}{section.3.2}%
-\contentsline {subsection}{\numberline {3.2.1}Inner Product and Schwarz Inequality}{55}{subsection.3.2.1}%
-\contentsline {subsection}{\numberline {3.2.2}Projections of Rank One}{56}{subsection.3.2.2}%
-\contentsline {section}{\numberline {3.3}Projections and Least Squares Applications}{57}{section.3.3}%
-\contentsline {subsection}{\numberline {3.3.1}Least Squares Problem with Several Variables}{58}{subsection.3.3.1}%
-\contentsline {subsection}{\numberline {3.3.2}Projection Matrices}{60}{subsection.3.3.2}%
-\contentsline {subsection}{\numberline {3.3.3}Least Square Fitting of Data}{61}{subsection.3.3.3}%
-\contentsline {section}{\numberline {3.4}Orthogonal Bases, Orthogonal Matrices and Gram-Schmidt Orthogonalization}{62}{section.3.4}%
-\contentsline {subsection}{\numberline {3.4.1}Orthogonal Matrices}{62}{subsection.3.4.1}%
-\contentsline {subsection}{\numberline {3.4.2}Rectangular Matrices with Orthogonal Columns}{64}{subsection.3.4.2}%
-\contentsline {subsection}{\numberline {3.4.3}The Gram-Schmidt Process}{64}{subsection.3.4.3}%
-\contentsline {subsection}{\numberline {3.4.4}The Factorization $A = QR$}{66}{subsection.3.4.4}%
-\contentsline {chapter}{\numberline {4}Determinant}{68}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Introduction to Determinants}{68}{section.4.1}%
-\contentsline {section}{\numberline {4.2}The Properties of Determinants}{68}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Formulas for the Determinant}{70}{section.4.3}%
-\contentsline {section}{\numberline {4.4}Appplications of Determinants}{72}{section.4.4}%
-\contentsline {chapter}{\numberline {5}Eigenvalues and Eigenvectors}{75}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Introduction}{75}{section.5.1}%
+\contentsline {chapter}{\numberline {0}Introduction}{3}{chapter.0}%
+\contentsline {section}{\numberline {0.1}Geometry}{3}{section.0.1}%
+\contentsline {section}{\numberline {0.2}Abstract Algebra}{3}{section.0.2}%
+\contentsline {section}{\numberline {0.3}Applied Science}{3}{section.0.3}%
+\contentsline {chapter}{\numberline {1}Matrices and Gaussian Elimination}{4}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Introduction}{4}{section.1.1}%
+\contentsline {subsection}{\numberline {1.1.1}Four aspects to follow}{4}{subsection.1.1.1}%
+\contentsline {section}{\numberline {1.2}Geometry of Linear Equation}{5}{section.1.2}%
+\contentsline {subsection}{\numberline {1.2.1}Singular Case}{8}{subsection.1.2.1}%
+\contentsline {subsection}{\numberline {1.2.2}Fundamental Linear Algebra Theorem (Geometry form)}{9}{subsection.1.2.2}%
+\contentsline {section}{\numberline {1.3}An Example of Gaussian Elimination}{9}{section.1.3}%
+\contentsline {section}{\numberline {1.4}Matrix Notation and Matrix Multiplication}{11}{section.1.4}%
+\contentsline {subsection}{\numberline {1.4.1}The Matrix Form of One Elimination Step}{12}{subsection.1.4.1}%
+\contentsline {subsection}{\numberline {1.4.2}Matrix Multiplication}{13}{subsection.1.4.2}%
+\contentsline {section}{\numberline {1.5}Triangular Factors and Row Exchanges}{15}{section.1.5}%
+\contentsline {subsection}{\numberline {1.5.1}Triangular Factorization}{16}{subsection.1.5.1}%
+\contentsline {subsection}{\numberline {1.5.2}One Linear System = Two Triangular Systems}{17}{subsection.1.5.2}%
+\contentsline {subsection}{\numberline {1.5.3}Row Excahnge and Permutation Matrices}{18}{subsection.1.5.3}%
+\contentsline {section}{\numberline {1.6}Inverse and Transpose}{19}{section.1.6}%
+\contentsline {subsection}{\numberline {1.6.1}The Calculation of $A^{-1}$: Gaussian-Jordan Method}{20}{subsection.1.6.1}%
+\contentsline {subsection}{\numberline {1.6.2}Invertible = Nonsingular}{21}{subsection.1.6.2}%
+\contentsline {section}{\numberline {1.7}Transpose $A^{T}$}{22}{section.1.7}%
+\contentsline {chapter}{\numberline {2}Vector Spaces and Linear Equation}{24}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Vector Spaces and Subspace}{24}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Algebraic Rules of Vector Algebra}{25}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2}subspace}{27}{subsection.2.1.2}%
+\contentsline {subsection}{\numberline {2.1.3}Column Space of $A$}{28}{subsection.2.1.3}%
+\contentsline {subsection}{\numberline {2.1.4}Nullspace of $A$}{28}{subsection.2.1.4}%
+\contentsline {section}{\numberline {2.2}The Solution of $m$ Equations in $n$ Unknows}{29}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Steps to oobtain the solution to $Ax=b$}{33}{subsection.2.2.1}%
+\contentsline {section}{\numberline {2.3}Linear Independence, Basis and Dimension}{33}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}Spanning a Subspace}{36}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}Basis}{36}{subsection.2.3.2}%
+\contentsline {section}{\numberline {2.4}The Four Fundamental Subspaces}{38}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}Row space $\mathcal {C}(A^T)$}{38}{subsection.2.4.1}%
+\contentsline {subsection}{\numberline {2.4.2}Nullspace $\mathcal {N}(A)$}{39}{subsection.2.4.2}%
+\contentsline {subsection}{\numberline {2.4.3}Column space $\mathcal {C}(A)$}{39}{subsection.2.4.3}%
+\contentsline {subsection}{\numberline {2.4.4}Left nullspace $\mathcal {N}(A^T)$}{40}{subsection.2.4.4}%
+\contentsline {section}{\numberline {2.5}Graph and Network}{43}{section.2.5}%
+\contentsline {section}{\numberline {2.6}Linear Transformation}{43}{section.2.6}%
+\contentsline {subsection}{\numberline {2.6.1}Notation of Linear Transformation}{43}{subsection.2.6.1}%
+\contentsline {subsection}{\numberline {2.6.2}Matrix Representation of Linear Transformations}{46}{subsection.2.6.2}%
+\contentsline {subsection}{\numberline {2.6.3}Rotation $Q$, Projection $P$, Reflection $R$}{47}{subsection.2.6.3}%
+\contentsline {chapter}{\numberline {3}Orthogonality}{50}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Perpendicular Vectors and Orthogonal Subspaces}{50}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Orthogonal Subspaces}{53}{subsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.1.2}The Matrix and the Subspaces}{55}{subsection.3.1.2}%
+\contentsline {section}{\numberline {3.2}Inner Product and Projections onto Lines}{56}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Inner Product and Schwarz Inequality}{56}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}Projections of Rank One}{57}{subsection.3.2.2}%
+\contentsline {section}{\numberline {3.3}Projections and Least Squares Applications}{58}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Least Squares Problem with Several Variables}{59}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}Projection Matrices}{61}{subsection.3.3.2}%
+\contentsline {subsection}{\numberline {3.3.3}Least Square Fitting of Data}{62}{subsection.3.3.3}%
+\contentsline {section}{\numberline {3.4}Orthogonal Bases, Orthogonal Matrices and Gram-Schmidt Orthogonalization}{63}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}Orthogonal Matrices}{63}{subsection.3.4.1}%
+\contentsline {subsection}{\numberline {3.4.2}Rectangular Matrices with Orthogonal Columns}{65}{subsection.3.4.2}%
+\contentsline {subsection}{\numberline {3.4.3}The Gram-Schmidt Process}{65}{subsection.3.4.3}%
+\contentsline {subsection}{\numberline {3.4.4}The Factorization $A = QR$}{67}{subsection.3.4.4}%
+\contentsline {chapter}{\numberline {4}Determinant}{69}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Introduction to Determinants}{69}{section.4.1}%
+\contentsline {section}{\numberline {4.2}The Properties of Determinants}{69}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Formulas for the Determinant}{71}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Appplications of Determinants}{73}{section.4.4}%
+\contentsline {chapter}{\numberline {5}Eigenvalues and Eigenvectors}{76}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Introduction}{76}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Diagonalization of a Matrix}{81}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Powers and Products: $A^k$ and $AB$}{83}{subsection.5.2.1}%
+\contentsline {section}{\numberline {5.3}Difference Equations and Powers $A^k$}{84}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}Markov Process}{85}{subsection.5.3.1}%
+\contentsline {chapter}{\numberline {A}SVD and Applications}{88}{appendix.A}%
+\contentsline {section}{\numberline {A.1}Singular Value Decomposition (SVD)}{88}{appendix.A.1}%
+\contentsline {section}{\numberline {A.2}Applications of SVD}{90}{appendix.A.2}%
+\contentsline {subsection}{\numberline {A.2.1}Image Processing}{90}{appendix.A.2.1}%
+\contentsline {subsection}{\numberline {A.2.2}Information Retrieval (Latent Semantic Indexing)}{90}{appendix.A.2.2}%

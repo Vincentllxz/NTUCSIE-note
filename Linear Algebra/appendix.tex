@@ -1,0 +1,130 @@
+\chapter{SVD and Applications}
+
+\section{Singular Value Decomposition (SVD)}
+
+\begin{definition}[Singular Value Decomposition]
+    Any matrix $A \in \mathbb{R}^{m \times n}$ can be factored into
+    \[
+        A = U \Sigma V^T = (\text{orthogonal}) (\text{diagonal}) (\text{orthogonal})
+    \]
+    where:
+    \begin{itemize}
+        \item The columns of $U \in \mathbb{R}^{m \times m}$ are eigenvectors of $AA^T$ and satisfy $U^T U = I$.
+        \item The columns of $V \in \mathbb{R}^{n \times n}$ are eigenvectors of $A^T A$ and satisfy $V^T V = I$.
+        \item When $A$ has rank $r$, the diagonal matrix $\Sigma \in \mathbb{R}^{m \times n}$ has $r$ singular values, $\sigma_1 \ge \cdots \ge \sigma_r > 0$, filling the first $r$ places on the main diagonal. The rest of $\Sigma$ is zero.
+    \end{itemize}
+\end{definition}
+
+\begin{remark}
+    The $r$ singular values are the square roots of the nonzero eigenvalues of both $AA^T$ and $A^T A$.
+\end{remark}
+
+\begin{theorem}[Fundamental Subspaces Basis]
+    $U$ and $V$ give orthonormal bases for all four fundamental subspaces:
+    \begin{itemize}
+        \item First $r$ columns of $U$: Basis for the column space of $A$.
+        \item Last $m-r$ columns of $U$: Basis for the left nullspace of $A$.
+        \item First $r$ columns of $V$: Basis for the row space of $A$.
+        \item Last $n-r$ columns of $V$: Basis for the nullspace of $A$.
+    \end{itemize}
+\end{theorem}
+
+\begin{remark}[1]
+    \[ 
+    AA^T = U \Sigma V^T V \Sigma^T U^T = U (\Sigma \Sigma^T) U^T
+    \]
+    Here, $\Sigma \Sigma^T$ is the $m \times m$ eigenvalue matrix with $\sigma_1^2, \dots, \sigma_r^2$ on the diagonal.
+\end{remark}
+\begin{remark}[2]
+    \[
+        A^T A = V \Sigma^T U^T U \Sigma V^T = V (\Sigma^T \Sigma) V^T
+    \]
+    Here, $\Sigma^T \Sigma$ is the $n \times n$ eigenvalue matrix with $\sigma_1^2, \dots, \sigma_r^2$ on the diagonal.
+\end{remark}
+\begin{remark}[3]
+    
+    We can express $A$ as a sum of rank-1 matrices:
+    \[
+        A = \sum_{j=1}^r \sigma_j u_j v_j^T
+    \]
+    where $u_j$ is the $j$-th column of $U$ and $v_j$ is the $j$-th column of $V$.
+\end{remark}
+\begin{remark}[4]    
+    The action of $A$ on $v_j$ is given by $A v_j = \sigma_j u_j$.
+\end{remark}
+
+\begin{theorem}[Procedure to Find SVD]
+    To find the SVD of a matrix $A$:
+    \begin{enumerate}
+        \item Calculate $A^T A$.
+        \item Find the eigenvalues of $A^T A$: $\sigma_1^2 \ge \dots \ge \sigma_r^2 > 0 = \sigma_{r+1}^2 = \dots = \sigma_n^2$.
+        \item Construct $\Sigma$ by placing $\sigma_1, \dots, \sigma_r$ on the diagonal and zeros elsewhere.
+        \item Find the eigenvectors for $A^T A$. For eigenvectors with the same eigenvalue, use Gram-Schmidt orthogonalization.
+        \item Construct $V = [v_1 \dots v_n]$ where $v_j$ is the normalized eigenvector corresponding to $\sigma_j^2$.
+        \item Construct $U = [u_1 \dots u_m]$:
+        \begin{itemize}
+            \item For $1 \le j \le r$, calculate $u_j = \frac{1}{\sigma_j} A v_j$.
+            \item For the remaining columns ($u_{r+1}, \dots, u_m$), find an orthonormal basis for the nullspace of $A^T$ (Left Nullspace) using Gram-Schmidt.
+        \end{itemize}
+    \end{enumerate}
+\end{theorem}
+
+\begin{eg}
+    Find the SVD for $A = \begin{pmatrix} 1 & -1 & 2 \\ -1 & 1 & -2 \end{pmatrix}$.
+\end{eg}
+\begin{enumerate}
+    \item Calculate $A^T A = \begin{pmatrix} 2 & -2 & 4 \\ -2 & 2 & -4 \\ 4 & -4 & 8 \end{pmatrix}$.
+    \item Eigenvalues of $A^T A$: $\sigma_1^2 = 12$, $\sigma_2^2 = 0$, $\sigma_3^2 = 0$.
+    \item $\Sigma = \begin{pmatrix} \sqrt{12} & 0 & 0 \\ 0 & 0 & 0 \end{pmatrix}$.
+    \item Eigenvectors:
+    \begin{itemize}
+        \item For $\lambda = 12$: $N(A^T A - 12I) = \text{span}\left\{ \begin{pmatrix} -1 \\ 1 \\ -2 \end{pmatrix} \right\}$.
+        \item For $\lambda = 0$: $N(A^T A) = \text{span}\left\{ \begin{pmatrix} 1 \\ 1 \\ 0 \end{pmatrix}, \begin{pmatrix} -2 \\ 0 \\ 1 \end{pmatrix} \right\}$. After Gram-Schmidt: $\left\{ \begin{pmatrix} 1 \\ 1 \\ 0 \end{pmatrix}, \begin{pmatrix} -1 \\ 1 \\ 1 \end{pmatrix} \right\}$.
+    \end{itemize}
+    \item Construct $V$:
+    \[
+            v_1 = \frac{1}{\sqrt{6}}\begin{pmatrix} -1 \\ 1 \\ -2 \end{pmatrix}, \quad v_2 = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ 1 \\ 0 \end{pmatrix}, \quad v_3 = \frac{1}{\sqrt{3}}\begin{pmatrix} -1 \\ 1 \\ 1 \end{pmatrix}
+    \]
+    Thus, $V = \begin{pmatrix} \frac{-1}{\sqrt{6}} & \frac{1}{\sqrt{2}} & \frac{-1}{\sqrt{3}} \\ \frac{1}{\sqrt{6}} & \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{3}} \\ \frac{-2}{\sqrt{6}} & 0 & \frac{1}{\sqrt{3}} \end{pmatrix}$.
+    \item Construct $U$:
+    \begin{itemize}
+        \item $u_1 = \frac{1}{\sqrt{12}} A v_1 = \begin{pmatrix} \frac{-1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}} \end{pmatrix}$.
+        \item Find $u_2$ from $N(A^T) = \text{span}\left\{ \begin{pmatrix} 1 \\ 1 \end{pmatrix} \right\}$. Normalized: $u_2 = \begin{pmatrix} \frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}} \end{pmatrix}$.
+    \end{itemize}
+    Thus, $U = \begin{pmatrix} \frac{-1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \end{pmatrix}$.
+\end{enumerate}
+
+\section{Applications of SVD}
+
+\subsection{Image Processing}
+
+
+An image can be represented as an $m \times n$ matrix of pixels. We can use SVD to find the essential information and compress the image.
+\begin{itemize}
+    \item Typically, some singular values $\sigma$ are significant while others are extremely small.
+    \item We can keep the first $k$ largest singular values and discard the rest. The approximation is:
+    \[
+        A \approx \sum_{i=1}^k \sigma_i u_i v_i^T
+    \]
+    \item This reduces the data from $m \times n$ to $k(m + n + 1)$, saving storage/bandwidth.
+\end{itemize}
+
+
+
+\subsection{Information Retrieval (Latent Semantic Indexing)}
+
+\begin{definition}[Term-by-Document Matrix]
+    Construct a matrix $A = [a_{i,j}]$ where $a_{i,j}$ represents the frequency of term $i$ in document $j$.
+\end{definition}
+
+\begin{eg}[Search Engine Query]
+    Consider a matrix $A$ representing terms (Advisor, Algebra, Ball, Calculus, Computer, Math) across 4 documents.
+    
+    A query for "Club" can be processed by projecting terms and documents into a lower-dimensional space using SVD ($k=2$).
+    
+    The projection of terms is given by $U_k \Sigma_k$, and the projection of documents is given by $V_k \Sigma_k$.
+    
+    \begin{itemize}
+        \item \textbf{Result:} The projection of the term "Club" and "Doc3" are found to be close in the 2D space, indicating relevance even if the exact word counts are sparse.
+    \end{itemize}
+\end{eg}
