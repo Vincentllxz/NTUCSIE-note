@@ -1,0 +1,47 @@
+\setcounter{chapter}{0}
+\chapter{Floating-point systems}
+\lecture{1}{2025.12.09}{}
+\section{Floating-point basics}
+
+This chapter is mainly based on the science of floating-point arithmetics which is based on the IEEE standard 754.
+
+\subsection{Why learning floating-point operations?}
+
+\begin{eg}
+    A one-variable problem
+    \[
+        \min_{x} f(x) \quad \text{where } x \geq 0
+    \]
+\end{eg}
+
+In the normal program, we should set an \red{upper bound} of $x$, or $x$ may be wrongly increased to $\infty$. We have to find the largest representable number in the
+computer
+
+\begin{eg}
+    A ten-variable problem
+    \[
+        \min_{\mathbf{x}} f(\mathbf{x}) \quad \text{where } x_i \geq 0, i=1,2,\ldots,10
+    \]
+\end{eg}
+
+We want to know how many are zeros, we may use 
+\begin{minted}[linenos]{c++}
+for (int i = 0; i < 10; i++)
+    if (x[i] == 0) count++;
+\end{minted}
+
+But people say that don't do the comparison of floating-point
+\begin{minted}[linenos]{c++}
+double epsilon = 1.0e-12;
+for (int i = 0; i < 10; i++)
+    if (x[i] <= epsilon) count++;
+\end{minted}
+
+Which is better? How to chose \texttt{epsilon}? Can't do the comparison of floating-point? We need to understand the floating-point representation.
+
+\subsection{Floating-point Format}
+We know \texttt{float} (single precision): 4 bytes and \texttt{double} (double precision) 8 bytes in C/C++.
+
+\begin{definition}[format]
+    A floating-point system requires a base $\beta$, precision $p$, significand (mantissa) $d.d\ldots d$
+\end{definition}
