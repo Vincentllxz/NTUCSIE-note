@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.8.4)  30 NOV 2025 01:48
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.8.4)  11 DEC 2025 20:21
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -375,19 +375,34 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 
 [16]
 
-[17] (./Grpah.aux)
+[17]
+Missing character: There is no r ("72) in font nullfont!
+
+
+[18]
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 1364.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 1364.
+
+
+[19]
+
+[20]
+
+[21] (./Grpah.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 15203 strings out of 473832
- 333253 string characters out of 5729482
- 704277 words of memory out of 5000000
- 37984 multiletter control sequences out of 15000+600000
- 561765 words of font info for 69 fonts, out of 8000000 for 9000
+ 15537 strings out of 473832
+ 339584 string characters out of 5729482
+ 713057 words of memory out of 5000000
+ 38316 multiletter control sequences out of 15000+600000
+ 561781 words of font info for 71 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  117i,8n,121p,412b,818s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on Grpah.pdf (17 pages).
+Output written on Grpah.pdf (21 pages).

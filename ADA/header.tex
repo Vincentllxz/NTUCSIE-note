@@ -58,7 +58,8 @@
 
 % tikz
 \usepackage{tikz}
-\usetikzlibrary{intersections, angles, quotes, positioning}
+\usetikzlibrary{intersections, angles, quotes, positioning, , decorations.pathreplacing, calc, fit, backgrounds, shapes}
+\usetikzlibrary{automata}
 \usetikzlibrary{arrows.meta}
 \usetikzlibrary{shapes.multipart}
 \usepackage{pgfplots}
@@ -129,6 +130,16 @@
 			nobreak=false
 		}
 ]{thmblueline}
+
+\declaretheoremstyle[
+	headfont=\bfseries\sffamily\color{black}, bodyfont=\normalfont,
+	mdframed={
+			linewidth=2pt,
+			rightline=false, topline=false, bottomline=false,
+			linecolor=YellowOrange!80!black,
+			nobreak=false
+		}
+]{thmgreenline}
 
 \declaretheoremstyle[
 	headfont=\bfseries\sffamily\color{RawSienna!70!black}, bodyfont=\normalfont,
@@ -287,7 +298,7 @@
 \declaretheorem[style=thmexplanationbox, numbered=no, name=Proof]{tmpexplanation}
 \newenvironment{explanation}[1][]{\vspace{-10pt}\pushQED{\(\circledast\)}\begin{tmpexplanation}}{\null\hfill\popQED\end{tmpexplanation}}
 
-\declaretheorem[style=thmblueline, numbered=no, name=Remark]{remark}
+\declaretheorem[style=thmgreenline, numbered=no, name=Remark]{remark}
 \declaretheorem[style=thmblueline, numbered=no, name=Note]{note}
 \declaretheorem[style=thmpinkbox, numbered=no, name=Question]{exercise}
 \declaretheorem[style=notgrayline, numbered=no, name=As previously seen]{prev}

@@ -68,9 +68,4 @@
 \contentsline {section}{\numberline {10.3}Deterministic Rounding}{63}{section.10.3}%
 \contentsline {section}{\numberline {10.4}Randomized Rounding}{65}{section.10.4}%
 \contentsline {subsection}{\numberline {10.4.1}Expected Ratio $\geq 0.5$}{66}{subsection.10.4.1}%
-\contentsline {subsection}{\numberline {10.4.2}Expected Ratio $\geq 1 - 1/e$}{67}{subsection.10.4.2}%
-\contentsline {subsection}{\numberline {10.4.3}Expected Ratio $\geq 0.75$}{69}{subsection.10.4.3}%
-\contentsline {section}{\numberline {10.5}Derandomized}{70}{section.10.5}%
-\contentsline {subsection}{\numberline {10.5.1}Derandomized for Random Assign Algorithm}{70}{subsection.10.5.1}%
-\contentsline {subsection}{\numberline {10.5.2}Derandomized for Randomized Rounding Algorithm}{71}{subsection.10.5.2}%
-\contentsline {subsection}{\numberline {10.5.3}Derandomized for Combined Algorithm}{72}{subsection.10.5.3}%
+\contentsline {subsection}{\numberline {10.4.2}Expected Ratio $\geq 1 - 1/e$}{66}{subsection.10.4.2}%

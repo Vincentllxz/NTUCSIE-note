@@ -1258,6 +1258,312 @@
 
 \end{tikzpicture}
 
+\begin{tikzpicture}
 
+  % --- 定義樣式 ---
+  \tikzset{
+    % 內部表格每一列的樣式：黑框、白底、黑字、粗體
+    elfbox/.style={
+      draw=black,
+      line width=1.5pt,
+      fill=white,
+      text=black,
+      font=\bfseries\Large,
+      align=center,
+      minimum width=12cm, % 設定內部表格的固定寬度
+      minimum height=1.3cm,
+      anchor=north, % 對齊點設為上方中點，方便緊密堆疊
+      inner sep=5pt
+    },
+    % 最外層大框的樣式
+    outerframe/.style={
+      draw=black,
+      line width=2.5pt,
+      inner sep=0pt % 不需要額外內部間距，由定位點決定
+    }
+  }
+
+  % --- 繪製內部表格結構 ---
+  % 使用 below=0pt 確保方塊之間緊密相連沒有縫隙
+
+  % 1. ELF Header
+  \node[elfbox] (header) at (0,0) {ELF header};
+
+  % 2. Program Header Table
+  \node[elfbox, below=0pt of header, minimum height=1.8cm] (pheader) {Program header table\\(required for executables)};
+
+  % 3. Sections (.text, .data, .bss)
+  \node[elfbox, below=0pt of pheader] (text) {\texttt{.text} section};
+  \node[elfbox, below=0pt of text] (data) {\texttt{.data} section};
+  \node[elfbox, below=0pt of data] (bss) {\texttt{.bss} section};
+
+  % 4. Symbols and Relocations
+  \node[elfbox, below=0pt of bss] (symtab) {\texttt{.symtab}};
+  \node[elfbox, below=0pt of symtab] (reltxt) {\texttt{.rel.txt}};
+  \node[elfbox, below=0pt of reltxt] (reldata) {\texttt{.rel.data}};
+
+  % 5. Debug
+  \node[elfbox, below=0pt of reldata] (debug) {\texttt{.debug}};
+
+  % 6. Section Header Table (底部)
+  \node[elfbox, below=0pt of debug, minimum height=1.8cm] (sheader) {Section header table\\(required for relocatables)};
+
+
+  % --- 繪製最外層的扁長方形外框 ---
+
+  % 定義左右留白的寬度 (例如：兩側各留 4cm)
+  \def\hpadding{10cm}
+  % 定義上下留白的高度 (稍微留一點點即可)
+  \def\vpadding{0.8cm}
+
+  % 計算外框的左上角和右下角座標
+  % 左上角：以最上面的 header 的左上角為基準，向左和向上偏移
+  \coordinate (outerTL) at ($(header.north west) + (-\hpadding, \vpadding)$);
+  % 右下角：以最下面的 sheader 的右下角為基準，向右和向下偏移
+  \coordinate (outerBR) at ($(sheader.south east) + (\hpadding, -\vpadding)$);
+
+r  \node[outerframe, fit=(outerTL) (outerBR)] {};
+
+\end{tikzpicture}
+
+\begin{tikzpicture}[
+    >=Latex, % 使用標準箭頭樣式
+    node distance=2cm,
+    thick, % 線條加粗
+    % 定義樣式
+    block/.style={
+        draw, 
+        rounded corners, 
+        fill=white, 
+        align=left,
+        inner sep=10pt
+    },
+    kernel/.style={
+        draw, 
+        fill=white, 
+        minimum height=8cm, 
+        minimum width=2cm,
+        outer sep=0pt
+    },
+    mainblock/.style={
+        draw,
+        rounded corners,
+        fill=white,
+        minimum size=3cm,
+        align=left
+    }
+]
+
+    % --- 1. Kernel (Left) ---
+    \node[kernel] (kernel) {};
+    \node[below=0.2cm] at (kernel.south) {\Large Kernel};
+
+    % --- 2. Start-up Routine (Center) ---
+    % 我們手動調整文字內容與行距
+    \node[block, right=3cm of kernel.north east, yshift=-1cm, anchor=north west, minimum height=6cm, minimum width=5cm] (startup) {
+        $\bullet$ Initialize\\[0.5em]
+        $\bullet$ Get Environment Vars\\
+        \hspace{1em} Command-line\\
+        \hspace{1em} arguments\\[0.5em]
+        $\bullet$ Call to main\\[6em] % 留空給箭頭回流
+        $\bullet$ Clean up
+    };
+    \node[below=0.1cm] at (startup.south) {\Large start-up routine};
+
+    % --- 3. Main Function (Right) ---
+    % 定位在 startup 的右側，垂直位置稍微對齊中間偏下
+    \node[mainblock, right=2cm of startup, yshift=-1cm] (main) {
+        \\[1em] % 稍微往下推一點
+        Your Program\\
+        Code
+    };
+    \node[below=0.1cm] at (main.south) {\Large main};
+
+    % --- 4. Executable Container (Big Box) ---
+    % 畫一個大框包住 Start-up 和 Main
+    \node[draw, inner sep=1cm, fit=(startup) (main) (main.south |- startup.south)] (execbox) {};
+    \node[below=0.1cm] at (execbox.south) {\Large Executable};
+
+    % --- 5. Arrows (連線) ---
+    
+    % Arrow 1: Kernel -> Initialize
+    % 透過計算座標來對齊文字
+    \draw[->, ultra thick] ($(kernel.north east)!0.15!(kernel.south east)$) -- ($(startup.north west)!0.15!(startup.south west)$);
+
+    % Arrow 2: Call to main -> Main block
+    % 從 startup 中間偏上的位置指出去
+    \draw[->, ultra thick] ($(startup.north east)!0.55!(startup.south east) + (-1.8, 0)$) -- (main.west |- {$(startup.north east)!0.55!(startup.south east)$});
+
+    % Arrow 3: Main block -> Clean up (Backwards)
+    % 從 main 下方指回 startup 下方
+    \draw[->, ultra thick] ($(main.west |- {$(startup.north east)!0.85!(startup.south east)$})$) -- ($(startup.north east)!0.85!(startup.south east) + (-1.8, 0)$);
+
+    % Arrow 4: Clean up -> Kernel
+    \draw[->, ultra thick] ($(startup.north west)!0.85!(startup.south west)$) -- ($(kernel.north east)!0.85!(kernel.south east)$);
+
+\end{tikzpicture}
+
+\begin{tikzpicture}[
+    font=\Large, % 設定字體為無襯線且較大
+    thick, % 線條加粗
+    >=Latex, % 設定箭頭樣式
+    % 定義通用樣式
+    box/.style={
+        draw, 
+        fill=white, 
+        minimum width=2.5cm, 
+        outer sep=0pt % 讓方塊邊框緊貼
+    },
+    inner block/.style={
+        draw, 
+        fill=white, 
+        minimum width=0.5cm, 
+        minimum height=0.7cm,
+        fill=gray!30
+    }
+]
+    % --- 1. Disk (Left) ---
+    % 使用 cylinder 形狀來畫圓柱體
+    \node[
+        cylinder, 
+        shape border rotate=90, % 旋轉使圓柱直立
+        draw, 
+        fill=white, 
+        minimum height=2cm, 
+        minimum width=3cm
+    ] (disk) {};
+    
+    % Disk 內部的檔案區塊 (模擬原圖的小方塊)
+    % 使用相對座標定位
+    \node[inner block] at ($(disk.center) + (-0.8, 0)$) {};
+    \node[inner block] at ($(disk.center) + (0.0, 0)$) {};
+    \node[inner block] at ($(disk.center) + (0.8, 0)$) {};
+    
+    % Disk 標籤
+    \node[above=0.1cm of disk.top] {Disk};
+
+    % --- 2. Memory (Center) ---
+    % 分為上、中、下三塊
+    % 頂部區塊
+    \node[box, minimum height=1.2cm, right=6cm of disk.center, anchor=center, yshift=1.2cm] (mem_top) {};
+    % 中間區塊 (被指向的目標)
+    \node[box, minimum height=1.2cm, below=0pt of mem_top, fill=gray!30] (mem_mid) {};
+    % 底部區塊
+    \node[box, minimum height=1.2cm, below=0pt of mem_mid] (mem_bot) {};
+    
+    % Memory 標籤
+    \node[above=0.1cm of mem_top] {Memory};
+
+    % --- 3. Program Counter (Right) ---
+    \node[right=2cm of mem_mid, box] (pc) {\texttt{Program Counter}};
+
+    % --- 4. Arrows (連線) ---
+    
+    % Arrow: Disk -> Memory (帶有彎曲)
+    \draw[->, thick] (disk.east) to[bend left=20] (mem_mid.west);
+
+    % Arrow: Program Counter -> Memory (直線)
+    \draw[->, thick] (pc.west) -- (mem_mid.east);
+
+\end{tikzpicture}
+
+\begin{tikzpicture}[
+    font=\sffamily, % 使用無襯線字體
+    thick, % 線條加粗
+    >={Latex[length=3mm, width=2mm]}, % 設定箭頭樣式
+    node distance=0cm, % 節點間緊密排列
+    outer sep=0pt, % 無外部間距
+    % --- 樣式定義 ---
+    % 基本黑框白底方塊
+    basic box/.style={
+        draw=black,
+        fill=white,
+        minimum width=6.5cm,
+        minimum height=0.9cm,
+        align=center,
+        inner sep=5pt
+    },
+    % 標題方塊（加粗）
+    header box/.style={
+        basic box,
+        font=\sffamily\bfseries,
+        minimum height=1.2cm
+    },
+    % --- 彩色填充樣式 (顏色可隨意替換) ---
+    text fill/.style={fill=yellow!30},
+    data fill/.style={fill=pink!30},
+    bss fill/.style={fill=cyan!30},
+    % 左側彩色區塊樣式
+    text box/.style={basic box, text fill, font=\bfseries},
+    data box/.style={basic box, data fill, font=\bfseries},
+    bss box/.style={basic box, bss fill, font=\bfseries},
+    % 右側 Process image 區塊樣式
+    segment box/.style={
+        draw=black,
+        minimum width=6cm,
+        minimum height=1.8cm,
+        align=center,
+        rounded corners=5pt, % 圓角
+        font=\large
+    },
+    % 地址標籤樣式
+    addr label/.style={
+        right=0.5cm,
+        font=\large
+    }
+]
+
+    % ====== 左側：Executable object file ======
+    
+    % 總標題
+    \node[font=\sffamily\bfseries\LARGE, align=center] (left title) {Executable object file for\\example program};
+
+    % 堆疊區塊
+    \node[basic box, below=0.5cm of left title] (elf) {ELF header};
+    % 右上角的 "0"
+    \node[above right=0cm and 0cm of elf.north east, font=\large, inner sep=2pt] {0};
+    
+    \node[header box, below=of elf] (pht) {Program header table\\(required for executables)};
+    
+    % 彩色區塊
+    \node[text box, below=of pht] (text sec) {\texttt{.text} section};
+    \node[data box, below=of text sec] (data sec) {\texttt{.data} section};
+    \node[bss box, below=of data sec] (bss sec) {\texttt{.bss} section};
+    
+    % 其他白色區塊
+    \node[basic box, below=of bss sec] (symtab) {\texttt{.symtab}};
+    \node[basic box, below=of symtab] (reltext) {\texttt{.rel.text}};
+    \node[basic box, below=of reltext] (reldata) {\texttt{.rel.data}};
+    \node[basic box, below=of reldata] (debug) {\texttt{.debug}};
+    \node[header box, below=of debug] (sht) {Section header table\\(required for relocatables)};
+    
+    % 繪製左側的大外框
+
+
+    % ====== 右側：Process image ======
+    
+    % 標題
+    \node[font=\sffamily\bfseries\LARGE, right=4.5cm of left title] (right title) {Process image};
+    \node[font=\sffamily\bfseries\LARGE, right=1cm of right title] (addr title) {Virtual addr};
+
+    % 彩色 Segment 區塊與地址
+    % .text segment
+    \node[segment box, text fill, right=4cm of text sec, yshift=0.5cm] (text seg) {\texttt{.text} segment\\(r/o)};
+    \node[addr label, yshift=0.9cm] at (text seg.east) {\texttt{0x08048494}};
+
+    % .data segment
+    \node[segment box, data fill, right=4cm of data sec, yshift=-1cm] (data seg) {\texttt{.data} segment\\(initialized r/w)};
+    \node[addr label, yshift=0.9cm] at (data seg.east) {\texttt{0x0804a010}};
+
+    % .bss segment
+    \node[segment box, bss fill, right=4cm of bss sec, yshift=-2.5cm] (bss seg) {\texttt{.bss} segment\\(uninitialized r/w)};
+    \node[addr label, yshift=0.9cm] at (bss seg.east) {\texttt{0x0804a3b0}};
+
+    % ====== 箭頭連接 ======
+    \draw[->, line width=2pt] (text sec.east) -- (text seg.west);
+    \draw[->, line width=2pt] (data sec.east) -- (data seg.west);
+    \draw[->, line width=2pt] (bss sec.east) -- (bss seg.west);
+
+\end{tikzpicture}
 
 \end{document}
