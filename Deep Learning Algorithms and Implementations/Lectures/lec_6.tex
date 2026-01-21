@@ -1,0 +1,30 @@
+\subsection{Gradient Calculation for Fully-connected Layer}
+
+\begin{prev}
+    \[
+        \frac{\partial \xi_i}{\partial \Vec{W^m}^\top} = \Vec{\frac{\partial \xi_i}{\partial S^{m, i}}\ \phi(\Pad{Z^{m, i}})^{\top}}^{\top}
+    \]
+    and \[
+        \frac{\partial \xi_i}{\partial (\bm{b}^m)^\top} = \Vec{\frac{\partial \xi_i}{\partial S^{m, i}}\ \mathbbm{1}_{a^m_{\text{conv}} b^m_{\text{conv}}}}^\top
+    \]
+\end{prev}
+
+Considering the fully-connected layer as a special case of the convolutional layer, we get \begin{align*}
+        \frac{\partial \xi_i}{\partial \Vec{W^m}^\top} &= \Vec{\frac{\partial \xi_i}{\partial \bm{s}^{m, i}}\ (\bm{z}^{m, i})^{\top}}^{\top} \tag{1} \\[3pt]
+        \frac{\partial \xi_i}{\partial (\bm{b}^m)^\top} &= \frac{\partial \xi_i}{\partial (\bm{s}^{m, i})^\top} \tag{2}
+\end{align*}
+
+\chapter{Implementation}
+
+\chapter{GPU Programming}
+
+\chapter{Automatic Differentiation}
+\section{Basic Concepts}
+\section{Implementation}
+
+
+\chapter{Large Language Models (LLM)}
+
+\section{High-level Overview}
+\section{Auto-regressive Models}
+\section{Detailed Operations}

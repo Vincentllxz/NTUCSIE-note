@@ -1,11 +1,11 @@
 {
   "jobname": "NumericalMethod",
   "md5": "2FDC630547FD7A76B2F882B34686F2BC",
-  "timestamp": "20251209022814",
+  "timestamp": "20260116011115",
   "cachefiles": [
-    "1DD07FBB4B5D88B0C399DFFCF1B29B2B.highlight.minted",
-    "F7611A689C4883F9455CF5786D5955C3.highlight.minted",
+    "047662CAD926C0BBC84BCC406ECF79A8.highlight.minted",
+    "B76D8DEF7A6603F82822BFA45CA7A66D.highlight.minted",
     "_2FDC630547FD7A76B2F882B34686F2BC.index.minted",
-    "default.style.minted"
+    "tango.style.minted"
   ]
 }

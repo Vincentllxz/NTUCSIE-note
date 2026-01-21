@@ -1,0 +1,303 @@
+\chapter{Gradient Calculation}
+
+For a regular deep learning course, usually the contents will be 
+\begin{itemize}
+    \item Fully-connected Neural Network
+    \item Optimization Problem of FNN
+    \item Gradient Calculation of FNN (Backpropagation)
+    \item \dots
+    \item Other types of Neural Networks (CNN, RNN, Transformer, \dots)
+    \item \dots
+\end{itemize}
+
+However, there is a significant gap between FNN and other types of Neural Networks (e.g. CNN). Therefore, we discuss the gradient calculation (backpropagation) in detail.
+
+\section{Vector Form}
+
+Consider two layer $m$ and layer $m+1$. The variables between them are $W^m$ and $\bm{b}^m$, so we aim to calculate 
+\begin{align*}
+    \frac{\partial f}{\partial W^m} &= \frac{1}{C} W^m + \frac{1}{l} \sum_{i=1}^{l} \frac{\partial \xi_i}{\partial W^m} \tag{1} \\[3pt]
+    \frac{\partial f}{\partial \bm{b}^m} &= \frac{1}{C} \bm{b}^m + \frac{1}{l} \sum_{i=1}^{l} \frac{\partial \xi_i}{\partial \bm{b}^m} \tag{2}
+\end{align*}
+to get the average gradient of the loss function $\xi$ over the training set. \\
+
+Note that (1) now is in matrix form, and (2) is in vector form. But it will be easier to transform them to a vector form for the derivation (gradient).
+
+\begin{recall}
+    For the convolution layer, 
+    \begin{align*}
+        S^{m, i} &= W^m\, \underbrace{\Mat{P_{\phi}^m P_{\text{pad}}^m \Vec{Z^{m, i}}_{h^m h^m d^m \times a^m_{\text{conv}} b^m_{\text{conv}}}}}_{\phi\left(\Pad{Z^{m, i}}\right)} + \bm{b}^m \mathbbm{1}^T_{a^m_{\text{conv}} b^m_{\text{conv}}} \\[3pt]
+        Z^{m+1, i} &= \Mat{P_{\text{pool}}^{m, i} \Vec{\sigma(S^{m, i})}}_{d^{m+1} \times a^{m+1} b^{m+1}} \tag{3}
+    \end{align*}
+\end{recall}
+
+\begin{notation}[Kronecker Product]
+    $\otimes$ is the Kronecker product. If \[
+        A \in \mathbb{R}^{m \times n}, \quad B \in \mathbb{R}^{p \times q}
+    \]
+    then \[
+        A \otimes B = \begin{bmatrix}
+            a_{11} B & a_{12} B & \cdots & a_{1n} B \\
+            a_{21} B & a_{22} B & \cdots & a_{2n} B \\
+            \vdots & \vdots & \ddots & \vdots \\
+            a_{m1} B & a_{m2} B & \cdots & a_{mn} B
+        \end{bmatrix} \in \mathbb{R}^{mp \times nq}
+    \]
+\end{notation}
+
+\begin{notation}[Identity Matrix]
+    $\mathcal{I}$ is an identity matrix. For example, \[
+        \mathcal{I}_{a^m_{\text{conv}} b^m_{\text{conv}}} \in \mathbb{R}^{a^m_{\text{conv}} b^m_{\text{conv}} \times a^m_{\text{conv}} b^m_{\text{conv}}}
+    \]
+    is an identity matrix for eqs. (4) and (5).
+\end{notation}
+
+\begin{lemma}
+    \begin{align*}
+        \Vec{AB} &= (\mathcal{I} \otimes A) \Vec{B} \tag{6} \\[3pt]
+        &= (B^T \otimes \mathcal{I}) \Vec{A} \tag{7}
+    \end{align*}
+\end{lemma}
+\begin{proof}
+    First, denote the columns of $B$ as $\vec{b}_1, \vec{b}_2, \dots, \vec{b}_n$, i.e. \[
+        B = [\vec{b}_1, \vec{b}_2, \dots, \vec{b}_n]
+    \]
+    \[
+        AB = [A \vec{b}_1, A \vec{b}_2, \dots, A \vec{b}_n]
+    \]
+    and \[
+        \Vec{AB} = \begin{bmatrix}
+            A \vec{b}_1 \\
+            A \vec{b}_2 \\
+            \vdots \\
+            A \vec{b}_n
+        \end{bmatrix}
+    \]
+    \begin{itemize}
+        \item[\textbf{(1)}:]
+            Note that \[
+                (\mathcal{I} \otimes A) \Vec{B} = \begin{bmatrix}
+                    A & 0 & \cdots & 0 \\
+                    0 & A & \cdots & 0 \\
+                    \vdots & \vdots & \ddots & \vdots \\
+                    0 & 0 & \cdots & A
+                \end{bmatrix} \begin{bmatrix}
+                    \vec{b}_1 \\
+                    \vec{b}_2 \\
+                    \vdots \\
+                    \vec{b}_n
+                \end{bmatrix} = \begin{bmatrix}
+                    A \vec{b}_1 \\
+                    A \vec{b}_2 \\
+                    \vdots \\
+                    A \vec{b}_n
+                \end{bmatrix} = \Vec{AB}
+            \]
+        \item[\textbf{(2)}:]
+            Note that \[
+                (B^T \otimes \mathcal{I}) \Vec{A} = \begin{bmatrix}
+                    \vec{b}_1^T \otimes \mathcal{I} \\
+                    \vec{b}_2^T \otimes \mathcal{I} \\
+                    \vdots \\
+                    \vec{b}_n^T \otimes \mathcal{I}
+                \end{bmatrix} \Vec{A}
+            \]
+            The $i$-th row is \[
+                (\vec{b}_i^T \otimes \mathcal{I}) \Vec{A} = \Vec{A \vec{b}_i}
+            \]
+            Thus we have \[
+                (B^T \otimes \mathcal{I}) \Vec{A} = \begin{bmatrix}
+                    \Vec{A \vec{b}_1} \\
+                    \Vec{A \vec{b}_2} \\
+                    \vdots \\
+                    \Vec{A \vec{b}_n}
+                \end{bmatrix} = \Vec{AB}
+            \]
+    \end{itemize}
+\end{proof}
+
+\vspace{1em}
+
+By using the lemma eqs. (6), (7), we have \begin{align*}
+    \Vec{S^{m, i}} &= \Vec{W^m \phi(\Pad{Z^{m, i}})} + \Vec{\bm{b}^m \mathbbm{1}^T} \\[3pt]
+    &= (\mathcal{I}_{a^m_{\text{conv}} b^m_{\text{conv}}} \otimes W^m) \Vec{\phi(\Pad{Z^{m, i}})} + (\mathbbm{1}_{a^m_{\text{conv}} b^m_{\text{conv}}} \otimes \mathcal{I}_{d^m}) \bm{b}^m \tag{4} \\[3pt]
+    &= \left( \phi(\Pad{Z^{m, i}})^T \otimes \mathcal{I}_{d^{m+1}} \right) \Vec{W^m} + (\mathbbm{1}_{a^m_{\text{conv}} b^m_{\text{conv}}} \otimes \mathcal{I}_{d^m}) \bm{b}^m \tag{5}
+\end{align*}
+getting eqs. (5) we can simply differtiate $\Vec{S^{m, i}}$ w.r.t. $\Vec{W^m}$. \\
+
+For the fully-connected layer, we have
+\begin{align*}
+    \bm{s}^{m, i} &= W^m \bm{z}^{m, i} + \bm{b}^m \\[3pt]
+    &= (\mathcal{I}_1 \otimes W^m) \bm{z}^{m, i} + (\mathbbm{1}_1 \otimes \mathcal{I}_{n_{m+1}}) \bm{b}^m \tag{8} \\[3pt]
+    &= \left( (\bm{z}^{m, i})^T \otimes \mathcal{I}_{n_{m+1}} \right) \Vec{W^m} + (\mathbbm{1}_1 \otimes \mathcal{I}_{n_{m+1}}) \bm{b}^m \tag{9} 
+\end{align*}
+where eqs. (8) and (9) are from eqs. (6) and (7) respectively.
+
+\begin{note}
+    \(
+        \Vec{\bm{z}^{m, i}} = \bm{z}^{m, i}, \quad \text{since } \bm{z}^{m, i} \in \mathbb{R}^{n_m \times 1}
+    \)
+\end{note}
+
+The eqs. (4) and (8) are in the same form. Further, if for fully-connected layer, we define \[
+    \phi(\Pad{Z^{m, i}}) := \mathcal{I}_{n_m} \bm{z}^{m, i}, \quad L^c < m \leq L + 1
+\]
+then eqs. (5) and (9) are also in the same form. Thus we can derive the gradient of both convolution layer and fully-connected layer together.
+
+\section{Gradient Calculation}
+
+\subsection{Gradient Calculation for Convolution Layer}
+
+\begin{prev}
+    For convolution layer, 
+    \[
+        \Vec{S^{m, i}} = \left( \phi(\Pad{Z^{m, i}})^T \otimes \mathcal{I}_{d^{m+1}} \right) \Vec{W^m} + (\mathbbm{1}_{a^m_{\text{conv}} b^m_{\text{conv}}} \otimes \mathcal{I}_{d^m}) \bm{b}^m
+    \]
+\end{prev}
+
+Let's first give the definition of the partial derivative w.r.t. matrix (or vector) variable.
+
+\begin{definition}[Partial Derivative w.r.t. Matrix/Vector]\label{def:partial_matrix}
+    Given \(\bm{y} \in \mathbb{R}^{|y| \times 1}\) and \(\bm{x} \in \mathbb{R}^{|x| \times 1}\)
+    \[
+        \frac{\partial \bm{y}}{\partial (\bm{x})^\top} := \begin{pmatrix}
+            \frac{\partial y_1}{\partial x_1} & \cdots & \frac{\partial y_1}{\partial x_{|x|}} \\
+            \vdots & \ddots & \vdots \\
+            \frac{\partial y_{|y|}}{\partial x_1} & \cdots & \frac{\partial y_{|y|}}{\partial x_{|x|}}
+        \end{pmatrix}
+    \]
+\end{definition}
+
+\newpage
+
+\begin{theorem}\label{thm:matrix_derivative}
+    Given \(\bm{x}, \bm{y}\) as column vectors, and $A$ as a matrix, if \[
+        \bm{y} = A \bm{x}
+    \]
+    then \[
+         \frac{\partial \bm{y}}{\partial \bm{x}^\top} = A
+    \]
+\end{theorem}
+\begin{proof}
+    If \(\bm{y} = A \bm{x}\), then \[
+        y_1 = A_{11} x_1 + A_{12} x_2 + \cdots + A_{1|x|} x_{|x|}
+    \] 
+    i.e. \[
+            y_i = \sum_{j=1}^{|x|} A_{ij} x_j
+    \]
+    and \[
+        \frac{\partial \bm{y}}{\partial \bm{x}^\top} = \begin{pmatrix}
+            A_{11} & \cdots & A_{1|x|} \\
+            \vdots & \ddots & \vdots \\
+            A_{|y|1} & \cdots & A_{|y||x|}
+        \end{pmatrix} = A
+    \]
+\end{proof}
+
+Then we can compute the derivatives \begin{align*}
+    \underbrace{\frac{\partial \xi_i}{\partial \Vec{W^m}^\top}}_{\text{a part of gradient}} \overset{\text{chain}}{=} \frac{\partial \xi_i}{\partial \Vec{S^{m, i}}^\top} \frac{\partial \Vec{S^{m, i}}}{\partial \Vec{W^m}^\top} &= \frac{\partial \xi_i}{\partial \Vec{S^{m, i}}^\top} \left( \phi(\Pad{Z^{m, i}})^\top \otimes \mathcal{I}_{d^{m+1}} \right) \\   &\overset{(3)}{=} \Vec{ \frac{\partial \xi_i}{\partial S^{m, i}}\ \phi(\Pad{Z^{m, i}})^\top }^\top \tag{1}  
+\end{align*}
+
+$\xi_i$ is a scalar, so \(\partial \xi_i / \partial \Vec{S^{m, i}}^\top \in \mathbb{R}^{1 \times (d^{m+1} a^{m}_{\text{conv}} b^{m}_{\text{conv}})}\), which is a row vector. Then times a matrix build from definition \ref{def:partial_matrix}, it is still a row vector. Then by the theorem above, $A = \left( \phi(\Pad{Z^{m, i}})^T \otimes \mathcal{I}_{d^{m+1}} \right)$, $\bm{x} = \Vec{W^m}$, and $\bm{y} = \Vec{S^{m, i}}$, we get eq. (1). 
+
+\begin{lemma}
+    Given \( A, B \) as matrices, \begin{align*}
+        \Vec{AB} &= \Vec{B}^\top ( \mathcal{I} \otimes A^\top ) \tag{2} \\[3pt]
+        &= \Vec{A}^\top ( B^T \otimes \mathcal{I} ) \tag{3}
+    \end{align*}
+\end{lemma}
+
+This eqs. shows that we can first calculate \(\partial \xi_i / \partial S^{m, i}\) to get the gradient part w.r.t. \(W^m\). Similarly, for the bias term, we have \begin{align*}
+    \frac{\partial \xi_i}{\partial (\bm{b}^m)^\top} \overset{\text{chain}}{=} \frac{\partial \xi_i}{\partial \Vec{S^{m, i}}^\top} \frac{\partial \Vec{S^{m, i}}}{\partial (\bm{b}^m)^\top} &= \frac{\partial \xi_i}{\partial \Vec{S^{m, i}}^\top} (\mathbbm{1}_{a^m_{\text{conv}} b^m_{\text{conv}}} \otimes \mathcal{I}_{d^{m+1}}) \\[3pt]
+    &\overset{(3)}{=} \Vec{ \frac{\partial \xi_i}{\partial S^{m, i}} \mathbbm{1}_{a^m_{\text{conv}} b^m_{\text{conv}}} }^\top \tag{4}
+\end{align*}
+
+To calculate the eqs. (1), we need to compute \(\phi(\Pad{Z^{m, i}})\) which is already given in the \red{forward} pass. In (1) and (4), \(\partial \xi_i / \partial S^{m, i}\) is also needed. Now we are going to show how to compute it \red{backwardly}. To do this, we assume that \[
+    \frac{\partial \xi_i}{\partial Z^{m+1, i}} 
+\]
+is available from the upper layer. Then we are going to compute \[
+    \frac{\partial \xi_i}{\partial S^{m, i}}, \ \ \frac{\partial \xi_i}{\partial Z^{m, i}}
+\]
+\newpage
+This process is called \textbf{backpropagation} process in neural networks training. We have the following workflow:
+\[
+    Z^{m, i} \longleftarrow \text{padding} \longleftarrow \text{convolution} \longleftarrow \sigma(S^{m, i}) \longleftarrow \text{pooling} \longleftarrow Z^{m+1, i} \tag{5}
+\]
+From chain rule, we have \[
+    \frac{\partial \xi_i}{\partial (S^{m, i})^\top} = \frac{\partial \xi_i}{\partial (\sigma(S^{m, i}))^\top} \frac{\partial (\sigma(S^{m, i}))}{\partial (S^{m, i})^\top}
+\]
+we get a column vector \(\partial \xi_i / \partial (\sigma(S^{m, i}))^\top\) and a matrix \(\partial (\sigma(S^{m, i}))/\partial (S^{m, i})^\top\). Now assume $\sigma$ is a scalar function, then \[
+    \frac{\partial (\sigma(S^{m, i}))}{\partial (S^{m, i})^\top}
+\]
+is a squared.   diagonal matrix of \(
+    |\Vec{S^{m, i}}| \times |\Vec{S^{m, i}}|
+\) dimension, because $\sigma(S^{m, i})$ have same dimension as $S^{m, i}$ and from theorem \ref{thm:matrix_derivative} we can get a squared matrix. Further, we assume that $\sigma$ is ReLU function, i.e. \[
+    \sigma'(x) = \begin{cases}
+        1, & x > 0 \\[3pt]
+        0, & x \leq 0
+    \end{cases}
+\]
+then we can define \[
+    I[S^{m, i}]_{(p,q)} := \begin{cases}
+        1, & S^{m, i}_{(p,q)} > 0 \\[3pt]
+        0, & \text{otherwise}
+    \end{cases}
+\]
+and have \[
+    \frac{\partial \xi_i}{\partial (S^{m, i})^\top} = \frac{\partial \xi_i}{\partial (\sigma(S^{m, i}))^\top} \odot \Vec{I[S^{m, i}]}^T
+\]
+\begin{remark}
+    This process can be extended to other \red{scalar} (component-wise) activation functions easily. The general form is \[
+        \frac{\partial \xi_i}{\partial (S^{m, i})^\top} = \frac{\partial \xi_i}{\partial (\sigma(S^{m, i}))^\top} \odot \Vec{\sigma'(S^{m, i})}^\top
+    \]
+\end{remark}
+
+Next, we do \begin{align*}
+    \frac{\partial \xi_i}{\partial ( S^{m, i})^\top} \overset{\text{chain}}{=} \frac{\partial \xi_i}{\partial ( Z^{m+1, i} )^\top} \frac{\partial ( Z^{m+1, i} )}{\partial ( \sigma(S^{m, i}) )^\top} \frac{\partial ( \sigma(S^{m, i}) )}{\partial ( S^{m, i} )^\top} &= \left( \frac{\partial \xi_i}{\partial ( Z^{m+1, i} )^\top} \frac{\partial ( Z^{m+1, i} )}{\partial ( \sigma(S^{m, i}) )^\top} \right) \odot \Vec{I[S^{m, i}]}^\top \\[3pt]
+    &= \left( \frac{\partial \xi_i}{\partial ( Z^{m+1, i} )^\top} \ P_{\text{pool}}^{m, i} \right) \odot \Vec{I[S^{m, i}]}^\top \tag{6}
+\end{align*}
+
+Now we can get \(\partial \xi_i / \partial S^{m, i}\) from \(\partial \xi_i / \partial Z^{m+1, i}\) which is available from the upper layer and $P_{\text{pool}}^{m, i}$, $I[S^{m, i}]$ from the forward pass. 
+
+\begin{note}
+    In the forward pass, we have \[
+        Z^{m+1, i} = \Mat{P_{\text{pool}}^{m, i} \Vec{\sigma(S^{m, i})}}_{d^{m+1} \times a^{m+1} b^{m+1}}
+    \]
+    hence \[
+        \frac{\partial ( Z^{m+1, i} )}{\partial ( \sigma(S^{m, i}) )^\top} = P_{\text{pool}}^{m, i}
+    \]
+\end{note}
+
+\begin{remark}
+    If general scalar activation function $\sigma$ is used, then \[
+        \frac{\partial \xi_i}{\partial ( S^{m, i})^\top} = \left( \frac{\partial \xi_i}{\partial ( Z^{m+1, i} )^\top} \ P_{\text{pool}}^{m, i} \right) \odot \Vec{\sigma'(S^{m, i})}^\top
+    \]
+\end{remark}
+
+\newpage
+
+In the end, we have to compute \(\partial \xi_i / \partial Z^{m, i}\) to pass to the lower layer. 
+
+\begin{prev}
+    \[
+        \Vec{S^{m, i}} = (\mathcal{I}_{a^m_{\text{conv}} b^m_{\text{conv}}} \otimes W^m) \Vec{\phi(\Pad{Z^{m, i}})} + (\mathbbm{1}_{a^m_{\text{conv}} b^m_{\text{conv}}} \otimes \mathcal{I}_{d^m}) \bm{b}^m
+    \]
+\end{prev}
+
+Similarly, we have \begin{align*}
+    \frac{\partial \xi_i}{\partial ( Z^{m, i} )^\top} &= \frac{\partial \xi_i}{\partial ( S^{m, i} )^\top} \frac{\partial ( S^{m, i} )}{\partial (\phi(\Pad{Z^{m, i}}))^\top} \frac{\partial (\phi(\Pad{Z^{m, i}}))}{\partial (\Pad{Z^{m, i}})^\top} \frac{\partial (\Pad{Z^{m, i}})}{\partial ( Z^{m, i} )^\top} \\[5pt]
+    &= \frac{\partial \xi_i}{\partial ( S^{m, i} )^\top} \left( \mathcal{I}_{a^m_{\text{conv}} b^m_{\text{conv}}} \otimes W^{m^\top} \right) P_{\phi}^{m} P_{\text{pad}}^{m } \tag{7} \\[5pt]
+    &= \Vec{ (W^{m})^\top \frac{\partial \xi_i}{\partial S^{m, i}} }^\top P_{\phi}^{m} P_{\text{pad}}^{m} \tag{8}
+\end{align*}
+
+We have everything to compute the gradient of convolution layer.
+
+\begin{note}
+    In the forward pass, we have \[
+        \phi(\Pad{Z^{m, i}}) = P_{\phi}^{m} P_{\text{pad}}^{m} \Vec{Z^{m, i}}
+    \]
+    hence \[
+        \frac{\partial (\phi(\Pad{Z^{m, i}}))}{\partial (\Pad{Z^{m, i}})^\top} \frac{\partial (\Pad{Z^{m, i}})}{\partial ( Z^{m, i} )^\top} = P_{\phi}^{m} P_{\text{pad}}^{m}
+    \]
+\end{note}
+

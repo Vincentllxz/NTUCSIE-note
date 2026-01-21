@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.8.4)  9 DEC 2025 02:33
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.8.4)  16 JAN 2026 01:11
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1518,72 +1518,72 @@ Package zref Info: New property: mdf@pagevalue on input line 895.
 Package thmtools Info: Key `mdframed' (with value ` linewidth=2pt, rightline=false, topline=false, bottomline=false, linecolor=ForestGreen, backgroundcolor=cyan!5, nobreak=false ')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=thmgreenbox' on input line 102.
+(thmtools)             that uses `style=thmgreenbox' on input line 105.
 Package thmtools Info: Key `mdframed' (with value ` linewidth=2pt, rightline=false, topline=false, bottomline=false, linecolor=ForestGreen, backgroundcolor=ForestGreen!8, nobreak=false ')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=thmgreen2box' on input line 112.
+(thmtools)             that uses `style=thmgreen2box' on input line 115.
 Package thmtools Info: Key `mdframed' (with value ` linewidth=2pt, rightline=false, topline=false, bottomline=false, linecolor=NavyBlue, backgroundcolor=NavyBlue!5, nobreak=false ')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=thmbluebox' on input line 122.
+(thmtools)             that uses `style=thmbluebox' on input line 125.
 Package thmtools Info: Key `mdframed' (with value ` linewidth=2pt, rightline=false, topline=false, bottomline=false, linecolor=RoyalBlue!90!black, nobreak=false ')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=thmblueline' on input line 132.
+(thmtools)             that uses `style=thmblueline' on input line 135.
 Package thmtools Info: Key `mdframed' (with value ` linewidth=2pt, rightline=false, topline=false, bottomline=false, linecolor=RawSienna, backgroundcolor=RawSienna!5, nobreak=false ')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=thmredbox' on input line 142.
+(thmtools)             that uses `style=thmredbox' on input line 145.
 Package thmtools Info: Key `mdframed' (with value ` linewidth=2pt, rightline=false, topline=false, bottomline=false, linecolor=Goldenrod!80!black, backgroundcolor=Goldenrod!10, nobreak=false ')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=thmred3box' on input line 152.
+(thmtools)             that uses `style=thmred3box' on input line 155.
 Package thmtools Info: Key `mdframed' (with value ` linewidth=2pt, rightline=false, topline=false, bottomline=false, linecolor=RawSienna, backgroundcolor=RawSienna!8, nobreak=false ')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=thmred2box' on input line 162.
+(thmtools)             that uses `style=thmred2box' on input line 165.
 Package thmtools Info: Key `mdframed' (with value ` linewidth=2pt, rightline=false, topline=false, bottomline=false, linecolor=SeaGreen, backgroundcolor=SeaGreen!2, nobreak=false ')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=thmgreen3box' on input line 172.
+(thmtools)             that uses `style=thmgreen3box' on input line 175.
 Package thmtools Info: Key `mdframed' (with value ` linewidth=2pt, rightline=false, topline=false, bottomline=false, linecolor=WildStrawberry, backgroundcolor=WildStrawberry!5, nobreak=false ')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=thmpinkbox' on input line 182.
+(thmtools)             that uses `style=thmpinkbox' on input line 185.
 Package thmtools Info: Key `mdframed' (with value ` linewidth=2pt, rightline=false, topline=false, bottomline=false, linecolor=MidnightBlue, backgroundcolor=MidnightBlue!5, nobreak=false ')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=thmblue2box' on input line 192.
+(thmtools)             that uses `style=thmblue2box' on input line 195.
 Package thmtools Info: Key `mdframed' (with value ` linewidth=2pt, rightline=false, topline=false, bottomline=false, linecolor=Gray, backgroundcolor=Gray!5, nobreak=false ')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=notgraybox' on input line 202.
+(thmtools)             that uses `style=notgraybox' on input line 205.
 Package thmtools Info: Key `mdframed' (with value ` linewidth=2pt, rightline=false, topline=false, bottomline=false, linecolor=Gray, nobreak=false ')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=notgrayline' on input line 212.
+(thmtools)             that uses `style=notgrayline' on input line 215.
 Package thmtools Info: Key `numbered' (with value `no')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=thmexplanationbox' on input line 234.
+(thmtools)             that uses `style=thmexplanationbox' on input line 237.
 Package thmtools Info: Key `mdframed' (with value ` linewidth=2pt, rightline=false, topline=false, bottomline=false, linecolor=NavyBlue, backgroundcolor=NavyBlue!1, nobreak=false ')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=thmexplanationbox' on input line 234.
+(thmtools)             that uses `style=thmexplanationbox' on input line 237.
 Package thmtools Info: Key `numbered' (with value `no')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=thmanswerbox' on input line 245.
+(thmtools)             that uses `style=thmanswerbox' on input line 248.
 Package thmtools Info: Key `mdframed' (with value ` linewidth=2pt, rightline=false, topline=false, bottomline=false, linecolor=WildStrawberry, backgroundcolor=WildStrawberry!1, nobreak=false ')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=thmanswerbox' on input line 245.
+(thmtools)             that uses `style=thmanswerbox' on input line 248.
 Package thmtools Info: Key `mdframed' (with value ` linewidth=2pt, rightline=false, topline=false, bottomline=false, linecolor=Violet, backgroundcolor=Violet!1, nobreak=false ')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=conjpurplebox' on input line 255.
-Package thmtools Info: Automatically pulling in `thmdef-mdframed' on input line 258.
+(thmtools)             that uses `style=conjpurplebox' on input line 258.
+Package thmtools Info: Automatically pulling in `thmdef-mdframed' on input line 261.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/thmtools/thmdef-mdframed.sty
 Package: thmdef-mdframed 2023/05/04 v0.76
 )
@@ -1670,7 +1670,8 @@ Package: centernot 2016/05/16 v1.4 Centers the not symbol horizontally (HO)
 \@quotelevel=\count582
 \@quotereset=\count583
 Package translations Info: No language package found. I am going to use `english' as default language. on input line 12.
- (./NumericalMethod.aux)
+
+No file NumericalMethod.aux.
 \openout1 = `NumericalMethod.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 12.
@@ -1695,7 +1696,7 @@ LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 12.
 LaTeX Font Info:    ... okay on input line 12.
 Package biblatex Info: Trying to load language 'english'...
 Package biblatex Info: ... file 'english.lbx' found.
- (/usr/local/texlive/2025/texmf-dist/tex/latex/biblatex/lbx/english.lbx
+(/usr/local/texlive/2025/texmf-dist/tex/latex/biblatex/lbx/english.lbx
 File: english.lbx 2024/03/21 v3.20 biblatex localization (PK/MW)
 )
 Package biblatex Info: XeTeX detected.
@@ -1711,13 +1712,15 @@ No file NumericalMethod.bbl.
 Package biblatex Info: Reference section=0 on input line 12.
 Package biblatex Info: Reference segment=0 on input line 12.
 Package hyperref Info: Link coloring ON on input line 12.
-(./NumericalMethod.out) (./NumericalMethod.out)
 \@outlinefile=\write6
 \openout6 = `NumericalMethod.out'.
 
+
+Package hyperref Warning: Rerun to get /PageLabels entry.
+
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
- (/usr/local/texlive/2025/texmf-dist/tex/latex/pdflscape/pdflscape.sty
+(/usr/local/texlive/2025/texmf-dist/tex/latex/pdflscape/pdflscape.sty
 Package: pdflscape 2022-10-27 v0.13 Display of landscape pages in PDF
  (/usr/local/texlive/2025/texmf-dist/tex/latex/pdflscape/pdflscape-nometadata.sty
 Package: pdflscape-nometadata 2022-10-28 v0.13 Display of landscape pages in PDF (HO)
@@ -1828,18 +1831,12 @@ File: Figures/abstract.jpg Graphic file (type bmp)
 
 [1]
 Package marginnote Info: Using workaround for absolute page number on input line 23.
- (./NumericalMethod.toc
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 2.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 2.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 2.
-)
+
+No file NumericalMethod.toc.
 \tf@toc=\write7
 \openout7 = `NumericalMethod.toc'.
 
- (./Lectures/lec_1.tex
+(./Lectures/lec_1.tex
 
 [1
 
@@ -1847,9 +1844,8 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 Package marginnote Info: Using workaround for absolute page number on input line 2.
 
 Chapter 1.
-Package marginnote Info: Margin note 6.1 is on absolute page 6 on input line 4.
 Package marginnote Info: right page because not two side mode on input line 4.
-Package marginnote Info: xpos seems to be 72.2698pt on input line 4.
+Package marginnote Info: xpos seems to be \@mn@currxpos  on input line 4.
 
 Package xeCJK Warning: Unknown CJK family `\CJKsfdefault' is being ignored.
 (xeCJK)                
@@ -1864,18 +1860,29 @@ Package mdframed Info: mdframed detected package amsthm
  changed the theorem header of amsthm
 (mdframed)              on input line 11.
 Package hyperref Info: bookmark level for unknown eg defaults to 0 on input line 11.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10> on input line 12.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 12.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 12.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 21.
 \pydata@fh@_2FDC630547FD7A76B2F882B34686F2BC.data.minted=\write8
 \openout8 = `_2FDC630547FD7A76B2F882B34686F2BC.data.minted'.
 
-runsystem(latexminted config  --timestamp 20251209023306 2FDC630547FD7A76B2F882B34686F2BC)...executed safely (allowed).
+runsystem(latexminted config  --timestamp 20260116011115 2FDC630547FD7A76B2F882B34686F2BC)...executed safely (allowed).
 
  (./_2FDC630547FD7A76B2F882B34686F2BC.config.minted)
-runsystem(latexminted cleanconfig  --timestamp 20251209023306 2FDC630547FD7A76B2F882B34686F2BC)...executed safely (allowed).
+runsystem(latexminted cleanconfig  --timestamp 20260116011115 2FDC630547FD7A76B2F882B34686F2BC)...executed safely (allowed).
 
- (./_minted/default.style.minted) (./_minted/1DD07FBB4B5D88B0C399DFFCF1B29B2B.highlight.minted
+ (./_minted/tango.style.minted)
+\openout8 = `_2FDC630547FD7A76B2F882B34686F2BC.data.minted'.
+
+runsystem(latexminted highlight  --timestamp 20260116011115 2FDC630547FD7A76B2F882B34686F2BC)...executed safely (allowed).
+
+ (./_minted/B76D8DEF7A6603F82822BFA45CA7A66D.highlight.minted
 
 Package xeCJK Warning: Unknown CJK family `\CJKttdefault' is being ignored.
 (xeCJK)                
@@ -1888,7 +1895,7 @@ File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10> not available
 (Font)              Font shape `T1/lmtt/b/n' tried instead on input line 2.
-) (./_minted/F7611A689C4883F9455CF5786D5955C3.highlight.minted)
+) (./_minted/047662CAD926C0BBC84BCC406ECF79A8.highlight.minted)
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 45.
@@ -1902,7 +1909,12 @@ Package mdframed Info: Not enough space on this page on input line 47.
 Package mdframed Info: Not enough space on this page on input line 47.
 )
 
-[3] (./NumericalMethod.aux)
+[3]
+\openout8 = `_2FDC630547FD7A76B2F882B34686F2BC.data.minted'.
+
+runsystem(latexminted clean  --timestamp 20260116011115 2FDC630547FD7A76B2F882B34686F2BC)...executed safely (allowed).
+
+ (./NumericalMethod.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2022/08/05>
@@ -1911,17 +1923,34 @@ L3 programming layer <2022/08/05>
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package rerunfilecheck Info: File `NumericalMethod.out' has not changed.
-(rerunfilecheck)             Checksum: ECFA7D82E51DABF1AEAE48C130D4E895;318.
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+
+Package rerunfilecheck Warning: File `NumericalMethod.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `NumericalMethod.out':
+(rerunfilecheck)             Before: <no file>
+(rerunfilecheck)             After:  ECFA7D82E51DABF1AEAE48C130D4E895;318.
+
+Package biblatex Warning: Please (re)run Biber on the file:
+(biblatex)                NumericalMethod
+(biblatex)                and rerun LaTeX afterwards.
+
 Package logreq Info: Writing requests to 'NumericalMethod.run.xml'.
 \openout1 = `NumericalMethod.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 61819 strings out of 473832
- 1471701 string characters out of 5729482
- 2536365 words of memory out of 5000000
- 83859 multiletter control sequences out of 15000+600000
+ 61820 strings out of 473832
+ 1471580 string characters out of 5729482
+ 2537134 words of memory out of 5000000
+ 83868 multiletter control sequences out of 15000+600000
  651702 words of font info for 129 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  104i,11n,107p,1272b,1252s stack positions out of 10000i,1000n,20000p,200000b,200000s

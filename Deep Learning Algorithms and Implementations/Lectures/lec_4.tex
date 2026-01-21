@@ -1,0 +1,139 @@
+\section{Convergence of Stochastic Gradient Method}
+
+For the simplicity, we don't consider the regularization term. Therefore, \[
+    f(\bm{\theta}) = \frac{1}{l} \sum_{i=1}^{l} \xi(\bm{z}^{L+1, i}(\bm{\theta}); \bm{y}^i, \bm{Z}^{1, i})
+\]
+and we define \[
+    f_i(\bm{\theta}) := \xi(\bm{z}^{L+1, i}(\bm{\theta}); \bm{y}^i, \bm{Z}^{1, i})
+\]
+In here we consider the simplest case of stochastic gradient method, at each iteration, an index $\tilde{i}$ such that \[
+    \bm{\theta}_{t+1} = \bm{\theta}_t - \alpha_t \nabla f_{\tilde{i}}(\bm{\theta}_t)
+\]
+with $t$ is the iteration index. Then with the following assumptions:
+\begin{itemize}
+    \item limit of gradient, there exists a constant $G > 0$ such that \[
+        \|\nabla f_i(\bm{\theta})\| \leq G, \quad \forall i, \forall \bm{\theta} \tag{1}
+    \]
+    \item limit of Hessian, there exists is a constant $L > 0$ such that \[
+        |\bm{u}^T \nabla^2 f(\bm{\theta}) \bm{u}| \leq L \|\bm{u}\|^2 , \quad \forall \bm{u}, \forall \bm{\theta} \tag{2}
+    \]
+\end{itemize}
+
+\begin{theorem}[Taylor Expansion Theorem]
+    Suppose $f: \mathbb{R}^n \to \mathbb{R}$ is two times differentiable, then \[
+        f(\bm{x} + \bm{h}) = f(\bm{x}) + \nabla f(\bm{x})^T \bm{h} + \frac{1}{2} \bm{h}^T \underbrace{\nabla^2 f(\bm{\xi})}_{\text{Hessian}} \bm{h}
+    \]
+\end{theorem}
+
+From Taylor's theorem, we have \begin{align*}
+    f(\bm{\theta}_{t+1}) &= f(\bm{\theta}_t - \alpha_t \nabla f_{\tilde{i}}(\bm{\theta}_t)) \\[3pt]
+    &= f(\bm{\theta}_t) - \alpha_t \nabla f_{\tilde{i}}(\bm{\theta}_t)^T \nabla f(\bm{\theta}_t) + \frac{1}{2} (\alpha_t \nabla f_{\tilde{i}}(\bm{\theta}_t))^T \nabla^2 f(\bm{\xi}_t)(\alpha_t \nabla f_{\tilde{i}}(\bm{\theta}_t)) \tag{3}
+\end{align*}
+where \(\bm{\xi}_t \text{ is between } \bm{\theta}_t \text{ and } \bm{\theta}_{t+1}\)
+
+Using assumption we get \begin{align*}
+    f(\bm{\theta}_{t+1}) &= f(\bm{\theta}_t) - \alpha_t \nabla f_{\tilde{i}}(\bm{\theta}_t)^T \nabla f(\bm{\theta}_t) + \frac{1}{2} (\alpha_t \nabla f_{\tilde{i}}(\bm{\theta}_t))^T \nabla^2 f(\bm{\xi}_t)(\alpha_t \nabla f_{\tilde{i}}(\bm{\theta}_t)) \\[3pt]
+    &\leq f(\bm{\theta}_t) - \alpha_t \nabla f_{\tilde{i}}(\bm{\theta}_t)^T \nabla f(\bm{\theta}_t) + \frac{\alpha_t^2 L}{2} \|\nabla f_{\tilde{i}}(\bm{\theta}_t)\|^2 \tag{\text{by assumption (2)}} \\[3pt]
+    &\leq f(\bm{\theta}_t) - \alpha_t \nabla f_{\tilde{i}}(\bm{\theta}_t)^T \nabla f(\bm{\theta}_t) + \frac{\alpha_t^2 L G^2}{2} \tag{\text{by assumption (1)}}
+\end{align*}
+
+Earlier in gradient descent method, we have \[
+    - \alpha_t \nabla f(\bm{\theta}_t)^T \nabla f(\bm{\theta}_t) < 0
+\]
+with small enough step size \(\alpha_t\), we have \[
+    f(\bm{\theta}_{t+1}) < f(\bm{\theta}_t)
+\] 
+However the term \[
+    - \alpha_t \nabla f_{\red{\tilde{i}}}(\bm{\theta}_t)^T \nabla f(\bm{\theta}_t)
+\]
+is not necessarily negative, since \(\nabla f_{\tilde{i}}(\bm{\theta}_t)\) is a random gradient. So we calculate the expectation.
+
+The expectation is on the randomness of selecting $\tilde{i}_t$
+\begin{align*}
+    \Ex{f(\bm{\theta}_{t+1})} &\leq \Ex{f(\bm{\theta}_t) - \alpha_t \nabla f_{\tilde{i}}(\bm{\theta}_t)^T \nabla f(\bm{\theta}_t) + \frac{\alpha_t^2 G^2 L}{2}} \\[3pt]
+    &= \Ex{f(\bm{\theta}_t)} - \alpha_t \Ex{\nabla f_{\tilde{i}}(\bm{\theta}_t)^T \nabla f(\bm{\theta}_t)} + \frac{\alpha_t^2 G^2 L}{2} \tag{4}
+\end{align*}
+\begin{note}
+    $\alpha_t$ depends only on $t$, not on the randomness of selecting $\tilde{i}_t$, so it can be taken out of the expectation.
+\end{note}
+
+Our expectation is on $\tilde{i}_t, \ \forall t$, so we have \[
+    \Ex{f(\bm{\theta}_{t+1})} = \mathbb{E}_{\tilde{i}_0, \ldots, \tilde{i}_{t}} [f(\bm{\theta}_{t+1})]
+\] 
+Thus in RHS, we still have randomness on $\tilde{i}_0, \ldots, \tilde{i}_{t-1}$, so we need \(\Ex{f(\bm{\theta})}\) instead of \(f(\bm{\theta})\) because \[
+    \Ex{f(\bm{\theta}_t)} = \mathbb{E}_{\tilde{i}_0, \ldots, \tilde{i}_{t-1}} [f(\bm{\theta}_t)]
+\]
+Next, we calculate the term \(\Ex{\nabla f_{\tilde{i}}(\bm{\theta}_t)^T \nabla f(\bm{\theta}_t)}\) by checking the expected value of \(\nabla f_{\tilde{i}}(\bm{\theta}_t)\) given \(\bm{\theta}_t\):
+\begin{align*}
+    \mathbb{E}_{\tilde{i}_t}[\nabla f_{\tilde{i}_t}(\bm{\theta}_t) \mid \bm{\theta}_t] &= \sum_{i=1}^{l} \nabla f_i(\bm{\theta}_t) \cdot \Pr[\, \tilde{i}_t = i \mid \bm{\theta}_t] \\[3pt]
+    &= \sum_{i=1}^{l} \nabla f_i(\bm{\theta}_t) \cdot \frac{1}{l} \\[3pt]
+    &= \nabla f(\bm{\theta}_t)
+\end{align*}
+Therefore, we have \[
+    \mathbb{E}_{\tilde{i}_0, \ldots, \tilde{i}_{t}} \left[ \nabla f_{\tilde{i}_t}(\bm{\theta}_t)^T \nabla f(\bm{\theta}_t) \right] = \mathbb{E}_{\tilde{i}_0, \ldots, \tilde{i}_{t-1}} \left[ \mathbb{E}_{\tilde{i}_t} \left[ \nabla f_{\tilde{i}_t}(\bm{\theta}_t)^T \nabla f(\bm{\theta}_t) \mid \tilde{i}_0, \ldots, \tilde{i}_{t-1}\right] \right] 
+\]
+we can reduce \(\Ex{\cdots \mid \tilde{i}_0, \ldots, \tilde{i}_{t-1}} \to \Ex{\cdots \mid \bm{\theta}_t}\) since \(\bm{\theta}_t\) is determined by \(\tilde{i}_0, \ldots, \tilde{i}_{t-1}\), thus we have \[
+    \mathbb{E}_{\tilde{i}_0, \ldots, \tilde{i}_{t-1}} \left[ \mathbb{E}_{\tilde{i}_t} \left[ \nabla f_{\tilde{i}_t}(\bm{\theta}_t)^T \nabla f(\bm{\theta}_t) \mid \bm{\theta}_t \right] \right] = \mathbb{E}_{\tilde{i}_0, \ldots, \tilde{i}_{t-1}} \left[ \| \nabla f(\bm{\theta}_t) \|^2 \right]
+\]
+
+Substituting back to (4), we have \[
+    \Ex{f(\bm{\theta}_{t+1})} \leq \Ex{f(\bm{\theta}_t)} - \alpha_t \Ex{\| \nabla f(\bm{\theta}_t) \|^2} + \frac{\alpha_t^2 G^2 L}{2}
+\]
+
+Then we rearrange the terms and sum up over $T$ iterations: \begin{align*}
+    \sum_{t=0}^{T-1} \alpha_t \Ex{\| \nabla f(\bm{\theta}_t) \|^2} &\leq \sum_{t=0}^{T-1} \left( \Ex{f(\bm{\theta}_t)} - \Ex{f(\bm{\theta}_{t+1})} + \frac{\alpha_t^2 G^2 L}{2} \right) \\[3pt]
+    &= \Ex{f(\bm{\theta}_0)} - \Ex{f(\bm{\theta}_T)} + \frac{G^2 L}{2} \sum_{t=0}^{T-1} \alpha_t^2 \\[3pt]
+    &= f(\bm{\theta}_0) - \Ex{f(\bm{\theta}_T)} + \frac{G^2 L}{2} \sum_{t=0}^{T-1} \alpha_t^2 \\[3pt]
+    &\leq f(\bm{\theta}_0) - f^* + \frac{G^2 L}{2} \sum_{t=0}^{T-1} \alpha_t^2 \tag{5}
+\end{align*}
+where \(f^*\) is the global optimal value of \(f(\bm{\theta})\). The LHS is of all $T$ iterations, we need to rewrite it in single iteration form.
+
+Assume we randomly select an iteration index $\tau$, and \(\tau\) is uniformly distributed in \(\{0, 1, \ldots, T-1\}\) \[
+    \Pr[\tau = t] = \frac{\alpha_t}{\sum_{k=0}^{T-1} \alpha_k}
+\]
+The expected squared-norm of gradient at iteration $\tau$ is
+\begin{align*}
+    \mathbb{E}_{\tau, \tilde{i}_0, \ldots, \tilde{i}_{\tau-1}} \left[ \| \nabla f(\bm{\theta}_{\tau}) \|^2 \right] &= \sum_{t=0}^{T-1} \Pr[\tau = t] \cdot \mathbb{E}_{\tilde{i}_0, \ldots, \tilde{i}_{t-1}} \left[ \| \nabla f(\bm{\theta}_t) \|^2 \right] \\[3pt]
+    &= \left( \sum_{k=0}^{T-1} \alpha_k \right)^{-1} \sum_{t=0}^{T-1} \alpha_t \Ex{\| \nabla f(\bm{\theta}_t) \|^2} \tag{6}
+\end{align*}
+
+From (6) and (5), we have \[
+    \Ex{\| \nabla f(\bm{\theta}_{\tau}) \|^2} \leq \left( \sum_{k=0}^{T-1} \alpha_k \right)^{-1} \left( f(\bm{\theta}_0) - f^* + \frac{G^2 L}{2} \sum_{t=0}^{T-1} \alpha_t^2 \right) \tag{7}
+\]
+If the learning rate is a constant, i.e., \(\alpha_t = \alpha\), then \begin{align*}
+    \Ex{\| \nabla f(\bm{\theta}_{\tau}) \|^2} &\leq (T \alpha)^{-1} \left( f(\bm{\theta}_0) - f^* + \frac{G^2 L}{2} T \alpha^2 \right) \\[3pt]
+    &= \frac{f(\bm{\theta}_0) - f^*}{\alpha T} + \frac{\alpha G^2 L}{2}
+\end{align*}
+The RHS does not go to zero as \(T \to \infty\) due to the second term. However, we can choose to \textbf{diminish step size (learning rate) over time}. To make RHS of (7) go to zero, we need \[
+    \sum_{t=0}^{T-1} \alpha_t \text{ grows faster than } \sum_{t=0}^{T-1} \alpha_t^2
+\]
+
+\begin{lemma}
+    Let \[
+        \alpha_t = \frac{1}{\sqrt{t+1}}
+    \]
+    we have \[
+        \Ex{\| \nabla f(\bm{\theta}_{\tau}) \|^2} = O \left( \frac{\log T}{\sqrt{T}} \right) \to 0 \text{ as } T \to \infty
+    \]
+\end{lemma}
+\begin{proof}
+    We have \begin{align*}
+        \sum_{t=0}^{T-1} \alpha_t &= \sum_{t=0}^{T-1} \frac{1}{\sqrt{t+1}} \\[3pt]
+        &\approx \int_{0}^{T} \frac{1}{\sqrt{x}} \, \text{d}x = 2x^{1/2} \Big|_{0}^{T} = 2 \sqrt{T}
+    \end{align*}
+    and 
+    \begin{align*}
+        \sum_{t=0}^{T-1} \alpha_t^2 &= \sum_{t=0}^{T-1} \frac{1}{t+1} \\[3pt]
+        &\approx \int_{1}^{T+1} \frac{1}{x} \, \text{d}x = \log x \Big|_{1}^{T+1} = \log (T+1)
+    \end{align*}
+    Therefore, we have \begin{align*}
+        \Ex{\| \nabla f(\bm{\theta}_{\tau}) \|^2} &\leq \left( 2 \sqrt{T} \right)^{-1} \left( f(\bm{\theta}_0) - f^* + \frac{G^2 L}{2} \log (T+1) \right) \\[3pt]
+        &= \frac{2(f(\bm{\theta}_0) - f^*) + G^2 L \log (T+1)}{4 \sqrt{T}} \\[3pt]
+        &= O \left( \frac{\log T}{\sqrt{T}} \right) \to 0 \text{ as } T \to \infty
+    \end{align*}
+    The RHS goes to zero as \(T \to \infty\).
+\end{proof}
+
+\vspace{10pt}
+
+Hence, by diminishing learning rate, the stochastic gradient method can also converge to a stationary point.

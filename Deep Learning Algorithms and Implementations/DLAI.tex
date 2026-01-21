@@ -1,0 +1,89 @@
+\documentclass[a4paper]{report}
+\input{header.tex}
+\author{Vinsong}
+\title{CSIE7435: Deep Learning Algorithms and Implementations}
+
+\thispagestyle{empty}
+\addbibresource{reference.bib}
+
+\usepackage{adjustbox}
+\usepackage{centernot}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+    The lecture note of 2025 Fall Deep Learning Algorithms and Implementations by professor 林智仁.
+    \vspace{5em}
+    \begin{center}
+    \begin{tikzpicture}[
+    % 定義樣式
+    shorten >=1pt,->,
+    draw=black!50,
+    node distance=2.5cm,
+    every pin edge/.style={<-,shorten <=1pt},
+    neuron/.style={circle,fill=black!25,minimum size=17pt,inner sep=0pt},
+    input neuron/.style={neuron, fill=green!50},
+    output neuron/.style={neuron, fill=red!50},
+    hidden neuron/.style={neuron, fill=blue!50},
+    annot/.style={text width=4em, text centered},
+    scale=1.5
+]
+
+    % 設定各層的數量
+    \def\inputNum{3}
+    \def\hiddenNum{4}
+    \def\outputNum{2}
+
+    % --- 1. 繪製 Input Layer ---
+    \foreach \name / \y in {1,...,\inputNum}
+        \node[input neuron, pin=left:Input \#\y] (I-\name) at (0,-\y) {$x_{\y}$};
+
+    % --- 2. 繪製 Hidden Layer ---
+    % 這裡做了一個位移，讓它稍微置中一點 (視需求調整)
+    \foreach \name / \y in {1,...,\hiddenNum}
+        \path[yshift=0.5cm]
+            node[hidden neuron] (H-\name) at (2.5cm,-\y) {$h_{\y}$};
+
+    % --- 3. 繪製 Output Layer ---
+    \foreach \name / \y in {1,...,\outputNum}
+        \path[yshift=-0.5cm]
+            node[output neuron, pin={[pin edge={->}]right:Output \#\y}] (O-\name) at (5cm,-\y) {$y_{\y}$};
+
+    % --- 4. 連接線 (Edges) ---
+    
+    % 連接 Input -> Hidden
+    \foreach \source in {1,...,\inputNum}
+        \foreach \dest in {1,...,\hiddenNum}
+            \path (I-\source) edge (H-\dest);
+
+    % 連接 Hidden -> Output
+    \foreach \source in {1,...,\hiddenNum}
+        \foreach \dest in {1,...,\outputNum}
+            \path (H-\source) edge (O-\dest);
+
+    % --- 5. 加上標籤 (Labels) ---
+    \node[annot,above of=H-1, node distance=1cm] (hl) {Hidden layer};
+    \node[annot,left of=hl] {Input layer};
+    \node[annot,right of=hl] {Output layer};
+
+\end{tikzpicture}
+    \end{center}
+    
+    \begin{flushright}
+        Vinsong\\
+        \today
+    \end{flushright}
+\end{abstract}
+
+
+\newpage
+
+\tableofcontents
+
+\setcounter{chapter}{-1}
+
+\lec{1}{50}
+
+\end{document}

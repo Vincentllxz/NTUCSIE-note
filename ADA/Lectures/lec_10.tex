@@ -219,11 +219,11 @@ Now let compute the time complexity of Edmonds-Karp algorithm.
     \end{itemize}
     where $h$ is the saturating flow of $R(f + g + \cdots + g' + h)$ corresponding to the shortest augmenting $st$-path in $R(f + g + \cdots + g')$ saturates $uv$. Thus, $uv \in E(P)$. We have 
     \begin{align*}
-        d_{R(f)}^*(s, u) &= d_{R(f)}^*(s, v) + 1 \quad &\text{by 現邊觀察} \\
-        &\leq d_{R(f + g + \cdots + g')}^*(s, v) + 1 \quad &\text{by 遞增觀察} \\
-        &= d_{R(f + g + \cdots + g' + h)}^*(s, u) + 2 \quad &uv \in E(P)
+        d_{R(f)}^*(s, v) &= d_{R(f)}^*(s, u) - 1 &\text{by 現邊觀察} \\
+        &\leq d_{R(f + g + \cdots + g')}^*(s, v) - 1 &\text{by 遞增觀察} \\
+        &= d_{R(f + g + \cdots + g' + h)}^*(s, u) - 2 &uv \in E(P)
     \end{align*}
-    Since $d_H^*(s, u) \in \{0, 1, \cdots, n-1, \infty\}$ for any residual graph $H$, $uv$ can at most appear and disappear $O(n)$ times in the residual graphs throughout the algorithm. Thus, the algorithm halts in $O(mn)$ rounds. and thus run in $O(m^2 n)$ time.
+    Since $d_H^*(s, v) \in \{0, 1, \cdots, n-1, \infty\}$ for any residual graph $H$, $uv$ can at most appear and disappear $O(n)$ times in the residual graphs throughout the algorithm. Thus, the algorithm halts in $O(mn)$ rounds. and thus run in $O(m^2 n)$ time.
 \end{proof}
 
 \noindent\rule{\textwidth}{0.4pt}

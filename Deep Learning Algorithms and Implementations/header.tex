@@ -46,6 +46,8 @@
 % for the big braces
 \usepackage{bigdelim}
 
+\usepackage{xparse}
+
 % correct
 \definecolor{correct}{HTML}{009900}
 \newcommand\correct[2]{\ensuremath{\:}{\color{red}{#1}}\ensuremath{\to }{\color{correct}{#2}}\ensuremath{\:}}
@@ -57,14 +59,22 @@
 % si unitx
 \usepackage{siunitx}
 \sisetup{locale = FR}
-% \renewcommand\vec[1]{\mathbf{#1}}
+\renewcommand\vec[1]{\mathbf{#1}}
 \newcommand\mat[1]{\mathbf{#1}}
+\newcommand{\Ex}[1]{\mathbb{E}\left[ #1 \right]}
+\newcommand{\Mat}[1]{\text{mat}\left( #1 \right)}
+\renewcommand{\Vec}[1]{\text{vec}\left( #1 \right)}
+\newcommand{\Pad}[1]{\text{pad}\left( #1 \right)}
 
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
 
 % tikz
 \usepackage{tikz}
-\usetikzlibrary{intersections, angles, quotes, positioning}
+\usetikzlibrary{intersections, angles, quotes, positioning, backgrounds, fit}
 \usetikzlibrary{arrows.meta}
+\usetikzlibrary{shapes.geometric}
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.13}
 
@@ -133,6 +143,16 @@
 			nobreak=false
 		}
 ]{thmblueline}
+
+\declaretheoremstyle[
+	headfont=\bfseries\sffamily\color{black}, bodyfont=\normalfont,
+	mdframed={
+			linewidth=2pt,
+			rightline=false, topline=false, bottomline=false,
+			linecolor=YellowOrange!80!black,
+			nobreak=false
+		}
+]{thmorangeline}
 
 \declaretheoremstyle[
 	headfont=\bfseries\sffamily\color{RawSienna!70!black}, bodyfont=\normalfont,
@@ -298,7 +318,7 @@
 \declaretheorem[style=thmexplanationbox, numbered=no, name=Proof]{tmpexplanation}
 \newenvironment{explanation}[1][]{\vspace{-10pt}\pushQED{\(\circledast\)}\begin{tmpexplanation}}{\null\hfill\popQED\end{tmpexplanation}}
 
-\declaretheorem[style=thmblueline, numbered=no, name=Remark]{remark}
+\declaretheorem[style=thmorangeline, numbered=no, name=Remark]{remark}
 \declaretheorem[style=thmblueline, numbered=no, name=Note]{note}
 \declaretheorem[style=thmpinkbox, numbered=no, name=Question]{exercise}
 \declaretheorem[style=notgrayline, numbered=no, name=As previously seen]{prev}
