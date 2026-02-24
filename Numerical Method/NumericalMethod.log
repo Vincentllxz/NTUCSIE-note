@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.8.4)  16 JAN 2026 01:11
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.8.4)  24 FEB 2026 11:44
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1074,6 +1074,20 @@ LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
 (Font)                  OT1/cmr/bx/it --> OT1/lmr/bx/it on input line 37.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 (Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 38.
+) (/usr/local/texlive/2025/texmf-dist/tex/latex/inconsolata/inconsolata.sty
+Package: inconsolata 2019/05/17 v1.12
+ `inconsolata-zi4' v1.12, 2019/05/17 Text macros for Inconsolata (msharpe) (/usr/local/texlive/2025/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+Package: xkeyval 2022/06/16 v2.9 package option processing (HA)
+ (/usr/local/texlive/2025/texmf-dist/tex/generic/xkeyval/xkeyval.tex (/usr/local/texlive/2025/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+\XKV@toks=\toks47
+\XKV@tempa@toks=\toks48
+)
+\XKV@depth=\count513
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+))
+\zifour@ocount=\count514
+) (/usr/local/texlive/2025/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/xfrac/xfrac.sty
 Package: xfrac 2024-06-04 Split-level fractions
 \l__xfrac_slash_box=\box85
@@ -1110,7 +1124,7 @@ Package: mathtools 2024/10/04 v1.31 mathematical typesetting tools
  (/usr/local/texlive/2025/texmf-dist/tex/latex/mathtools/mhsetup.sty
 Package: mhsetup 2021/03/18 v1.4 programming setup (MH)
 )
-\g_MT_multlinerow_int=\count513
+\g_MT_multlinerow_int=\count515
 \l_MT_multwidth_dim=\dimen351
 \origjot=\skip89
 \l_MT_shortvdotswithinadjustabove_dim=\dimen352
@@ -1123,15 +1137,15 @@ Package: mhsetup 2021/03/18 v1.4 programming setup (MH)
 \xmathstrut@dim=\dimen358
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/amscls/amsthm.sty
 Package: amsthm 2020/05/29 v2.20.6
-\thm@style=\toks47
-\thm@bodyfont=\toks48
-\thm@headfont=\toks49
-\thm@notefont=\toks50
-\thm@headpunct=\toks51
+\thm@style=\toks49
+\thm@bodyfont=\toks50
+\thm@headfont=\toks51
+\thm@notefont=\toks52
+\thm@headpunct=\toks53
 \thm@preskip=\skip90
 \thm@postskip=\skip91
 \thm@headsep=\skip92
-\dth@everypar=\toks52
+\dth@everypar=\toks54
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
 LaTeX Font Info:    Redeclaring math symbol \boxdot on input line 44.
@@ -1143,9 +1157,9 @@ Package: geometry 2020/01/02 v5.9 Page Geometry
  (/usr/local/texlive/2025/texmf-dist/tex/generic/iftex/ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 )
-\Gm@cnth=\count514
-\Gm@cntv=\count515
-\c@Gm@tempcnt=\count516
+\Gm@cnth=\count516
+\Gm@cntv=\count517
+\c@Gm@tempcnt=\count518
 \Gm@bindingoffset=\dimen359
 \Gm@wd@mp=\dimen360
 \Gm@odd@mp=\dimen361
@@ -1154,38 +1168,38 @@ Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 \Gm@layoutheight=\dimen364
 \Gm@layouthoffset=\dimen365
 \Gm@layoutvoffset=\dimen366
-\Gm@dimlist=\toks53
+\Gm@dimlist=\toks55
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/cancel/cancel.sty
 Package: cancel 2013/04/12 v2.2 Cancel math terms
 ) (/usr/local/texlive/2025/texmf-dist/tex/generic/systeme/systeme.sty (/usr/local/texlive/2025/texmf-dist/tex/generic/xstring/xstring.sty (/usr/local/texlive/2025/texmf-dist/tex/generic/xstring/xstring.tex
-\xs_counta=\count517
-\xs_countb=\count518
+\xs_counta=\count519
+\xs_countb=\count520
 )
 Package: xstring 2023/08/22 v1.86 String manipulations (CT)
 ) (/usr/local/texlive/2025/texmf-dist/tex/generic/systeme/systeme.tex
-\SYS_code_toks=\toks54
-\SYS_preamble_toks=\toks55
-\SYSeqnum=\count519
+\SYS_code_toks=\toks56
+\SYS_preamble_toks=\toks57
+\SYSeqnum=\count521
 )
 Package: systeme 2025/02/16 v0.35 Mise en forme de systemes d'equations (CT)
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/enumitem/enumitem.sty
 Package: enumitem 2025/02/06 v3.11 Customized lists
 \labelindent=\skip93
 \enit@outerparindent=\dimen367
-\enit@toks=\toks56
+\enit@toks=\toks58
 \enit@inbox=\box88
-\enit@count@id=\count520
-\enitdp@description=\count521
+\enit@count@id=\count522
+\enitdp@description=\count523
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/tools/multicol.sty
 Package: multicol 2024/09/14 v1.9i multicolumn formatting (FMi)
-\c@tracingmulticols=\count522
+\c@tracingmulticols=\count524
 \mult@box=\box89
 \multicol@leftmargin=\dimen368
-\c@unbalance=\count523
-\c@collectmore=\count524
-\doublecol@number=\count525
-\multicoltolerance=\count526
-\multicolpretolerance=\count527
+\c@unbalance=\count525
+\c@collectmore=\count526
+\doublecol@number=\count527
+\multicoltolerance=\count528
+\multicolpretolerance=\count529
 \full@width=\dimen369
 \page@free=\dimen370
 \premulticols=\dimen371
@@ -1236,39 +1250,39 @@ Package: multicol 2024/09/14 v1.9i multicolumn formatting (FMi)
 \@tempa=\box130
 \@tempa=\box131
 \@tempa=\box132
-\c@minrows=\count528
-\c@columnbadness=\count529
-\c@finalcolumnbadness=\count530
+\c@minrows=\count530
+\c@columnbadness=\count531
+\c@finalcolumnbadness=\count532
 \last@try=\dimen374
 \multicolovershoot=\dimen375
 \multicolundershoot=\dimen376
 \mult@nat@firstbox=\box133
 \colbreak@box=\box134
-\mc@col@check@num=\count531
+\mc@col@check@num=\count533
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/multirow/bigdelim.sty
 Package: bigdelim 2024/11/12 v2.9 Create big delimiters in tabular or array
  (/usr/local/texlive/2025/texmf-dist/tex/latex/multirow/multirow.sty
 Package: multirow 2024/11/12 v2.9 Span multiple rows of a table
 \multirow@colwidth=\skip96
-\multirow@cntb=\count532
+\multirow@cntb=\count534
 \multirow@dima=\skip97
 \bigstrutjot=\dimen377
 )) (/usr/local/texlive/2025/texmf-dist/tex/latex/siunitx/siunitx.sty
 Package: siunitx 2025-02-27 v3.4.6 A comprehensive (SI) units package
-\l__siunitx_number_uncert_offset_int=\count533
-\l__siunitx_number_exponent_fixed_int=\count534
-\l__siunitx_number_min_decimal_int=\count535
-\l__siunitx_number_min_integer_int=\count536
-\l__siunitx_number_round_precision_int=\count537
-\l__siunitx_number_lower_threshold_int=\count538
-\l__siunitx_number_upper_threshold_int=\count539
-\l__siunitx_number_group_first_int=\count540
-\l__siunitx_number_group_size_int=\count541
-\l__siunitx_number_group_minimum_int=\count542
+\l__siunitx_number_uncert_offset_int=\count535
+\l__siunitx_number_exponent_fixed_int=\count536
+\l__siunitx_number_min_decimal_int=\count537
+\l__siunitx_number_min_integer_int=\count538
+\l__siunitx_number_round_precision_int=\count539
+\l__siunitx_number_lower_threshold_int=\count540
+\l__siunitx_number_upper_threshold_int=\count541
+\l__siunitx_number_group_first_int=\count542
+\l__siunitx_number_group_size_int=\count543
+\l__siunitx_number_group_minimum_int=\count544
 \l__siunitx_angle_tmp_dim=\dimen378
 \l__siunitx_angle_marker_box=\box135
 \l__siunitx_angle_unit_box=\box136
-\l__siunitx_compound_count_int=\count543
+\l__siunitx_compound_count_int=\count545
  (/usr/local/texlive/2025/texmf-dist/tex/latex/translations/translations.sty
 Package: translations 2022/02/05 v1.12 internationalization of LaTeX2e packages (CN)
 )
@@ -1282,20 +1296,20 @@ Package: translations 2022/02/05 v1.12 internationalization of LaTeX2e packages 
 \l__siunitx_table_after_box=\box142
 \l__siunitx_table_before_dim=\dimen381
 \l__siunitx_table_carry_dim=\dimen382
-\l__siunitx_unit_tmp_int=\count544
-\l__siunitx_unit_position_int=\count545
-\l__siunitx_unit_total_int=\count546
+\l__siunitx_unit_tmp_int=\count546
+\l__siunitx_unit_position_int=\count547
+\l__siunitx_unit_total_int=\count548
  (/usr/local/texlive/2025/texmf-dist/tex/latex/tools/array.sty
 Package: array 2024/10/17 v2.6g Tabular extension package (FMi)
 \col@sep=\dimen383
 \ar@mcellbox=\box143
 \extrarowheight=\dimen384
-\NC@list=\toks57
+\NC@list=\toks59
 \extratabsurround=\skip98
 \backup@length=\skip99
 \ar@cellbox=\box144
 )) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryintersections.code.tex (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/libraries/pgflibraryintersections.code.tex (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/libraries/pgflibraryfpu.code.tex)
-\pgf@intersect@solutions=\count547
+\pgf@intersect@solutions=\count549
 )) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryangles.code.tex
 File: tikzlibraryangles.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarypositioning.code.tex
@@ -1303,28 +1317,28 @@ File: tikzlibrarypositioning.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/pgfplots/pgfplots.sty (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplots.revision.tex)
 Package: pgfplots 2021/05/15 v1.18.1 Data Visualization (1.18.1)
  (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplots.code.tex (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplotscore.code.tex
-\t@pgfplots@toka=\toks58
-\t@pgfplots@tokb=\toks59
-\t@pgfplots@tokc=\toks60
+\t@pgfplots@toka=\toks60
+\t@pgfplots@tokb=\toks61
+\t@pgfplots@tokc=\toks62
 \pgfplots@tmpa=\dimen385
-\c@pgfplots@coordindex=\count548
-\c@pgfplots@scanlineindex=\count549
+\c@pgfplots@coordindex=\count550
+\c@pgfplots@scanlineindex=\count551
  (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/sys/pgfplotssysgeneric.code.tex)) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/libs/pgfplotslibrary.code.tex) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldpgfsupp_loader.code.tex
 Package pgfplots: loading complementary utilities for your pgf version...
-\t@pgf@toka=\toks61
-\t@pgf@tokb=\toks62
-\t@pgf@tokc=\toks63
+\t@pgf@toka=\toks63
+\t@pgf@tokb=\toks64
+\t@pgf@tokc=\toks65
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldpgfsupp_pgfutil-common-lists.tex)) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.code.tex (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsliststructure.code.tex) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsliststructureext.code.tex) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsarray.code.tex
-\c@pgfplotsarray@tmp=\count550
+\c@pgfplotsarray@tmp=\count552
 ) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsmatrix.code.tex) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/numtable/pgfplotstableshared.code.tex
-\c@pgfplotstable@counta=\count551
-\t@pgfplotstable@a=\toks64
+\c@pgfplotstable@counta=\count553
+\t@pgfplotstable@a=\toks66
 ) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsdeque.code.tex) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.code.tex (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.data.code.tex)) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.verb.code.tex) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/libs/pgflibrarypgfplots.surfshading.code.tex
-\c@pgfplotslibrarysurf@no=\count552
+\c@pgfplotslibrarysurf@no=\count554
  (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/sys/pgflibrarypgfplots.surfshading.pgfsys-xetex.def (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/sys/pgflibrarypgfplots.surfshading.pgfsys-dvipdfmx.def
-\c@pgfplotslibrarysurf@streamlen=\count553
+\c@pgfplotslibrarysurf@streamlen=\count555
 )))) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/util/pgfplotscolormap.code.tex (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/util/pgfplotscolor.code.tex)) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplotsstackedplots.code.tex) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplotsplothandlers.code.tex (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplotsmeshplothandler.code.tex (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplotsmeshplotimage.code.tex))) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplots.scaling.code.tex) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplotscoordprocessing.code.tex) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplots.errorbars.code.tex) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplots.markers.code.tex) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplotsticks.code.tex) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplots.paths.code.tex) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.pathreplacing.code.tex (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.pathreplacing.code.tex)) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/libs/tikzlibrarypgfplots.contourlua.code.tex)
-\pgfplots@numplots=\count554
+\pgfplots@numplots=\count556
 \pgfplots@xmin@reg=\dimen386
 \pgfplots@xmax@reg=\dimen387
 \pgfplots@ymin@reg=\dimen388
@@ -1340,11 +1354,11 @@ Invalid UTF-8 byte or sequence at line 284 replaced by U+FFFD.
 Invalid UTF-8 byte or sequence at line 299 replaced by U+FFFD.
 Invalid UTF-8 byte or sequence at line 550 replaced by U+FFFD.
 Package: algorithm2e 2017/07/18 v5.2 algorithms environments
-\c@AlgoLine=\count555
+\c@AlgoLine=\count557
 \algocf@hangindent=\skip100
  (/usr/local/texlive/2025/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty
 Package: ifoddpage 2022/10/18 v1.2 Conditionals for odd/even page detection
-\c@checkoddpage=\count556
+\c@checkoddpage=\count558
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/tools/xspace.sty
 Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/relsize/relsize.sty
@@ -1380,20 +1394,20 @@ Package: relsize 2013/03/29 ver 4.1
 \algoheightrule=\skip116
 \algotitleheightruledefault=\skip117
 \algotitleheightrule=\skip118
-\c@algocfline=\count557
-\c@algocfproc=\count558
-\c@algocf=\count559
+\c@algocfline=\count559
+\c@algocfproc=\count560
+\c@algocf=\count561
 \algocf@algoframe=\box151
 \algocf@algobox=\box152
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/thmtools/thmtools.sty
 Package: thmtools 2023/05/04 v0.76
-\thmt@toks=\toks65
-\c@thmt@dummyctr=\count560
+\thmt@toks=\toks67
+\c@thmt@dummyctr=\count562
  (/usr/local/texlive/2025/texmf-dist/tex/latex/thmtools/thm-patch.sty
 Package: thm-patch 2023/05/04 v0.76
  (/usr/local/texlive/2025/texmf-dist/tex/latex/thmtools/parseargs.sty
 Package: parseargs 2023/05/04 v0.76
-\@parsespec=\toks66
+\@parsespec=\toks68
 )) (/usr/local/texlive/2025/texmf-dist/tex/latex/thmtools/thm-kv.sty
 Package: thm-kv 2023/05/04 v0.76
 Package thm-kv Info: Theorem names will be uppercased on input line 42.
@@ -1408,7 +1422,7 @@ Package: thm-listof 2023/05/04 v0.76
 Package: thm-restate 2023/05/04 v0.76
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/thmtools/thm-amsthm.sty
 Package: thm-amsthm 2023/05/04 v0.76
-\thmt@style@headstyle=\toks67
+\thmt@style@headstyle=\toks69
 )) (/usr/local/texlive/2025/texmf-dist/tex/latex/mdframed/mdframed.sty
 Package: mdframed 2013/07/01 1.9b: mdframed
  (/usr/local/texlive/2025/texmf-dist/tex/latex/zref/zref-abspage.sty
@@ -1422,13 +1436,13 @@ Package zref Info: New property list: main on input line 767.
 Package zref Info: New property: default on input line 768.
 Package zref Info: New property: page on input line 769.
 )
-\c@abspage=\count561
+\c@abspage=\count563
 Package zref Info: New property: abspage on input line 67.
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/needspace/needspace.sty
 Package: needspace 2010/09/12 v1.3d reserve vertical space
 )
 \mdf@templength=\skip119
-\c@mdf@globalstyle@cnt=\count562
+\c@mdf@globalstyle@cnt=\count564
 \mdf@skipabove@length=\skip120
 \mdf@skipbelow@length=\skip121
 \mdf@leftmargin@length=\skip122
@@ -1503,97 +1517,97 @@ File: md-frame-1.mdf 2013/07/01\ 1.9b: md-frame-1
 \mdf@horizontalspaceofbox=\skip183
 \mdfsubtitleheight=\skip184
 \mdfsubsubtitleheight=\skip185
-\c@mdfcountframes=\count563
+\c@mdfcountframes=\count565
 
 ****** mdframed patching \endmdf@trivlist
 
 ****** -- success******
 
-\mdf@envdepth=\count564
-\c@mdf@env@i=\count565
-\c@mdf@env@ii=\count566
-\c@mdf@zref@counter=\count567
+\mdf@envdepth=\count566
+\c@mdf@env@i=\count567
+\c@mdf@env@ii=\count568
+\c@mdf@zref@counter=\count569
 Package zref Info: New property: mdf@pagevalue on input line 895.
 )
 Package thmtools Info: Key `mdframed' (with value ` linewidth=2pt, rightline=false, topline=false, bottomline=false, linecolor=ForestGreen, backgroundcolor=cyan!5, nobreak=false ')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=thmgreenbox' on input line 105.
+(thmtools)             that uses `style=thmgreenbox' on input line 109.
 Package thmtools Info: Key `mdframed' (with value ` linewidth=2pt, rightline=false, topline=false, bottomline=false, linecolor=ForestGreen, backgroundcolor=ForestGreen!8, nobreak=false ')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=thmgreen2box' on input line 115.
+(thmtools)             that uses `style=thmgreen2box' on input line 119.
 Package thmtools Info: Key `mdframed' (with value ` linewidth=2pt, rightline=false, topline=false, bottomline=false, linecolor=NavyBlue, backgroundcolor=NavyBlue!5, nobreak=false ')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=thmbluebox' on input line 125.
+(thmtools)             that uses `style=thmbluebox' on input line 129.
 Package thmtools Info: Key `mdframed' (with value ` linewidth=2pt, rightline=false, topline=false, bottomline=false, linecolor=RoyalBlue!90!black, nobreak=false ')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=thmblueline' on input line 135.
+(thmtools)             that uses `style=thmblueline' on input line 139.
 Package thmtools Info: Key `mdframed' (with value ` linewidth=2pt, rightline=false, topline=false, bottomline=false, linecolor=RawSienna, backgroundcolor=RawSienna!5, nobreak=false ')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=thmredbox' on input line 145.
+(thmtools)             that uses `style=thmredbox' on input line 149.
 Package thmtools Info: Key `mdframed' (with value ` linewidth=2pt, rightline=false, topline=false, bottomline=false, linecolor=Goldenrod!80!black, backgroundcolor=Goldenrod!10, nobreak=false ')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=thmred3box' on input line 155.
+(thmtools)             that uses `style=thmred3box' on input line 159.
 Package thmtools Info: Key `mdframed' (with value ` linewidth=2pt, rightline=false, topline=false, bottomline=false, linecolor=RawSienna, backgroundcolor=RawSienna!8, nobreak=false ')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=thmred2box' on input line 165.
+(thmtools)             that uses `style=thmred2box' on input line 169.
 Package thmtools Info: Key `mdframed' (with value ` linewidth=2pt, rightline=false, topline=false, bottomline=false, linecolor=SeaGreen, backgroundcolor=SeaGreen!2, nobreak=false ')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=thmgreen3box' on input line 175.
+(thmtools)             that uses `style=thmgreen3box' on input line 179.
 Package thmtools Info: Key `mdframed' (with value ` linewidth=2pt, rightline=false, topline=false, bottomline=false, linecolor=WildStrawberry, backgroundcolor=WildStrawberry!5, nobreak=false ')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=thmpinkbox' on input line 185.
+(thmtools)             that uses `style=thmpinkbox' on input line 189.
 Package thmtools Info: Key `mdframed' (with value ` linewidth=2pt, rightline=false, topline=false, bottomline=false, linecolor=MidnightBlue, backgroundcolor=MidnightBlue!5, nobreak=false ')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=thmblue2box' on input line 195.
+(thmtools)             that uses `style=thmblue2box' on input line 199.
 Package thmtools Info: Key `mdframed' (with value ` linewidth=2pt, rightline=false, topline=false, bottomline=false, linecolor=Gray, backgroundcolor=Gray!5, nobreak=false ')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=notgraybox' on input line 205.
+(thmtools)             that uses `style=notgraybox' on input line 209.
 Package thmtools Info: Key `mdframed' (with value ` linewidth=2pt, rightline=false, topline=false, bottomline=false, linecolor=Gray, nobreak=false ')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=notgrayline' on input line 215.
+(thmtools)             that uses `style=notgrayline' on input line 219.
 Package thmtools Info: Key `numbered' (with value `no')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=thmexplanationbox' on input line 237.
+(thmtools)             that uses `style=thmexplanationbox' on input line 241.
 Package thmtools Info: Key `mdframed' (with value ` linewidth=2pt, rightline=false, topline=false, bottomline=false, linecolor=NavyBlue, backgroundcolor=NavyBlue!1, nobreak=false ')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=thmexplanationbox' on input line 237.
+(thmtools)             that uses `style=thmexplanationbox' on input line 241.
 Package thmtools Info: Key `numbered' (with value `no')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=thmanswerbox' on input line 248.
+(thmtools)             that uses `style=thmanswerbox' on input line 252.
 Package thmtools Info: Key `mdframed' (with value ` linewidth=2pt, rightline=false, topline=false, bottomline=false, linecolor=WildStrawberry, backgroundcolor=WildStrawberry!1, nobreak=false ')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=thmanswerbox' on input line 248.
+(thmtools)             that uses `style=thmanswerbox' on input line 252.
 Package thmtools Info: Key `mdframed' (with value ` linewidth=2pt, rightline=false, topline=false, bottomline=false, linecolor=Violet, backgroundcolor=Violet!1, nobreak=false ')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=conjpurplebox' on input line 258.
-Package thmtools Info: Automatically pulling in `thmdef-mdframed' on input line 261.
+(thmtools)             that uses `style=conjpurplebox' on input line 262.
+Package thmtools Info: Automatically pulling in `thmdef-mdframed' on input line 265.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/thmtools/thmdef-mdframed.sty
 Package: thmdef-mdframed 2023/05/04 v0.76
 )
-\c@definition=\count568
-\c@theorem=\count569
-\c@lemma=\count570
-\c@proposition=\count571
-\c@corollary=\count572
-\c@problem=\count573
-\c@conjecture=\count574
+\c@definition=\count570
+\c@theorem=\count571
+\c@lemma=\count572
+\c@proposition=\count573
+\c@corollary=\count574
+\c@problem=\count575
+\c@conjecture=\count576
  (/usr/local/texlive/2025/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
 Package: fancyhdr 2025/02/07 v5.2 Extensive control of page headers and footers
 \f@nch@headwidth=\skip186
@@ -1610,28 +1624,19 @@ Package: fancyhdr 2025/02/07 v5.2 Extensive control of page headers and footers
 \f@nch@widthL=\skip197
 \f@nch@widthC=\skip198
 \f@nch@widthR=\skip199
-\@temptokenb=\toks68
+\@temptokenb=\toks70
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/todonotes/todonotes.sty
 Package: todonotes 2024/01/05 v1.1.7 Todonotes source and documentation.
 Package: todonotes 2024/01/05
- (/usr/local/texlive/2025/texmf-dist/tex/latex/xkeyval/xkeyval.sty
-Package: xkeyval 2022/06/16 v2.9 package option processing (HA)
- (/usr/local/texlive/2025/texmf-dist/tex/generic/xkeyval/xkeyval.tex (/usr/local/texlive/2025/texmf-dist/tex/generic/xkeyval/xkvutils.tex
-\XKV@toks=\toks69
-\XKV@tempa@toks=\toks70
-)
-\XKV@depth=\count575
-File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
-))
-\c@@todonotes@numberoftodonotes=\count576
+\c@@todonotes@numberoftodonotes=\count577
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/marginnote/marginnote.sty
 Package: marginnote 2018/08/09 1.4b non floating margin notes for LaTeX
-\c@mn@abspage=\count577
+\c@mn@abspage=\count578
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/appendix/appendix.sty
 Package: appendix 2020/02/08 v1.2c extra appendix facilities
-\c@@pps=\count578
-\c@@ppsavesec=\count579
-\c@@ppsaveapp=\count580
+\c@@pps=\count579
+\c@@ppsavesec=\count580
+\c@@ppsaveapp=\count581
 )) (/usr/local/texlive/2025/texmf-dist/tex/latex/adjustbox/adjustbox.sty
 Package: adjustbox 2025/02/26 v1.3c Adjusting TeX boxes (trim, clip, ...)
  (/usr/local/texlive/2025/texmf-dist/tex/latex/adjustbox/adjcalc.sty
@@ -1661,17 +1666,16 @@ File: tc-xetex.def 2019/01/04 v2.2 Clipping driver for xetex
  (/usr/local/texlive/2025/texmf-dist/tex/latex/varwidth/varwidth.sty
 Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
 \@vwid@box=\box159
-\sift@deathcycles=\count581
+\sift@deathcycles=\count582
 \@vwid@loff=\dimen410
 \@vwid@roff=\dimen411
 )) (/usr/local/texlive/2025/texmf-dist/tex/latex/oberdiek/centernot.sty
 Package: centernot 2016/05/16 v1.4 Centers the not symbol horizontally (HO)
 )
-\@quotelevel=\count582
-\@quotereset=\count583
+\@quotelevel=\count583
+\@quotereset=\count584
 Package translations Info: No language package found. I am going to use `english' as default language. on input line 12.
-
-No file NumericalMethod.aux.
+ (./NumericalMethod.aux)
 \openout1 = `NumericalMethod.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 12.
@@ -1696,7 +1700,7 @@ LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 12.
 LaTeX Font Info:    ... okay on input line 12.
 Package biblatex Info: Trying to load language 'english'...
 Package biblatex Info: ... file 'english.lbx' found.
-(/usr/local/texlive/2025/texmf-dist/tex/latex/biblatex/lbx/english.lbx
+ (/usr/local/texlive/2025/texmf-dist/tex/latex/biblatex/lbx/english.lbx
 File: english.lbx 2024/03/21 v3.20 biblatex localization (PK/MW)
 )
 Package biblatex Info: XeTeX detected.
@@ -1712,15 +1716,13 @@ No file NumericalMethod.bbl.
 Package biblatex Info: Reference section=0 on input line 12.
 Package biblatex Info: Reference segment=0 on input line 12.
 Package hyperref Info: Link coloring ON on input line 12.
+(./NumericalMethod.out) (./NumericalMethod.out)
 \@outlinefile=\write6
 \openout6 = `NumericalMethod.out'.
 
-
-Package hyperref Warning: Rerun to get /PageLabels entry.
-
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-(/usr/local/texlive/2025/texmf-dist/tex/latex/pdflscape/pdflscape.sty
+ (/usr/local/texlive/2025/texmf-dist/tex/latex/pdflscape/pdflscape.sty
 Package: pdflscape 2022-10-27 v0.13 Display of landscape pages in PDF
  (/usr/local/texlive/2025/texmf-dist/tex/latex/pdflscape/pdflscape-nometadata.sty
 Package: pdflscape-nometadata 2022-10-28 v0.13 Display of landscape pages in PDF (HO)
@@ -1831,12 +1833,18 @@ File: Figures/abstract.jpg Graphic file (type bmp)
 
 [1]
 Package marginnote Info: Using workaround for absolute page number on input line 23.
-
-No file NumericalMethod.toc.
+ (./NumericalMethod.toc
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10> on input line 2.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 2.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 2.
+)
 \tf@toc=\write7
 \openout7 = `NumericalMethod.toc'.
 
-(./Lectures/lec_1.tex
+ (./Lectures/lec_1.tex
 
 [1
 
@@ -1844,8 +1852,9 @@ No file NumericalMethod.toc.
 Package marginnote Info: Using workaround for absolute page number on input line 2.
 
 Chapter 1.
+Package marginnote Info: Margin note 6.1 is on absolute page 6 on input line 4.
 Package marginnote Info: right page because not two side mode on input line 4.
-Package marginnote Info: xpos seems to be \@mn@currxpos  on input line 4.
+Package marginnote Info: xpos seems to be 72.2698pt on input line 4.
 
 Package xeCJK Warning: Unknown CJK family `\CJKsfdefault' is being ignored.
 (xeCJK)                
@@ -1858,63 +1867,148 @@ File: t1lmss.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 11.
-Package hyperref Info: bookmark level for unknown eg defaults to 0 on input line 11.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 12.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 12.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 12.
+(mdframed)              on input line 9.
+Package hyperref Info: bookmark level for unknown remark defaults to 0 on input line 9.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 21.
+(mdframed)              on input line 15.
+Package hyperref Info: bookmark level for unknown eg defaults to 0 on input line 15.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 24.
 \pydata@fh@_2FDC630547FD7A76B2F882B34686F2BC.data.minted=\write8
 \openout8 = `_2FDC630547FD7A76B2F882B34686F2BC.data.minted'.
 
-runsystem(latexminted config  --timestamp 20260116011115 2FDC630547FD7A76B2F882B34686F2BC)...executed safely (allowed).
+runsystem(latexminted config  --timestamp 20260224114418 2FDC630547FD7A76B2F882B34686F2BC)...executed safely (allowed).
 
  (./_2FDC630547FD7A76B2F882B34686F2BC.config.minted)
-runsystem(latexminted cleanconfig  --timestamp 20260116011115 2FDC630547FD7A76B2F882B34686F2BC)...executed safely (allowed).
+runsystem(latexminted cleanconfig  --timestamp 20260224114418 2FDC630547FD7A76B2F882B34686F2BC)...executed safely (allowed).
 
- (./_minted/tango.style.minted)
-\openout8 = `_2FDC630547FD7A76B2F882B34686F2BC.data.minted'.
-
-runsystem(latexminted highlight  --timestamp 20260116011115 2FDC630547FD7A76B2F882B34686F2BC)...executed safely (allowed).
-
- (./_minted/B76D8DEF7A6603F82822BFA45CA7A66D.highlight.minted
+ (./_minted/friendly.style.minted) (./_minted/B10DABE79119C9C995C5D78BBDEBC267.highlight.minted
 
 Package xeCJK Warning: Unknown CJK family `\CJKttdefault' is being ignored.
 (xeCJK)                
 (xeCJK)                Try to use `\setCJKmonofont[<...>]{<...>}' to define
 (xeCJK)                it.
 
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 1.
-(/usr/local/texlive/2025/texmf-dist/tex/latex/lm/t1lmtt.fd
-File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+LaTeX Font Info:    Trying to load font information for T1+zi4 on input line 1.
+(/usr/local/texlive/2025/texmf-dist/tex/latex/inconsolata/t1zi4.fd
+File: t1zi4.fd 2018/01/14 T1/zi4 (Inconsolata)
 )
-LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 2.
-) (./_minted/047662CAD926C0BBC84BCC406ECF79A8.highlight.minted)
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 45.
-Package hyperref Info: bookmark level for unknown definition defaults to 0 on input line 45.
-Package mdframed Info: Not enough space on this page on input line 47.
+LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
+(Font)              scaled to size 10.0pt on input line 1.
+LaTeX Font Info:    Font shape `T1/zi4/b/n' will be
+(Font)              scaled to size 10.0pt on input line 2.
 
+
+LaTeX Font Warning: Font shape `T1/zi4/m/it' undefined
+(Font)              using `T1/zi4/m/n' instead on input line 4.
+
+) (./_minted/047662CAD926C0BBC84BCC406ECF79A8.highlight.minted)
 
 [2
 
 ]
-Package mdframed Info: Not enough space on this page on input line 47.
-)
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 50.
+Package hyperref Info: bookmark level for unknown note defaults to 0 on input line 50.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 53.
+Package hyperref Info: bookmark level for unknown definition defaults to 0 on input line 53.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 63.
+
+Underfull \hbox (badness 10000) in paragraph at lines 73--75
+
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 78.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 81.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 82.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 88.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 94.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 104.
+Package mdframed Info: Not enough space on this page on input line 106.
+
 
 [3]
-\openout8 = `_2FDC630547FD7A76B2F882B34686F2BC.data.minted'.
+Package mdframed Info: Not enough space on this page on input line 106.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 125.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 130.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 141.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 152.
 
-runsystem(latexminted clean  --timestamp 20260116011115 2FDC630547FD7A76B2F882B34686F2BC)...executed safely (allowed).
 
- (./NumericalMethod.aux)
+[4]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 183.
+Package hyperref Info: bookmark level for unknown theorem defaults to 0 on input line 183.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 186.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 194.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 195.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 202.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 209.
+
+Underfull \hbox (badness 10000) in paragraph at lines 213--214
+
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 222.
+
+
+[5]
+Package mdframed Info: Not enough space on this page on input line 223.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 226.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 238.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 241.
+Package mdframed Info: Box was splittet wrong
+ starting loop to iterate the splitting point
+(mdframed)              on input line 300.
+
+
+[6])
+
+[7] (./NumericalMethod.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2022/08/05>
@@ -1923,36 +2017,19 @@ L3 programming layer <2022/08/05>
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-
-Package rerunfilecheck Warning: File `NumericalMethod.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `NumericalMethod.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  ECFA7D82E51DABF1AEAE48C130D4E895;318.
-
-Package biblatex Warning: Please (re)run Biber on the file:
-(biblatex)                NumericalMethod
-(biblatex)                and rerun LaTeX afterwards.
-
+Package rerunfilecheck Info: File `NumericalMethod.out' has not changed.
+(rerunfilecheck)             Checksum: BCFDDC9F74C3AC85EE525BF679E1D288;435.
 Package logreq Info: Writing requests to 'NumericalMethod.run.xml'.
 \openout1 = `NumericalMethod.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 61820 strings out of 473832
- 1471580 string characters out of 5729482
- 2537134 words of memory out of 5000000
- 83868 multiletter control sequences out of 15000+600000
- 651702 words of font info for 129 fonts, out of 8000000 for 9000
+ 61986 strings out of 473832
+ 1475642 string characters out of 5729482
+ 2560078 words of memory out of 5000000
+ 84019 multiletter control sequences out of 15000+600000
+ 652051 words of font info for 130 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 104i,11n,107p,1272b,1252s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 104i,11n,107p,1272b,1526s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on NumericalMethod.pdf (5 pages).
+Output written on NumericalMethod.pdf (9 pages).

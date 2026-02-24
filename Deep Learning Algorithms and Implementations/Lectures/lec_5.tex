@@ -237,12 +237,14 @@ is a squared.   diagonal matrix of \(
         0, & x \leq 0
     \end{cases}
 \]
-then we can define \[
-    I[S^{m, i}]_{(p,q)} := \begin{cases}
-        1, & S^{m, i}_{(p,q)} > 0 \\[3pt]
-        0, & \text{otherwise}
-    \end{cases}
-\]
+\begin{definition}
+    We can define \[
+        I[S^{m, i}]_{(p,q)} := \begin{cases}
+            1, & S^{m, i}_{(p,q)} > 0 \\[3pt]
+            0, & \text{otherwise}
+        \end{cases}
+    \]
+\end{definition}
 and have \[
     \frac{\partial \xi_i}{\partial (S^{m, i})^\top} = \frac{\partial \xi_i}{\partial (\sigma(S^{m, i}))^\top} \odot \Vec{I[S^{m, i}]}^T
 \]
@@ -273,8 +275,6 @@ Now we can get \(\partial \xi_i / \partial S^{m, i}\) from \(\partial \xi_i / \p
         \frac{\partial \xi_i}{\partial ( S^{m, i})^\top} = \left( \frac{\partial \xi_i}{\partial ( Z^{m+1, i} )^\top} \ P_{\text{pool}}^{m, i} \right) \odot \Vec{\sigma'(S^{m, i})}^\top
     \]
 \end{remark}
-
-\newpage
 
 In the end, we have to compute \(\partial \xi_i / \partial Z^{m, i}\) to pass to the lower layer. 
 

@@ -1,0 +1,26 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{k}{for}\PYG{+w}{ }\PYG{n}{m}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{LC}\PYG{+w}{ }\PYG{p}{:}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{p}{:}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Loop over layers in reverse order}
+\PYG{+w}{    }\PYG{n}{dXidS}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{reshape}\PYG{p}{(}
+\PYG{+w}{                }\PYG{n}{vTP}\PYG{p}{(}\PYG{n}{param}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{model}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{net}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{m}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{dXidS}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{pool\PYGZus{}gradient\PYGZsq{}}\PYG{p}{)}\PYG{p}{,}
+\PYG{+w}{                    }\PYG{n}{model}\PYG{p}{.}\PYG{n}{ch\PYGZus{}input}\PYG{p}{\PYGZob{}}\PYG{n}{m}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{\PYGZcb{}}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{p}{]}
+\PYG{+w}{            }\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{phiZ}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{padding\PYGZus{}and\PYGZus{}phiZ}\PYG{p}{(}\PYG{n}{model}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{net}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{m}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{net}\PYG{p}{.}\PYG{n}{dlossdW}\PYG{p}{\PYGZob{}}\PYG{n}{m}\PYG{p}{\PYGZcb{}}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{dXidS}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{phiZ}\PYG{o}{\PYGZsq{}}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{net}\PYG{p}{.}\PYG{n}{dlossdb}\PYG{p}{\PYGZob{}}\PYG{n}{m}\PYG{p}{\PYGZcb{}}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{dXidS}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n+nb}{ones}\PYG{p}{(}\PYG{+w}{ }\PYG{n}{model}\PYG{p}{.}\PYG{n}{wd\PYGZus{}conv}\PYG{p}{(}\PYG{n}{m}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{model}\PYG{p}{.}\PYG{n}{ht\PYGZus{}conv}\PYG{p}{(}\PYG{n}{m}\PYG{p}{)}\PYG{o}{*}\PYG{n}{S\PYGZus{}k}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{    }\PYG{k}{if}\PYG{+w}{ }\PYG{n}{m}\PYG{+w}{ }\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{l+m+mi}{1}
+\PYG{+w}{        }\PYG{n}{v}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{model}\PYG{p}{.}\PYG{n}{W}\PYG{p}{\PYGZob{}}\PYG{n}{m}\PYG{p}{\PYGZcb{}}\PYG{p}{)}\PYG{o}{\PYGZsq{}}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{dXidS}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{dXidS}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{vTP}\PYG{p}{(}\PYG{+w}{ }\PYG{n}{model}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{net}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{m}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{num\PYGZus{}data}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{v}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{phi\PYGZus{}gradient\PYGZsq{}}\PYG{+w}{ }\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{        }\PYG{c}{\PYGZpc{} vTP for padding}
+\PYG{+w}{        }\PYG{n}{dXidS}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{reshape}\PYG{p}{(}\PYG{+w}{ }\PYG{n}{dXidS}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{model}\PYG{p}{.}\PYG{n}{ch\PYGZus{}input}\PYG{p}{(}\PYG{n}{m}\PYG{p}{)}\PYG{p}{,}
+\PYG{+w}{                         }\PYG{n}{model}\PYG{p}{.}\PYG{n}{ht\PYGZus{}pad}\PYG{p}{(}\PYG{n}{m}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{model}\PYG{p}{.}\PYG{n}{wd\PYGZus{}pad}\PYG{p}{(}\PYG{n}{m}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{p}{]}\PYG{+w}{ }\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{p}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{model}\PYG{p}{.}\PYG{n}{wd\PYGZus{}pad\PYGZus{}added}\PYG{p}{(}\PYG{n}{m}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{dXidS}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{dXidS}\PYG{p}{(}\PYG{+w}{ }\PYG{p}{:}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{p}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{p}{:}\PYG{+w}{ }\PYG{n}{p}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{model}\PYG{p}{.}\PYG{n}{ht\PYGZus{}input}\PYG{p}{(}\PYG{n}{m}\PYG{p}{)}\PYG{p}{,}
+\PYG{+w}{                    }\PYG{n}{p}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{p}{:}\PYG{+w}{ }\PYG{n}{p}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{model}\PYG{p}{.}\PYG{n}{wd\PYGZus{}input}\PYG{p}{(}\PYG{n}{m}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{:}\PYG{+w}{ }\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{        }\PYG{c}{\PYGZpc{} activation function}
+\PYG{+w}{        }\PYG{n}{dXidS}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{reshape}\PYG{p}{(}\PYG{+w}{ }\PYG{n}{dXidS}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{model}\PYG{p}{.}\PYG{n}{ch\PYGZus{}input}\PYG{p}{(}\PYG{n}{m}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{p}{]}\PYG{+w}{ }\PYG{p}{)}\PYG{+w}{ }\PYG{o}{.*}\PYG{+w}{ }\PYG{p}{(}\PYG{+w}{ }\PYG{n}{net}\PYG{p}{.}\PYG{n}{Z}\PYG{p}{\PYGZob{}}\PYG{n}{m}\PYG{p}{\PYGZcb{}}\PYG{+w}{ }\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k}{end}
+\PYG{k}{end}
+\end{MintedVerbatim}

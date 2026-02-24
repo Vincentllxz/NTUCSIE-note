@@ -34,12 +34,14 @@
 \contentsline {section}{\numberline {3.2}Gradient Calculation}{33}{section.3.2}%
 \contentsline {subsection}{\numberline {3.2.1}Gradient Calculation for Convolution Layer}{33}{subsection.3.2.1}%
 \contentsline {subsection}{\numberline {3.2.2}Gradient Calculation for Fully-connected Layer}{36}{subsection.3.2.2}%
-\contentsline {chapter}{\numberline {4}Implementation}{37}{chapter.4}%
-\contentsline {chapter}{\numberline {5}GPU Programming}{38}{chapter.5}%
-\contentsline {chapter}{\numberline {6}Automatic Differentiation}{39}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Basic Concepts}{39}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Implementation}{39}{section.6.2}%
-\contentsline {chapter}{\numberline {7}Large Language Models (LLM)}{40}{chapter.7}%
-\contentsline {section}{\numberline {7.1}High-level Overview}{40}{section.7.1}%
-\contentsline {section}{\numberline {7.2}Auto-regressive Models}{40}{section.7.2}%
-\contentsline {section}{\numberline {7.3}Detailed Operations}{40}{section.7.3}%
+\contentsline {subsection}{\numberline {3.2.3}ReLU Activation Function and Max Pooling Layer}{37}{subsection.3.2.3}%
+\contentsline {section}{\numberline {3.3}Summary of Operations}{39}{section.3.3}%
+\contentsline {chapter}{\numberline {4}Implementation}{41}{chapter.4}%
+\contentsline {chapter}{\numberline {5}GPU Programming}{42}{chapter.5}%
+\contentsline {chapter}{\numberline {6}Automatic Differentiation}{43}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Basic Concepts}{43}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Implementation}{43}{section.6.2}%
+\contentsline {chapter}{\numberline {7}Large Language Models (LLM)}{44}{chapter.7}%
+\contentsline {section}{\numberline {7.1}High-level Overview}{44}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Auto-regressive Models}{44}{section.7.2}%
+\contentsline {section}{\numberline {7.3}Detailed Operations}{44}{section.7.3}%

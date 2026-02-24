@@ -14,6 +14,165 @@ Considering the fully-connected layer as a special case of the convolutional lay
         \frac{\partial \xi_i}{\partial (\bm{b}^m)^\top} &= \frac{\partial \xi_i}{\partial (\bm{s}^{m, i})^\top} \tag{2}
 \end{align*}
 
+Similarly, to calculate the gradient with respect to the input of the fully-connected layer, we have \[
+    \frac{\partial \xi_i}{\partial (\bm{z}^{m, i})^\top} = \Trans{\Trans{W^m} \frac{\partial \xi_i}{\partial (\bm{s}^{m, i})}} \cdot \Iden{n_m} = \Trans{\Trans{W^m} \frac{\partial \xi_i}{\partial (\bm{s}^{m, i})}} \tag{3}
+\]
+and \[
+    \frac{\partial \xi_i}{\partial (\bm{s}^{m, i})^\top} = \frac{\partial \xi_i}{\partial \Trans{\bm{z}^{m+1, i}}} \odot I[\bm{s}^{m, i}]^\top \tag{4}
+\]
+Now we have the complete set of equations for backpropagation through a fully-connected layer. The last thing to check is the initial value of the backpropagation. We can assume that the loss function is the squared error loss, and the output layer uses the identity activation function, i.e. \[
+    \frac{\partial \xi_i}{\partial (\bm{z}^{L+1, i})} = 2 (\bm{z}^{L+1, i} - \bm{y}^i), \quad \text{and} \quad \frac{\partial \xi_i}{\partial (\bm{s}^{L, i})} = \frac{\partial \xi_i}{\partial (\bm{z}^{L+1, i})}
+\]
+
+\subsection{ReLU Activation Function and Max Pooling Layer}
+
+\begin{prev}
+    \[
+        \frac{\partial \xi_i}{\partial W^m} = \frac{\partial \xi_i}{\partial S^{m, i}}\ \phi(\Pad{Z^{m, i}})^\top
+    \]
+    and \(Z^{m, i}\) is available from the forward pass.  
+\end{prev}
+So we have to store \(Z^{m},\ \forall m\) during the forward pass before backpropagation. However, we also need to store \(S^{m, i},\ \forall m, i\) for \[
+    \frac{\partial \xi_i}{\partial ( S^{m, i})^\top} = \left( \frac{\partial \xi_i}{\partial ( Z^{m+1, i} )^\top} \ P_{\text{pool}}^{m, i} \right) \odot \Vec{I[S^{m, i}]}^\top \tag{5}
+\]
+However, we actually can avoid storing \(S^{m, i}\) by noting that \[
+    \boxed{\frac{\partial \xi_i}{\partial ( S^{m, i})^\top} = \left(
+        \frac{\partial \xi_i}{\partial ( Z^{m+1, i} )^\top}  \odot \Vec{I[Z^{m, i}]}^\top
+    \right)\ P_{\text{pool}}^{m, i}} \tag{6}
+\]
+can replace (5).
+\begin{prev}
+    \[
+        Z^{m+1, i} = \Mat{P_{\Pool}^{m, i} \Vec{\sigma \left( S^{m, i} \right)}}
+    \]
+\end{prev}
+Here, \(Z^{m+1, i}\) is a \textbf{smaller matrix} than \(S^{m, i}\) after pooling, i.e. eqs. (5) is an ``reverse mapping'' operation, i.e. \[
+    \frac{\partial \xi_i}{\partial \Vec{Z^{m+1, i}} } \times P_{\Pool}^{m, i} \tag{7}
+\]
+which generate a large zero vector with only a few value of \(\partial \xi_i / \partial Z^{m+1, i}\) in the positions select earlier by the pooling operation. Then the element-wise product with \(I[S^{m, i}]\) will let the position not selected in the pooling operation to be zero again. Hence, we can directly use eq. (6) to avoid storing \(S^{m, i}\).
+
+\begin{eg}
+    \[
+        \text{image } B: 
+        \left(
+            \begin{array}{cc|cc}
+                3 & 2 & 3 & 6 \\
+                4 & 5 & 4 & 9 \\
+                \hline
+                2 & 1 & 2 & 6 \\
+                3 & 4 & 3 & 2
+            \end{array}
+        \right) \to \begin{pmatrix}
+            5 & 9 \\
+            4 & 6
+        \end{pmatrix}
+    \]
+    The pooling matrix is \[
+        P_{\Pool} = 
+        \begin{pmatrix}
+            0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+            0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+            0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 \\
+            0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0
+        \end{pmatrix}
+    \]
+\end{eg}
+
+We have that \[
+    P_{\Pool}\, \Vec{\text{image}} = \begin{pmatrix}
+        5 \\ 9 \\ 4 \\ 6
+    \end{pmatrix} = \Vec{\begin{pmatrix}
+        5 & 9 \\
+        4 & 6
+    \end{pmatrix}}
+\]
+We have two ways to calculate \(\partial \xi_i / \partial \Vec{S^{m, i}}\):
+\begin{itemize}
+    \item Using eq. (5):
+    \[
+        \vec{v}^\top\, P_{\Pool} \odot \Vec{I[S^{m, i}]}^\top = \begin{pmatrix}
+            0 \\ 0 \\ 0 \\ 0 \\ 0 \\ v_1 \\ 0 \\ v_2 \\ 0 \\ 0 \\ 0 \\ 0 \\ 0 \\ v_3 \\ v_4 \\ 0
+        \end{pmatrix}^\top \odot \begin{pmatrix}
+            1 \\ 1 \\ 1 \\ 1 \\ 1 \\ 1 \\ 1 \\ 1 \\ 1 \\ 1 \\ 1 \\ 1 \\ 1 \\ 1 \\ 1 \\ 1
+        \end{pmatrix}^\top = \begin{pmatrix}
+            0 \\ 0 \\ 0 \\ 0 \\ 0 \\ v_1 \\ 0 \\ v_2 \\ 0 \\ 0 \\ 0 \\ 0 \\ 0 \\ v_3 \\ v_4 \\ 0
+        \end{pmatrix}^\top
+    \]
+    \item Using eq. (6): \[
+        \left( \vec{v}^\top \odot \Vec{I[Z^{m+1, i}]}^\top \right) P_{\Pool}^{m, i} = \left( \vec{v}^\top \odot \begin{pmatrix}
+            1 & 1 & 1 & 1
+        \end{pmatrix} \right) P_{\Pool}^{m, i} = \begin{pmatrix}
+            0 \\ 0 \\ 0 \\ 0 \\ 0 \\ v_1 \\ 0 \\ v_2 \\ 0 \\ 0 \\ 0 \\ 0 \\ 0 \\ v_3 \\ v_4 \\ 0
+        \end{pmatrix}^\top
+    \]
+\end{itemize}
+which gives the same result. However, this method using the property of the pooling matrix and RelU activation function to get \[
+    \text{a } Z^{m, i} \text{ component} > 0 \text{ or not} \Leftrightarrow \text{the corresponding } \sigma'(S^{m, i}) = 1 \text{ or } 0
+\]
+For general case we cannot avoiding storing \(\sigma'(S^{m, i})\).
+
+\section{Summary of Operations}
+
+For the operation we have said so far, we can summarize the forward and backward operations as follows:
+\begin{align*}
+    \frac{\partial \xi_i}{\partial ( S^{m, i})^\top} &= \left(
+        \frac{\partial \xi_i}{\partial ( Z^{m+1, i} )^\top}  \odot \Vec{I[Z^{m, i}]}^\top
+    \right)\ P_{\text{pool}}^{m, i} \tag{1} \\[3pt]
+    \frac{\partial \xi_i}{\partial W^m} &= \frac{\partial \xi_i}{\partial S^{m, i}}\ \phi(\Pad{Z^{m, i}})^\top \tag{2} \\[3pt]
+    \frac{\partial \xi_i}{\partial ( Z^{m, i} )^\top} &= \Vec{ (W^{m})^\top \frac{\partial \xi_i}{\partial S^{m, i}} }^\top P_{\phi}^{m} P_{\text{pad}}^{m} \tag{3}
+\end{align*}
+
+\begin{note}
+    We let \[
+        \frac{\partial \xi_i}{\partial ( S^{m, i})^\top} \to \frac{\partial \xi_i}{\partial S^{m, i}}
+    \]
+    due to we need matrix form in (2), (3).
+\end{note}
+\begin{note}
+    In (1), we need the information of the next layer's forward pass. However, we can do \[
+        \frac{\partial \xi_i}{\partial ( Z^{m+1, i} )^\top}  \odot \Vec{I[Z^{m, i}]}^\top
+    \]
+    during the current layer, and pass it to the previous layer. Hence, the information needed for backpropagation can be just in the current layer.
+\end{note}
+
+Finally, we can summarize the forward and backward operations for different layers as follows:
+\begin{align*}
+    \Delta &\leftarrow \Mat{ \Vec{\Delta}^\top P_{\Pool}^{m, i} } \tag{1} \\[3pt]
+    \frac{\partial \xi_i}{\partial W^m} &= \Delta \cdot \phi(\Pad{Z^{m, i}})^\top \tag{2} \\[3pt]
+    \Delta &\leftarrow \Vec{ (W^{m})^\top \Delta }^\top P_{\phi}^{m} P_{\text{pad}}^{m} \tag{3} \\[3pt]
+    \Delta &\leftarrow \Delta \odot I[Z^{m, i}]
+\end{align*}
+
+With these equations, we can implement the backpropagation algorithm for convolutional neural networks in MATLAB:
+
+\begin{minted}[linenos, bgcolor=LightGray]{matlab}
+for m = LC : -1 : 1 % Loop over layers in reverse order
+    dXidS = reshape(
+                vTP(param, model, net, m, dXidS, 'pool_gradient'),
+                    model.ch_input{m+1}, []
+            );
+    phiZ = padding_and_phiZ(model, net, m);
+    net.dlossdW{m} = dXidS * phiZ';
+    net.dlossdb{m} = dXidS * ones( model.wd_conv(m) * model.ht_conv(m)*S_k, 1 );
+
+    if m > 1
+        v = (model.W{m})' * dXidS;
+        dXidS = vTP( model, net, m, num_data, v, 'phi_gradient' );
+
+        % vTP for padding
+        dXidS = reshape( dXidS, model.ch_input(m),
+                         model.ht_pad(m), model.wd_pad(m), [] );
+        p = model.wd_pad_added(m);
+        dXidS = dXidS( :, p+1 : p + model.ht_input(m),
+                    p+1 : p + model.wd_input(m), : );
+
+        % activation function
+        dXidS = reshape( dXidS, model.ch_input(m), [] ) .* ( net.Z{m} > 0 );
+    end
+end
+\end{minted}
+
+
 \chapter{Implementation}
 
 \chapter{GPU Programming}
@@ -21,7 +180,6 @@ Considering the fully-connected layer as a special case of the convolutional lay
 \chapter{Automatic Differentiation}
 \section{Basic Concepts}
 \section{Implementation}
-
 
 \chapter{Large Language Models (LLM)}
 

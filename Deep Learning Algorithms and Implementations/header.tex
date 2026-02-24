@@ -21,9 +21,12 @@
 \usepackage{minted}
 \usepackage{lmodern}
 
-\usemintedstyle{tango}
+\usemintedstyle{friendly}
 
 \definecolor{LightGray}{gray}{0.97}
+
+\usepackage{inconsolata}
+\usepackage[T1]{fontenc}
 
 \usepackage{xfrac}
 
@@ -65,7 +68,10 @@
 \newcommand{\Mat}[1]{\text{mat}\left( #1 \right)}
 \renewcommand{\Vec}[1]{\text{vec}\left( #1 \right)}
 \newcommand{\Pad}[1]{\text{pad}\left( #1 \right)}
-
+\newcommand{\Trans}[1]{\left( #1 \right)^{\top}}
+\newcommand{\Iden}[1]{\mathcal{I}_{#1}}
+\def\Pool{\text{pool}}
+\def\BigO{\mathcal{O}}
 
 \usepackage{pgfplots}
 \pgfplotsset{compat=newest}
@@ -443,3 +449,5 @@
 
 \setcounter{tocdepth}{1}
 \setlength{\parindent}{0pt}
+
+\setcounter{MaxMatrixCols}{20}
