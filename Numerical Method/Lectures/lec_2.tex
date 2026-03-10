@@ -1,0 +1,668 @@
+\newpage
+\section{Cancelation}
+
+Cancelatin is an important source of numerical instability. It occurs when we subtract two nearly equal numbers.
+
+\subsection{Catastrophic Cancelation}
+
+\begin{eg}
+    b = 3.34, a = 1.22, c = 2.28, calculat \(b^2-4ac\)
+\end{eg}
+\begin{itemize}
+    \item True value: \(b^2-4ac = 0.0292\)
+    \item Calculated value: $b^2 \approx 11.2,\ 4ac \approx 11.1$, so $b^2-4ac \approx 0.1$
+\end{itemize}
+The Error $= 0.1 - 0.0292 = 0.0708$
+\begin{itemize}
+    \item Computed answer $= 0.1 = 1.00 \times 10^{-1}$
+    \item ulps $= 0.01 \times 10^{-1} = 10^{-3}$
+    \item $0.0708 \approx 70$ ulps
+\end{itemize}
+
+The error is huge when we subtract two nearly equal numbers. This is called \textbf{catastrophic cancelation}. We can use \textbf{benign cancelation} to avoid this problem. For example, we use guard digits to get the relative error being small.
+
+\subsection{Benign Cancelation}
+
+However, guard digits can only reduce the error of operations between two \red{exact number}. In this case, $b^2$ and $4ac$ already contain errors. We can use \textbf{reformulation} to avoid this problem. For example, 
+\begin{eg}
+    \[
+        \frac{-b - \sqrt{b^2-4ac}}{2a} \tag{1.3.1}
+    \]
+\end{eg}
+If $b^2 \gg 4ac$, there is no problem for $\sqrt{b^2-4ac} \approx |b|$, but $-b + \sqrt{b^2-4ac}$ will cause catastrophic cancelation if $b>0$. 
+
+We can reformulate by multiplying $-b - \sqrt{b^2-4ac}$ if $b>0$.
+\[
+    \frac{2c}{-b + \sqrt{b^2-4ac}} \tag{1.3.2}
+\]
+Now we can use (1.3.1) if $b<0$ and (1.3.2) if $b>0$ to avoid catastrophic cancelation.
+
+\begin{eg}
+    Calculate $x^2 - y^2$.
+\end{eg}
+
+Assume $x \approx y$, $(x-y)(x+y)$ is much more accurate than $x^2 - y^2$ because $x^2$ and $y^2$ maybe rounded, so $x^2 - y^2$ may cause catastrophic cancelation. But, $x-y$ can be calculated by guard digits.
+
+\begin{remark}
+    It is difficult to avoid all catastrophic cancelation but possible to remove some. A catastrophic cancellation is replaced by a benign cancellation.
+\end{remark}
+
+\newpage
+
+\begin{eg}
+    Calculate \[
+        A = \sqrt{s(s-a)(s-b)(s-c)},\quad s = \frac{a+b+c}{2} \tag{1.3.3}
+    \]
+    $a, b, c$ are the lengths of the triangle.
+\end{eg}
+
+If $a \approx b + c$, \[
+    s = \frac{a+b+c}{2} \approx a
+\]
+and \(s-a\) may cause catastrophic cancelation. A new formula is by Kahan[1986]: for $a \geq b \geq c$,
+\[
+    A = \frac{1}{4} \sqrt{(a+(b+c))(c-(a-b))(c+(a-b))(a+(b-c))} \tag{1.3.4}
+\]
+
+\begin{remark}
+    Reformulation is a powerful tool to avoid catastrophic cancelation. It only works if guard digit is used.
+\end{remark}
+
+\subsection{Exactly Rounded Operations}
+
+Usually we choose to \[
+    \boxed{\text{Round}} \quad \Rightarrow \quad \boxed{\text{Compute}}
+\]
+However, it may be not accurate. So, we introduce \red{\textbf{exactly rounded}} operations, which is to compute exactly then rounded to the nearest.
+
+\begin{definition*}[definition of rounding]
+    There are two types of rounding:
+    \begin{definition}[Rounding up]
+        When the result's last digit $\geq \text{half of the base}$, we round up, otherwise, we round down.
+    \end{definition}
+    \begin{definition}[Rounding even]
+        Round to the closest value with even least significant digit.
+    \end{definition}
+\end{definition*}
+
+\begin{eg}
+    Round up
+    \begin{itemize}
+        \item $11.5 \implies 12$
+        \item $12.5 \implies 13$
+    \end{itemize}
+    Round even
+    \begin{itemize}
+        \item $11.5 \implies 12$
+        \item $12.5 \implies 12$
+    \end{itemize}
+\end{eg}
+
+\begin{theorem}[Reiser and Knuth]
+    Let \[
+        x_0 = x, \quad x_1 = (x_0 \ominus y) \oplus y, \quad \cdots, \quad x_n = (x_{n-1} \ominus y) \oplus y
+    \]
+    If $\oplus, \ominus$ is an exactly rounded using even rounding, then \[
+        x_n = x\ \forall n \text{ or } x_n = x_1\ \forall n \geq 1
+    \]
+\end{theorem}
+
+\newpage
+
+\begin{eg}
+    $\beta = 10,\ p = 3,\ x = 1.00,\ y = -0.555$
+\end{eg}
+$x - y = 1.555, \ x \ominus y = 1.56, \ (x \ominus y) + y = 1.56 - 0.555 = 1.005$
+\begin{itemize}
+    \item Rounding up: \[
+        x_1 = (x \ominus y) \oplus y = \red{1.01},\quad x_1 - y = 1.565 \implies 1.57, \quad (x_1 \ominus y) + y = 1.57 - 0.555 = 1.015
+    \]
+    \[
+        x_2 = (x_1 \ominus y) \oplus y = \red{1.02}
+    \]
+    Increase until $x_n = 9.45$.
+    \item Rounding even: \[
+        x_1 = (x \ominus y) \oplus y = \red{1.00},\quad x_1 - y = 1.555 \implies 1.56, \quad (x_1 \ominus y) + y = 1.56 - 0.555 = 1.005
+    \]
+    \[
+        x_2 = (x_1 \ominus y) \oplus y = \red{1.00}
+    \]
+\end{itemize}
+
+\begin{note}
+    For the implementation, an array of words or floating-points used too much memory. Goldberg [1990] proposed a method to use only \red{\textbf{two guard digits and one sticky bit}}, the result is exact same as exactly rounded operations.
+\end{note}
+
+\section{IEEE 754 Standard}
+
+\subsection{Basics}
+
+IEEE 754 is the most used standard for floating-point arithmetic in computers nowadays. There are two of floating-point standard
+\begin{itemize}
+    \item 754: specify $\beta = 2, p = 24$ for single precision, $\beta = 2, p = 53$ for double precision.
+    \item 854: $\beta = 2 \text{ or } 10$
+\end{itemize}
+
+\begin{note}
+    In standard 854, it accept $2, 10$ because 
+    \begin{itemize}
+        \item $\beta = 2$ smaller $\beta$ causes smaller relative error.
+        \item $\beta = 10$ is most used.
+    \end{itemize}
+\end{note}
+
+Consider
+\[
+    \beta = 16, p = 1\text{ versus }\beta = 2, p = 4
+\]
+which both used 4 bits to store the significand, but there $\epsilon$ is different \[
+    \epsilon_{16} = \frac{16}{2} \cdot 16^{-1} = \frac{1}{2}, \quad \epsilon_2 = \frac{2}{2} \cdot 2^{-4} = \frac{1}{16}
+\]
+
+However, $\beta = 16$ is used by IBM/370 due to two reasons:
+\begin{enumerate}[label=$\arabic*^\circ$]
+    \item Assume 4 bytes = 32 bits, $\beta = 16, p = 6$ \\
+    significand: \[
+        4 \times 6 = 24 \text{ bits}
+    \]
+    exponent: \[
+        32 - 24 - 1 = 7 \text{ bits (1 bit for sign)}
+    \]
+    The range of exponent is $16^{-2^6} \to 16^{2^6} = 2^{2^8}$.\\
+    If we instead use $\beta = 2$ and to keep the same range of exponent, then \[
+        9 \text{ bits } (-2^{8} \to 2^8) \text{ for exponent}
+    \]
+    and \[
+        32 - 9 - 1 = 22 \text{ bits for significand}
+    \]
+    Same exponents, less significand for $\beta = 2$ (24 vs. 22)
+    \item The cost of shifting: If $\beta = 16$, less frequently to adjust exponents when adding or subtracting two numbers. But nowadays the cost of shifting is not important since the computation speed.
+\end{enumerate}
+
+\subsection{IEEE standard: Significand and Exponent}
+
+For single precision, $\beta = 2, p = 24$ (23 bits as normalized), exponent 8 bits, and 1 bit for sign. Thus, \[
+    32 = 1 \text{ (sign bit) } + 8 \text{ (exponent) } + 23 \text{ (normalized significand) }
+\] 
+
+\begin{eg}
+    $176.625 = 1.0101100101 \times 2^7$
+\end{eg}
+\[
+    0 \qquad 10000110 \qquad 01011001010000000000000
+\]
+1 of $1.\cdots$ is not stored since the normalized.
+
+\begin{note}
+    Here we use the bias of exponent \[
+        10000110 = 128 + 4 + 2 = 134,\ 134 - 127 = 7
+    \]
+    Note that exponent may be negative, but here we don't use a sign bit for exponents
+\end{note}
+
+In this standard, it use rounding even
+\begin{center}
+    \begin{tabular}{ccc}
+        Binary & rounded & reason \\
+        10.00011 & 10.00 & ($< 1/2$, down)\\
+        10.00110 & 10.01 & ($> 1/2$, up)\\
+        10.11100 & 11.00 & (1/2, up) \\
+        10.10100 & 10.10 & (1/2, down) \\
+    \end{tabular}
+\end{center}
+
+Here is the summary of all standard:
+
+\begin{center}\small
+\begin{tabular}{@{}lllrrr@{}}
+    IEEE & Fortran & C & Bits & Exp. &
+    Mantissa \\ \hline
+    Single & REAL*4 & float & 32 & 8 & 24 \\
+    Single-extended & &&44 & $\leq 11$ & 32 \\
+    Double & REAL*8 & double& 64 & 11& 53 \\
+    Double-extended & REAL*10& long double & 
+    $\geq$80 & $\geq 15$ & $\geq$64 
+\end{tabular}
+\end{center}
+
+Observe the single extended \[
+    44 \neq 11 \text{ (bits for exponent) } + 32 \text{ (bits for significand) }
+\]
+Hardware implementation of extended precision normal don't use a hidden bit.
+
+
+Minimal normalized positive number
+\[
+    1 \times 2^{-126} \approx 1.17 \times 10^{-38}
+\]
+\(e_{\min} = -126\)
+
+8 bits for exponent: 0 to 255. IEEE uses a biased
+approach for exponents \[
+    (0 \text{ to } 255) - 127 = -127 \text{ to } 128
+\]
+There are some cases for exponent:
+\begin{itemize}
+    \item -127: denormalized numbers, and 0
+    \item -126 to 127: exponent for normalized numbers
+    \item 128: special quantity (NaN, $\infty$)
+\end{itemize}
+
+Thus, \[
+    e_{\min} = -126, \quad e_{\max} = 127
+\]
+
+\begin{note}
+    The reason for not using $e_{\min} = -127$ is that $1/2^{e_{\min}}$ not overflow, $1/2^{e_{\max}}$ underflow.
+\end{note}
+
+\subsection{IEEE standard: Extended Precision}
+
+Some may use more digits for intermediate calculations, which is called \textbf{extended precision}. For example, binary-decimal conversion, or some calculators use 13 digits for intermediate calculations but round to 10 digits for display.
+
+Another example is that writing 9 digits is enough for short. Though $10^8 > 2^24$, 8 digits are not enough.
+
+
+From Section 2.1.2 of Goldberg [1990], in reading
+the 9-digit number, if extended precision is
+available, an efficient algorithm can be done so that
+the original binary representation is recovered.
+
+\subsection{IEEE standard: Exactly Rounded Operations}
+
+IEEE standard requires results of addition, subtraction, multiplication and division exactly rounded. The reason of doing so is to leave the portability of software.
+\vspace{0.5em}
+
+Also, square root, remainder, conversion between
+integer and floating-point, internal formats and
+decimal are exactly rounded.
+\vspace{0.5em}
+
+IEEE does not require transcendental functions to
+be exactly rounded (e.g. $\sin, \cos, \exp$). They cannot specify the precision because they
+are arbitrarily long
+
+\subsection{IEEE standard: Special Quantities}
+
+On some computer, (e.g. IBM 370) there is no special quantity, the value like $\sqrt{-4} = 2$ and it print a error message. But IEEE standard has special quantities $$
+\texttt{NaN} \text{ (Not a Number)}
+$$
+which means not every pattern of bits is a valid number. Here is the summary of all cases:
+
+\begin{center}
+    \begin{tabular}{lll}
+        Exponent & significand & represents \\ \hline
+        $e = e_{\min}-1$ & $f=0$ & $+0,-0$ \\
+        $e = e_{\min}-1$ & $f\neq 0$ & 
+        $0.f \times 2^{e_{\min}}$ \\
+        $e_{\min} \leq e \leq e_{\max}$ & 
+        & $1.f \times 2^e$ \\
+        $e = e_{\max}+1$ & $f = 0$ & $\pm \infty$ \\
+        $e = e_{\max}+1$ & $f \neq 0$ & NaN
+    \end{tabular}
+\end{center}
+
+Sometimes even 0/0 occurs, the program can continue, which is better than stop and print an error message. 
+
+\begin{eg}
+    Finding $f(x) = 0$, try different $x$’s, even $0/0$ happens, other values may be ok.
+\end{eg}
+
+If $b^2 - 4ac < 0$, \[
+    \frac{-b \pm \sqrt{b^2-4ac}}{2a}
+\]
+return \texttt{NaN}, and $-b \pm \sqrt{b^2-4ac}$ return $\texttt{NaN}$ as well.
+
+\begin{remark}
+    In general when a \texttt{NaN} is in an operation, result is \texttt{NaN}
+\end{remark}
+
+Here are some examples of producing \texttt{NaN}:
+
+\begin{center}
+    \begin{tabular}{ll}
+        Operation & NaN by \\ \hline
+        + & $\infty + (-\infty)$\\
+        $\times$ & $0 \times \infty$\\
+        $/$ & $0/0, \infty/\infty$\\
+        REM & $x$ REM 0, $\infty$ REM $y$ \\
+        $\sqrt{}$ & $\sqrt{x}$ when $x < 0$
+    \end{tabular}
+\end{center}
+
+\subsection{IEEE standard: Infinity}
+
+$\beta = 10,\ p = 3,\ e_{\max} = 98,\ x = 3 \times 10^{70}$,
+$x^2$ overflow and replaced by $\infty$. Note that \[
+    0/0 = \texttt{NaN},\ 1/0 = \infty,\ -1/0 = -\infty \ \implies \text{ nonzero divided by } 0 \text{ is } \infty \text{ or } -\infty
+\]
+In the computaion, we replace $\infty$ with $x$, let $x \to \infty$.
+\begin{eg}
+    $$
+    \frac{x}{x^2 + 1} \text{ vs } \frac{1}{x + x^{-1}}
+    $$
+\end{eg}
+\vspace{0.5em}
+
+For $\displaystyle \frac{x}{x^2 + 1}$, if $x$ is large, $x^2$ overflows, so $\displaystyle \frac{x}{\infty} = 0$ but not $\displaystyle \frac{1}{x}$.
+\vspace{0.5em}
+
+For $\displaystyle \frac{1}{x + x^{-1}}$, if $x$ is large, $\frac{1}{x}$ is ok, which is better.
+\vspace{0.5em}
+
+When for $x = 0$, $$
+\frac{1}{x + x^{-1}} = \frac{1}{0 + \infty} = \frac{1}{\infty} = 0
+$$ 
+is also better.
+\begin{note}
+    If no infinity arithmetic, an extra instruction is needed to test if $x = 0$. This may interrupt the pipeline.
+\end{note}
+
+\subsection{IEEE standard: Signed Zero}
+
+To discuss why we need signed zero, first, it is available with 1 sign bit. If no signed zero, \(1/(1/x)\) will fails when $x = \pm \infty$
+
+\begin{equation*}
+    \begin{split}
+        &x = \infty,\ 1/x = 0,\ 1/0 = + \infty \\
+        &x = - \infty,\ 1/x = 0,\ 1/0 = +\infty
+    \end{split}
+\end{equation*}
+
+\begin{definition}[Comparison of signed zero]
+    In IEEE standard, $+0 = -0$.
+\end{definition}
+
+\newpage
+
+$\pm 0$ is useful for some case 
+
+\begin{eg}
+    We can define \[
+        \log x \equiv \begin{cases}
+            - \infty & x = 0 \\
+            \texttt{NaN} & x < 0
+        \end{cases}
+    \]
+\end{eg}
+
+\begin{definition}[Underflow]
+    Underflow means a value smaller than the smallest floating-point number occurs.
+\end{definition}
+
+When face a small underflow negative number, $\log x$ should return \texttt{NaN}. However, in the definition above, 
+\[
+    \boxed{x \text{ underflow negative}} \quad \implies \quad \boxed{x \overset{\text{round}}{=} 0} \quad \implies \quad \boxed{\log x = -\infty}
+\]
+
+With signed zero, we can define $\log x$ as
+\[
+    \log x \equiv \begin{cases}
+        -\infty & x = +0 \\
+        \texttt{NaN} & x = -0 \\
+        \texttt{NaN} & x < 0
+    \end{cases}
+\]
+Positive underflow will round to $+0$, and negative underflow will round to $-0$.
+
+\begin{eg}[Complex arithmetic]
+\[
+    \frac{1}{\sqrt{z}} \quad \text{ and } \quad \sqrt{\frac{1}{z}}
+\]
+\end{eg}
+
+If $z = -1$, \[
+    \frac{1}{\sqrt{-1}} = \frac{1}{i} = -i \quad \sqrt{\frac{1}{-1}} = i
+\]
+Thus, $1/\sqrt{z} \neq \sqrt{1/z}$. Which happen because \[
+    i^2 = (-i)^2 = -1
+\]
+However, by some restrictions (or ways of calculation), they can be equal.
+
+If $z = -1 = -1 + 0i$,
+
+$$
+\frac{1}{-1 + 0i} = \frac{-1 - 0i}{(-1)^2 + (0)^2} = -1 - 0i
+$$
+then \[
+    \sqrt{\frac{1}{z}} = \sqrt{-1 - 0i} = -i
+\]
+with signed zero, we can let $\sqrt{1/z} = 1/\sqrt{z}$.
+
+But there is a disadvantage of signed zero, if $x = +0$ and $y = -0$, then \[
+    \frac{1}{x} = \infty, \quad \frac{1}{y} = -\infty
+\]
+
+\newpage
+
+\subsection{IEEE standard: Denormalized Numbers}
+
+\begin{eg}
+    Consider
+    \[
+        \beta = 10,\ p = 3,\ e_{\min} = -98,\ x = 6.87 \times 10^{-97},\ y = 6.81 \times 10^{-97}
+    \]
+\end{eg}
+
+$x,y$ are ok but $x-y$ underflow and round to 0 even though $x \neq y$.
+
+\begin{note}
+    It is important to preserve the property of \[
+        x = y \quad \iff \quad x-y = 0
+    \]
+    with this case: \texttt{if (x != y) \{ z = 1/(x-y); \}}
+    The statement is true, but z becomes $\infty$.
+\end{note}
+\vspace{1em}
+
+IEEE use denormalized numbers to solve this problem, which is the most controversial part of IEEE standard. If denormalized number is used, $0.6 \times 10^{-98}$ is also a floating-point number.
+\vspace{0.5em}
+
+We do not store the leading 1 for $1.\cdots$. Recall the vaild range of exponent, $e \ge e_{\min}$, and we have $1.d\ldots d\times 2^{e}$. For denormalized numbers, we allow $e = e_{\min} - 1$, and the corresponding value is \[
+    0.d\ldots d \times 2^{e_{\min}}
+\]
+
+\begin{remark}
+    The reason why not using \[
+        1.d\ldots d \times 2^{e_{\min}-1}
+    \]
+    is that then we cannot represent \[
+        0.0d\ldots d \times 2^{e_{\min}}
+    \]
+    which is even smaller than the smallest normalized number.
+    \begin{eg}
+        $6.87 \times 10^{-97} - 6.81 \times 10^{-97} = 0.06 \times 10^{-97}$
+    \end{eg}
+    is underflow due to the cancelation.
+\end{remark}
+\vspace{1em}
+
+Here is an example of using denormalized numbers:
+\begin{eg}
+    \[
+        \frac{a+bi}{c+di} = \frac{(a+bi)(c-di)}{(c+di)(c-di)} = \frac{ac+bd}{c^2 + d^2} + \frac{bc - ad}{c^2 + d^2}i
+    \]
+\end{eg}
+\vspace{0.5em}
+
+If $c$ or $d > \sqrt{\beta} \beta^{e_{\max}/2}$, there will be overflow.
+
+\begin{definition}[Overflow]
+    Overflow means a value larger than the largest floating-point number occurs.
+\end{definition}
+
+\begin{lemma}[Smith's lemma]
+    \[
+        \frac{a + bi}{c+di} = \begin{cases}
+            \frac{a + b(d/c)}{c + d(d/c)} + \frac{b - a(d/c)}{c + d(d/c)}i & \mbox{ if } (|d| < |c|) \\
+            \frac{b + a(c/d)}{d + c(c/d)} + \frac{-a + b(c/d)}{d + c(c/d)}i & \mbox{ if } (|d| \geq |c|)
+        \end{cases}
+    \]
+\end{lemma}
+\vspace{0.5em}
+
+This is a reformulation to avoid overflow. However, using Smith’s formula, some issues may occur without denormalized numbers:\\
+
+If \[
+    a = 2 \times 10^{-98},\ b = 1 \times 10^{-98},\ c = 4 \times 10^{-98},\ d = 2 \times 10^{-98}
+\]
+then
+\[
+    \frac{d}{c} = 0.5,\quad c + d\cdot\frac{d}{c} = 5 \times 10^{-98}
+\]
+\[
+    b \cdot \frac{d}{c} = 1 \times 10^{-98} \times 0.5 = \textbf{\red{0}}, \quad a + b \cdot \frac{d}{c} = 2 \times 10^{-98}
+\]
+Solution = 0.4, which is wrong.
+\vspace{0.5em}
+
+If denormalized numbers are used, $0.5 \times 10^{-98}$ can be stored \[
+    a + b \cdot \frac{d}{c} = 2 \times 10^{-98} + 0.5 \times 10^{-98} = 2.5 \times 10^{-98}
+\]
+Solution = 0.5, which is correct.
+
+\begin{note}
+    Usually hardware does not support denormalized numbers directly, we use software to simulate it.
+\end{note}
+
+\begin{note}
+    Program may be slow when there is a lot of underflow.
+\end{note}
+
+\section{Trap Handlers}
+
+\subsection{Exception, Flags, Trap handlers}
+
+When we face with some special situations (e.g. divide by zero), we have to know what happens. For this purpose, IEEE requires vendors to provide a way to get status flags.  \textbf{overflow}, \textbf{underflow}, \textbf{division by zero}, \textbf{invalid operation}, \textbf{inexact}.
+
+\begin{definition*}[IEEE exception]
+    IEEE defines five exceptions:
+    \begin{definition}[Overflow]
+        Larger than the maximal floating-point number.
+    \end{definition}
+    \begin{definition}[Underflow]
+        Smaller than the minimal floating-point number.
+    \end{definition}
+    \begin{definition}[Division by zero]
+        Nonzero divided by zero.
+    \end{definition}
+    \begin{definition}[Invalid operation]
+        $\infty +(- \infty)$, $0 \times \infty$, $0/0,$, $\infty/\infty$, $x \mbox{ REM } 0$, $\infty \mbox{ REM } y$, $\sqrt{x}, x < 0$, any comparison involves a \texttt{NaN}.
+
+        \begin{remark}
+            \red{Invalid returns \texttt{NaN}}; But \texttt{NaN} may not be from invalid operations.
+        \end{remark}
+    \end{definition}
+    \begin{definition}[Inexact]
+        The result is not exact: $\beta = 10, p = 3, 3.5 \times 4.2 = 14.7$ exact, $3.5 \times 4.3 = 15.05 \Rightarrow 15.0$ not exact.
+        \begin{remark}
+            Inexact exception is raised so often, usually we ignore it.
+        \end{remark}
+    \end{definition}
+\end{definition*}
+
+\newpage
+
+Here is the summary of all exceptions and their corresponding handlers:
+\begin{center}
+    \begin{tabular}{lll}
+    Exception & when trap disabled & argument to handler\\
+    \hline
+    overflow & $\pm \infty $ or $\pm 1.1\cdots 1 \times
+    2^{e_{\max}}$ & 
+    $\mbox{round}(x \times 2^{-\alpha})$\\
+    underflow & $0, \pm 2^{e_{\min}}$, or denormalized 
+    & $\mbox{round}(x \times 2^{\alpha})$ \\
+    division by zero & $\infty$ 
+    & operands \\
+    invalid & NaN & operands \\
+    inexact & round($x$) &  round($x$)
+    \end{tabular}
+\end{center}
+
+\begin{definition}[Trap handler]
+    Special subroutines to handle exception, which can be designed by users.
+\end{definition}
+
+In the above table, “when trap disabled” means results of operations if trap handlers not used.
+
+\begin{eg}
+    $\alpha = 192$, for single precision, $\alpha = 1536$ for double precision. We can't store $x$ since it is too large/small.
+\end{eg}
+
+\subsection{Compiler Operations}
+
+Compiler may provide a way so the program stops if an exception occurs. For example, SUN's C compiler provides a command
+
+\begin{minted}[linenos, bgcolor=LightGray]{bash}
+-ftrap=t
+\end{minted}
+t: \texttt{\%all, \%none, common, [no\%]invalid, [no\%]overflow, [no\%]underflow, [no\%]division, [no\%]inexact}
+
+\begin{note}
+    common: invalid, division by zero, and overflow
+\end{note}
+
+when compile you will see 
+
+\begin{minted}[linenos, bgcolor=LightGray]{bash}
+Note: IEEE floating-point exception flags raised:
+    Inexact;  Underflow; 
+See the Numerical Computation Guide, ieee_flags(3M)
+\end{minted}
+
+\begin{note}
+    gcc doesn't have the functionality to explicitly detect exceptions. It only provides 
+    \begin{itemize}
+        \item \texttt{-fno-trapping-math}: The default if \texttt{-ftrapping-math}. Setting this option may allow faster code if one relies on “non-stop” IEEE arithmetic.
+        \item \texttt{-ftrapv}: Generates traps for signed overflow on addition, subtraction, multiplication.
+    \end{itemize}
+\end{note}
+
+\subsection{Trap Handlers}
+
+For example,
+
+\begin{minted}[linenos, bgcolor=LightGray]{c}
+do {
+...
+} while { not x >= 100; }
+\end{minted}
+
+If \texttt{x = NaN}, an infinite loop will occur. Any comparison involving \texttt{NaN} is wrong. Thus \texttt{x >=
+100} returns \texttt{false}. A trap handler can be installed to abort it.
+
+\newpage
+
+Another example is that calculate $x_1 \times \cdots \times x_n$ may overflow in the middle, but fine in the end.
+
+\begin{minted}[linenos, bgcolor=LightGray]{c}
+for (i = 1; i <= n; i++)
+    p = p * x[i];
+\end{minted}
+
+If trap handlers are not used, the result will be $\infty$ and wrong, i.e. \[
+    x_1 \times \cdots \times x_r, r \leq n \text{ overflow }, \quad x_1 \times \cdots \times x_n \text{ in the range} 
+\]
+
+\begin{note}
+    There might be a solution, 
+    \[
+        e^{\Sigma \log (x_i)}
+    \]
+    but quite unaccurate and cost more.
+\end{note}
+\vspace{0.5em}
+
+A trap handler can be installed to save the intermediate result
+
+\begin{minted}[linenos, bgcolor=LightGray]{c}
+for (i = 1; i <= n; i++) {
+    if (p * x[i] overflow) { // trap handler to catch overflow
+        p = p * pow(10, -a);
+        count = count + 1 ;
+    }
+    p = p * x[i];
+}
+p = p * pow(10, a*count) ;
+\end{minted}

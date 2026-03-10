@@ -1,0 +1,5 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+Note:\PYG{+w}{ }IEEE\PYG{+w}{ }floating\PYGZhy{}point\PYG{+w}{ }exception\PYG{+w}{ }flags\PYG{+w}{ }raised:
+\PYG{+w}{    }Inexact\PYG{p}{;}\PYG{+w}{  }Underflow\PYG{p}{;}
+See\PYG{+w}{ }the\PYG{+w}{ }Numerical\PYG{+w}{ }Computation\PYG{+w}{ }Guide,\PYG{+w}{ }ieee\PYGZus{}flags\PYG{o}{(}3M\PYG{o}{)}
+\end{MintedVerbatim}
