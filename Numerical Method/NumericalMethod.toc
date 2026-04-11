@@ -21,8 +21,8 @@
 \contentsline {subsection}{\numberline {1.5.1}Exception, Flags, Trap handlers}{16}{subsection.1.5.1}%
 \contentsline {subsection}{\numberline {1.5.2}Compiler Operations}{17}{subsection.1.5.2}%
 \contentsline {subsection}{\numberline {1.5.3}Trap Handlers}{17}{subsection.1.5.3}%
-\contentsline {section}{\numberline {1.6}Real Examples}{20}{section.1.6}%
-\contentsline {subsection}{\numberline {1.6.1}Same Code but Different Architectures}{20}{subsection.1.6.1}%
+\contentsline {section}{\numberline {1.6}Real Examples}{21}{section.1.6}%
+\contentsline {subsection}{\numberline {1.6.1}Same Code but Different Architectures}{21}{subsection.1.6.1}%
 \contentsline {subsection}{\numberline {1.6.2}Order of Operations}{22}{subsection.1.6.2}%
 \contentsline {chapter}{\numberline {2}Direct Methods for Linear Systems}{23}{chapter.2}%
 \contentsline {section}{\numberline {2.1}LU Factorization}{23}{section.2.1}%

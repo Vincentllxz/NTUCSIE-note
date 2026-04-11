@@ -282,7 +282,7 @@ Relative error is \[
             \frac{|\bar{y} - y|}{x-y}
         \]
         The smallest $x-y$ is \[
-            1.0 - 0.0\ldots0\;\rho\ldots\rho > (\beta - 1)(\beta^{-1} + \beta^{-2} + \cdots + \beta^{-k})
+            1.0 - 0.\underbrace{0\ldots0}_{k}\;\rho\ldots\rho > (\beta - 1)\overbrace{(\beta^{-1} + \beta^{-2} + \cdots + \beta^{-k})}^{1.0\ -\ 0\ldots01 }
         \]
         we have $k$ zeros, $p$ $\rho$ and $\rho = \beta - 1$, from (1.2.1), we have the relative error \begin{align*}
             &\leq \frac{|\bar{y} - y|}{(\beta - 1)(\beta^{-1} + \beta^{-2} + \cdots + \beta^{-k})} \\ &< \frac{(\beta - 1)\beta^{-p}(\beta^{-1} + \beta^{-2} + \cdots + \beta^{-k})}{(\beta - 1)(\beta^{-1} + \beta^{-2} + \cdots + \beta^{-k})} = \beta^{-p} = 2\epsilon

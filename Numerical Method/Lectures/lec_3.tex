@@ -130,6 +130,8 @@ Consider $x = -1$ \[
 \]
 There is a small problem $(1-x)/(1+x)$ cause the divide-by-zero flag set though $\arccos(-1)$ is not exceptional. The solution is to save divide-by-zero flag, restore it after $\arccos$ computation. 
 
+\newpage
+
 \section{Real Examples}
 
 \subsection{Same Code but Different Architectures}
@@ -218,7 +220,7 @@ For the same code, other issues such as order of operations can also affect resu
 
 In the O0 optimization level:
 
-\begin{minted}{bash}
+\begin{minted}[frame=single,framerule=1pt,  rulecolor=\color{gray}]{bash}
 $ g++ -O0 svm-train.c svm.cpp -o svm-train -lm
 $ ./svm-train -c 100 -e 0.00001 heart_scale
 ........*..*
@@ -231,7 +233,7 @@ Total nSV = 107
 
 In the Ofast optimization level:
 
-\begin{minted}{bash}
+\begin{minted}[frame=single,framerule=1pt,  rulecolor=\color{gray}]{bash}
 $ g++ -Ofast svm-train.c svm.cpp -o svm-train -lm
 $ ./svm-train -c 100 -e 0.00001 heart_scale
 ........*..*
@@ -244,9 +246,9 @@ Total nSV = 107
 
 Some compiler optimizations may change the order of operations to improve performance. On default settings for 64-bit environments, O0 to O3 produce the same results. But from \texttt{gcc} manual, \texttt{-Ofast} ``disregards strict standards compliance''.
 
-\begin{note}
-    \texttt{-mfpmath=387} is even more sensitive to optimizations. To produce the same results with \texttt{-mfpmath=387}, we need to disable all optimizations due to more complicated interactions with registers and memory.
-\end{note}
+\texttt{-mfpmath=387} is even more sensitive to optimizations. To produce the same results with \texttt{-mfpmath=387}, we need to disable all optimizations due to more complicated interactions with registers and memory.
+
+
 
 \chapter{Direct Methods for Linear Systems}
 
