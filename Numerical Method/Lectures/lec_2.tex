@@ -262,7 +262,7 @@ Thus, \[
 
 Some may use more digits for intermediate calculations, which is called \textbf{extended precision}. For example, binary-decimal conversion, or some calculators use 13 digits for intermediate calculations but round to 10 digits for display.
 
-Another example is that writing 9 digits is enough for short. Though $10^8 > 2^24$, 8 digits are not enough.
+Another example is that writing 9 digits is enough for short. Though $10^8 > 2^{24}$, 8 digits are not enough.
 
 
 From Section 2.1.2 of Goldberg [1990], in reading
@@ -307,7 +307,7 @@ which means not every pattern of bits is a valid number. Here is the summary of 
 Sometimes even 0/0 occurs, the program can continue, which is better than stop and print an error message. 
 
 \begin{eg}
-    Finding $f(x) = 0$, try different $x$’s, even $0/0$ happens, other values may be ok.
+    Finding $f(x) = 0$, try different $x$'s, even $0/0$ happens, other values may be ok.
 \end{eg}
 
 If $b^2 - 4ac < 0$, \[
@@ -501,9 +501,10 @@ If $c$ or $d > \sqrt{\beta} \beta^{e_{\max}/2}$, there will be overflow.
         \end{cases}
     \]
 \end{lemma}
-\vspace{0.5em}
 
-This is a reformulation to avoid overflow. However, using Smith’s formula, some issues may occur without denormalized numbers:\\
+\newpage
+
+This is a reformulation to avoid overflow. However, using Smith's formula, some issues may occur without denormalized numbers: 
 
 If \[
     a = 2 \times 10^{-98},\ b = 1 \times 10^{-98},\ c = 4 \times 10^{-98},\ d = 2 \times 10^{-98}

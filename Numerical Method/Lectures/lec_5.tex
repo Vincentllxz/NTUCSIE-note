@@ -89,7 +89,7 @@ rtr = ddot(n, r, inc, r, inc);
 We don't need to handle the issue.
 
 Nowadays, we have BLAS libraries available on most computers, for a Linux system 
-\begin{minted}{bash}
+\begin{minted}[frame=single,framerule=1pt,  rulecolor=\color{gray}]{bash}
 $ ls /usr/lib| grep blas
 libblas
 libblas.a
@@ -278,7 +278,7 @@ int main()
 }
 \end{minted}
 
-\begin{minted}[bgcolor=LightGray]{bash}
+\begin{minted}[frame=single,framerule=1pt,  rulecolor=\color{gray}]{bash}
 $ gcc -O3 mat.c; time ./a.out
 real    1m24.909s
 user    1m24.534s
@@ -286,7 +286,7 @@ sys     0m0.193s
 \end{minted}
 
 We now test in the MATLAB environment
-\begin{minted}[bgcolor=LightGray]{bash}
+\begin{minted}[frame=single,framerule=1pt,  rulecolor=\color{gray}]{bash}
 $ matlab -singleCompThread
 >> n = 3000;
 >> A = randn(n,n); B = randn(n,n);
@@ -295,7 +295,7 @@ Elapsed time is 1.708523 seconds.
 \end{minted}
 
 An issue about timing is elapsed time versus CPU time
-\begin{minted}[bgcolor=LightGray]{bash}
+\begin{minted}[frame=single,framerule=1pt,  rulecolor=\color{gray}]{bash}
 >> A = randn(n,n); B = randn(n,n);
 >> t = cputime; C = A*B; t = cputime -t
 t = 1.3000
@@ -303,7 +303,7 @@ t = 1.3000
 They are similar if no other jobs are running on this machine.
 
 Results of using multi-threading (the default of MATLAB) 
-\begin{minted}[bgcolor=LightGray]{bash}
+\begin{minted}[frame=single,framerule=1pt,  rulecolor=\color{gray}]{bash}
 $ matlab
 >> n = 3000;
 >> A = randn(n,n); B = randn(n,n);
@@ -430,7 +430,7 @@ int main()
 }
 \end{minted}
 
-\begin{minted}[bgcolor=LightGray]{bash}
+\begin{minted}[frame=single,framerule=1pt,  rulecolor=\color{gray}]{bash}
 $ gcc -O3 mat1.c; time ./a.out
 real    4m20.247s
 user    4m19.761s

@@ -45,7 +45,7 @@ int main()
 
 The results of the above code are as follows:
 
-\begin{minted}{text}
+\begin{minted}[frame=single,framerule=1pt,  rulecolor=\color{gray}]{text}
 min_normal = 2.22507e-308  
 min_normal / 13.0 = 1.7116e-309  
 max_normal = 1.79769e+308  
@@ -149,7 +149,10 @@ int main()
 }
 \end{minted}
 
-\begin{minted}{bash}
+\begin{minted}[
+  frame=single,
+  framerule=1pt,  rulecolor=\color{gray}
+]{bash}
 $ gcc test.c;./a.out
 123.1230010986
 15159.2734375000
@@ -180,7 +183,7 @@ Same code gives different results under 32 and 64-bit environments.
     \texttt{-mfpmath=387} to let the 64-bit machine run like a 32-bit one.
 \end{eg}
 
-\begin{minted}{bash}
+\begin{minted}[frame=single, framerule=1pt, rulecolor=\color{gray}]{bash}
 $ gcc -mfpmath=387 test.c;./a.out
 123.1230010986
 15159.2733995339
@@ -192,7 +195,7 @@ $ gcc -mfpmath=387 test.c;./a.out
     \texttt{-ffloat-store} make the 32-bit machine like a 64-bit one Manual of the option, ``Do not store floating-point variables in registers, and inhibit other options that might change whether a floating-point value is taken from a register or memory.''
 \end{eg}
 
-\begin{minted}{bash}
+\begin{minted}[frame=single, framerule=1pt, rulecolor=\color{gray}]{bash}
 $ gcc -ffloat-store test.c;./a.out
 123.1230010986
 15159.2734375000
@@ -204,8 +207,6 @@ $ gcc -ffloat-store -m32 test.c;./a.out
 123.1250000000
 15159.7656250000
 \end{minted}
-
-\newpage
 
 \subsection{Order of Operations}
 
