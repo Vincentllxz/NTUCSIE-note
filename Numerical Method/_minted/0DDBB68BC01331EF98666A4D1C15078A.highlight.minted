@@ -1,0 +1,6 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{k}{for}\PYG{+w}{ }\PYG{n}{k}\PYG{p}{=}\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n}{n}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}
+\PYG{+w}{    }\PYG{n}{A}\PYG{p}{(}\PYG{n}{k}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n}{n}\PYG{p}{,}\PYG{n}{k}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{A}\PYG{p}{(}\PYG{n}{k}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n}{n}\PYG{p}{,}\PYG{n}{k}\PYG{p}{)}\PYG{o}{/}\PYG{n}{A}\PYG{p}{(}\PYG{n}{k}\PYG{p}{,}\PYG{n}{k}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{A}\PYG{p}{(}\PYG{n}{k}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n}{n}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{k}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n}{n}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{A}\PYG{p}{(}\PYG{n}{k}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n}{n}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{k}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n}{n}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n}{A}\PYG{p}{(}\PYG{n}{k}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n}{n}\PYG{p}{,}\PYG{n}{k}\PYG{p}{)}\PYG{o}{*}\PYG{n}{A}\PYG{p}{(}\PYG{n}{k}\PYG{p}{,}\PYG{n}{k}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n}{n}\PYG{p}{)}\PYG{p}{;}
+\PYG{k}{end}
+\end{MintedVerbatim}

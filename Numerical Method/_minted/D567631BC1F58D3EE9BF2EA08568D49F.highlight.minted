@@ -1,0 +1,10 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYGZdl{}\PYG{+w}{ }matlab
+\PYGZgt{}\PYGZgt{}\PYG{+w}{ }\PYG{n+nv}{n}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m}{3000}\PYG{p}{;}
+\PYGZgt{}\PYGZgt{}\PYG{+w}{ }\PYG{n+nv}{A}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }randn\PYG{o}{(}n,n\PYG{o}{)}\PYG{p}{;}\PYG{+w}{ }\PYG{n+nv}{B}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }randn\PYG{o}{(}n,n\PYG{o}{)}\PYG{p}{;}
+\PYGZgt{}\PYGZgt{}\PYG{+w}{ }tic\PYG{p}{;}\PYG{+w}{ }\PYG{n+nv}{C}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }A*B\PYG{p}{;}\PYG{+w}{ }toc
+Elapsed\PYG{+w}{ }\PYG{n+nb}{time}\PYG{+w}{ }is\PYG{+w}{ }\PYG{l+m}{0}.426942\PYG{+w}{ }seconds.
+\PYGZgt{}\PYGZgt{}\PYG{+w}{ }\PYG{n+nv}{A}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }randn\PYG{o}{(}n,n\PYG{o}{)}\PYG{p}{;}\PYG{+w}{ }\PYG{n+nv}{B}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }randn\PYG{o}{(}n,n\PYG{o}{)}\PYG{p}{;}
+\PYGZgt{}\PYGZgt{}\PYG{+w}{ }\PYG{n+nv}{t}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }cputime\PYG{p}{;}\PYG{+w}{ }\PYG{n+nv}{C}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }A*B\PYG{p}{;}\PYG{+w}{ }\PYG{n+nv}{t}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }cputime\PYG{+w}{ }\PYGZhy{}t
+\PYG{n+nv}{t}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m}{5}.1200
+\end{MintedVerbatim}

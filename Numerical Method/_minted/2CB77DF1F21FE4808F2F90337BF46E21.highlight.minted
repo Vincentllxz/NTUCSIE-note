@@ -1,0 +1,12 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYGZdl{}\PYG{+w}{ }ls\PYG{+w}{ }/usr/lib\PYG{p}{|}\PYG{+w}{ }grep\PYG{+w}{ }blas
+libblas
+libblas.a
+libblas.so
+libblas.so.3
+libblas.so.3gf
+libcblas.so.3
+libcblas.so.3gf
+libf77blas.so.3
+libf77blas.so.3gf
+\end{MintedVerbatim}

@@ -1,5 +1,1075 @@
+\lecture{3}{2026.03.07}{}
+
+On SUN machines, there is an additional math
+library: \texttt{libsunmath.a}. In this library, there are \texttt{exp2}, \texttt{exp10}, ..., \texttt{ieee\_flags}, \texttt{ieee\_handler}, and \texttt{ieee\_retrospective}.
+
+\begin{minted}[linenos, bgcolor=LightGray]{c}
+#include <stdio.h>  
+#include <sys/ieeefp.h>  
+#include <sunmath.h>  
+#include <siginfo.h>  
+#include <ucontext.h>  
+
+void handler(int sig, siginfo_t *sip, ucontext_t *uap)  
+{  
+    unsigned    code, addr;  
+
+    code = sip->si_code;  
+    addr = (unsigned) sip->si_addr;  
+    fprintf(stderr, "fp exception %x at address %x \n", code, addr); 
+}  
+int main()  
+{  
+    double  x;  
+  
+    /* trap on common floating point exceptions */  
+    if (ieee_handler("set", "common", handler) != 0)  
+        printf("Did not set exception handler \n");  
+  
+    /* cause an underflow exception (not reported) */  
+    x = min_normal();  
+    printf("min_normal = %g \n", x);  
+    x = x / 13.0;  
+    printf("min_normal / 13.0 = %g \n", x);  
+  
+    /* cause an overflow exception (reported) */  
+    x = max_normal();  
+    printf("max_normal = %g \n", x);  
+    x = x * x;  
+    printf("max_normal * max_normal = %g \n", x);  
+  
+    ieee_retrospective(stderr);  
+    return 0;  
+}
+\end{minted}
+
+The results of the above code are as follows:
+
+\begin{minted}{text}
+min_normal = 2.22507e-308  
+min_normal / 13.0 = 1.7116e-309  
+max_normal = 1.79769e+308  
+fp exception 4 at address 10d0c  
+max_normal * max_normal = 1.79769e+308  
+ Note: IEEE floating-point exception flags raised:  
+    Inexact;  Underflow;  
+ IEEE floating-point exception traps enabled:  
+    overflow; division by zero; invalid operation;  
+ See the Numerical Computation Guide, ieee_flags(3M),  ieee_handler(3M)    
+\end{minted}
+
+In this example, we can see that the underflow exception is not reported, due to the denormalized numbers in the IEEE 754 standard. In this handler, we simply print the something, but in practice, we can do more error handling in this kind of subroutine.
+
+\begin{eg}
+    Calculate $x^n$, $n$: integer.
+\end{eg}
+
+\begin{minted}[linenos, bgcolor=LightGray]{c}
+double pow(double x, int n)
+{
+    double tmp = x, ret = 1.0;
+    for(int t=n; t>0; t/=2)
+    {
+        if (t % 2 == 1) ret *= tmp;
+        tmp = tmp * tmp;
+    }
+    return ret;
+}
+\end{minted}
+
+When $n > 0$, the above code can do 
+\[
+    x^n = \prod_{i=0}^{\lfloor \log_2 n \rfloor} x^{2^i \cdot (n \mod 2^{i+1} > 0)}
+\]
+to calculate $x^n$ in $O(\log n)$ time. But if $n < 0$, we need to use \[
+    x^n = \left(\frac{1}{x}\right)^{-n} = \frac{1}{x^{-n}}
+\]
+
+Due to there is already error on $1/x$, \texttt{pow(1/x, -n)} is less accurate than \texttt{1/pow(x, -n)}.
+
+However, there is another problem: if \texttt{pow(x, -n)} cause an underflow, but \texttt{1/pow(x, -n)} does not overflow \[
+    e_{\min} = -126,\; \ 2^{-e_{\min}} = 2^{126} < 2^{127} = 2^{e_{\max}}
+\]
+The solution is 
+\begin{enumerate}[label=$\arabic*^\circ$]
+    \item turn off overflow \& underflow trap enable bits, save overflow \& underflow status bits.
+    \item Calculate \texttt{pow(x, -n)}.
+    \begin{itemize}
+        \item If neither overflow nor underflow status is set $\implies$ restore them.
+        \item If one is set, restore \& calculate \texttt{pow(1/x, -n)}, which causes correct exception to occur restore them.
+    \end{itemize}
+\end{enumerate}
+
+But practically, the calculation of \texttt{pow()} is more complicated.
+
+\begin{eg}
+    Calculate $\arccos$ using $\arctan$.
+\end{eg}
+
+\begin{theorem}
+    \[
+        \arccos x = 2 \arctan \sqrt{\frac{1-x}{1+x}}
+    \]
+\end{theorem}
+\begin{proof}
+    \[
+        \cos \theta = x = 2 \cos^2 \frac{\theta}{2} - 1 = 1 - 2 \sin^2 \frac{\theta}{2}
+    \]
+    \[
+        \implies \quad \cos \frac{\theta}{2} = \sqrt{\frac{1+x}{2}},\;\quad \sin \frac{\theta}{2} = \sqrt{\frac{1-x}{2}}
+    \]
+    \[
+        \implies \quad \tan \frac{\theta}{2} = \sqrt{\frac{1-x}{1+x}} \quad \implies \quad \theta = 2 \arctan \sqrt{\frac{1-x}{1+x}}
+    \]
+\end{proof}
+
+\vspace{1em}
+
+Consider $x = -1$ \[
+    \arctan(\infty) = \frac{\pi}{2} \quad \implies \quad \arccos(-1) = \pi
+\]
+There is a small problem $(1-x)/(1+x)$ cause the divide-by-zero flag set though $\arccos(-1)$ is not exceptional. The solution is to save divide-by-zero flag, restore it after $\arccos$ computation. 
+
 \section{Real Examples}
+
+\subsection{Same Code but Different Architectures}
+
+\begin{minted}[linenos, bgcolor=LightGray]{c}
+#include <stdio.h>
+
+int main()
+{
+    float a = 123.123;
+    printf("%.10f\n", a);
+    printf("%.10f\n", a*a);
+
+    a = 123.125;
+    printf("%.10f\n", a);
+    printf("%.10f\n", a*a);
+}
+\end{minted}
+
+\begin{minted}{bash}
+$ gcc test.c;./a.out
+123.1230010986
+15159.2734375000
+123.1250000000
+15159.7656250000
+$ gcc -m32 test.c;./a.out
+123.1230010986
+15159.2733995339
+123.1250000000
+15159.7656250000
+\end{minted}
+
+\begin{note}
+    \texttt{-m 32} generates code for a 32-bit environment.
+\end{note}
+
+Same code gives different results under 32 and 64-bit environments.
+
+\begin{note}
+    On 32 bit, 387 floating-point coprocessor is used. From gcc manual, ``The temporary results are computed in 80-bit precision instead of the precision specified by the type, resulting in slightly different results compared to most of other chips.'' In other words, they somehow \red{violate IEEE standard}.
+
+    \vspace{0.5em}
+
+    The number $123.123$ has infinite digits after transformed to binary, assigning the compiler option can make the result consistent.
+\end{note}
+
+\begin{eg}
+    \texttt{-mfpmath=387} to let the 64-bit machine run like a 32-bit one.
+\end{eg}
+
+\begin{minted}{bash}
+$ gcc -mfpmath=387 test.c;./a.out
+123.1230010986
+15159.2733995339
+123.1250000000
+15159.7656250000
+\end{minted}
+
+\begin{eg}
+    \texttt{-ffloat-store} make the 32-bit machine like a 64-bit one Manual of the option, ``Do not store floating-point variables in registers, and inhibit other options that might change whether a floating-point value is taken from a register or memory.''
+\end{eg}
+
+\begin{minted}{bash}
+$ gcc -ffloat-store test.c;./a.out
+123.1230010986
+15159.2734375000
+123.1250000000
+15159.7656250000
+$ gcc -ffloat-store -m32 test.c;./a.out
+123.1230010986
+15159.2734375000
+123.1250000000
+15159.7656250000
+\end{minted}
+
+\newpage
+
+\subsection{Order of Operations}
+
+For the same code, other issues such as order of operations can also affect results.
+
+\begin{eg}
+    Consider running a real example using a machine learning software \href{https://www.csie.ntu.edu.tw/~cjlin/libsvm/}{\texttt{LIBSVM}}.
+\end{eg}
+
+In the O0 optimization level:
+
+\begin{minted}{bash}
+$ g++ -O0 svm-train.c svm.cpp -o svm-train -lm
+$ ./svm-train -c 100 -e 0.00001 heart_scale
+........*..*
+optimization finished, #iter = 2872
+nu = 0.148045
+obj = -2526.925470, rho = 1.145512
+nSV = 107, nBSV = 9
+Total nSV = 107
+\end{minted}
+
+In the Ofast optimization level:
+
+\begin{minted}{bash}
+$ g++ -Ofast svm-train.c svm.cpp -o svm-train -lm
+$ ./svm-train -c 100 -e 0.00001 heart_scale
+........*..*
+optimization finished, #iter = 2910
+nu = 0.148045
+obj = -2526.925470, rho = 1.145510
+nSV = 107, nBSV = 9
+Total nSV = 107
+\end{minted}
+
+Some compiler optimizations may change the order of operations to improve performance. On default settings for 64-bit environments, O0 to O3 produce the same results. But from \texttt{gcc} manual, \texttt{-Ofast} ``disregards strict standards compliance''.
+
+\begin{note}
+    \texttt{-mfpmath=387} is even more sensitive to optimizations. To produce the same results with \texttt{-mfpmath=387}, we need to disable all optimizations due to more complicated interactions with registers and memory.
+\end{note}
 
 \chapter{Direct Methods for Linear Systems}
 
+\section{LU Factorization}
+
+\subsection{Solving Dense Linear Systems}
+
+Solving a linear system $Ax = b$ is an important problem in numerical method. In this kind of problem, we assume $A$ is a dense matrix, i.e. most \[
+    A_{ij} \neq 0
+\]
+and we allocate space to store \[
+    A_{ij}, \quad \forall i,\ \forall j
+\]
+
+\subsection{Triangular Systems}
+
+Start from a triangular system, \[
+    \begin{pmatrix}
+        l_{11} & \\
+        l_{21} & l_{22}
+    \end{pmatrix} \begin{pmatrix}
+        x_1 \\
+        x_2
+    \end{pmatrix} = \begin{pmatrix}
+        b_1 \\
+        b_2
+    \end{pmatrix}
+\]
+if $l_{11}, l_{22} \neq 0$, \[
+    x_1 = \frac{b_1}{l_{11}}, \qquad
+    x_2 = \frac{b_2 - l_{21} x_1}{l_{22}}
+\]
+\begin{theorem}
+    In general, \[
+        x_i = \frac{\displaystyle \left(b_i - \sum_{j=1}^{i-1} l_{ij} x_j\right)}{l_{ii}}
+    \]
+\end{theorem}
+
+This is called ``\red{forward substitution}'', which requires $O(n^2)$ operations. Similarly, we can solve an upper triangular system using ``\red{backward substitution}''.
+
+\begin{theorem}
+    In general, \[
+        x_i = \frac{\displaystyle \left(b_i - \sum_{j=i+1}^{n} u_{ij} x_j\right)}{u_{ii}}
+    \]
+\end{theorem}
+
+\newpage
+
 \subsection{LU Factorization}
+
+\begin{eg}
+    Consider the following system
+    \begin{eqnarray*}
+        && 3x_1 + 5 x_2 = 9 \\
+        && 6x_1 + 7x_2 = 4    
+    \end{eqnarray*}
+\end{eg}
+
+By Gaussian elimination, 
+\begin{eqnarray*}
+    3x_1 +  5x_2 & =& 9 \\
+    -3x_2 & = & -14 
+\end{eqnarray*}
+
+Actually, the process is in the below \[
+    \begin{pmatrix}
+        3 & 5 \\
+        6 & 7
+    \end{pmatrix} = \begin{pmatrix}
+        1 & 0 \\
+        2 & 1
+    \end{pmatrix} \begin{pmatrix}
+        3 & 5 \\
+        0 & -3
+    \end{pmatrix}
+\]  
+\[
+    \implies \quad \begin{pmatrix}
+        1 & 0 \\
+        2 & 1
+    \end{pmatrix} \begin{pmatrix}
+        y_1 \\
+        y_2
+    \end{pmatrix} = \begin{pmatrix}
+        9 \\
+        4
+    \end{pmatrix} \quad \implies \quad \begin{pmatrix}
+        y_1 \\
+        y_2
+    \end{pmatrix} = \begin{pmatrix}
+        9 \\
+        -14
+    \end{pmatrix}
+\]
+Then solve
+\[
+    \begin{pmatrix}
+        3 & 5 \\
+        0 & -3
+    \end{pmatrix} \begin{pmatrix}
+        x_1 \\
+        x_2
+    \end{pmatrix} = \begin{pmatrix}
+        9 \\
+        -14
+    \end{pmatrix}
+\]
+is same as solving the original system.
+
+\begin{eg}
+    Consider \[
+        A = \begin{pmatrix}
+            1 & 4 & 7 \\
+            2 & 5 & 8 \\
+            3 & 6 & 10
+        \end{pmatrix}
+    \]
+\end{eg}
+
+We do the Gaussian Transformation to get the upper triangular matrix, if \[
+    M_1 = \begin{pmatrix}
+        1 & 0 & 0 \\
+        -2 & 1 & 0 \\
+        -3 & 0 & 1
+    \end{pmatrix}
+\] 
+then \[
+    M_1 A = \begin{pmatrix}
+        1 & 4 & 7 \\
+        0 & -3 & -6 \\
+        0 & -6 & -11
+    \end{pmatrix}
+\]
+Note that \[
+    \begin{pmatrix}
+        -3 & -6 \\
+        -6 & -11
+    \end{pmatrix} = \begin{pmatrix}
+        5 & 8 \\
+        6 & 10
+    \end{pmatrix} - \begin{pmatrix}
+        2 \\ 3
+    \end{pmatrix} \begin{pmatrix}
+        4 & 7
+    \end{pmatrix}
+\]
+Likewise, \[
+    M_2 = \begin{pmatrix}
+        1 & 0 & 0 \\
+        0 & 1 & 0 \\
+        0 & -2 & 1
+    \end{pmatrix}
+\]
+\[
+    \implies \quad M_2 (M_1 A) = \begin{pmatrix}
+        1 & 4 & 7 \\
+        0 & -3 & -6 \\
+        0 & 0 & 1
+    \end{pmatrix}
+\]
+
+Hence, the whole Gaussian elimination process is \[
+    U = M_{n-1} \cdots M_2 M_1 A
+\]
+\[
+    A = (M_1^{-1} (M_2^{-1} \cdots (M_{n-1}^{-1} U))) = LU
+\]
+$M_i^{-1}$ is a lower triangular matrix, \[
+    M_i = \begin{pmatrix}
+        1 & 0 & 0 \\
+        \vdots & \ddots & 0 \\
+        m_{i1} & \cdots & 1
+    \end{pmatrix}, \quad M_i^{-1} = \begin{pmatrix}
+        1 & 0 & 0 \\
+        \vdots & \ddots & 0 \\
+        \textbf{\red{-}}m_{i1} & \cdots & 1
+    \end{pmatrix}
+\]
+\[
+    M_1 = \begin{pmatrix}
+        1 & 0 & 0 \\
+        -2 & 1 & 0 \\
+        -3 & 0 & 1
+    \end{pmatrix} \quad \implies \quad M_1^{-1} = \begin{pmatrix}
+        1 & 0 & 0 \\
+        2 & 1 & 0 \\
+        3 & 0 & 1
+    \end{pmatrix}
+\]
+\[
+    M_2 = \begin{pmatrix}
+        1 & 0 & 0 \\
+        0 & 1 & 0 \\
+        0 & -2 & 1
+    \end{pmatrix} \quad \implies \quad M_2^{-1} = \begin{pmatrix}
+        1 & 0 & 0 \\
+        0 & 1 & 0 \\
+        0 & 2 & 1
+    \end{pmatrix}
+\]
+\[
+    M_1^{-1} M_2^{-1} = \begin{pmatrix}
+        1 & 0 & 0 \\
+        2 & 1 & 0 \\
+        3 & 0 & 1
+    \end{pmatrix} \begin{pmatrix}
+        1 & 0 & 0 \\
+        0 & 1 & 0 \\
+        0 & 2 & 1
+    \end{pmatrix} = \begin{pmatrix}
+        1 & 0 & 0 \\
+        2 & 1 & 0 \\
+        3 & 2 & 1
+    \end{pmatrix}
+\]
+In the implementation, we do not store $M_1, \ldots, M_{n-1}$, they can be stored in the lower triangular part of $A$.
+
+The reason of choosing LU factorization than Gaussian elimination is that Gaussian elimination overwrites the original matrix. If you do not overwrite $A$, need another array (the same size as $A$ and $L + U$)
+
+Gaussian elimination update right-hand side together. To handle \red{multiple right-hand sides}, $LU$ is the most effective way. The algorithm is as follows,
+
+\begin{minted}[linenos, bgcolor=LightGray]{matlab}
+for k=1:n-1
+    A(k+1:n,k) = A(k+1:n,k)/A(k,k);
+    A(k+1:n, k+1:n) = A(k+1:n, k+1:n) - A(k+1:n,k)*A(k,k+1:n);
+end
+\end{minted}
+
+The number of operations is \[
+    \approx \sum_{k=1}^{n-1} 2k^2 \approx 2 \cdot \frac{n(n-1)(2n-1)}{6} = \frac{2}{3} n^3
+\]
+\begin{note}
+    The constant $2$ is due to one multiplication and one subtraction.
+\end{note}
+
+\subsection{Problem of LU Factorization}
+
+If matrix $A$ has a zero diagonal such as \[
+    A = \begin{pmatrix}
+        0 & 1 \\
+        1 & 0
+    \end{pmatrix}
+\]
+then we can't generate $M_1$. Even if we can do $LU$ factorization, numerical error is sometimes large.
+
+\begin{eg}
+    Assume $\beta = 10, p = 3$, \red{no guard digit}. Solving \[
+        \begin{pmatrix}
+            0.001 & 1.00 \\
+            1.00 & 2.00
+        \end{pmatrix}
+        \begin{pmatrix}
+            x_1 \\ x_2
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            1.00\\ 3.00
+        \end{pmatrix}
+    \]
+\end{eg}
+
+After $LU$ factorization, we have \[
+    L = \begin{pmatrix}
+        1 & 0 \\
+        1000 & 1
+    \end{pmatrix}, \quad U = \begin{pmatrix}
+        0.001 & 1 \\
+        0 & -1000
+    \end{pmatrix}
+\]
+$2-1000 = -998 \approx -1000$ in the floating-point arithmetic. However, the real solution is \[
+    \begin{pmatrix}
+        0.001 & 1 \\
+        0 & -998
+    \end{pmatrix} \begin{pmatrix}
+        x_1 \\ x_2
+    \end{pmatrix} = \begin{pmatrix}
+        1\\ -997
+    \end{pmatrix}
+\]
+\[
+    x_2 = \frac{997}{998}
+\]
+\[
+    x_1 = 1000(1- \frac{997}{998}) = \frac{1000}{998}
+\]
+But using our system, we have \[
+    \begin{pmatrix}
+        1 & 0 \\
+        1000 & 1
+    \end{pmatrix} \begin{pmatrix}
+        y_1 \\ y_2
+    \end{pmatrix} = \begin{pmatrix}
+        1.00\\ 3.00
+    \end{pmatrix}
+\]
+\[
+    y_1 = 1.00, \quad y_2 = 3.00 - 1000 \approx -1000
+\]
+\[
+    \begin{pmatrix}
+        0.001 & 1 \\
+        0 & -1000
+    \end{pmatrix} \begin{pmatrix}
+        x_1 \\ x_2
+    \end{pmatrix} = \begin{pmatrix}
+        1.00\\ -1000
+    \end{pmatrix} \tag{2.1.1}
+\]
+Then we get
+\[
+    x_1 = 0, \quad x_2 = 1
+\]
+
+$(0,1)$ is very different from the real solution $(1000/998, 997/998)$.
+
+\begin{remark}
+    \textbf{A small pivot may cause large numerical errors.}
+\end{remark}
+
+In the eqs. (2.1.1), if $x_2$ contains an errors, because $1 \gg 0.001$, $x_1$ is seriously affected.
+
+Hence, if we interchange the two rows of $A$ \[
+    \begin{pmatrix}
+        0.001 & 1 \\
+        1 & 2
+    \end{pmatrix} \quad \implies \quad \begin{pmatrix}
+        1 & 2 \\
+        0.001 & 1
+    \end{pmatrix}
+\]
+then \[
+    L = \begin{pmatrix}
+        1 & 0 \\
+        0.001 & 1
+    \end{pmatrix}, \quad U = \begin{pmatrix}
+        1 & 2 \\
+        0 & 1
+    \end{pmatrix}
+\]
+\[
+    \begin{pmatrix}
+        1 & 0 \\
+        0.001 & 1
+    \end{pmatrix} \begin{pmatrix}
+        y_1 \\ y_2
+    \end{pmatrix} = \begin{pmatrix}
+        3.00\\ 1.00
+    \end{pmatrix}
+\]
+\[
+    y_1 = 3.00, \quad y_2 = 1.00
+\]
+therefore, we solve
+\[
+    \begin{pmatrix}
+        1 & 2 \\
+        0 & 1
+    \end{pmatrix} \begin{pmatrix}
+        x_1 \\ x_2
+    \end{pmatrix} = \begin{pmatrix}
+        3.00\\ 1.00
+    \end{pmatrix}
+\]
+\[
+    x_1 = 1.00, \quad x_2 = 1.00
+\]
+which is much closer to the real solution.
+
+\begin{remark}
+    We can use permutation matrix $P$ to represent the row interchanges.
+\end{remark}
+
+\newpage
+\begin{eg}
+    \[
+        P = \begin{pmatrix}
+            0 & 0 & 0 & 1\\
+            1 & 0 & 0 & 0 \\
+            0 & 0 & 1 & 0 \\
+            0 & 1 & 0 & 0
+        \end{pmatrix}
+    \]
+\end{eg}
+This means we do the exchange of \[
+    4 \to 1, \quad 1 \to 2, \quad 3 \to 3, \quad 2 \to 4
+\]
+
+\subsection{Pivoting Strategies}
+
+Pivoting in LU: 
+
+\begin{eg}
+    \[
+        A = \begin{pmatrix}
+            3 & 17 & 10\\
+            2& 4 & -2\\
+            6 & 18 & -12
+        \end{pmatrix}
+    \]
+\end{eg}
+
+We first find the \red{largest absolute value} in the first column: 6, so we do \[
+    P_1 = \begin{pmatrix}
+        0 & 0 & 1 \\
+        0 & 1 & 0 \\
+        1 & 0 & 0
+    \end{pmatrix}
+\]
+then \[
+    P_1 A = \begin{pmatrix}
+        6 & 18 & -12 \\
+        2 & 4 & -2 \\
+        3 & 17 & 10
+    \end{pmatrix} \quad \implies \quad M_1 = \begin{pmatrix}
+        1 & 0 & 0 \\
+        -1/3 & 1 & 0 \\
+        -1/2 & 0 & 1
+    \end{pmatrix}
+\]
+\[
+    M_1 P_1 A = \begin{pmatrix}
+        6 & 18 & -12 \\
+        0 & -2 & 2 \\
+        0 & 8 & 4
+    \end{pmatrix}
+\]
+$|8| > |-2|$ \[
+    P_2 = \begin{pmatrix}
+        1 & 0 & 0 \\
+        0 & 0 & 1 \\
+        0 & 1 & 0
+    \end{pmatrix}
+\]
+then \[
+    M_2 = \begin{pmatrix}
+        1 & 0 & 0 \\
+        0 & 1 & 0 \\
+        0 & 1/4 & 1
+    \end{pmatrix}
+\]
+\[
+    M_2 P_2 M_1 P_1 A = \begin{pmatrix}
+        6 & 18 & -12 \\
+        0 & 8 & 16 \\
+        0 & 0 & 6
+    \end{pmatrix}
+\]
+The general form is \[
+    M_{n-1} P_{n-1} \cdots M_2 P_2 M_1 P_1 A = U
+\]
+Now we have \[
+    Ax = b
+\]
+\[
+    \implies \quad (M_{n-1} P_{n-1} \cdots M_2 P_2 M_1 P_1)^{-1} A x = (M_{n-1} P_{n-1} \cdots M_2 P_2 M_1 P_1)^{-1} b
+\]
+hence, we can solve \[
+    Ux = (M_{n-1} P_{n-1} \cdots M_2 P_2 M_1 P_1)^{-1} b
+\]
+
+\subsection{Pivoting Strategies: Implementation}
+
+However storing $M_i$ and $P_i$ is not efficient, we can try to overwrite $A$ to store $M_i$ and $P_i$.
+
+\[
+    \begin{pmatrix}
+        3 & 17 & 10\\
+        2& 4 & -2\\
+        6 & 18 & -12
+    \end{pmatrix} \quad \xrightarrow{p(1) = 3} \quad \begin{pmatrix}
+        6 & 18 & -12 \\
+        2 & 4 & -2 \\
+        3 & 17 & 10
+    \end{pmatrix}
+\]
+
+then \[
+    \begin{pmatrix}
+        6 & 18 & -12 \\
+        \redbox{1/3} & -2 & 2 \\
+        \redbox{1/2} & 8 & 16
+    \end{pmatrix} \quad \xrightarrow{p(2) = 3} \quad \begin{pmatrix}
+        6 & 18 & -12 \\
+        1/2 & 8 & 16 \\
+        1/3 & -2 & 2
+    \end{pmatrix}
+\]
+\begin{remark}
+    For the boxed elements, we usually fill $0$ in the upper triangular part, but to store the multiplier if that row more efficient. We can do it by filling the multiplier in the lower triangular part (dividing it by the pivot in its column).
+\end{remark}
+
+In the above procedure we use an array $p$ to store the permutation. Then we try to swap two rows of $A$  together. 
+\[
+    \begin{pmatrix}
+        0 & 0 & 1 \\
+        1 & 0 & 0 \\
+        0 & 1 & 0
+    \end{pmatrix} \begin{pmatrix}
+        3 & 17 & 10\\
+        2& 4 & -2\\
+        6 & 18 & -12
+    \end{pmatrix} = \begin{pmatrix}
+        1 & 0 & 0 \\
+        1/2 & 1 & 0 \\
+        1/3 & -1/4 & 1
+    \end{pmatrix} \begin{pmatrix}
+        6 & 18 & -12 \\
+        0 & 8 & 16 \\
+        0 & 0 & 6
+    \end{pmatrix}
+\]
+
+Hence, it is possible to get the general form \[
+    PA = LU
+\]
+where $P$ is the permutation matrix. Now we can overwrite $A$ to store $L$ and $U$, and use an array $p$ to store the permutation. To get $x$, we habe \[
+    PA = Pb
+\]
+then we solve \[
+    (LU)x = Pb
+\]
+We can get the general form of the algorithm as follows,
+\begin{minted}[linenos, bgcolor=LightGray]{matlab}
+for k=1:n-1
+    find m
+    swap A(k,1:n) and A(m, 1:n)
+    p(k) = m;
+    A(k+1:n,k) = A(k+1:n,k)/A(k,k);
+    A(k+1:n, k+1:n) = A(k+1:n, k+1:n) - A(k+1:n,k)*A(k,k+1:n);
+end
+\end{minted}
+
+\begin{theorem}
+    \[
+        PA = LU
+    \]
+    and $L$ is the lower-triangular matrix obtained in the algorithm.
+\end{theorem}
+\begin{proof}
+    By the definition of $P$, we hope to get \begin{align*}
+        PA &= P_{n-1} \cdots P_2 P_1 A \\[3pt]
+        &= P_{n-1} \cdots P_1^{-1} M_1^{-1} \cdots P_{n-1}^{-1} M_{n-1}^{-1} U \\[3pt]
+        &= LU
+    \end{align*}
+    Consider $i$-th column of \[
+        P_{n-1} \cdots P_1^{-1} M_1^{-1} \cdots P_{n-1}^{-1} M_{n-1}^{-1}
+    \]
+    Note that for \[
+        P^{-1}_j, \; M^{-1}_j, \quad j > i
+    \]
+    the $i$-th column is always \[
+        \begin{pmatrix}
+            & \vdots & \\
+            & 0 & \\
+            \cdots & 1 & \cdots\\
+            & 0 & \\
+            & \vdots & 
+        \end{pmatrix}
+    \]
+    Thus, 
+    \[
+        (P_{n-1} \cdots P_1 P_1^{-1} M_1^{-1} \cdots P_{n-1}^{-1} M_{n-1}^{-1})_{:,i} = (P_{n-1} \cdots P_1^{-1} M_1^{-1} \cdots P_{i}^{-1} M_{i}^{-1})_{:,i}
+    \]
+    \begin{note}
+        \[
+            (M_i^{-1})_{:,i} = \begin{pmatrix}
+                0 \\
+                \vdots \\
+                0 \\
+                1 \\
+                m_{i+1,i} \\
+                \vdots \\
+                m_{n,i}
+            \end{pmatrix}
+        \]
+    \end{note}
+    So, by similar argument, we have \[
+        (P_{n-1} \cdots P_1 P_1^{-1} M_1^{-1} \cdots P_{i}^{-1} M_{i}^{-1})_{:,i} = (P_{n-1} \cdots P_{i+1} M_{i}^{-1})_{:,i} \tag{2.1.2}
+    \]
+    Here is the detail \[
+        (P_{i}^{-1} M_{i}^{-1}) = \begin{pmatrix}
+            \vdots \\ 0 \\ x' \\ x' \\ \vdots \\ x'
+        \end{pmatrix}
+    \]
+    because $P_i$ only swap two rows in $i, \ldots, n$-th rows, then \[
+        (M_{i-1}^{-1} P_{i}^{-1} M_{i}^{-1})_{:,i} = 
+        \begin{pmatrix}
+            & 1 & & & \\
+            & x & 1 & & \\
+            \hdots       & \vdots & 0 & 1 & \\
+            & \vdots & \vdots & & \ddots \\
+            & x & 0 && 
+        \end{pmatrix}
+        \begin{pmatrix}
+            \vdots \\ 0 \\ x' \\ x' \\ \vdots \\ x'
+        \end{pmatrix}
+        = \begin{pmatrix}
+            \vdots \\ 0 \\ x' \\ x' \\ \vdots \\ x'
+        \end{pmatrix}
+    \]
+    which does not change the $i$-th column.
+
+    Therefore, we have \begin{align*}
+        (P_{n-1} \cdots P_1 P_1^{-1} M_1^{-1} \cdots P_{i}^{-1} M_{i}^{-1})_{:,i} &= (P_{n-1} \cdots P_{1} P_1^{-1} P_2^{-1} \cdots P_{i}^{-1} M_{i}^{-1})_{:,i} \\[3pt]
+        &= (P_{n-1} \cdots P_{i+1} M_{i}^{-1})_{:,i}
+    \end{align*}
+    where eliminate $P_i^{-1} = P_i$.
+\end{proof}
+
+\begin{note}
+    Eqs. (2.1.2) is exactly get in the algorithm, and the $P_{n-1}, \ldots, P_{i+1}$ swaping them into the corresponding position.
+\end{note}
+
+\section{Cholesky Factorization}
+
+There are some special cases of matrix $A$. For example, diagonal, tri-diagonal, banded matrices, positive definite matrices, etc.
+
+\begin{eg}
+    A banded matrix,
+    \[
+        \begin{pmatrix}
+            1 & 2 & 3 & 0 & 0 & 0\\
+            4 & 5 & 6 & 7 & 0 & 0\\
+            8 & 9 & 1 & 2 & 3 & 0\\
+            0 & 4 & 5 & 6 & 7 & 8 \\
+            0 & 0 & 9 & 1 & 2 & 3 \\
+            0 & 0 & 0 & 4 & 5 & 6
+        \end{pmatrix}
+    \]
+\end{eg}
+
+Many numerical methods are designed for special matrices such as \red{symmetric positive definite matrices}.
+
+\begin{definition}[positive definite]
+    An $n \times n$ matrix $A$ is positive definite if
+    \[
+        x^T Ax > 0, \quad \forall x \in \mathbb{R}^n, \; x \neq 0
+    \]
+\end{definition}
+
+\begin{theorem}
+    $A$ is symmetric positive definite if and only if all $A$'s eigenvalues are positive.
+\end{theorem}
+
+\begin{theorem}[symmetric positive definite]
+    $A$ is SPD $\implies$ all diagonal elements are positive, all principle sub-matrices are positive definite.
+\end{theorem}
+
+\begin{definition}[principle sub-matrix]
+    Let $A$ be an $n \times n$ matrix. A principal submatrix is a submatrix obtained by deleting some rows and the same columns.
+    Formally, given a subset of indices $I \subseteq \{1, 2, \dots, n\}$, the principal submatrix $A_I$ is formed by selecting the rows and columns indexed by $I$.
+\end{definition}
+
+\begin{theorem}[Cholesky factorization]
+    If $A$ is SPD, then there exists a unique lower triangular matrix $L$ such that \[
+        A = LL^T
+    \]
+\end{theorem}
+
+The above theroem is called \red{Cholesky factorization}.
+
+\subsection{Cholesky Factorization}
+
+\begin{theorem}[Cholesky factorization]
+    We have \begin{align*}
+        A &= \begin{pmatrix}
+            \alpha & v^T \\
+            v & B
+        \end{pmatrix} \qquad (\alpha > 0) \\[3pt]
+        &= \begin{pmatrix}
+            \sqrt{\alpha} & 0 \\
+            \frac{v}{\sqrt{\alpha}} & I
+        \end{pmatrix} \begin{pmatrix}
+            \sqrt{\alpha} & \frac{v^T}{\sqrt{\alpha}} \\
+            0 & B - \frac{vv^T}{\alpha}
+        \end{pmatrix} \\[3pt]
+        &= \begin{pmatrix}
+            \sqrt{\alpha} & 0 \\
+            \frac{v}{\sqrt{\alpha}} & I
+        \end{pmatrix} \begin{pmatrix}
+            \sqrt{\alpha} & 0 \\
+            0 & B - \frac{vv^T}{\alpha}
+        \end{pmatrix} \begin{pmatrix}
+            1 & \frac{v^T}{\alpha} \\
+            0 & I
+        \end{pmatrix}
+    \end{align*}
+    If \[
+        B - \frac{vv^T}{\alpha} = \bar{L} \bar{L}^T
+    \]
+    i.e. it is also SPD, then we have \begin{align*}
+        \begin{pmatrix}
+            \sqrt{\alpha} & 0 \\
+            \frac{v}{\sqrt{\alpha}} & I
+        \end{pmatrix} \begin{pmatrix}
+            \sqrt{\alpha} & 0 \\
+            0 & \bar{L} \bar{L}^T
+        \end{pmatrix} \begin{pmatrix}
+            1 & \frac{v^T}{\alpha} \\
+            0 & I
+        \end{pmatrix} &= (\begin{pmatrix}
+            \sqrt{\alpha} & 0 \\
+            \frac{v}{\sqrt{\alpha}} & I
+        \end{pmatrix} \begin{pmatrix}
+            1 & 0 \\
+            0 & \bar{L}
+        \end{pmatrix}) (\begin{pmatrix}
+            1 & 0 \\
+            0 & \bar{L}^T
+        \end{pmatrix} \begin{pmatrix}
+            1 & \frac{v^T}{\alpha} \\
+            0 & I
+        \end{pmatrix} ) \\[3pt]
+        &= \begin{pmatrix}
+            \sqrt{\alpha} & 0 \\
+            \frac{v}{\sqrt{\alpha}} & \bar{L}
+        \end{pmatrix} \begin{pmatrix}
+            \sqrt{\alpha} & \frac{v^T}{\sqrt{\alpha}} \\
+            0 & \bar{L}^T
+        \end{pmatrix}
+    \end{align*}
+\end{theorem}
+
+\begin{note}
+    If we can proof that $B - \frac{vv^T}{\alpha}$ is also SPD, then the same procedure can be applied to $B - \frac{vv^T}{\alpha}$, and we can get the Cholesky factorization of $A$.
+\end{note}
+
+\begin{lemma}
+    If $A$ is SPD, then $B - \frac{vv^T}{\alpha}$ is also SPD.
+\end{lemma}
+\begin{proof}
+    For the symmertic, it is obvious. For the positive definiteness, we have for any $x \neq 0$, 
+    \begin{align*}
+        x^T (B - \frac{vv^T}{\alpha}) x &= x^T B x - \frac{(v^T x)^2}{\alpha} \\[3pt]
+        &= \begin{pmatrix}
+            -\frac{v^T x}{\sqrt{\alpha}} & x^T
+        \end{pmatrix} \begin{pmatrix}
+            0 \\ -\frac{v^T x}{\alpha} v + Bx
+        \end{pmatrix} \\[3pt]
+        &= \underbrace{\begin{pmatrix}
+            -\frac{v^T x}{\sqrt{\alpha}} & x^T
+        \end{pmatrix}}_{\mathbf{v}} \underbrace{\begin{pmatrix}
+            \alpha & v^T \\
+            v & B
+        \end{pmatrix}}_{A} \underbrace{\begin{pmatrix}
+            -\frac{v^T x}{\sqrt{\alpha}} \\ x
+        \end{pmatrix}}_{\mathbf{v}^T} > 0 \tag{\text{because $A$ is SPD}}
+    \end{align*}
+\end{proof}
+
+\vspace{1em}
+
+Now, we can go through the implementation in the \textbf{outer product form}.
+
+\begin{minted}[linenos, bgcolor=LightGray]{matlab}
+for k=1:n
+    A(k,k) = sqrt(A(k,k))
+    A(k+1:n,k) = A(k+1:n,k)/A(k,k)
+    for j=k+1:n
+        A(j:n,j) = A(j:n,j) - A(j:n,k)A(j,k)
+    end
+end
+\end{minted}
+
+The inner loop comes from \[
+    B_{:,j} - (v/\alpha)_j \cdot \frac{v}{\sqrt{\alpha}}
+\]
+
+\newpage
+
+There is another implementation way, treat \[
+    A = LL^T
+\]
+as a system of equations with unknowns $L$ and solve it.
+
+\[
+    A_{ij} = \sum_{k=1}^{n} L_{ik} {(L^T)}_{kj} = \sum_{k=1}^{n} L_{ik} L_{jk} = \sum_{k=1}^{n} L_{jk} L_{ik}
+\]
+\[
+    \implies \quad A_{:,j} = \sum_{k=1}^{n} L_{jk} L_{:,k}
+\]
+
+Because $L$ is lower triangular, we have \[
+    L_{j,j+1} = \cdots = L_{j,n} = 0
+\]
+Thus, \[
+    A_{:,j} = \sum_{k=1}^{\red{j}} L_{jk} L_{:,k}
+\]
+\[
+    L_{jj} L_{:,j} = A_{:,j} - \sum_{k=1}^{j-1} L_{jk} L_{:,k}
+\]
+The $(j-1)$-th column is already computed, so we can compute $L_{:,j}$ by let \[
+    L_{jj} L_{jj} = A_{j,j} - \sum_{k=1}^{j-1} L_{jk} L_{j,k}
+\]
+Then \[
+    L_{j+1:n, j} = \frac{\displaystyle (A_{j+1:n, j} - \sum_{k=1}^{j-1} L_{jk} L_{j+1:n, k})}{L_{jj}}
+\]
+In practical implementation we calculate \[
+    A_{j:n, j} - \sum_{k=1}^{j-1} L_{jk} L_{j:n, k}
+\]
+first.
+
+\begin{minted}[linenos, bgcolor=LightGray]{matlab}
+for j=1:n
+    v(j:n) = A(j:n,j)
+    for k=1:j-1
+        v(j:n) = v(j:n) - L(j,k)L(j:n,k)
+    end
+    L(j:n,j) = v(j:n)/sqrt(v(j))
+end
+\end{minted}
+
+\begin{note}
+    \[
+        \texttt{v(j:n) = v(j:n) - L(j,k)L(j:n,k)}
+    \]
+    is a \textbf{apxy} operation.   
+\end{note}
+
+For the time complexity, \begin{align*}
+    \sum_{j=1}^{n} \sum_{k=1}^{j-1} 2(n-j+1) &= 2\sum_{j=1}^{n} (j-1)(n-j+1) \\[3pt]
+    &= \sum_{j=1}^{n} (nj - n -j^2 +j + j - 1) \\[3pt]
+    &\approx 2(n \cdot \frac{n(n+1)}{2} - \frac{n(n+1)(2n+1)}{6}) = O \left(\frac{n}{3}\right)
+\end{align*}
+
+Which is half of the time complexity of $LU$ factorization.

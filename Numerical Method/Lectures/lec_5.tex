@@ -1,0 +1,599 @@
+\chapter{BLAS}
+
+\lecture{5}{2026.03.21}{}
+
+\section{BLAS basic}
+
+\subsection{BLAS: Basic Linear Algebra Subroutines}
+
+Usually we just use 90\% of the time in 10\% of the code. So, accelerating the 10\% of the code can significantly improve the overall performance. In linear algebra, we use BLAS (Basic Linear Algebra Subroutines) to accelerate the performance of the code, which is a kind of ``software'' face of optimization.
+
+\begin{note}
+    For GPU, TPU, and other hardware, those are the ``hardware'' face of optimization.
+\end{note}
+
+For example, 
+
+\begin{minted}[linenos, bgcolor=LightGray]{c}
+daxpy(n, alpha, p, inc, w, inc);
+daxpy(n, malpha, q, inc, r, inc);
+
+rtr = ddot(n, r, inc, r, inc);
+rnorm = sqrt(rtr);
+tnorm = sqrt(ddot(n, t, inc, t, inc));
+\end{minted}
+
+\begin{itemize}
+    \item \texttt{ddot}: inner product
+    \item \texttt{daxpy}: ax + y, x, y are vectors and a is a scalar
+\end{itemize}
+
+\begin{note}
+    Fortran is the first high level programming language, and it is still widely used in scientific computing. The BLAS library is come up before the C language.
+\end{note}
+
+\subsection{Level 1 BLAS}
+
+The level 1 BLAS includes:
+\begin{itemize}
+    \item dot product
+    \item constant times a vector plus a vector
+    \item rotation (don’t need to know what this is now)
+    \item copy vector x to vector y
+    \item swap vector x and vector y
+    \item length of a vector ($\sqrt{x_1^2 + \cdots + x_n^2}$)
+    \item sum of absolute values ($|x_1| + \cdots + |x_n|$)
+    \item constant times a vector
+    \item index of element having maximum absolute value
+\end{itemize}
+These are all $O(n)$ operations. 
+
+\begin{minted}[linenos, bgcolor=LightGray]{c}
+dw = ddot(n, dx, incx, dy, incy)
+\end{minted}
+\[
+    w = \sum_{i=1}^n dx_{1+ (i-1)\text{incx}} dy_{1 + (i-1)\text{incy}}
+\]
+
+\begin{minted}[linenos, bgcolor=LightGray]{c}
+dw = ddot(n, dx, 2, dy, 2)
+\end{minted}
+\[
+    w = dx_1 dy_1 + dx_3dy_3 + \cdots
+\]
+
+\begin{note}
+    \texttt{sdot} is single precision, \texttt{ddot} is for double precision.
+\end{note}
+
+If we want $y = ax + y$
+\begin{minted}[linenos, bgcolor=LightGray]{c}
+daxpy(n, da, dx, incx, dy, incy)    
+\end{minted}
+
+For reseacher in this field, it is hard to decide which operations can be put into BLAS. Further, there is another problem: Originally, BLAS is designed for Fortran, but now we have many programming languages. For C calling Fortran
+
+\begin{minted}[linenos, bgcolor=LightGray]{c}
+rtr = ddot_(&n, r, &inc, r, &inc);
+\end{minted}
+\begin{itemize}
+    \item \texttt{ddot\_}: calling Fortran subroutines (machine dependent)
+    \item \texttt{\&n}: call by reference for Fortran subroutine.
+    \item Array index starts from 1 in Fortran, but starts from 0 in C. But this should not cause problems here.
+\end{itemize}
+
+There is a CBLAS interface for C, i.e. C call C library, 
+\begin{minted}[linenos, bgcolor=LightGray]{c}
+rtr = ddot(n, r, inc, r, inc);
+\end{minted}
+We don't need to handle the issue.
+
+Nowadays, we have BLAS libraries available on most computers, for a Linux system 
+\begin{minted}{bash}
+$ ls /usr/lib| grep blas
+libblas
+libblas.a
+libblas.so
+libblas.so.3
+libblas.so.3gf
+libcblas.so.3
+libcblas.so.3gf
+libf77blas.so.3
+libf77blas.so.3gf    
+\end{minted}
+\begin{itemize}
+    \item .a: static library 
+    \item .so: dynamic library
+    \item .3: versus 
+    \item .3gf: g77 versus gfortran
+\end{itemize}
+
+\subsection{Level 2 BLAS}
+
+Level 2 BLAS involves $O(n^2)$ operations, where $n$ is
+the size of matrices.
+
+\begin{eg}
+    For a Matrix-vector product:
+    \[
+        Ax: (Ax)_i = \sum_{j=1}^n A_{ij} x_j,\ i = 1, \ldots, m 
+    \]
+\end{eg}
+This kind of operation using level 1 BLAS will be too slow
+\[
+    y = \alpha Ax + \beta y,\quad y = \alpha A^T x + \beta y,\quad y = \alpha \bar{A}^T x + \beta y  
+\]
+$\alpha, \beta$ are scalars, $x, y$ are vectors, $A$ is a matrix, and $\bar{A}^T$ is the conjugate transpose (or Hermitian transpose) of $A$. For real matrices,
+\[
+\bar{A}^T = A^T
+\]
+
+Lower- or upper-triangular matrix-vector products
+\[
+  x = Tx, x = T^T x , x = \bar{T}^T x
+\]
+$x$ is a vector and $T$ is a lower or upper triangular matrix.
+
+\begin{eg}
+    Rank-one and rank-two updates
+    \[
+        A = \alpha x y^T + A, H = \alpha x \bar{y}^T + \bar{\alpha} y \bar{x}^T + H
+    \]
+\end{eg}
+
+\begin{itemize}
+    \item $H$ is a Hermitian matrix ($H = \bar{H}^T$, symmetric for real numbers)
+    \item rank: \# of independent rows (columns) of a matrix.
+\end{itemize}
+
+$x y^T$ is a rank one matrix. For example, 
+\[
+\begin{pmatrix}
+  1 \\ 2 
+\end{pmatrix}
+\begin{pmatrix} 3 & 4
+\end{pmatrix} 
+= 
+\begin{pmatrix}
+  3 & 4 \\ 6 & 8 
+\end{pmatrix}
+\]
+This operation need $O(n^2)$ operations. \\
+
+$xy^T + y x^T$ is a rank-two matrix
+\[
+\begin{pmatrix}
+  1 \\ 2 
+\end{pmatrix}
+\begin{pmatrix}
+3 & 4
+\end{pmatrix}
+= 
+\begin{pmatrix}
+  3 & 4 \\ 6 & 8 
+\end{pmatrix}
+,
+\begin{pmatrix}
+3 \\ 4  
+\end{pmatrix}
+\begin{pmatrix}
+    1 & 2
+\end{pmatrix}
+= 
+\begin{pmatrix}
+3 & 6 \\ 4 & 8  
+\end{pmatrix}
+\]
+
+
+\begin{eg}
+    Solution of triangular equations
+\end{eg}
+
+$x = T^{-1}y $
+
+\[
+\begin{pmatrix}
+T_{11} &&& \\
+T_{21} & T_{22} && \\
+\vdots & \vdots & \ddots & \\
+T_{n1} & T_{n2} & \cdots & T_{nn}
+\end{pmatrix}
+\begin{pmatrix}
+x_1 \\ \vdots \\ x_n
+\end{pmatrix}
+=
+\begin{pmatrix}
+y_1 \\ \vdots \\ y_n
+\end{pmatrix}
+\]
+The solution is 
+\begin{eqnarray*}
+x_1 & = & y_1 / T_{11} \\
+x_2 & = & (y_2 - T_{21} x_1)/T_{22} \\
+x_3 & = & (y_3 - T_{31} x_1 - T_{32} x_2)/T_{33}
+\end{eqnarray*}
+Number of multiplications/divisions:
+\[
+    1 + 2 + \cdots + n = \frac{n(n+1)}{2}
+\]
+
+\subsection{Level 3 BLAS}
+
+\begin{eg}
+    Matrix-matrix product
+    \begin{equation*}
+    \begin{split}
+    & C = \alpha AB + \beta C,\quad C = \alpha A^TB + \beta C,\\
+    & C = \alpha AB^T + \beta C,\quad C = \alpha A^TB^T + \beta C
+    \end{split}
+    \end{equation*}
+\end{eg}
+
+\begin{eg}
+    Rank-$k$ and rank-$2k$ updates.
+\end{eg}
+
+\begin{eg}
+    Multiplying a matrix by a triangular matrix
+    \[
+        B = \alpha T B
+    \]
+\end{eg}
+
+\begin{eg}
+    Solving triangular systems of equations with multiple right-hand side: 
+    \[
+        B = \alpha T^{-1}B
+    \]
+\end{eg}
+
+BLAS does not include subroutines for solving general linear systems or eigenvalues. Because these problems are not as common as the above operations.
+
+\newpage
+
+\section{Optimized BLAS}
+
+\subsection{Memory Management}
+
+Here is a C program 
+\begin{minted}[linenos, bgcolor=LightGray]{c}
+#define n 3000
+double a[n][n], b[n][n], c[n][n];
+
+int main()
+{
+   int i, j, k;
+   for (i = 0; i < n; i++)
+      for (j = 0; j < n; j++) {
+         a[i][j] = 1; b[i][j] = 1;
+      }
+         
+   for (i = 0; i < n; i++)
+      for (j = 0; j < n; j++) {
+         c[i][j] = 0;
+         for (k = 0; k < n; k++)
+            c[i][j] += a[i][k] * b[k][j];
+      }
+}
+\end{minted}
+
+\begin{minted}[bgcolor=LightGray]{bash}
+$ gcc -O3 mat.c; time ./a.out
+real    1m24.909s
+user    1m24.534s
+sys     0m0.193s
+\end{minted}
+
+We now test in the MATLAB environment
+\begin{minted}[bgcolor=LightGray]{bash}
+$ matlab -singleCompThread
+>> n = 3000;
+>> A = randn(n,n); B = randn(n,n);
+>> tic; C = A*B; toc
+Elapsed time is 1.708523 seconds.
+\end{minted}
+
+An issue about timing is elapsed time versus CPU time
+\begin{minted}[bgcolor=LightGray]{bash}
+>> A = randn(n,n); B = randn(n,n);
+>> t = cputime; C = A*B; t = cputime -t
+t = 1.3000
+\end{minted}
+They are similar if no other jobs are running on this machine.
+
+Results of using multi-threading (the default of MATLAB) 
+\begin{minted}[bgcolor=LightGray]{bash}
+$ matlab
+>> n = 3000;
+>> A = randn(n,n); B = randn(n,n);
+>> tic; C = A*B; toc
+Elapsed time is 0.426942 seconds.
+>> A = randn(n,n); B = randn(n,n);
+>> t = cputime; C = A*B; t = cputime -t
+t = 5.1200
+\end{minted}
+The CPU time here is the total time used by all threads.
+
+Optimized BLAS is an implementation that takes the advantage of memory hierarchies
+
+\begin{gather*}
+\boxed{\mbox{CPU}} \\
+\downarrow \\
+\boxed{\mbox{Registers}} \\
+  \downarrow \\
+\boxed{\mbox{Cache}} \\
+  \downarrow \\
+\boxed{\mbox{Main Memory}} \\
+  \downarrow \\
+\boxed{\mbox{Secondary storage (Disk)}} 
+\end{gather*}
+
+\begin{note}
+    In the reality, the architecture of CPU is more complicated, and there are multiple levels of cache.
+\end{note}
+
+\begin{definition}[Block algorithm]
+    \textbf{Block algorithms} is a way to transfer sub-matrices between different levels of storage. They localize operations to achieve good performance.
+\end{definition}
+
+
+\begin{definition}[Page fault]
+    \textbf{Page fault} is an event where an operand is not available in main memory and must be transported from secondary memory. Usually if a page is moved to the main memory, it overwrites page least recently used.
+\end{definition}
+
+\begin{eg}
+    $C = AB + C$, $n = 1,024$
+\end{eg}
+
+Here is the assumption:
+\begin{itemize}
+    \item a page 65,536 doubles $=$ 64 columns
+    \item 16 pages for each matrix
+    \item 48 pages for three matrices
+    \item available memory 16 pages
+    \item matrices access: \red{column oriented}
+\end{itemize}
+
+\begin{note}
+    \[
+        A = 
+        \begin{pmatrix}
+            1 & 2 \\
+            3 & 4
+        \end{pmatrix}
+    \]
+    The access way of the elements:
+    \begin{itemize}
+        \item column oriented: 1 3 2 4
+        \item row oriented: 1 2 3 4
+    \end{itemize}
+\end{note}
+\vspace{1em}
+
+\red{Access each row of A: 16 page faults}, $1024/64 = 16$
+
+\begin{eg}
+    Here is approch 1:
+\end{eg}
+\begin{minted}[linenos, bgcolor=LightGray]{matlab}
+for i =1:n
+  for j=1:n
+    for k=1:n
+      c(i,j) = a(i,k)*b(k,j)+c(i,j);
+    end
+  end
+end
+\end{minted}
+
+At each (i,j): each row a(i, 1:n) causes 16 page faults. Total: 
+$$1024^2\times 16$$
+at least \textbf{16 million page faults}.
+
+\begin{eg}
+    Here is approach 2:
+\end{eg}
+
+\begin{minted}[linenos, bgcolor=LightGray]{matlab}
+for j=1:n
+  for k=1:n
+    for i=1:n
+      c(i,j) = a(i,k)*b(k,j)+c(i,j);
+    end
+  end
+end
+\end{minted}
+For each $j$, access all columns of $A$. $A$ needs 16 pages, but $B$ and $C$ take spaces as well. So $A$ must be read for every $j$. For each $j$, 16 page faults for $A$.
+$$1024\times 16$$
+and 
+$C,B:$ 16 page faults. This approach has a dramatic improvement, which is \textbf{16,384 page faults}.
+
+If we implement back to C, 
+\begin{minted}[linenos, bgcolor=LightGray]{c}
+#define n 3000
+double a[n][n], b[n][n], c[n][n];
+
+int main()
+{
+   int i, j, k;
+   for (i = 0; i < n; i++)
+      for (j = 0; j < n; j++) {
+         a[i][j] = 1; b[i][j] = 1;
+         c[i][j] = 0;
+      }
+         
+   for (j = 0; j < n; j++) {
+      for (k = 0; k < n; k++)
+         for (i = 0; i < n; i++)
+            c[i][j] += a[i][k]*b[k][j];
+   }
+}
+\end{minted}
+
+\begin{minted}[bgcolor=LightGray]{bash}
+$ gcc -O3 mat1.c; time ./a.out
+real    4m20.247s
+user    4m19.761s
+sys     0m0.154s
+\end{minted}
+
+The performance is much worse than the previous one. The reason is that C language is row oriented.
+
+\begin{eg}
+    Here is approach 3 (block algorithm with $nb = 256$):
+\end{eg}
+
+\begin{minted}[linenos, bgcolor=LightGray]{matlab}
+for j=1:nb:n
+  for k=1:nb:n
+    for jj=j:j+nb-1
+      for kk=k:k+nb-1
+        c(:,jj) = a(:,kk)*b(kk,jj)+c(:,jj);
+      end
+    end
+  end
+end
+\end{minted}
+
+In MATLAB, {\tt 1:256:1025} means 1, 257, 513, 769. Note that we calculate
+\[
+\begin{pmatrix}
+A_{11} & \cdots & A_{14} \\
+& \vdots & \\
+A_{41} & \cdots & A_{44}
+\end{pmatrix}
+\begin{pmatrix}
+B_{11} & \cdots & B_{14} \\
+& \vdots & \\
+B_{41} & \cdots & B_{44}
+\end{pmatrix} \\
+=
+\begin{pmatrix}
+A_{11}B_{11} + \cdots +
+A_{14}B_{41} & \cdots \\
+\vdots & \ddots
+\end{pmatrix}
+\]
+We split the original matrix into 16 blocks, for each block $256 \times 256$
+\begin{eqnarray*}
+&& C_{11} = A_{11}B_{11} + \cdots +
+A_{14}B_{41} \\
+&& C_{21} = A_{21}B_{11} + \cdots +
+A_{24}B_{41} \\
+&& C_{31} = A_{31}B_{11} + \cdots +
+A_{34}B_{41} \\
+&& C_{41} = A_{41}B_{11} + \cdots +
+A_{44}B_{41} 
+\end{eqnarray*}
+
+For each $(j,k)$, $B_{k,j}$ is used to add $A_{:,k}B_{k,j}$ to $C_{:,j}$. For instance:
+\begin{align*}
+    C_{11} & \leftarrow C_{11} + A_{11} B_{11}\\
+    & \vdots \\
+    C_{41} & \leftarrow C_{41} + A_{41} B_{11}\\
+\end{align*}
+
+Then use Approach 2 for $A_{:,1}B_{11}$.
+
+\begin{remark}[Analysis]
+    Here is the analysis of page faults for this approach:
+    \begin{itemize}
+        \item 
+        $A_{:,1}$: 256 columns, $1024\times 256 / 65536 = 4$ pages.
+        \item 
+        $A_{:,1}, \ldots, A_{:,4}: 4 \times 4 = 16$ page faults in calculating $C_{:,1}$
+        \item 
+        For $A$: $16\times 4$ page faults
+        \item
+        $B$: 16 page faults
+        \item $C$: 16 page faults
+    \end{itemize}
+\end{remark}
+
+\subsection{LAPACK}
+
+BLAS defines only operations such as matrix-matrix
+products. LAPACK – Linear Algebra PACKage, based on BLAS, which can solve
+\begin{itemize}
+    \item Systems of linear equations
+    \item Least-squares solutions of linear systems of equations
+    \item Eigenvalue problems
+    \item Singular value problems
+\end{itemize}
+
+Subroutines in LAPACK classified as three levels:
+\begin{enumerate}
+    \item \textbf{Driver routines}: Subroutines that solve complete problems, such as linear systems, eigenvalue problems, and singular value problems.
+    \item \textbf{Computational routines}: Subroutines that perform a specific computation such as LU factorization, QR factorization, and Hessenberg reduction.
+    \item \textbf{Auxiliary routines}: Subroutines that perform auxiliary computations, which is kind of extension of BLAS.
+\end{enumerate}
+
+\begin{definition}[Name of LAPACK Driver/Computational Routines]
+    Name of LAPACK Driver and Computational Routines has the form of \[
+        \boxed{\texttt{XYYZZZ}}
+    \]
+    \begin{itemize}
+        \item \texttt{X}: data type (S: single, D: double, C: complex, Z: complex double)
+        \item \texttt{YY}: the type of matrix 
+        \begin{itemize}
+            \item \texttt{GB}: general banded
+            \item \texttt{GE}: general (i.e. unsymmetric, in some cases rectangular)
+        \end{itemize}
+        \begin{note}
+            Banded matrix: a band of nonzeros along diagonals
+            \[
+                \begin{pmatrix}
+                    * & * & 0 & 0 & 0 \\
+                    * & * & * & 0 & 0 \\
+                    0 & * & * & * & 0 \\
+                    0 & 0 & * & * & * \\
+                    0 & 0 & 0 & * & *
+                \end{pmatrix}
+            \]
+        \end{note}
+        \item \texttt{ZZZ}: the type of computation performed
+        \begin{itemize}
+            \item \texttt{SV}: simple driver of solving general linear systems.
+            \item \texttt{TRF}: Factorization.
+            \item \texttt{TRS}: Use the factorization to solve $Ax = b$ by forward or backward substitution.
+            \item \texttt{CON}: Estimate the reciprocal of the condition number.
+        \end{itemize}
+    \end{itemize}
+\end{definition}
+
+\begin{eg}
+    \texttt{SGESV}: Simple driver of solving single general linear systems.
+\end{eg}
+
+\begin{eg}
+    \texttt{SGBSV}: Simple driver of solving single general banded linear systems.
+\end{eg}
+
+For the block algorithm in LAPACK, LU factorization \texttt{DGETRF} takes $O(n^3)$ operations, speed in megaflops (MFLOPS) is defined as
+\[
+    \mbox{MFLOPS} = \frac{\mbox{number of floating point operations}}{\mbox{time in seconds} \times 10^6}
+\]
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{@{}lrrrr}
+    &No. of CPUs &Block size	&100 	&1000\\ \hline
+    Dec Alpha Miata 	&1 	    &  28 	&172 	&370\\
+    Compaq AlphaServer DS-20&1 	    &  28 	&353 	&440\\
+    IBM Power 3 	        &1 	    &  32 	&278 	&551\\
+    IBM PowerPC 	        &1 	    &  52 	&77 	     &148\\
+    Intel Pentium II 	&1 	    &  40 	&132 	&250\\
+    Intel Pentium III 	&1 	    &  40 	&143 	&297\\
+    SGI Origin 2000 	&1 	    &  64 	&228 	&452\\
+    SGI Origin 2000 	&4 	    &  64 	&190 	&699\\
+    Sun Ultra 2 	        &1 	    &  64 	&121 	&240\\
+    Sun Enterprise 450 	&1 	    &  64 	&163 	&334\\
+    \end{tabular}
+    \caption{Performance of block LU factorization \texttt{DGETRF} in LAPACK on different machines.}
+\end{table}
+
+We can see that block algorithms are not very effective for small-sized problems. In the Intel Pentium III, the CPU clock time is 550 MHz, so the theoretical peak performance is just almost achieved for $n = 1000$, which means that the block algorithm is very effective for large-sized problems. 
+
+\begin{note}[ATLAS]
+    There is also some software packages for optimized BLAS, such as ATLAS (Automatically Tuned Linear Algebra Software), which can automatically tune the parameters of the block algorithm to achieve better performance. Which means compiled for your architecture, things related to your CPU, size of cache, RAM.
+\end{note}

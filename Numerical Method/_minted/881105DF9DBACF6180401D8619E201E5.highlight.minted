@@ -1,0 +1,6 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYGZdl{}\PYG{+w}{ }gcc\PYG{+w}{ }\PYGZhy{}O3\PYG{+w}{ }mat1.c\PYG{p}{;}\PYG{+w}{ }\PYG{n+nb}{time}\PYG{+w}{ }./a.out
+real\PYG{+w}{    }4m20.247s
+user\PYG{+w}{    }4m19.761s
+sys\PYG{+w}{     }0m0.154s
+\end{MintedVerbatim}

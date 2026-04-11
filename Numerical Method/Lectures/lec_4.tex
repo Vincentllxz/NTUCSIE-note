@@ -1,0 +1,257 @@
+\lecture{4}{2026.03.14}{}
+
+\section{Condition of Matrices}
+
+\subsection{Vector and Matrix Norms}
+
+To calculate the error, we can separate into 3 types: scalar, vector, and matrix. For scalar, we can simply use
+\begin{itemize}
+    \item absolute error: \[
+        |\tilde{\alpha} - \alpha|
+    \]
+    \item relative error: \[
+        \frac{|\tilde{\alpha} - \alpha|}{|\alpha|}
+    \]
+\end{itemize}
+
+To evaluate the vector and matrix error, we need to define the vector and matrix norms, which is a kind of metric. 
+
+\begin{definition*}[Vector Norm]
+    Here are some common vector norms:
+    \begin{definition}[$l$-norm]
+        \[
+            \|x\|_l = \left(\sum_{i=1}^n |x_i|^l\right)^{\frac{1}{l}}
+        \]
+    \end{definition}
+    for instance, 
+    \begin{definition}[$1$-norm]
+        \[
+            \|x\|_1 = \sum_{i=1}^n |x_i|
+        \]
+    \end{definition}
+
+    \begin{definition}[$\infty$-norm]
+        \[
+            \|x\|_\infty \equiv \lim_{l\to\infty} \|x\|_l
+        \]
+    \end{definition}
+\end{definition*}
+
+\begin{theorem}
+    \[
+        \|x\|_\infty = \max_{1\leq i \leq n} |x_i|
+    \]    
+\end{theorem}
+\begin{proof}
+    We can induce by Squeeze Theorem. For any $l$, we have \[
+        \sqrt[l]{(\max |x_i|)^{l}} \leq \sqrt[l]{|x_1|^{l} + \cdots + |x_n|^l} \leq \sqrt[l]{n(\max |x_i|)^{l}}
+    \]
+    which implies \[
+        \max |x_i| \leq \|x\|_l \leq n^{\frac{1}{l}} \max |x_i|
+    \]
+    By Squeeze Theorem ($l \to \infty$), we have \[
+        \|x\|_\infty = \max |x_i|
+    \] 
+    Proof is complete.
+\end{proof}
+
+\begin{eg}
+    \[
+        x = \begin{pmatrix}
+            1 \\ 1000 \\ 9
+        \end{pmatrix}, \quad 
+        x = \begin{pmatrix}
+            1.1 \\ 99 \\ 11
+        \end{pmatrix}
+    \]
+\end{eg}
+
+\[
+    \|\hat{x} - x\|_\infty = 2, \quad \frac{\|\hat{x} - x\|_\infty}{\|x\|_\infty} = 0.02, \quad \frac{\|\hat{x} - x\|_\infty}{\|\hat{x}\|_\infty} = 0.0202
+\]
+\[
+    \|\hat{x} - x\|_2 = 2.238, \quad \frac{\|\hat{x} - x\|_2}{\|x\|_2} = 0.0223, \quad \frac{\|\hat{x} - x\|_2}{\|\hat{x}\|_2} = 0.0225
+\]
+
+\begin{corollary}
+    For $l$-norm, all norms are equivalent to each other, which means there exist $c_1, c_2 > 0$ such that \[
+        c_1 \|x\|_{l_1} \leq \|x\|_{l_2} \leq c_2 \|x\|_{l_1}
+    \]
+    for all $x \in \mathbb{R}^n$.
+\end{corollary}
+
+For instance, \[
+    \|x\|_2 \leq \|x\|_1 \leq \sqrt{n} \|x\|_2 \tag{2.3.1}
+\]
+\[
+    \|x\|_\infty \leq \|x\|_2 \leq \sqrt{n} \|x\|_\infty \tag{2.3.2}
+\]
+\[
+    \|x\|_\infty \leq \|x\|_1 \leq n \|x\|_\infty \tag{2.3.3}
+\]
+
+\begin{theorem}[norm]
+    A norm should satisfy \[
+        \|A\| \geq 0
+    \]\[
+        \|A + B\| \leq \|A\| + \|B\| \tag{2.3.4}
+    \]\[
+        \|\alpha A\| = |\alpha| \|A\|
+    \]
+    where $\alpha$ is a scalar.
+\end{theorem}
+\begin{proof}
+    Checking the middle one, we have \[
+        \|A+B\| = \max_{\|x\| = 1} \|(A+B)x\| \leq \max_{\|x\| = 1} \|Ax\| + \|Bx\| \leq \max_{\|x\| = 1} \|Ax\| + \max_{\|x\| = 1} \|Bx\|
+    \]
+    The last step is because we can choose different $x$ to maximize $\|Ax\|$ and $\|Bx\|$.
+\end{proof}
+
+Hence, here we have the definition of matrix norm:
+
+\begin{definition}[Matrix Norm]
+    A matrix norm is a function $\|\cdot\|$ \[
+        \|A\|_l \equiv \max_{x \neq 0} \frac{\|Ax\|_l}{\|x\|_l} = \max_{\|x\|_l = 1} \|Ax\|_l
+    \]
+\end{definition}
+
+\newpage
+
+From the definition, above we have \[
+    \frac{\|Ax\|}{\|x\|} \leq \|A\|,\quad \forall x
+\]
+so \[
+    \|Ax\| \leq \|A\| \|x\|
+\]
+
+\begin{note}
+
+    For the relative error, \[
+        \frac{|\hat{\alpha} - \alpha|}{|\alpha|}
+    \]
+    but in practice, $\alpha$ is usually unknown, so we can only use \[
+        \frac{|\hat{\alpha} - \alpha|}{|\hat{\alpha}|}
+    \]
+    
+    If \[
+        \frac{|\hat{\alpha} - \alpha|}{|\hat{\alpha}|} \leq 0.1
+    \]
+    then \[
+        \frac{1}{1.1} \frac{|\hat{\alpha} - \alpha|}{|\hat{\alpha}|} \leq \frac{|\hat{\alpha} - \alpha|}{|\alpha|} \leq \frac{1}{0.9} \frac{|\hat{\alpha} - \alpha|}{|\hat{\alpha}|}
+    \]
+    By \[
+        |\alpha| - |\hat{\alpha}| \leq |\hat{\alpha} - \alpha| \leq 0.1 |\hat{\alpha}|
+    \]
+    \[
+        |\alpha| \leq 1.1 |\hat{\alpha}|
+    \]
+    Similarly, \[
+        |\hat{\alpha}| - |\alpha| \leq 0.1 |\hat{\alpha}|
+    \]
+    \[
+        |\alpha| \geq 0.9 |\hat{\alpha}|
+    \]
+\end{note}
+
+\subsection{Condition of a Linear System}
+
+Solving a Linear System \[
+    \begin{pmatrix}
+        10 & 7 & 8 & 7 \\
+        7 & 5 & 6 & 5 \\
+        8 & 6 & 10 & 9 \\
+        7 & 5 & 9 & 10
+    \end{pmatrix} \begin{pmatrix}
+        x_1 \\ x_2 \\ x_3 \\ x_4
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        32 \\ 23 \\ 33\\ 31
+    \end{pmatrix}, \mbox{ solution } =
+    \begin{pmatrix}
+        1 \\ 1 \\ 1 \\ 1
+    \end{pmatrix}
+\]
+Now we slightly modify the right-hand side to \[
+    \begin{pmatrix}
+        10 & 7 & 8 & 7 \\
+        7 & 5 & 6 & 5 \\
+        8 & 6 & 10 & 9 \\
+        7 & 5 & 9 & 10
+    \end{pmatrix}
+    \begin{pmatrix}
+        x_1 \\ x_2 \\ x_3 \\ x_4
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        32.1 \\ 22.9 \\ 33.1 \\ 30.9
+    \end{pmatrix}, \mbox{ solution } =
+    \begin{pmatrix}
+        9.2 \\ -12.6 \\ 4.5 \\ -1.1
+    \end{pmatrix}
+\]
+We can see that \red{a small change can lead to a large error}. Or if we slightly modify the coefficient matrix \[
+    \begin{pmatrix}
+        10 & 7 & 8.1 & 7.2 \\
+        7.08 & 5.04 & 6 & 5 \\
+        8 & 5.98 & 9.89 & 9 \\
+        6.99 & 4.99 & 9 & 9.98
+    \end{pmatrix}
+    \begin{pmatrix}
+        x_1 \\ x_2 \\ x_3 \\ x_4
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        32 \\ 23 \\ 33\\ 31
+    \end{pmatrix}
+    \mbox{, solution } =
+    \begin{pmatrix}
+        -81 \\ 137 \\ -34 \\ 22
+    \end{pmatrix}
+\]
+which is even worse.
+
+\newpage
+
+Now, we consider the gereral case \[
+    Ax = b
+\]
+\begin{enumerate}[label=$\arabic*^\circ$]
+    \item First, we slightly modify right-hand side \[
+        A(x + \delta x) = b + \delta b
+    \]
+    then we get \[
+        \delta x = A^{-1} \delta b \quad \implies \quad \|\delta x\| \leq \|A^{-1}\| \|\delta b\|
+    \]
+    and we have \[
+        \|b\| \leq \|A\| \|x\|
+    \]
+    so \[
+        \boxed{\frac{\|\delta x\|}{\|x\|} \leq \|A^{-1}\| \|A\| \frac{\|\delta b\|}{\|b\|}}
+    \]
+    
+    \item Next, we slightly modify the coefficient matrix \[
+        (A + \delta A)(x + \delta x) = b
+    \]\[
+        Ax + A \delta x + \delta A (x + \delta x) = b
+    \]
+    then we have \[
+        \delta x = -A^{-1} \delta A (x + \delta x) 
+    \]
+    imply the norm \[
+        \|\delta x\| \leq \|A^{-1}\| \|\delta A\| (\|x\| + \|\delta x\|)
+    \]
+    so \[
+        \boxed{\frac{\|\delta x\|}{\|x + \delta x\|} \leq \|A\|\|A^{-1}\| \frac{\|\delta A\|} {\|A\|}}
+    \]
+    \begin{note}
+        We here estimate only \[
+            \frac{\|\delta x\|}{\|x + \delta x\|}
+            \text{ instead of }
+            \frac{\|\delta x\|}{\|x\|};
+        \]
+        since the disscussion earlier.
+    \end{note}
+\end{enumerate}
+
+Clearly, the error is related to $\|A\|\|A^{-1}\|$, which is called the \red{condition number} of $A$, a smaller condition number means a more stable system.
