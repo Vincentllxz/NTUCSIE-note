@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.8.4)  11 APR 2026 16:52
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.8.4)  11 APR 2026 20:10
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1879,10 +1879,10 @@ Package mdframed Info: mdframed detected package amsthm
 \pydata@fh@_2FDC630547FD7A76B2F882B34686F2BC.data.minted=\write8
 \openout8 = `_2FDC630547FD7A76B2F882B34686F2BC.data.minted'.
 
-runsystem(latexminted config  --timestamp 20260411165235 2FDC630547FD7A76B2F882B34686F2BC)...executed safely (allowed).
+runsystem(latexminted config  --timestamp 20260411201055 2FDC630547FD7A76B2F882B34686F2BC)...executed safely (allowed).
 
  (./_2FDC630547FD7A76B2F882B34686F2BC.config.minted)
-runsystem(latexminted cleanconfig  --timestamp 20260411165235 2FDC630547FD7A76B2F882B34686F2BC)...executed safely (allowed).
+runsystem(latexminted cleanconfig  --timestamp 20260411201055 2FDC630547FD7A76B2F882B34686F2BC)...executed safely (allowed).
 
  (./_minted/friendly.style.minted) (./_minted/B10DABE79119C9C995C5D78BBDEBC267.highlight.minted
 
@@ -2220,8 +2220,9 @@ Package mdframed Info: mdframed detected package amsthm
 LaTeX Font Info:    Font shape `T1/zi4/m/it' will be
 (Font)              scaled to size 10.0pt on input line 3.
 )) (./Lectures/lec_3.tex
+Package marginnote Info: Margin note 22.1 is on absolute page 22 on input line 2.
 Package marginnote Info: right page because not two side mode on input line 2.
-Package marginnote Info: xpos seems to be \@mn@currxpos  on input line 2.
+Package marginnote Info: xpos seems to be 72.2698pt on input line 2.
  (./_minted/6CEB578F22D6EF02E2BFAF80772A1BFF.highlight.minted
 
 [18]) (./_minted/A5024DD75C3BAD7BB6D00B8ED72AD9E3.highlight.minted)
@@ -2386,8 +2387,9 @@ Package mdframed Info: mdframed detected package amsthm
 
 
 [32]) (./Lectures/lec_4.tex
+Package marginnote Info: Margin note 37.1 is on absolute page 37 on input line 2.
 Package marginnote Info: right page because not two side mode on input line 2.
-Package marginnote Info: xpos seems to be \@mn@currxpos  on input line 2.
+Package marginnote Info: xpos seems to be 72.2698pt on input line 2.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 19.
@@ -2449,8 +2451,9 @@ Package mdframed Info: mdframed detected package amsthm
 
 [36]
 Chapter 3.
+Package marginnote Info: Margin note 41.1 is on absolute page 41 on input line 4.
 Package marginnote Info: right page because not two side mode on input line 4.
-Package marginnote Info: xpos seems to be \@mn@currxpos  on input line 4.
+Package marginnote Info: xpos seems to be 72.2698pt on input line 4.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 12.
@@ -2575,9 +2578,6 @@ L3 programming layer <2022/08/05>
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
 Package rerunfilecheck Info: File `NumericalMethod.out' has not changed.
 (rerunfilecheck)             Checksum: 8AA177EA2EFCA7CC4568EC9404E73003;1924.
 Package logreq Info: Writing requests to 'NumericalMethod.run.xml'.
@@ -2585,10 +2585,10 @@ Package logreq Info: Writing requests to 'NumericalMethod.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 62710 strings out of 473832
- 1501166 string characters out of 5729482
- 2579932 words of memory out of 5000000
- 84615 multiletter control sequences out of 15000+600000
+ 62707 strings out of 473832
+ 1501130 string characters out of 5729482
+ 2579930 words of memory out of 5000000
+ 84612 multiletter control sequences out of 15000+600000
  669833 words of font info for 146 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  104i,23n,107p,1272b,1868s stack positions out of 10000i,1000n,20000p,200000b,200000s
