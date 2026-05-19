@@ -1,0 +1,37 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYGZgt{}\PYGZgt{} newton
+This is Newtons Method
+Input the function F(x) in terms of x
+For example: cos(x)
+ \PYGZsq{}cos(x)\PYGZsq{}
+Input the derivative of F(x) in terms of x
+ \PYGZsq{}\PYGZhy{}sin(x)\PYGZsq{}
+Input initial approximation
+ 0.1
+Input tolerance
+ 0.001
+Input maximum number of iterations \PYGZhy{} no decimal point
+ 50
+Select output destination
+1. Screen
+2. Text file
+Enter 1 or 2
+ 1
+Select amount of output
+1. Answer only
+2. All intermediate approximations
+Enter 1 or 2
+ 2
+Newtons Method
+  I   P                 F(P)
+  1   1.00666444e+01   \PYGZhy{}8.0097972e\PYGZhy{}01
+  2   1.14045284e+01    3.9764987e\PYGZhy{}01
+  3   1.09711401e+01   \PYGZhy{}2.4431758e\PYGZhy{}02
+  4   1.09955792e+01    4.8638065e\PYGZhy{}06
+  5   1.09955743e+01   \PYGZhy{}4.2862638e\PYGZhy{}16
+
+Approximate solution = 1.0995574288e+01
+with F(P) = \PYGZhy{}4.2862637970e\PYGZhy{}16
+Number of iterations = 5
+Tolerance = 1.0000000000e\PYGZhy{}03
+\end{MintedVerbatim}

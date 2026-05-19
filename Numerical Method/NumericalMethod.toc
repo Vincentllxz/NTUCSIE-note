@@ -46,3 +46,36 @@
 \contentsline {section}{\numberline {3.2}Optimized BLAS}{41}{section.3.2}%
 \contentsline {subsection}{\numberline {3.2.1}Memory Management}{41}{subsection.3.2.1}%
 \contentsline {subsection}{\numberline {3.2.2}LAPACK}{45}{subsection.3.2.2}%
+\contentsline {chapter}{\numberline {4}Iterative Methods for Linear Systems}{47}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Matrix Storage}{47}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Sparse Matrix Storage}{47}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}Factorization and Fill-in}{49}{subsection.4.1.2}%
+\contentsline {section}{\numberline {4.2}Iterative Methods}{51}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Jacobi Method}{51}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}Gauss-Seidel Method}{52}{subsection.4.2.2}%
+\contentsline {subsection}{\numberline {4.2.3}Theoretical Explanation of Gauss-Seidel Method}{54}{subsection.4.2.3}%
+\contentsline {section}{\numberline {4.3}Conjugate Gradient Method}{55}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Steepest Descent Method}{55}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Conjugate Gradient Method}{57}{subsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.3.3}Properties of Conjugate Gradient Method}{59}{subsection.4.3.3}%
+\contentsline {subsection}{\numberline {4.3.4}Efficient Implementation of Conjugate Gradient Method}{62}{subsection.4.3.4}%
+\contentsline {chapter}{\numberline {5}Nonlinear Equations}{65}{chapter.5}%
+\contentsline {section}{\numberline {5.1}One Dimensional Case}{65}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}Bisection Method}{65}{subsection.5.1.1}%
+\contentsline {subsection}{\numberline {5.1.2}Newton's Method}{67}{subsection.5.1.2}%
+\contentsline {subsection}{\numberline {5.1.3}Convergence Rate}{69}{subsection.5.1.3}%
+\contentsline {chapter}{\numberline {6}Interpolation and Approximation}{73}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Interpolation}{73}{section.6.1}%
+\contentsline {subsection}{\numberline {6.1.1}Lagrange Polynomial}{73}{subsection.6.1.1}%
+\contentsline {subsection}{\numberline {6.1.2}Spline Interpolation}{74}{subsection.6.1.2}%
+\contentsline {section}{\numberline {6.2}Approximation}{78}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Approximation}{78}{section.6.3}%
+\contentsline {subsection}{\numberline {6.3.1}Function Approximation}{78}{subsection.6.3.1}%
+\contentsline {subsection}{\numberline {6.3.2}Least Squares Approximation}{79}{subsection.6.3.2}%
+\contentsline {subsection}{\numberline {6.3.3}Higher Dimensional Space}{80}{subsection.6.3.3}%
+\contentsline {chapter}{\numberline {7}Fast Fourier Transformation}{82}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Basic Methods}{82}{section.7.1}%
+\contentsline {subsection}{\numberline {7.1.1}Continuous Least Squares}{82}{subsection.7.1.1}%
+\contentsline {subsection}{\numberline {7.1.2}Linearly Independent Functions}{84}{subsection.7.1.2}%
+\contentsline {subsection}{\numberline {7.1.3}Trigonometric Polynomials Approximation}{85}{subsection.7.1.3}%
+\contentsline {subsection}{\numberline {7.1.4}Fourier Series}{86}{subsection.7.1.4}%

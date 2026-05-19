@@ -19,7 +19,11 @@
 \input{Math.tex}
 % \input{ListStyle.tex}
 \usepackage{minted}
+\usepackage{alltt}
+
 \usepackage{lmodern}
+
+
 
 % \usemintedstyle{tango}
 \usemintedstyle{friendly}
@@ -137,6 +141,16 @@
 			nobreak=false
 		}
 ]{thmblueline}
+
+\declaretheoremstyle[
+	headfont=\bfseries\sffamily\color{black}, bodyfont=\normalfont,
+	mdframed={
+			linewidth=2pt,
+			rightline=false, topline=false, bottomline=false,
+			linecolor=Green!90!black,
+			nobreak=false
+		}
+]{thmgline}
 
 \declaretheoremstyle[
 	headfont=\bfseries\sffamily\color{RawSienna!70!black}, bodyfont=\normalfont,
@@ -302,7 +316,7 @@
 \declaretheorem[style=thmexplanationbox, numbered=no, name=Proof]{tmpexplanation}
 \newenvironment{explanation}[1][]{\vspace{-10pt}\pushQED{\(\circledast\)}\begin{tmpexplanation}}{\null\hfill\popQED\end{tmpexplanation}}
 
-\declaretheorem[style=thmblueline, numbered=no, name=Remark]{remark}
+\declaretheorem[style=thmgline, numbered=no, name=Remark]{remark}
 \declaretheorem[style=thmblueline, numbered=no, name=Note]{note}
 \declaretheorem[style=thmpinkbox, numbered=no, name=Question]{exercise}
 \declaretheorem[style=notgrayline, numbered=no, name=As previously seen]{prev}
@@ -427,3 +441,7 @@
 
 \setcounter{tocdepth}{1}
 \setlength{\parindent}{0pt}
+\usetikzlibrary{arrows.meta, 3d, angles, quotes}
+
+
+\usepackage{clrscode3e}

@@ -1,0 +1,8 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{n}{A}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{sprandsym}\PYG{p}{(}\PYG{l+m+mi}{200}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{0.05}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{0.01}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{;}
+\PYG{n}{L}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{chol}\PYG{p}{(}\PYG{n}{A}\PYG{p}{)}\PYG{o}{\PYGZsq{}}\PYG{+w}{ }\PYG{p}{;}
+\PYG{n+nb}{spy}\PYG{p}{(}\PYG{n}{A}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{;}
+\PYG{n+nb}{print}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{n}{deps}\PYG{+w}{ }\PYG{n}{A}
+\PYG{n+nb}{spy}\PYG{p}{(}\PYG{n}{L}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{;}
+\PYG{n+nb}{print}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{n}{deps}\PYG{+w}{ }\PYG{n}{L}
+\end{MintedVerbatim}

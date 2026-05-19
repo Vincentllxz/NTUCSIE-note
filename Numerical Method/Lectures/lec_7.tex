@@ -1,0 +1,726 @@
+\lecture{7}{2026.04.27}{}
+
+\section{Iterative Methods}
+
+An iterative method is to have the process of \[
+    x_1, x_2, \ldots, \to x^*
+\]
+We hope to find \[
+    Ax^* = b
+\]
+This type of method should be faster than Gaussian elimination $O(n^3)$. If $x_k \to x_{k+1}$ takes $O(n^r)$, then we can have $O(ln^r)$, where $l$ is the number of iterations. There are two properties should be satisfied for an iterative method:
+\begin{itemize}
+    \item Numerical stability
+    \item Sparsity (Fill-in)
+\end{itemize}
+
+\subsection{Jacobi Method}
+
+\begin{eg}
+    Consider the system of equations $Ax = b$
+\end{eg}
+
+We have 
+\begin{eqnarray*}
+x_1 &=& (b_1 - a_{12}x_2 - a_{13}x_3)/a_{11}\\
+x_2 &=& (b_2 - a_{21}x_1 - a_{23}x_3)/a_{22}\\
+x_3 &=& (b_3 - a_{31}x_1 - a_{32}x_2)/a_{33}
+\end{eqnarray*}
+The Jacobi method is to update $x_k$ to $x_{k+1}$ by 
+\begin{eqnarray*}
+(x_{k+1})_1 &=& (b_1 - a_{12}(x_k)_2 - a_{13}(x_k)_3)/a_{11}\\
+(x_{k+1})_2 &=& (b_2 - a_{21}(x_k)_1 - a_{23}(x_k)_3)/a_{22}\\
+(x_{k+1})_3 &=& (b_3 - a_{31}(x_k)_1 - a_{32}(x_k)_2)/a_{33}
+\end{eqnarray*}
+
+In the general case, we should do the procedure of 
+
+\begin{codebox}
+\Procname{$\proc{Jacobi}(A, b, x^{(0)})$}
+\li \For $i = 1 \twodots n$
+\Do
+\li $(x_{k+1})_i =  ( b_i - \sum_{j=1}^{i-1} a_{ij} (x_k)_j - \sum_{j=i+1}^n a_{ij} (x_k)_j )/ a_{ii}$
+\End
+\end{codebox}
+
+\begin{definition}[Jacobi Method]
+    The Jacobi method is to update $x_k$ to $x_{k+1}$ by 
+    \[
+       (x_{k+1})_i = \frac{1}{a_{ii}} \left( b_i - \sum_{j=1}^{i-1} a_{ij} (x_k)_j - \sum_{j=i+1}^n a_{ij} (x_k)_j \right)
+    \]
+\end{definition}
+
+\subsection{Gauss-Seidel Method}
+
+Now consider Gauss-Seidel method, which is to update $x_k$ to $x_{k+1}$ using the recently updated values. We have
+\begin{eqnarray*}
+(x_{k+1})_1 &=& (b_1 - a_{12}(x_k)_2 - a_{13}(x_k)_3)/a_{11}\\
+(x_{k+1})_2 &=& (b_2 - a_{21}(x_{k+1})_1 - a_{23}(x_k)_3)/a_{22}\\
+(x_{k+1})_3 &=& (b_3 - a_{31}(x_{k+1})_1 - a_{32}(x_{k+1})_2)/a_{33}
+\end{eqnarray*}
+
+For the general case, we should do the procedure of
+\begin{codebox}
+\Procname{$\proc{Gauss-Seidel}(A, b, x^{(0)})$}
+\li \For $i = 1 \twodots n$
+\Do
+\li $(x_{k+1})_i =  ( b_i - \sum_{j=1}^{i-1} a_{ij} (x_{k+1})_j - \sum_{j=i+1}^n a_{ij} (x_k)_j )/ a_{ii}$
+\End
+\end{codebox}
+
+\begin{definition}
+    The Gauss-Seidel method is to update $x_k$ to $x_{k+1}$ by 
+    \[
+        (x_{k+1})_i = \frac{1}{a_{ii}} \left( b_i - \sum_{j=1}^{i-1} a_{ij} (x_{k+1})_j - \sum_{j=i+1}^n a_{ij} (x_k)_j \right)
+    \]
+\end{definition}
+
+The iterative method can be divergent, 
+
+\begin{eg}
+    \begin{equation*}
+    A =
+    \begin{pmatrix}
+      1 & 2 & 2 \\ 
+    2 & 1 & 2 \\
+    2 & 2 & 1
+    \end{pmatrix},
+    b =
+    \begin{pmatrix}
+      5 \\ 5 \\ 5
+    \end{pmatrix},
+    \mbox{sol} =
+    \begin{pmatrix}
+      1 \\ 1 \\ 1
+    \end{pmatrix}
+    \end{equation*}
+\end{eg}
+
+The determinant of $A$ is $-9$, so $A$ is invertible. However, the iterative method will diverge 
+\begin{equation*}
+x_0 = 
+\begin{pmatrix}
+  0 \\ 0 \\ 0
+\end{pmatrix},\
+x_1 =
+\begin{pmatrix}
+  5\\ 5 \\ 5
+\end{pmatrix},\
+x_2 
+= 
+\begin{pmatrix}
+5 - 10 - 10  \\
+5 - 10 - 10  \\
+5 - 10 - 10  
+\end{pmatrix}
+= 
+\begin{pmatrix}
+  -15 \\ -15 \\ -15
+\end{pmatrix},\
+    x_3 
+=
+\begin{pmatrix}
+  5 + 30 + 30 \\
+  5 + 30 + 30 \\
+  5 + 30 + 30 
+\end{pmatrix}
+= 
+\begin{pmatrix}
+  65 \\ 65\\ 65
+\end{pmatrix}
+\end{equation*}
+
+Here is the convergence analysis of the iterative method. The goal is to find when the iterative method will get the solution of $Ax = b$.
+\begin{eqnarray*}
+a_{11} x_1 &=& 
+b_1 - a_{12}x_2 - a_{13}x_3\\
+a_{22} x_2 &=& b_2 - a_{21}x_1 - a_{23}x_3\\
+a_{33} x_3 &=& b_3 - a_{31}x_1 - a_{32}x_2
+\end{eqnarray*}
+Hence, we can rewrite the above equations as \begin{equation*}
+  \begin{pmatrix}
+    a_{11} && \\
+& a_{22} & \\
+&& a_{33}
+  \end{pmatrix}
+  \begin{pmatrix}
+    x_1 \\ x_2 \\ x_3
+  \end{pmatrix}
+=
+\begin{pmatrix}
+  0 & -a_{12} & -a_{13} \\
+ -a_{21} & 0 & -a_{23} \\
+-a_{31} & -a_{32} & 0
+\end{pmatrix}
+  \begin{pmatrix}
+    x_1 \\ x_2 \\ x_3
+  \end{pmatrix}
+ + b
+\end{equation*}
+
+If \[
+    M = \begin{pmatrix}
+    a_{11} && \\
+& a_{22} & \\
+&& a_{33}
+  \end{pmatrix}, N = \begin{pmatrix}
+  0 & -a_{12} & -a_{13} \\
+ -a_{21} & 0 & -a_{23} \\
+-a_{31} & -a_{32} & 0
+\end{pmatrix}
+\]
+then \[
+    A = M - N, \quad Mx_{k+1} = Nx_{k} + b
+\]
+
+Here we define the spectral radius
+
+\begin{definition}[Spectral Radius]
+    The spectral radius of a matrix $A$ is \[
+    \rho(A) = \max\{|\lambda|: \lambda \in \lambda(A)\}
+    \]
+    where $\lambda(A)$ is the set of eigenvalues of $A$.
+\end{definition}
+
+Then we have the following theorem 
+\begin{theorem}
+    Assume \[
+        A = M - N
+    \]
+    where \[
+        A, M \mbox{are non-singular and } \rho(M^{-1}N) < 1
+    \]
+    Then \[
+        M x_{k+1} = Nx_k + b
+    \]
+    leads to convergence of $\{x_k\}$ to $A^{-1}b$ for any initial guess $x_1$.
+\end{theorem}
+\begin{proof}
+    We have \[
+        Ax = b \implies Mx = Nx + b
+    \]
+    Get the iterative method in \[
+        M(x_{k+1} - x) = N(x_k - x)
+    \]
+    Hence, \[
+        x_{k+1} - x = M^{-1}N(x_k - x)
+    \]
+    Get the general formula 
+    \[
+        x_{k+1} - x = (M^{-1}N)^{k}(x_1 - x)
+    \]
+    With the condition $\rho(M^{-1}N) < 1$, we have \[
+        \lim_{k \to \infty} (M^{-1}N)^k = 0
+    \]
+
+\begin{note}
+    The reason of condition \[
+        \rho(M^{-1}N) < 1 \implies \lim_{k \to \infty} (M^{-1}N)^k = 0
+    \] 
+    is quite complicated, we omit the proof here.
+\end{note}
+
+    Hence, \[
+        \lim_{k \to \infty} x_{k+1} - x = 0
+    \]
+\end{proof}
+
+\subsection{Theoretical Explanation of Gauss-Seidel Method}
+
+Now we try to give Gauss-Seidel method a theoretical explanation. We construct the following opitmization problem \[
+    \min_{x} f(x) = \frac{1}{2} x^T A x - b^T x
+\]
+which is the same as solving $Ax = b$ if $A$ is a symmetric positive definite. We let \[
+    f(x) = \frac{1}{2} x^T A x - b^T x
+\]
+then \[
+    \nabla f(x) \equiv \begin{pmatrix}
+        \frac{\partial f}{\partial x_1} \\
+        \vdots \\
+        \frac{\partial f}{\partial x_n}
+    \end{pmatrix} = Ax - b
+\]
+
+The derivation will be \begin{align*}
+    x^T A x &= \sum_{i=1}^n x_i (Ax)_i \\[3pt]
+    &= \sum_{i=1}^n \sum_{j=1}^n x_i a_{ij} x_j \\[3pt]
+    &= \underbrace{x_1  A_{11} x_1 + \cdots + x_1 A_{1n} x_n}_{\text{first row}} + \underbrace{x_2 A_{21} x_1 + \cdots + x_2 A_{2n} x_n}_{\text{second row}} + \cdots + \underbrace{x_n A_{n1} x_1 + \cdots + x_n A_{nn} x_n}_{n\text{-th row}}
+\end{align*}
+Therefore, \begin{align*}
+    \frac{\partial x^T A x}{\partial x_1} &= (2 A_{11} x_1 + A_{12} x_2 + \cdots + A_{1n} x_n) + x_2 A_{21} + \cdots + x_n A_{n1} \\[3pt]
+    &= 2 (A_{11} x_1 + A_{12} x_2 + \cdots + A_{1n} x_n) \tag{since $A$ is symmetric}
+\end{align*}
+
+\begin{note}
+    Coordinate-wise minimization is a classic way for solving optimization problems. Sequentially optimizing one variable at a time \begin{gather*}
+        \min_{x_1} f(x_1, x^k_2, \ldots, x^k_n)\\
+        \min_{x_2} f(x^{k+1}_1, x_2, \ldots, x^k_n)\\
+        \min_{x_3} f(x^{k+1}_1, x^{k+1}_2, x_3, \ldots, x^k_n)\\
+        \vdots
+  \end{gather*}
+\end{note}
+
+Assume $x_i$ is updated \[
+    \min_{d} \frac{1}{2} (x + d e_i)^T A (x + d e_i) - b^T (x + d e_i)
+\]
+
+Next, \[
+    \min_{d} \frac{1}{2} d^2 A_{ii} + d (Ax)_i - d b_i
+\]
+\[
+    A_{ii} d + (Ax)_i - b_i = 0
+\]
+The minimum is achieved at \[
+    d = \frac{b_i - (Ax)_i}{A_{ii}}
+\]
+So, \[
+    x_i + d \leftarrow \frac{b_i - \sum_{j:j \neq i} A_{ij} x_j}{A_{ii}}
+\]
+We can get the Gauss-Seidel update rule.
+
+\section{Conjugate Gradient Method}
+
+This method can use only symmetric positive definite matrices. We first disscuss the \textbf{steepest descent method}. 
+
+\subsection{Steepest Descent Method}
+
+We construct the following optimization problem \[
+    \min_{x} f(x) = \frac{1}{2} x^T A x - b^T x
+\]
+Using taylor expansion, we have \[
+    f(x) = f(x_k) + \nabla f(x_k)^T (x - x_k) + \frac{1}{2} (x - x_k)^T \nabla^2 f(x_k) (x - x_k) + \cdots
+\]
+In this method, we omit the higher order terms and only consider the first two terms. Hence, we have \[
+    f(x) \approx f(x_k) + \nabla f(x_k)^T (x - x_k)
+\]
+The first term $f(x_k)$ is a constant, so we only need to minimize $\nabla f(x_k)^T (x - x_k)$. If \[
+    \min_{\|x - x_k\| = 1} \nabla f(x_k)^T (x - x_k)
+\]
+then \[
+    x - x_k = - \frac{\nabla f(x_k)}{\|\nabla f(x_k)\|}
+\]
+is the direction of steepest descent, which is the unit vector of $-\nabla f(x_k)$.
+\begin{note}
+    We need to \[
+        \| x - x_k \| = 1
+    \]
+    otherwise, we can make $x$ go to infinity and make $\nabla f(x_k)^T (x - x_k)$ go to negative infinity.
+\end{note}
+
+Now we have \[
+    \nabla f(x_k) = Ax_k - b
+\]
+Let \[
+    r = - \nabla f(x_k) = b - Ax_k, \quad x = x_k
+\]
+We minimize along the direction of $r$ 
+\begin{eqnarray*}
+&& \min_{\alpha}
+\frac{1}{2} (x + \alpha r)^T A(x+ \alpha r)
+ - (x + \alpha r)^T b \\  
+&& \min_{\alpha}
+\frac{1}{2} \alpha^2 r^T Ar
+ + \alpha r^T A x - 
+\alpha r^T b \\  
+&& \min_{\alpha}
+\frac{1}{2} \alpha^2 r^T Ar
+ + \alpha r^T( A x - b) 
+\end{eqnarray*}
+
+Then, it becomes an one-dimensional optimization problem
+\begin{eqnarray*}
+&& \alpha r^T Ar + r^T(Ax - b) = 0 \\[6pt]
+&& \alpha 
+= \frac{r^T(b - Ax)}{r^T A r}
+\end{eqnarray*}
+
+\begin{note}
+    $r^T A r \neq 0$ since $A$ is positive definite and $r \neq 0$.
+\end{note}
+
+Now $r = b - Ax$, we have \[
+    \alpha = \frac{(b - Ax)^T (b - Ax)}{(b - Ax)^T A (b - Ax)} = \frac{r^T r}{r^T A r}
+\]
+
+Hence, we can get the update rule of the steepest descent method 
+\begin{codebox}
+\Procname{$\proc{SteepestDescent}(A, b)$}
+\li $k = 0,\ x_0 = 0,\ r_0 = b$
+\li \While $r_k \neq 0$
+\Do
+\li $k = k + 1$
+\li $\alpha_k = \frac{r^T_{k-1} r_{k-1}}{r^T_{k-1} A r_{k-1}}$
+\li $x_k \leftarrow x_{k-1} + \alpha_k r_{k-1}$
+\li $r_k \leftarrow b - A x_k$
+\End
+\end{codebox}
+
+However, the steepest descent method may \red{converge very slowly}, becasue $r$ is not a good direction to go. So we have to construct a better direction. Before that, we first construct the general search direction method.
+
+\begin{definition}[Search Direction]
+    Suppose we have $x_k$ obtained by \[
+        \min_{\alpha} f(x_{k-1} + \alpha p_k)
+    \]
+    where $p_k$ is the search direction.
+\end{definition}
+
+Then, \begin{align*}
+    f(x_{k-1} + \alpha p_k) &= \frac{1}{2} (x_{k-1} + \alpha p_k)^T A (x_{k-1} + \alpha p_k) - b^T (x_{k-1} + \alpha p_k)\\
+    &= C + \alpha p_k^T (A x_{k-1} - b) + \frac{1}{2} \alpha^2 p_k^T A p_k
+\end{align*}
+So, \[
+    \alpha = - \frac{p_k^T (r_{k-1})}{p_k^T A p_k}
+\]
+Hence, we have the following gereral search direction method
+\begin{codebox}
+\Procname{$\proc{SearchDirection}(A, b)$}
+\li $k = 0,\ x_0 = 0,\ r_0 = b$
+\li \While $r_k \neq 0$
+\Do
+\li $k = k + 1$
+\li \red{Choose a search direction $p_k$ such that $p_k^T r_{k-1} \neq 0$}
+\li $\alpha_k = - \frac{p_k^T r_{k-1}}{p_k^T A p_k}$
+\li $x_k \leftarrow x_{k-1} + \alpha_k p_k$
+\li $r_k \leftarrow b - A x_k$
+\End
+\end{codebox}
+
+In this setting, \[
+    x_k = x_{0} + \mbox{span}\{p_1, \ldots, p_k \}
+\]
+The question become how to choose the search direction $p_k$?
+
+\newpage
+
+\subsection{Conjugate Gradient Method}
+
+For selecting the search direction, we hope that $p_1, \ldots, p_k$ are linearly independent and \begin{equation}
+    x_k = \arg \min_{x \in x_0 + \text{span}\{p_1, \ldots, p_k\}} f(x) \label{eq:arg}
+\end{equation}
+
+With the condition \ref{eq:arg}, \[
+    \mbox{span}\{p_1, \ldots, p_n\} = \mathbb{R}^n
+\]
+so \[
+    x_n = \arg \min_{x \in \mathbb{R}^n} f(x)
+\]
+Then \[
+    Ax_n = b
+\]
+and the procedure will converge in at most $n$ iterations. To maintain the property \ref{eq:arg}, we need to let \[
+    x_k = x_0 + P_{k-1} y + \alpha p_k
+\]
+where \[
+    P_{k-1} = (p_1, \ldots, p_{k-1}), \quad y \in \mathbb{R}^{k-1}, \quad \alpha \in \mathbb{R}
+\]
+From the optimality condition, we have \begin{align*}
+    f(x_k) &= \frac{1}{2} (x_0 + P_{k-1} y + \alpha p_k)^T A (x_0 + P_{k-1} y + \alpha p_k) - b^T (x_0 + P_{k-1} y + \alpha p_k) \\
+    &= \frac{1}{2} (x_0 + P_{k-1} y)^T A (x_0 + P_{k-1} y) - b^T (x_0 + P_{k-1} y) + \alpha p_k^T A (x_0 + P_{k-1} y) - b^T (\alpha p_k)+ \frac{\alpha^2}{2}  p_k^T A p_k \\ 
+    &= f(x_0 + P_{k-1} y) + \alpha p_k^T A P_{k-1} y - \alpha p_k^T r_0 + \frac{\alpha^2}{2} p_k^T A p_k
+\end{align*}
+
+In this way, sloving \[
+    \min_{x \in x_0 + \text{span}\{p_1, \ldots, p_k\}} f(x) = \min_{y, \alpha} f(x_0 + P_{k-1} y + \alpha p_k)
+\]
+is difficult because the term \[
+    \alpha p_k^T A P_{k-1} y
+\]
+involves both $y$ and $\alpha$.
+To make the problem easier, if \[
+    p_k \in \mbox{span}\{Ap_1, \ldots, Ap_{k-1}\}^\perp
+\]
+then \[
+    p_k^T A P_{k-1} y = 0
+\]
+and \[
+    \min_{x \in x_0 + \text{span}\{p_1, \ldots, p_k\}} f(x) = \min_{y} f(x_0 + P_{k-1} y) + \min_{\alpha} 
+    (- \alpha p_k^T r_0 + \frac{\alpha^2}{2} p_k^T A p_k)
+\]
+Then we have two independent optimization problems. Therefore, we require \red{$p_k$ to be $A$-conjugate to $p_1, \ldots, p_{k-1}$}, i.e. \[
+    p_k^T A p_j = 0, \quad \forall j < k
+\]
+By induction, we already have \[
+    x_{k-1} = \arg \min_{y} f(x_0 + P_{k-1} y)
+\]
+The solution of the second optimization problem is \[
+    \alpha = \frac{p_k^T r_0}{p_k^T A p_k}
+\]
+\newpage
+Because of the $A$-conjugacy, we have \begin{align*}
+    p_k^T r_{k-1} &= p_k^T (b - A x_{k-1}) \\
+    &= p_k^T (b - A(x_0 + P_{k-1} y_{k-1})) = p_k^T r_0
+\end{align*}
+We have \[
+    \alpha_k = \frac{p_k^T r_0}{p_k^T A p_k} = \frac{p_k^T r_{k-1}}{p_k^T A p_k}
+\]
+and \[
+    x_k = x_{k-1} + \alpha_k p_k
+\]
+We can get the following algorithm for the conjugate gradient method
+\begin{codebox}
+\Procname{$\proc{ConjugateGradient}(A, b)$}
+\li $k = 0,\ x_0 = 0,\ r_0 = b$
+\li \While $r_k \neq 0$
+\Do
+\li $k = k + 1$
+\li \red{Choose any $p_k \in \mbox{span}\{Ap_1, \ldots, Ap_{k-1}\}^\perp$ such that $p_k^T r_{k-1} \neq 0$}
+\li $\alpha_k = \frac{p_k^T r_{k-1}}{p_k^T A p_k}$
+\li $x_k \leftarrow x_{k-1} + \alpha_k p_k$
+\li $r_k \leftarrow b - A x_k$
+\End
+\end{codebox}
+
+We still not pick $p_k$ yet, one common way is to minimize the distance between $p_k$ and $r_{k-1}$.
+
+\begin{note}
+    Because $r_{k-1}$ is the direction of steepest descent \[
+        \nabla f(x_{k-1}) = A x_{k-1} - b = - r_{k-1}
+    \]
+\end{note}
+
+The algorithm is become 
+\begin{codebox}
+\Procname{\proc{Conjugate-Gradient}(A, b)}
+\li $k \gets 0,\ x_0 \gets 0,\ r_0 \gets b$
+\li \While $r_k \neq 0$ \Do
+\li     $k \gets k + 1$
+\li     \If $k = 1$ \Then
+\li         $p_1 \gets r_0$
+\li     \Else
+\li         \red{Let $p_k$ minimize $\|p_k - r_{k-1}\|_2$ overall vectors in $p \in \mbox{span}\{Ap_1, \ldots, Ap_{k-1}\}^\perp$}
+\End
+\li     $\alpha_k \gets \frac{p_k^T r_{k-1}}{p_k^T A p_k}$
+\li     $x_k \gets x_{k-1} + \alpha_k p_k$
+\li     $r_k \gets b - A x_k$
+\End
+\end{codebox}
+
+We have the following lemma for choosing $p_k$.
+\begin{lemma} \label{lemma:pk}
+    If $p_k$ minimizes $\|p_k - r_{k-1}\|_2$ overall vectors in $p \in \mbox{span}\{Ap_1, \ldots, Ap_{k-1}\}^\perp$, then \begin{equation}
+        p_k = r_{k-1} - A P_{k-1} z_{k-1} \label{eq:pk}
+    \end{equation}
+    where $z_{k-1}$ solves \begin{equation}
+        \min_{z} \|r_{k-1} - A P_{k-1} z\|_2 \label{eq:zk}
+    \end{equation}
+    $P_{k} = (p_1, \ldots, p_{k})$: an $n \times k$ matrix.
+\end{lemma}
+\begin{proof}
+    Let $z_{k-1}$ be the solution of (\ref{eq:zk}), then and define \[
+        p = r_{k-1} - A P_{k-1} z_{k-1}
+    \]
+    The optimality condition of (\ref{eq:zk}) is \[
+        P_{k-1}^T A^T (r_{k-1} - A P_{k-1} z_{k-1}) = 0
+    \]
+    Thus \[
+        p^T A^T p_i = 0, \quad \forall i < k
+    \]
+    Moreover, $p$ is the orthogonal projection of $r_{k-1}$ onto $S = \mbox{span}\{Ap_1, \ldots, Ap_{k-1}\}^\perp$, so $p = p_k$ is the solution of \[
+        \min_{p \in S} \|p - r_{k-1}\|_2
+    \]
+\end{proof}
+
+\begin{note}
+    $\nabla f (x) = 0$ is the optimality condition of the optimization problem \[
+        f(z) = \|r_{k-1} - A P_{k-1} z\|_2^2
+    \]
+    $$\nabla_z f(z) = -2 (A P_{k-1})^T r_{k-1} + 2 (A P_{k-1})^T (A P_{k-1}) z = 0$$
+\end{note}
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[
+    x={(-0.8cm,-0.4cm)}, y={(1cm,0cm)}, z={(0cm,1cm)},
+    >=Stealth,
+    vector/.style={->, thick},
+    plane/.style={fill=blue!5, draw=gray, opacity=0.7}
+]
+    \coordinate (O) at (2,1,0);
+    \coordinate (Proj) at (2, 3, 0);
+    \coordinate (R_tip) at (2, 3, 2.5);
+
+    \draw[plane] (-1,-1,0) -- (4,0,0) -- (5,4,0) -- (0, 3, 0) -- cycle;
+    \node[anchor=north] at (2,-2,1) {$S = \text{span}\{Ap_1, \dots, Ap_{k-1}\}$};
+
+    \draw[vector, blue] (O) -- (Proj) node[midway, below] {$AP_{k-1}z$};
+    
+    \draw[vector, black] (O) -- (R_tip) node[midway, above left] {$r_{k-1}$};
+
+    \draw[vector, red] (Proj) -- (R_tip) node[midway, right] {$p_k \perp S$};
+
+    \begin{scope}[canvas is yz plane at x=2]
+        \draw[thin] (3, 0.3) -- (2.7, 0.3) -- (2.7, 0);
+    \end{scope}
+    \begin{scope}[canvas is xz plane at y=3]
+        \draw[thin] (2, 0.3) -- (1.7, 0.3) -- (1.7, 0);
+    \end{scope}
+
+\end{tikzpicture}
+    \caption{The geometric interpretation of the conjugate gradient method.}
+\end{figure}
+
+
+\subsection{Properties of Conjugate Gradient Method}
+
+\begin{theorem}
+    After $j$ iterations, we have 
+    \begin{eqnarray}
+        r_j & = & r_{j-1} - \alpha_j Ap_j \nonumber \\
+        P_j^T r_j &= & 0 \label{eq:Pr}\\
+        \mbox{span}\{p_1, \ldots, p_j\}
+        & = & 
+        \mbox{span}\{r_0, \ldots, r_{j-1}\} \nonumber \\
+        & = & \mbox{span}\{b, Ab, \ldots,
+        A^{j-1}b\} \nonumber
+    \end{eqnarray}
+    \[
+        r_i^T r_j = 0 \mbox{ for all } i \neq j
+    \]
+\end{theorem}
+\begin{proof}
+    We only proof the first property, the others can be proved by induction. \begin{align*}
+        r_j &= b - A x_j \\
+        &= b - A(x_{j-1} + \alpha_{j-1} p_{j-1}) \\
+        &= r_{j-1} - \alpha_j A p_j
+    \end{align*}
+\end{proof} 
+
+From this theorem, we can see that $r_i$, $r_j$ are orthogonal for $i \neq j$.
+
+\begin{recall}
+    lemma \ref{lemma:pk}
+    \[
+        p_k = r_{k-1} - A P_{k-1} z_{k-1}
+    \]
+\end{recall}
+
+\red{Now we want to find $z_{k-1}$} because $A, P_{k-1}$ are known. We have $z_{k-1}$ is a vector with length $k-1$, \[
+    z_{k-1} = \begin{pmatrix}
+        \mathbf{w} \\ \mu
+    \end{pmatrix}, \quad \mathbf{w} \in \mathbb{R}^{k-2}, \mu \in \mathbb{R}
+\]
+\begin{eqnarray}
+    p_k & = & r_{k-1} - AP_{k-1} z_{k-1} \label{eq:rApz}\\
+& = &r_{k-1} - AP_{k-2}\mathbf{w} - \mu Ap_{k-1} \nonumber \\
+& = & (1 + \frac{\mu}{\alpha_{k-1}}) r_{k-1} + s_{k-1}
+\label{eq:pk}
+\end{eqnarray}
+
+From the thorem, we have \[
+    r_{k-1} = r_{k-2} - \alpha_{k-1} A p_{k-1}
+\]
+
+\begin{definition}
+    We call $s_{k-1}$ the \textbf{correction term} of $p_k$. \begin{equation}
+        \begin{split}
+        s_{k-1}
+        & =
+        -\frac{\mu}{\alpha_{k-1}} r_{k-1}
+        - AP_{k-2}\mathbf{w}
+        - \mu A p_{k-1}\\
+        &
+        = -\frac{\mu}{\alpha_{k-1}} r_{k-2}
+        - AP_{k-2}\mathbf{w}  
+        \end{split}
+        \label{eq:sk-1}
+    \end{equation}
+\end{definition}
+
+Then, we have \[
+    r_i^T r_{j} = 0, \quad \forall i \neq j
+\]
+and from the theorem, we have \begin{equation*}
+  \begin{split}
+    AP_{k-2}\mathbf{w} & \in
+    \text{span}\{Ap_1, \ldots,  A p_{k-2}\} \\
+    & =     \text{span}\{Ab, \ldots,  A^{k-2}b\}\\
+& \subset
+\text{span}\{r_0, \ldots, r_{k-2}\}
+\end{split}
+\end{equation*}
+
+Hence, $r_{k-1}^T (AP_{k-2}\mathbf{w}) = 0$
+\begin{equation}
+    s_{k-1}^T r_{k-1} = 0 \label{eq:rw}
+\end{equation}
+
+\begin{recall}
+    From the earlier results, our goal is to find $z_{k-1}$ such that \[
+        \| r_{k-1} - A P_{k-1} z\|_2
+    \]
+    is minimized.
+\end{recall}
+
+The reason of minimizing $\| r_{k-1} - A P_{k-1} z\|_2$ instead of \begin{equation}
+    \| p - r_{k-1} \|_2, \quad p \in \mbox{span}\{Ap_1, \ldots, Ap_{k-1}\}^\perp \label{eq:not}
+\end{equation}
+is that the optimization problem (\ref{eq:not}) is constrained.
+
+From (\ref{eq:rApz}) and (\ref{eq:pk}), we want to select $\mu$ an $\mathbf{w}\ (s)$ to minimize \[
+    \left\| \left( 1 + \frac{\mu}{\alpha_{k-1}} \right) r_{k-1} + s_{k-1} \right\|^2
+\]
+From (\ref{eq:rw}), we have the equivalent \[
+    \left\| \left( 1 + \frac{\mu}{\alpha_{k-1}} \right) r_{k-1} \right\|^2 + \left\| - \frac{\mu}{\alpha_{k-1}} r_{k-2} - AP_{k-2}\mathbf{w} \right\|^2
+\]
+If an optimal solution is $(\mu^*, \mathbf{w}^*)$, then \[
+    \left\| - \frac{\mu^*}{\alpha_{k-1}} r_{k-2} - AP_{k-2}\mathbf{w}^* \right\|^2 = \left| -\frac{\mu^*}{\alpha_{k-1}} \right|^2 \left\| r_{k-2} - AP_{k-2} \frac{\mathbf{w}^*}{-\mu^* / \alpha_{k-1}} \right\|^2
+\]
+and \[
+    -\mu^* / \alpha_{k-1}
+\]
+must be the optimal solution of \[
+    \min_{z} \|r_{k-2} - A P_{k-2} z\|_2
+\]
+
+From the earlier lemma, the solution of \[
+    \min_{z} \|r_{k-2} - A P_{k-2} z\|_2
+\]
+is \[
+    p_{k-1} = r_{k-2} - A P_{k-2} z_{k-2}
+\]
+Therefore, $s_{k-1}$ is parallel to $p_{k-1}$, from (\ref{eq:pk}), we have \[
+    p_k \in \mbox{span}\{r_{k-1}, p_{k-1}\}
+\]
+
+Now, \red{assume} \begin{equation}
+    p_k = r_{k-1} + \beta_{k} p_{k-1} \label{eq:pk-beta}
+\end{equation}
+This assumption is reasonable because we will adjust the step size $\alpha_k$ to make the direction of $p_k$ correct. Therefore, finding a \red{parallel} direction to the real solution of $\min \|p-r_{k-1}\|_2$ is enough. \\
+
+From the $A$-conjugacy of $p_i$ and \ref{eq:Pr}, we respectively have \[
+    p_{k-1}^T A p_{k} = 0,\quad p_{k-1}^T r_{k-1} = 0
+\]
+With (\ref{eq:pk-beta}) we have \[
+    Ap_k = A r_{k-1} + \beta_{k} A p_{k-1}
+\]
+\[
+    0 = p_{k-1}^T A p_k = p_{k-1}^T A r_{k-1} + \beta_{k} p_{k-1}^T A p_{k-1}
+\]
+So, \[
+    \beta_{k} = - \frac{p_{k-1}^T A r_{k-1}}{p_{k-1}^T A p_{k-1}}
+\]
+which is a closed-form solution for $\beta_{k}$.
+\[
+    \alpha_k = \frac{p_k^T r_{k-1}}{p_k^T A p_k} = \frac{(r_{k-1} + \beta_k p_{k-1})^T r_{k-1}}{p_k^T A p_k} = \frac{r_{k-1}^T r_{k-1}}{p_k^T A p_k}
+\]
+The algorithm is become
+\begin{codebox}
+\Procname{\proc{Conjugate-Gradient}(A, b)}
+\li $k \gets 0,\ x_0 \gets 0,\ r_0 \gets b$
+\li \While $r_k \neq 0$ \Do
+\li     $k \gets k + 1$
+\li     \If $k = 1$ \Then
+\li         $p_1 \gets r_0$
+\li     \Else
+\li         \red{$\beta_k \gets - \frac{p_{k-1}^T A r_{k-1}}{p_{k-1}^T A p_{k-1}}$}
+\li         \red{$p_k \gets r_{k-1} + \beta_k p_{k-1}$}
+\End
+\li     \red{$\alpha_k \gets \frac{r_{k-1}^T r_{k-1}}{p_k^T A p_k}$}
+\li     $x_k \gets x_{k-1} + \alpha_k p_k$
+\li     $r_k \gets b - A x_k$
+\End
+\end{codebox}
+
+However, the above algorithm is not efficient because we need to compute three matrix-vector products in each iteration \[
+    A p_{k-1}, A x_k, A r_{k-1}
+\]

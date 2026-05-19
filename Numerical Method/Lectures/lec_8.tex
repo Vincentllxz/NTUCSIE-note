@@ -1,0 +1,385 @@
+\lecture{8}{2026.05.04}{}
+
+\subsection{Efficient Implementation of Conjugate Gradient Method}
+
+We further simplify the algorithm, 
+\begin{eqnarray*}
+r_k & = & r_{k-1} - \alpha_k Ap_k \\
+r_{k-1}& = & r_{k-2} - \alpha_{k-1}Ap_{k-1} \\
+r_{k-1}^T r_{k-1} & = & r_{k-1}^T r_{k-2}
+- \alpha_{k-1} r_{k-1}^T A p_{k-1} \\
+& = & 0 - \alpha_{k-1} r_{k-1}^T Ap_{k-1}\\
+r_{k-2}^T r_{k-1} & = & r_{k-2}^T r_{k-2}
+- \alpha_{k-1} r_{k-2}^T A p_{k-1}\\
+& = & r_{k-2}^T r_{k-2}
+- \alpha_{k-1}
+(p_{k-1} - \beta_{k-1} p_{k-2})^T A p_{k-1}\\
+& = & r_{k-2}^T r_{k-2}
+- \alpha_{k-1}
+p_{k-1}^T A p_{k-1} = 0
+\end{eqnarray*}
+Hence, we have \[
+r_{k-2}^T r_{k-2} = \alpha_{k-1} p_{k-1}^T A p_{k-1} 
+\]
+Now checking $\beta_k$, we have \begin{equation*}
+\beta_k =
+\frac{-p_{k-1}^T A r_{k-1}}{p_{k-1}^T A p_{k-1}}
+=
+\frac{r_{k-1}^T  r_{k-1}/\alpha_{k-1}}{r_{k-2}^T  r_{k-2}/\alpha_{k-1}}
+=
+\frac{r_{k-1}^T  r_{k-1}}{r_{k-2}^T  r_{k-2}}
+\end{equation*}
+The algorithm is become
+\begin{codebox}
+\Procname{\proc{Conjugate-Gradient}(A, b)}
+\li $k \gets 0,\ x_0 \gets 0,\ r_0 \gets b$
+\li \While $r_k \neq 0$ \Do
+\li     $k \gets k + 1$
+\li     \If $k = 1$ \Then
+\li         $p_1 \gets r_0$
+\li     \Else
+\li         \red{$\beta_k \gets - \frac{r_{k-1}^T r_{k-1}}{r_{k-2}^T r_{k-2}}$}
+\li         $p_k \gets r_{k-1} + \beta_k p_{k-1}$
+\End
+\li     $\alpha_k \gets \frac{r_{k-1}^T r_{k-1}}{p_k^T A p_k}$
+\li     $x_k \gets x_{k-1} + \alpha_k p_k$
+\li     \red{$r_k = r_{k-1} - \alpha_k A p_k$}
+\End
+\end{codebox}
+
+Only one matrix-vector product ($A p_k$) is needed in each iteration.
+
+\begin{note}
+    We don't need to calculte $A x_k$ since from the theorem, we have \[
+        r_k = r_{k-1} - \alpha_k A p_k
+    \]
+    We can get $r_k$ from $A p_k$.
+\end{note}
+
+Here, notice that $r_k \neq 0$ is not a practical termination criterion since the numerical error. Also, we should avoid calculating $r_k^T r_k$ twice every iteration since it can be reused from the previous iteration.
+
+\newpage
+
+Here is the final version of the conjugate gradient method
+\begin{codebox}
+\Procname{\proc{Conjugate-Gradient}(A, b)}
+\li $k \gets 0,\ x \gets 0,\ r \gets b,\ \rho_0 \gets \|r\|_2^2$
+\li \While $\sqrt{\rho_k} > \epsilon\|b\|_2$ and $k < k_{\max}$ \Do
+\li    $k \gets k + 1$
+\li    \If $k = 1$ \Then
+\li        $p \gets r$
+\li    \Else
+\li        $\beta \gets \frac{\rho_{k-1}}{\rho_{k-2}}$
+\li        $p \gets r + \beta p$
+\End
+\li    $w \gets A p$
+\li    $\alpha \gets \frac{\rho_{k-1}}{p^T w}$
+\li    $x \gets x + \alpha p$
+\li    $r \gets r - \alpha w$
+\li    $\rho_k \gets \|r\|_2^2$
+\End
+\end{codebox}
+
+\begin{note}
+    Here change the condition to relative error to avoid the numerical error. But it can also be not achievable since the numerical error can be large. So we also need to set a maximum iteration number. $b$ is a common setting of optimization problems if $b$ is too large, the number of iterations is not $n$.
+\end{note}
+
+Now we analyze the convergence of the conjugate gradient method. 
+
+\begin{theorem}
+    If $A = I + B$ is an $n \times n$ symmertic positive definite matrix, and $\rank(B) = r$, then the conjugate gradient method will converge in at most $r + 1$ iterations.
+\end{theorem}
+
+We omit the proof.
+
+\begin{eg}
+    $A = I$
+\end{eg}
+\begin{eqnarray*}
+&& x_0 = 0, r_0 = b \\
+&& p_1 = r_0 = b \\
+&& \alpha = r_0^Tr_0/p_1^TAp_1 
+= b^Tb/b^TAb = 1\\
+&& x_1 = p_1 = b \\
+&& r_1 = r_0 - \alpha_1 Ap_1 = b - b = 0    
+\end{eqnarray*}
+
+The conjugate gradient method stops in one iteration.
+
+\begin{definition}[$A$-norm]
+    We have $\|\cdot\|_A$ defined as \[
+        \|x\|_A = \sqrt{x^T A x}
+    \]
+\end{definition}
+
+\begin{theorem}
+    If $Ax = b$, \[
+        \|x - x_k\|_A \leq 2 \|x - x_0\|_A \left( \frac{\sqrt{\kappa} - 1}{\sqrt{\kappa} + 1} \right)^k
+    \]
+    where $\kappa$ is the condition number of $A$.
+\end{theorem}
+
+If $\kappa \to 1$, then \[
+    \left( \frac{\sqrt{\kappa} - 1}{\sqrt{\kappa} + 1} \right)^k
+\] 
+is smaller.
+
+In general, the convergence of the conjugate gradient method is faster if the condition $A$ is better.
+
+\begin{remark}
+    The property of positive definiteness is used when \[
+        \min_{x \in \text{span}\{p_1, \ldots, p_k\}} f(x) = \min_{y} f(x_0 + P_{k-1} y) + \min_{\alpha} (- \alpha p_k^T r_0 + \frac{\alpha^2}{2} p_k^T A p_k)
+    \]
+    For the second part, \[
+        \frac{1}{2} \alpha^2 p^T A p + \cdots
+    \]
+    we need $p^T A p > 0$ to make the minimization problem well-defined.
+\end{remark}
+
+\chapter{Nonlinear Equations}
+
+\section{One Dimensional Case}
+
+Now we consider solving \[
+    f(x) = 0, \quad x \in \mathbb{R}^1
+\]
+
+\subsection{Bisection Method}
+
+Here is the procedure
+\begin{enumerate}[label=$\arabic*^\circ$]
+    \item Given $a_1, b_1$ such that \[
+        f(a_1)f(b_1) < 0
+    \]  
+    Set $i = 1$.
+    \item At the current iteration $[a_i, b_i]$, compute \[
+        p_i = \frac{a_i + b_i}{2}
+    \]
+    If \[
+        f(p_i) = 0, \quad \mbox{stop}
+    \]  
+    Else setting \[
+        \begin{cases}
+            a_{i+1} = a_i,\ b_{i+1} = p_i & \mbox{if } f(a_i)f(p_i) < 0 \\
+            a_{i+1} = p_i,\ b_{i+1} = b_i & \mbox{otherwise}
+        \end{cases}
+    \]
+    \item Set $i = i + 1$ and go to step 2.
+\end{enumerate}
+
+The key is to have 
+\begin{proposition}
+    If $f$ is continuous, then if \[
+        f(a_i)f(b_i) < 0
+    \]  
+    then there exists a root in the interval $[a_i, b_i]$.
+\end{proposition}
+
+Here us the code from ``Numerical
+methods'' (second edition) by Faires and Burden
+
+\begin{minted}[frame=single,framerule=1pt,  rulecolor=\color{gray}]{text}
+>> bisect21
+This is the Bisection Method.
+Input the function F(x) in terms of x
+For example: cos(x)
+  'cos(x)'
+Input endpoints A < B on separate lines
+ 0
+ 1
+F(A) and F(B) have same sign
+Input endpoints A < B on separate lines
+ 0
+ 0.5
+F(A) and F(B) have same sign
+Input endpoints A < B on separate lines
+ 0
+ 2
+Input tolerance
+ 0.001
+Input maximum number of iterations - no decimal point
+ 50
+Select output destination
+1. Screen
+2. Text file
+Enter 1 or 2
+ 1
+Select amount of output
+1. Answer only
+2. All intermediate approximations
+Enter 1 or 2
+ 2
+Bisection Method
+  I    P                  F(P)
+  1    1.00000000e+00     5.4030231e-01 
+  2    1.50000000e+00     7.0737202e-02 
+  3    1.75000000e+00    -1.7824606e-01 
+  4    1.62500000e+00    -5.4177135e-02 
+  5    1.56250000e+00     8.2962316e-03 
+  6    1.59375000e+00    -2.2951658e-02 
+  7    1.57812500e+00    -7.3286076e-03 
+  8    1.57031250e+00     4.8382678e-04 
+  9    1.57421875e+00    -3.4224165e-03 
+ 10    1.57226562e+00    -1.4692977e-03 
+ 11    1.57128906e+00    -4.9273569e-04 
+
+Approximate solution P =  1.57128906 
+with F(P) =  -0.00049274
+Number of iterations =  11 Tolerance =  1.00000000e-03
+\end{minted}
+
+Our procedure finds a solution close to $\pi/2$.
+
+\newpage
+
+\subsection{Newton's Method}
+
+Here is the rough idea of Newton's method
+
+\begin{figure}
+    \centering
+    \begin{tikzpicture}[thick,yscale=0.55, xscale=0.55]
+    % Axes
+    \draw[-latex,name path=xaxis] (-1,0) -- (12,0) node[above]{\large $x$};
+    \draw[-latex] (0,-2) -- (0,8)node[right]{\large $y$};;
+    
+    % Function plot
+    \draw[ultra thick, orange,name path=function]  plot[smooth,domain=1:9.5] (\x, {0.1*\x^2-1.5}) node[left]{$f(x)$};
+    
+    % plot tangent line
+    \node[violet,right=0.2cm] at (8,4.9) {\large tangent};
+    
+    \draw[gray,thin,dotted] (8,0) -- (8,4.9) node[circle,fill,inner sep=2pt]{};
+    \draw[dashed, violet,name path=Tfunction]  plot[smooth,domain=4.25:9.5] (\x, {1.6*\x-7.9});
+    
+    % x-axis labels
+    \draw (8,0.1) -- (8,-0.1) node[below] {$x_k$};
+    \draw [name intersections={of=Tfunction and xaxis}] ($(intersection-1)+(0,0.1)$) -- ++(0,-0.2) node[below,fill=white] {$x_{k+1}$} ;
+    \end{tikzpicture}
+    \caption{The idea of Newton's method}
+\end{figure}
+
+The idea is to solve \[
+    f(x) = 0
+\]
+by finding the tangent line at $x_k$ \[
+    \frac{y - f(x_k)}{x - x_k} = f'(x_k)
+\]
+$x_k$ is the current iterate.
+Then we obtain the next iterate $x_{k+1}$ at the intersection of the tangent line and the $x$-axis.
+\[
+    x_{k+1} = x_k - \frac{f(x_k)}{f'(x_k)}
+\]
+Newton's method can also be viewed as an optimization method \[
+    \min_{x} f(x)
+\]
+This roughly equivalent to solving $f'(x) = 0$ 
+\begin{eqnarray*}
+f(x + d)  & = & f(x) + f'(x)d + \frac{1}{2}
+d^2 f''(x) + \cdots \\
+&\approx &   f(x) + f'(x)d + \frac{1}{2}
+d^2 f''(x) 
+\end{eqnarray*}
+
+Instead of minimizing $f(x)$, we can minimize the quadratic approximation \[
+    \min_{d} f(x) + f'(x)d + \frac{1}{2} d^2 f''(x)
+\]
+Then 
+\begin{gather*}
+f''(x) d + f'(x) = 0 \\
+d = -\frac{f'(x)}{f''(x)} \\
+x_{k+1} = x_k -\frac{f'(x)}{f''(x)}. 
+\end{gather*}
+
+However, the convergence of Newton's method is not guaranteed i.e. $\{x_k\}$ may diverge.
+
+Here is an example of divergence of Newton's method. 
+\begin{minted}[frame=single,framerule=1pt,  rulecolor=\color{gray}]{text}
+>> newton
+newton
+This is Newtons Method
+Input the function F(x) in terms of x
+For example: cos(x)
+ 'cos(x)'
+'cos(x)'
+Input the derivative of F(x) in terms of x
+ '-sin(x)'
+'-sin(x)'
+Input initial approximation
+ 1
+1
+Input tolerance
+ 0.001
+0.001
+Input maximum number of iterations - no decimal point
+ 50
+50
+Select output destination
+1. Screen
+2. Text file
+Enter 1 or 2
+ 1
+1
+Select amount of output
+1. Answer only
+2. All intermediate approximations
+Enter 1 or 2
+ 2
+2
+Newtons Method
+  I   P                 F(P)
+  1   1.64209262e+00   -7.1235903e-02
+  2   1.57067528e+00    1.2104963e-04
+  3   1.57079633e+00   -5.9124355e-13
+
+Approximate solution = 1.5707963268e+00
+with F(P) = -5.9124355058e-13
+Number of iterations = 3
+Tolerance = 1.0000000000e-03
+\end{minted}
+
+Another run using a different initial point
+
+\begin{minted}[frame=single,framerule=1pt,  rulecolor=\color{gray}]{text}
+>> newton
+This is Newtons Method
+Input the function F(x) in terms of x
+For example: cos(x)
+ 'cos(x)'
+Input the derivative of F(x) in terms of x
+ '-sin(x)'
+Input initial approximation
+ 0.1
+Input tolerance
+ 0.001
+Input maximum number of iterations - no decimal point
+ 50
+Select output destination
+1. Screen
+2. Text file
+Enter 1 or 2
+ 1
+Select amount of output
+1. Answer only
+2. All intermediate approximations
+Enter 1 or 2
+ 2
+Newtons Method
+  I   P                 F(P)
+  1   1.00666444e+01   -8.0097972e-01
+  2   1.14045284e+01    3.9764987e-01
+  3   1.09711401e+01   -2.4431758e-02
+  4   1.09955792e+01    4.8638065e-06
+  5   1.09955743e+01   -4.2862638e-16
+
+Approximate solution = 1.0995574288e+01
+with F(P) = -4.2862637970e-16
+Number of iterations = 5
+Tolerance = 1.0000000000e-03
+\end{minted}
+
+Our procedure finds a solution close to $\pi/2$, and the iteration number is smaller than Bisection method.
+
+\begin{note}
+    Here we didn't select the step size, which might be a problem since the convergence is not guaranteed.
+\end{note}
