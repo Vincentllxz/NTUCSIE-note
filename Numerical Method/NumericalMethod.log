@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.8.4)  18 MAY 2026 14:31
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.8.4)  1 JUN 2026 11:54
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1695,6 +1695,9 @@ Package translations Info: No language package found. I am going to use `english
 
 LaTeX Warning: Label `eq:pk' multiply defined.
 
+
+LaTeX Warning: Label `eq:1' multiply defined.
+
 )
 \openout1 = `NumericalMethod.aux'.
 
@@ -1899,10 +1902,10 @@ Package mdframed Info: mdframed detected package amsthm
 \pydata@fh@_2FDC630547FD7A76B2F882B34686F2BC.data.minted=\write8
 \openout8 = `_2FDC630547FD7A76B2F882B34686F2BC.data.minted'.
 
-runsystem(latexminted config  --timestamp 20260518143159 2FDC630547FD7A76B2F882B34686F2BC)...executed safely (allowed).
+runsystem(latexminted config  --timestamp 20260601115408 2FDC630547FD7A76B2F882B34686F2BC)...executed safely (allowed).
 
  (./_2FDC630547FD7A76B2F882B34686F2BC.config.minted)
-runsystem(latexminted cleanconfig  --timestamp 20260518143159 2FDC630547FD7A76B2F882B34686F2BC)...executed safely (allowed).
+runsystem(latexminted cleanconfig  --timestamp 20260601115408 2FDC630547FD7A76B2F882B34686F2BC)...executed safely (allowed).
 
  (./_minted/friendly.style.minted) (./_minted/B10DABE79119C9C995C5D78BBDEBC267.highlight.minted
 
@@ -3055,9 +3058,106 @@ Package mdframed Info: mdframed detected package amsthm
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 524.
-)
+) (./Lectures/lec_11.tex
+Package marginnote Info: Margin note 91.1 is on absolute page 91 on input line 2.
+Package marginnote Info: right page because not two side mode on input line 2.
+Package marginnote Info: xpos seems to be 72.2698pt on input line 2.
 
-[87] (./NumericalMethod.aux)
+
+[87]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 25.
+
+
+[88]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 84.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 124.
+
+
+[89]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 172.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 180.
+Package mdframed Info: Box was splittet wrong
+ starting loop to iterate the splitting point
+(mdframed)              on input line 203.
+
+
+[90]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 206.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 210.
+ (./_minted/D46A45D1E157C8878E121EB051147D98.highlight.minted) (./_minted/45EE1F1CBAC20005997A3E7259DB490A.highlight.minted
+
+[91])
+File: Figures/FTex.png Graphic file (type bmp)
+<Figures/FTex.png>
+) (./Lectures/lec_12.tex
+Package marginnote Info: Margin note 96.1 is on absolute page 96 on input line 2.
+Package marginnote Info: right page because not two side mode on input line 2.
+Package marginnote Info: xpos seems to be 72.2698pt on input line 2.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 5.
+
+
+[92]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 25.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 38.
+
+
+[93]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 86.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 127.
+
+
+[94]
+
+[95]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 240.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 254.
+Package hyperref Info: bookmark level for unknown notation defaults to 0 on input line 254.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 262.
+
+
+[96]
+
+[97]
+
+[98]
+Overfull \hbox (52.52597pt too wide) detected at line 502
+\OML/lmm/m/it/10 F[]y \OT1/lmr/m/n/10 = \OML/lmm/m/it/10 A[] [] [] [] [] y
+ []
+
+
+
+[99])
+
+[100] (./NumericalMethod.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2022/08/05>
@@ -3070,18 +3170,18 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `NumericalMethod.out' has not changed.
-(rerunfilecheck)             Checksum: 27F0122747C046977020E127D0F11F73;3793.
+(rerunfilecheck)             Checksum: 03AE79B2BEEB391EA5A73F3D615EC3B3;3964.
 Package logreq Info: Writing requests to 'NumericalMethod.run.xml'.
 \openout1 = `NumericalMethod.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 63612 strings out of 473832
- 1523718 string characters out of 5729482
- 2588558 words of memory out of 5000000
- 85436 multiletter control sequences out of 15000+600000
+ 63699 strings out of 473832
+ 1525950 string characters out of 5729482
+ 2593833 words of memory out of 5000000
+ 85510 multiletter control sequences out of 15000+600000
  684396 words of font info for 152 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  104i,23n,376p,1272b,1868s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on NumericalMethod.pdf (89 pages).
+Output written on NumericalMethod.pdf (102 pages).

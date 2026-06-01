@@ -1,0 +1,14 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{o}{\PYGZgt{}}\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{y}\PYG{+w}{ }\PYG{n}{approx}\PYG{p}{]}
+\PYG{n+nb}{ans}\PYG{+w}{ }\PYG{p}{=}
+\PYG{+w}{         }\PYG{l+m+mi}{0}\PYG{+w}{    }\PYG{l+m+mf}{0.0011}
+\PYG{+w}{    }\PYG{l+m+mf}{0.4340}\PYG{+w}{    }\PYG{l+m+mf}{0.4178}
+\PYG{+w}{    }\PYG{l+m+mf}{0.8981}\PYG{+w}{    }\PYG{l+m+mf}{0.9107}
+\PYG{+w}{    }\PYG{l+m+mf}{1.3172}\PYG{+w}{    }\PYG{l+m+mf}{1.3208}
+\PYG{+w}{    }\PYG{l+m+mf}{1.5820}\PYG{+w}{    }\PYG{l+m+mf}{1.5716}
+\PYG{+w}{    }\PYG{l+m+mf}{1.5574}\PYG{+w}{    }\PYG{l+m+mf}{1.5578}
+\PYG{+w}{    }\PYG{l+m+mf}{1.1980}\PYG{+w}{    }\PYG{l+m+mf}{1.2079}
+\PYG{+w}{    }\PYG{l+m+mf}{0.6452}\PYG{+w}{    }\PYG{l+m+mf}{0.6414}
+\PYG{+w}{    }\PYG{l+m+mf}{0.1301}\PYG{+w}{    }\PYG{l+m+mf}{0.1188}
+\PYG{+w}{   }\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.1420}\PYG{+w}{   }\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.1278}
+\end{MintedVerbatim}

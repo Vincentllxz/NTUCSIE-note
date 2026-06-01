@@ -79,3 +79,7 @@
 \contentsline {subsection}{\numberline {7.1.2}Linearly Independent Functions}{84}{subsection.7.1.2}%
 \contentsline {subsection}{\numberline {7.1.3}Trigonometric Polynomials Approximation}{85}{subsection.7.1.3}%
 \contentsline {subsection}{\numberline {7.1.4}Fourier Series}{86}{subsection.7.1.4}%
+\contentsline {subsection}{\numberline {7.1.5}Discrete Analog of Fourier Series}{87}{subsection.7.1.5}%
+\contentsline {section}{\numberline {7.2}Fast Fourier Transform}{92}{section.7.2}%
+\contentsline {subsection}{\numberline {7.2.1}Recursive Form of FFT}{93}{subsection.7.2.1}%
+\contentsline {subsection}{\numberline {7.2.2}Matrix-product Form of FFT}{96}{subsection.7.2.2}%

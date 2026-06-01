@@ -1,0 +1,567 @@
+\lecture{12}{2026.06.01}{}
+
+\section{Fast Fourier Transform}
+
+\begin{definition}[Discrete Fourier Transform]
+    Consider $n = m$. Using the coefficients obtained from the Discrete Fourier Transform (DFT) of $\{y_j\}_{j=0}^{2m-1}$, the corresponding trigonometric polynomial is given by \[
+        S_m(x) = \frac{a_0 + a_m \cos mx}{2} + \sum_{k=1}^{m-1} (a_k \cos kx + b_k \sin kx)
+    \]
+    where \begin{equation}
+        a_k = \frac{1}{m} \sum_{j=0}^{2m-1} y_j \cos k x_j, k = 0, 1, \dots, n \label{eq:ak}
+    \end{equation}
+    and \begin{equation}
+        b_k = \frac{1}{m} \sum_{j=0}^{2m-1} y_j \sin k x_j, k = 1, 2, \dots, n-1 \label{eq:bk}
+    \end{equation}
+\end{definition}
+
+This calculation requires \begin{center}
+    $(2m)^2$ multiplications and $(2m)^2 - 1$ additions.
+\end{center}
+which is computationally expensive for large $m$. The Fast Fourier Transform (FFT) is an efficient algorithm to compute the DFT, reducing the computational complexity to \begin{center}
+    \red{$O(m \log_2 m)$ multiplications and additions.}
+\end{center}
+
+\begin{note}
+    FFT is named by SIAM as one of the top 10 algorithms in the 20th century.
+\end{note}
+
+First, we extend the definition of DFT to a more general form. For $b_k$'s range we use $0 \le k \le n$ instead of $1 \le k \le n-1$. \[
+    b_k = \frac{1}{m} \sum_{j=0}^{2m-1} y_j \sin k x_j, k = 0, 1, \dots, m
+\]
+as \[
+    \sin 0 x_j = 0 \mbox{ and } \sin m x_j = \sin \left(m \left( -\pi + \frac{\pi j}{m} \right)\right) = 0
+\]
+imply \[
+    b_0 = b_m = 0
+\]
+
+\begin{definition}[Complex Form of DFT]
+    Define \begin{equation}
+        c_k = \frac{1}{2m} \sum_{j=0}^{2m-1} y_j e^{-\pi i j k /m},\ k = 0, 1, \dots, 2m-1 \label{eq:ck}
+    \end{equation}
+\end{definition}
+
+We now have \begin{equation*}
+\begin{split}
+c_k & = \sum_{j=0}^{2m-1} y_j e^{-\pi ijk/m} \\
+& = \sum_{j=0}^{2m-1} y_j e^{ik(-\pi j/m + 2\pi)} = \sum_{j=0}^{2m-1} y_j e^{ik(\pi -\pi j/m + \pi)} \\
+& = \sum_{j=0}^{2m-1} y_j e^{-ik x_j} e^{ik\pi} = m(a_k - i b_k) (\cos k\pi + i \sin k\pi)\\
+& = m (a_k - i b_k) (-1)^k,
+\end{split}
+\end{equation*}
+where in one place we use
+\begin{equation*}
+  x_j = -\pi + \frac{\pi j}{m},
+\end{equation*}
+and $a_k$ and $b_k$ are defined in \eqref{eq:ak} and \eqref{eq:bk} respectively. If $c_k$ is defined as in \eqref{eq:ck}, then we can derive the following relationships: \[
+    \frac{c_k \cdot (-1)^k}{m} = a_k - i b_k
+\]
+
+The above equation implies that \begin{equation*}
+  \begin{split}
+    a_k & = \textrm{Re}\left(\frac{c_k (-1)^k}{m}\right)\\
+    b_k & = -\textrm{Im}\left(\frac{c_k (-1)^k}{m}\right)
+  \end{split}
+\end{equation*}
+where $\textrm{Re}(z)$ and $\textrm{Im}(z)$ denote the real and imaginary parts of a complex number $z$, respectively.
+
+\subsection{Recursive Form of FFT}
+
+When $m = 2$, \[
+    x_j = -\pi + \frac{\pi j}{2}, j = 0, 1, 2, 3
+\]
+\[
+    S_2(x) = \frac{a_0 + a_2 \cos 2x}{2} + a_1 \cos x + b_1 \sin x
+\]
+Using \eqref{eq:ck}, \begin{equation*}
+\begin{array}{rrrrrrr}
+c_0 = y_0 e^0 & + &  y_1 e^0         & + & y_2e^0        & + & y_3 e^{0}         , \\   
+c_1 = y_0 e^0 & + &  y_1 e^{-\pi i/2} & + & y_2e^{-\pi i}  & + & y_3 e^{-3\pi i/2}  , \\   
+c_2 = y_0 e^0 & + &  y_1 e^{-\pi i}   & + & y_2e^{-2\pi i} & + & y_3 e^{-3\pi i}    , \\   
+c_3 = y_0 e^0 & + &  y_1 e^{-3\pi i/2}& + & y_2e^{-3 \pi i}& + & y_3 e^{-9 \pi i /2}
+\end{array}
+\end{equation*}
+
+\begin{note}
+    There are some other ways to define $c_k$'s. For example, if \[
+        c_k = \sum_{j=0}^{2m-1} y_j e^{\red{\pi i j k /m}},\ k = 0, 1, \dots, 2m-1
+    \]
+    then \begin{equation*}
+    \begin{split}
+    c_k & = \sum_{j=0}^{2m-1} y_j e^{ik(-\pi + \pi j/m - \pi)}
+    = \sum_{j=0}^{2m-1} y_j e^{ikx_j} e^{-i k \pi}\\
+    & = m (a_k + i b_k)(\cos k\pi - i \sin k\pi)\\
+    & = m (a_k + i b_k)(-1)^k,
+    \end{split}
+    \end{equation*}
+    But, we do not consider this definition. Instead, we use the definition in \eqref{eq:ck} by following the common convention in the literature.
+\end{note}
+
+Now we need a systematic way to calculate \[
+    c_k, k = 0, 1, \dots, 2m-1
+\]
+and then find \[
+    a_k, b_k, k = 0, 1, \dots, m
+\]
+We have \[
+    Fy = \begin{pmatrix}
+        \vdots \\
+        c_k \\
+        \vdots
+    \end{pmatrix}
+\]
+where \[
+    F = \begin{pmatrix}
+        1 & 1 & 1& \cdots & 1 \\
+        1 & \delta & \delta^2 & \cdots & \delta^{(2m-1)}\\
+        1 & \delta^2 & \delta^4 & \cdots & \delta^{2(2m-1)}\\
+        &&\vdots &&\\
+        1 & \delta^{(2m-1)} & \delta^{2(2m-1)} & \cdots & \delta^{(2m-1)^2}
+    \end{pmatrix}
+\]
+and \[
+    \delta = e^{-\pi i / m}
+\]
+
+\begin{note}
+    We found that \begin{center}
+        $e^{-\pi i / m}$ is the $(2m)$-th root of unity.
+    \end{center}
+    because \[
+        \left(e^{-\pi i / m}\right)^{2m} = e^{-2\pi i} = 1
+    \]
+\end{note}
+
+Now consider the case of $m = 4$ \[
+    F = \begin{pmatrix}
+        1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 \\
+        1 & \delta^1 & \delta^2 & \delta^3 & \delta^4 & \delta^5 & \delta^6 & \delta^7 \\
+        1 & \delta^2 & \delta^4 & \delta^6 & 1 & \delta^2 & \delta^4 & \delta^6 \\
+        1 & \delta^3 & \delta^6 & \delta^1 & \delta^4 & \delta^7 & \delta^2 & \delta^5 \\
+        1 & \delta^4 & 1 & \delta^4 & 1 & \delta^4 & 1 & \delta^4 \\
+        1 & \delta^5 & \delta^2 & \delta^7 & \delta^4 & \delta^1 & \delta^6 & \delta^3 \\
+        1 & \delta^6 & \delta^4 & \delta^2 & 1 & \delta^6 & \delta^4 & \delta^2 \\
+        1 & \delta^7 & \delta^6 & \delta^5 & \delta^4 & \delta^3 & \delta^2 & \delta^1
+    \end{pmatrix}
+\]
+where \[
+    \delta = e^{-\pi i / 4}, \ \delta^4 = e^{-\pi i} = -1,\ \delta^8 = e^{-2\pi i} = 1
+\]
+
+Then the $F$ can be rewritten as \begin{equation}
+    F = \begin{pmatrix}
+        1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 \\
+        1 & \delta^1 & \delta^2 & \delta^3 & -1 & -\delta^1 & -\delta^2 & -\delta^3 \\
+        1 & \delta^2 & -1 & -\delta^2 & 1 & \delta^2 & -1 & -\delta^2 \\
+        1 & \delta^3 & -\delta^2 & \delta & -1 & -\delta^3 & \delta^2 & -\delta^1 \\
+        1 & -1 & 1 & -1 & 1 & -1 & 1 & -1 \\
+        1 & -\delta^1 & \delta^2 & -\delta^3 & -1 & \delta^1 & -\delta^2 & \delta^3 \\
+        1 & -\delta^2 & -1 & \delta^2 & 1 & -\delta^2 & -1 & \delta^2 \\
+        1 & -\delta^3 & -\delta^2 & -\delta & -1 & \delta^3 & \delta^2 & \delta^1 \\  
+    \end{pmatrix} \label{eq:F4}
+\end{equation}
+
+Suppose \[
+    c = \begin{pmatrix}
+        0 & 2 & 4 & 6 & 1 & 3 & 5 & 7
+    \end{pmatrix}
+\]
+is an \red{index permutation} vector.
+
+Then we rearrange the rows of $F$ and the elements of $y$ according to $c$:
+\[
+    Fy = F(:, c) y(c)
+\]
+and \[
+    F_8(:, c) = \begin{pmatrix}
+        F_4 & \Omega_4 F_4 \\
+        F_4 & -\Omega_4 F_4
+    \end{pmatrix}
+\]
+
+We call the current form of $F$ as $F_8$, then \[
+    F_4 = \begin{pmatrix}
+        1 & 1 & 1 & 1 \\
+        1 & \delta^2 & -1 & -\delta^2 \\
+        1 & -1 & 1 & -1 \\
+        1 & -\delta^2 & -1 & \delta^2
+    \end{pmatrix}
+\]
+and \[
+    \Omega_4 = \begin{pmatrix}
+        1& & & \\    
+        & \delta & & \\
+        & & \delta^2 & \\
+        & & & \delta^3 \\
+    \end{pmatrix}
+\]
+Now we have \[
+    \Omega_4 F_4 = \begin{pmatrix}
+        1 & 1 & 1 & 1 \\
+        \delta^1 & \delta^3 & -\delta^1 & -\delta^3 \\
+        \delta^2 & -\delta^2 & \delta^2 & -\delta^2 \\
+        \delta^3 & \delta^1 & -\delta^3 & -\delta^1 \\
+    \end{pmatrix}
+\]
+
+Then \begin{align*}
+    Fy = F(:, c) y(c) &= \begin{pmatrix}
+        F_4 & \Omega_4 F_4 \\
+        F_4 & -\Omega_4 F_4
+    \end{pmatrix} \begin{pmatrix}
+        y(0: 2 : 7) \\
+        y(1: 2 : 7)
+    \end{pmatrix} \\
+    &= \begin{pmatrix}
+        I & \Omega_4 \\
+        I & -\Omega_4
+    \end{pmatrix} \begin{pmatrix}
+        F_4y(0: 2 : 7) \\
+        F_4y(1: 2 : 7)
+    \end{pmatrix}
+\end{align*}
+
+We can use the same method to calculate \begin{equation}
+    F_4 y(0: 2 : 7) \mbox{ and } F_4 y(1: 2 : 7) \label{eq:F4y}
+\end{equation}
+
+Now we can have the recursive setting \begin{itemize}
+    \item For $F_8y$, multiplying with $I$, $\Omega$ takes $O(m)$ time since $\Omega$ is a diagonal matrix.
+    \item Then for \eqref{eq:F4y}, we can also use $O(m)$ time, which is the same as the case of $F_8y$.
+    \item The number of steps is $O(\log_2 m)$.
+\end{itemize}
+The total time complexity is \red{$O(m \log_2 m)$}
+
+\subsection{Matrix-product Form of FFT}
+
+In pratice, FFT is done by \red{matrix products rather
+than a recursive implementation}.
+
+\begin{definition}[Matrix Factorization of FFT]
+    Assume $m = 2^p$ for some positive integer $p$. Then we can write \[
+        F = A_t \cdots A_1 P
+    \]
+    where \begin{gather*}
+    t = \log 2m \\
+    t -1 = \log m \\
+    \vdots
+    \end{gather*}
+    and $P$ is a permutation matrix \[
+        A_t = I_r \otimes B_L
+    \]
+    where $L = 2^{t-1},\ r = 2m / L$, and $I_r$ is the $r \times r$ identity matrix.
+    
+    \begin{notation}[Kronecker product]
+        \[
+            A \otimes B = \begin{pmatrix}
+                a_{11}B & a_{12}B & \cdots & a_{1n}B \\
+                \vdots & \vdots & \ddots & \vdots \\
+                a_{m1}B & a_{m2}B & \cdots & a_{mn}B
+            \end{pmatrix}
+        \]
+    \end{notation}
+    
+    $B_L$ is the $L \times L$ matrix defined as \[
+        B_L = \begin{pmatrix}
+            I_{L/2} & \Omega_{L/2} \\
+            I_{L/2} & -\Omega_{L/2}
+        \end{pmatrix}
+    \]\[
+        \Omega_{L/2} = \text{diag}(1, \delta, \delta^2, \dots, \delta^{L/2 - 1})
+    \]
+\end{definition}
+
+\newpage
+
+When $t = 3$ \[
+    L = 2,\ m = 8,\ r = 1,\ I_r = 1
+\]
+\[
+    B_8 = \begin{pmatrix}
+        1& & & &1 & & & \\
+        & 1 & & & & \delta & & \\  
+        & & 1& & & & \delta^2 & \\
+        & & & 1& & & & \delta^3 \\
+        1& & & &-1 & & & \\
+        & 1 & & & & -\delta & & \\  
+        & & 1& & & & -\delta^2 & \\
+        & & & 1& & & & -\delta^3 \\
+    \end{pmatrix}
+\]
+When $t = 2$ \[
+    L = 4,\ m = 4,\ r = 2,\ I_r = \begin{pmatrix}
+        1 & 0 \\
+        0 & 1
+    \end{pmatrix}, B_4 = \begin{pmatrix}
+        1 & 1 & 1 & 1 \\
+        1 & \delta^2 & -1 & -\delta^2 \\
+        1 & -1 & 1 & -1 \\
+        1 & -\delta^2 & -1 & \delta^2
+    \end{pmatrix}
+\]
+When $t = 1$ \[
+    L = 8,\ m = 2,\ r = 4,\ B_2 = \begin{pmatrix}
+        1 & 1 \\
+        1 & -1
+    \end{pmatrix}
+\]
+The product of $A_t \cdots A_1$ is \[
+    A_3 A_2 A_1 = B_8 \begin{pmatrix}
+        B_4 & 0 \\
+        0 & B_4
+    \end{pmatrix} \begin{pmatrix}
+        B_2 & 0 & 0 & 0 \\
+        0 & B_2 & 0 & 0 \\
+        0 & 0 & B_2 & 0 \\
+        0 & 0 & 0 & B_2
+    \end{pmatrix}
+\]
+\[
+    B_4 \begin{pmatrix}
+        B_2 & 0 \\
+        0 & B_2
+    \end{pmatrix} = \begin{pmatrix}
+        1& & 1& \\
+        & 1& & \delta^2\\
+        1& & -1& \\
+        & 1& & -\delta^2\\
+    \end{pmatrix} \begin{pmatrix}
+        1&1 & & \\
+        1&-1 & & \\
+        & & 1&1 \\
+        & & 1&-1\\
+    \end{pmatrix} = \begin{pmatrix}
+        1& 1& 1& 1\\  
+        1& -1& \delta^2& -\delta^2\\
+        1& 1& -1& -1\\
+        1& -1& -\delta^2& \delta^2\\
+    \end{pmatrix}
+\]
+Finally, we have \[
+    A_3 A_2 A_1 = \begin{pmatrix}
+        1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 \\
+        1 & -1 & \delta^2 & -\delta^2 & \delta^1 & -\delta^1 & \delta^3 & -\delta^3 \\
+        1 & 1 & -1 & -1 & \delta^2 & \delta^2 & -\delta^2 & -\delta^2 \\
+        1 & -1 & -\delta^2 & \delta^2 & \delta^3 & -\delta^3 & \delta^1 & -\delta^1 \\
+        1 & 1 & 1 & 1 & -1 & -1 & -1 & -1 \\
+        1 & -1 & \delta^2 & -\delta^2 & -\delta^1 & \delta^1 & -\delta^3 & +\delta^3 \\
+        1 & 1 & -1 & -1 & -\delta^2 & -\delta^2 & \delta^2 & \delta^2 \\
+        1 & -1 & -\delta^2 & \delta^2 & -\delta^3 & \delta^3 & -\delta^1 & \delta^1 \\
+    \end{pmatrix}
+\]
+We can see that this is just the column rearrangement of $F_8$ in \eqref{eq:F4}.
+
+\newpage
+
+Now disscuss the permutation matrix $P$. We can see that \[
+    A_3 A_2 A_1 P,
+\]
+where \[
+    P = 
+    \bordermatrix{
+    & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7\cr
+    0&1&&&&&&& \cr
+    1&&&&&1&&& \cr
+    2&&&1&&&&& \cr
+    3&&&&&&&1& \cr
+    4&&1&&&&&& \cr
+    5&&&&&&1&& \cr
+    6&&&&1&&&& \cr
+    7&&&&&&&&1
+    }
+\]
+goes back to the original $F$ \[
+    F = \begin{pmatrix}
+        1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 \\
+        1 & \delta^1 & \delta^2 & \delta^3 & -1 & -\delta^1 & -\delta^2 & -\delta^3 \\
+        1 & \delta^2 & -1 & -\delta^2 & 1 & \delta^2 & -1 & -\delta^2 \\
+        1 & \delta^3 & -\delta^2 & \delta & -1 & -\delta^3 & \delta^2 & -\delta^1 \\
+        1 & -1 & 1 & -1 & 1 & -1 & 1 & -1 \\
+        1 & -\delta^1 & \delta^2 & -\delta^3 & -1 & \delta^1 & -\delta^2 & \delta^3 \\
+        1 & -\delta^2 & -1 & \delta^2 & 1 & -\delta^2 & -1 & \delta^2 \\
+        1 & -\delta^3 & -\delta^2 & -\delta & -1 & \delta^3 & \delta^2 & \delta^1 \\  
+    \end{pmatrix}
+\]
+We can see that $P$ is a permutation matrix by reversing the order of ``binary digits'' of indices.
+\begin{center}
+\begin{tabular}{rrrr}
+    0 & 000 & 000 & 0 \\
+    1 & 001 & 100 & 4 \\
+    2 & 010 & 010 & 2 \\
+    3 & 011 & 110 & 6 \\
+    4 & 100 & 001 & 1 \\
+    5 & 101 & 101 & 5 \\
+    6 & 110 & 011 & 3 \\
+    7 & 111 & 111 & 7
+\end{tabular}
+\end{center}
+
+Futher, $A_t \cdots A_1 P$ permutes the \red{columns} of $A_t \cdots A_1$. Here \begin{align*}
+    F_8 y & = \begin{pmatrix}
+        I & \Omega_4 \\
+        I & -\Omega_4
+    \end{pmatrix} \begin{pmatrix}
+        F_4 & 0 \\
+        0 & F_4
+    \end{pmatrix} \begin{pmatrix}
+        y(0: 2 : 7) \\
+        y(1: 2 : 7)
+    \end{pmatrix} \\
+    & = \begin{pmatrix}
+        I & \Omega_4 \\
+        I & -\Omega_4
+    \end{pmatrix} \begin{pmatrix}
+        F_4 & 0 \\
+        0 & F_4
+    \end{pmatrix} \begin{pmatrix}
+        1   &   0   &   0   &   0   &   0   &   0   &   0   &   0   \\
+        0   &   0   &   1   &   0   &   0   &   0   &   0   &   0   \\
+        0   &   0   &   0   &   0   &   1   &   0   &   0   &   0   \\
+        0   &   0   &   0   &   0   &   0   &   0   &   1   &   0   \\
+        0   &   1   &   0   &   0   &   0   &   0   &   0   &   0   \\
+        0   &   0   &   0   &   1   &   0   &   0   &   0   &   0   \\
+        0   &   0   &   0   &   0   &   0   &   1   &   0   &   0   \\
+        0   &   0   &   0   &   0   &   0   &   0   &   0   &   1   \\
+    \end{pmatrix}
+    y
+\end{align*}
+
+\newpage
+
+We can see that $y$ is rearranged according to the following order: \begin{center}
+\begin{tabular}{rrrrr}
+    0 & 000 &               & 0 & 000  \\
+    1 & 001 &               & 2 & 010  \\
+    2 & 010 &               & 4 & 100  \\
+    3 & 011 &$\Rightarrow$  & 6 & 110  \\
+    4 & 100 &               & 1 & 001  \\
+    5 & 101 &               & 3 & 011  \\
+    6 & 110 &               & 5 & 101  \\
+    7 & 111 &               & 7 & 111 
+\end{tabular}
+\end{center}
+
+This is like that the binary representation is \red{rotated to the left by one digit}.
+
+For example,
+\begin{equation*}
+    5 \Rightarrow 2(5-4) + 1 = 3
+\end{equation*}
+\begin{tabular}{ll}
+    $5-4$:  &First digit ``1'' removed\\
+    $2(5-4)$: &  Second, third digits shifted left\\
+    $2(5-4)+1$: & Add the original first digit ``1'' to the now last digit
+\end{tabular}
+
+Now we can see that besides the last digit, the \red{first two} digits of both the upper and the lower parts are the same:
+\begin{center}
+\begin{tabular}{rrrr}
+    0 & 00 \\
+    1 & 01 \\
+    2 & 10 \\
+    3 & 11 \\
+\end{tabular}
+\end{center}
+It is like we have a new small FFT problem \[
+    F_4 \tilde{y}
+\]
+By the same setting we should have \[
+    F_8 y  = A_3 \begin{pmatrix}
+    I_2     &\Omega_2   &   0   &   0\\
+    I_2     &-\Omega_2  &   0   &   0\\
+    0       &   0       &   I_2 &   \Omega_2\\
+    0       &   0       &   I_2 &   -\Omega_2
+\end{pmatrix}
+\begin{pmatrix}
+    F_2     &   0   &   0   &   0   \\
+    0       &   F_2 &   0   &   0   \\
+    0       &   0   &   F_2 &   0   \\
+    0       &   0   &   0   &   F_2 \\
+    \end{pmatrix}
+    \underbrace{  \begin{pmatrix}
+        1   &   0   &   0   &   0   &   0   &   0   &   0   &   0   \\
+        0   &   0   &   1   &   0   &   0   &   0   &   0   &   0   \\
+        0   &   1   &   0   &   0   &   0   &   0   &   0   &   0   \\
+        0   &   0   &   0   &   1   &   0   &   0   &   0   &   0   \\
+        0   &   0   &   0   &   0   &   1   &   0   &   0   &   0   \\
+        0   &   0   &   0   &   0   &   0   &   0   &   1   &   0   \\
+        0   &   0   &   0   &   0   &   0   &   1   &   0   &   0   \\
+        0   &   0   &   0   &   0   &   0   &   0   &   0   &   1   \\
+        \end{pmatrix}
+}_{\text{block diagonal}}                      
+    \begin{pmatrix}
+        1   &   0   &   0   &   0   &   0   &   0   &   0   &   0   \\
+        0   &   0   &   1   &   0   &   0   &   0   &   0   &   0   \\
+        0   &   0   &   0   &   0   &   1   &   0   &   0   &   0   \\
+        0   &   0   &   0   &   0   &   0   &   0   &   1   &   0   \\
+        0   &   1   &   0   &   0   &   0   &   0   &   0   &   0   \\
+        0   &   0   &   0   &   1   &   0   &   0   &   0   &   0   \\
+        0   &   0   &   0   &   0   &   0   &   1   &   0   &   0   \\
+        0   &   0   &   0   &   0   &   0   &   0   &   0   &   1   \\
+    \end{pmatrix}y
+\]
+We have \[
+    A_2 = \begin{pmatrix}
+        I_2     &\Omega_2   &   0   &   0\\
+        I_2     &-\Omega_2  &   0   &   0\\
+        0       &   0       &   I_2 &   \Omega_2\\
+        0       &   0       &   I_2 &   -\Omega_2
+    \end{pmatrix}
+\]
+For the next step, we have the permutation matrix is $I$. Thus \[
+    P = I_8 \begin{pmatrix}
+        1   &   0   &   0   &   0   &   0   &   0   &   0   &   0   \\
+        0   &   0   &   1   &   0   &   0   &   0   &   0   &   0   \\
+        0   &   1   &   0   &   0   &   0   &   0   &   0   &   0   \\
+        0   &   0   &   0   &   1   &   0   &   0   &   0   &   0   \\
+        0   &   0   &   0   &   0   &   1   &   0   &   0   &   0   \\
+        0   &   0   &   0   &   0   &   0   &   0   &   1   &   0   \\
+        0   &   0   &   0   &   0   &   0   &   1   &   0   &   0   \\
+        0   &   0   &   0   &   0   &   0   &   0   &   0   &   1   \\
+    \end{pmatrix}                     
+    \begin{pmatrix}
+        1   &   0   &   0   &   0   &   0   &   0   &   0   &   0   \\
+        0   &   0   &   1   &   0   &   0   &   0   &   0   &   0   \\
+        0   &   0   &   0   &   0   &   1   &   0   &   0   &   0   \\
+        0   &   0   &   0   &   0   &   0   &   0   &   1   &   0   \\
+        0   &   1   &   0   &   0   &   0   &   0   &   0   &   0   \\
+        0   &   0   &   0   &   1   &   0   &   0   &   0   &   0   \\
+        0   &   0   &   0   &   0   &   0   &   1   &   0   &   0   \\
+        0   &   0   &   0   &   0   &   0   &   0   &   0   &   1   \\
+    \end{pmatrix} = \begin{pmatrix}
+        1   &   0   &   0   &   0   &   0   &   0   &   0   &   0\\
+        0   &   0   &   0   &   0   &   1   &   0   &   0   &   0\\
+        0   &   0   &   1   &   0   &   0   &   0   &   0   &   0\\
+        0   &   0   &   0   &   0   &   0   &   0   &   1   &   0\\
+        0   &   1   &   0   &   0   &   0   &   0   &   0   &   0\\
+        0   &   0   &   0   &   0   &   0   &   1   &   0   &   0\\
+        0   &   0   &   0   &   1   &   0   &   0   &   0   &   0\\
+        0   &   0   &   0   &   0   &   0   &   0   &   0   &   1\\
+    \end{pmatrix}
+\]
+and \[
+    A_1 = \begin{pmatrix}
+        I_1     &\Omega_1   &   0   &   0   &   0   &   0   &   0   &   0\\
+        I_1     &-\Omega_1  &   0   &   0   &   0   &   0   &   0   &   0\\
+        0       &   0       &I_1     &\Omega_1 &   0   &   0   &   0   &   0\\
+        0       &   0       &I_1     &-\Omega_1&   0   &   0   &   0   &   0\\
+        0       &   0       &0       &   0       &I_1     &\Omega_1 &   0   &   0\\
+        0       &   0       &0       &   0       &I_1     &-\Omega_1&   0   &   0\\
+        0       &   0       &0       &   0       &0       &   0       &I_1     &\Omega_1 \\
+        0       &   0       &0       &   0       &0       &   0       &I_1     &-\Omega_1\\
+    \end{pmatrix}
+\]
+Therefore, $y$ is arranged by the following way
+\begin{center}
+\begin{tabular}{rrrrrrrr}
+    0 & 000 &               & 0 & 000 &             & 0& 000     \\
+    1 & 001 &               & 2 & 010 &             & 4& 100     \\
+    2 & 010 &               & 4 & 100 &             & 2& 010     \\
+    3 & 011 & $\Rightarrow$ & 6 & 110 &$\Rightarrow$& 6& 110     \\
+    4 & 100 &               & 1 & 001 &             & 1& 001     \\
+    5 & 101 &               & 3 & 011 &             & 5& 101     \\
+    6 & 110 &               & 5 & 101 &             & 3& 011     \\
+    7 & 111 &               & 7 & 111 &             & 7& 111     
+\end{tabular}
+\end{center}
+Thus we have explained the reason of using the reverse of the binary digits.
