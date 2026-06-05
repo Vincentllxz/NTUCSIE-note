@@ -1,3 +1,0 @@
-\begin{MintedVerbatim}[commandchars=\\\{\}]
-\PYG{n}{dw}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{ddot}\PYG{p}{(}\PYG{n}{n}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{dx}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{incx}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{dy}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{incy}\PYG{p}{)}
-\end{MintedVerbatim}

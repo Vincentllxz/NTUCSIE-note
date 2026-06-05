@@ -1,7 +1,0 @@
-\begin{MintedVerbatim}[commandchars=\\\{\}]
-\PYG{k}{for}\PYG{+w}{ }\PYG{n+nb}{j}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n}{n}
-\PYG{+w}{    }\PYG{n+nb}{get}\PYG{+w}{ }\PYG{n}{A}\PYG{o}{\PYGZsq{}}\PYG{n}{s}\PYG{+w}{ }\PYG{n+nb}{j}\PYG{o}{\PYGZhy{}}\PYG{n}{th}\PYG{+w}{ }\PYG{n}{column}
-\PYG{+w}{    }\PYG{n+nb}{get}\PYG{+w}{ }\PYG{n}{B}\PYG{o}{\PYGZsq{}}\PYG{n}{s}\PYG{+w}{ }\PYG{n+nb}{j}\PYG{o}{\PYGZhy{}}\PYG{n}{th}\PYG{+w}{ }\PYG{n}{column}
-\PYG{+w}{    }\PYG{n}{vector}\PYG{+w}{ }\PYG{n}{addition}
-\PYG{k}{end}
-\end{MintedVerbatim}

@@ -1,3 +1,0 @@
-\begin{MintedVerbatim}[commandchars=\\\{\}]
-\PYG{n}{rtr}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{ddot\PYGZus{}}\PYG{p}{(}\PYG{o}{\PYGZam{}}\PYG{n}{n}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{r}\PYG{p}{,}\PYG{+w}{ }\PYG{o}{\PYGZam{}}\PYG{n}{inc}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{r}\PYG{p}{,}\PYG{+w}{ }\PYG{o}{\PYGZam{}}\PYG{n}{inc}\PYG{p}{)}\PYG{p}{;}
-\end{MintedVerbatim}

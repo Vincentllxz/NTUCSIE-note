@@ -1,3 +1,0 @@
-\begin{MintedVerbatim}[commandchars=\\\{\}]
-\PYG{n}{daxpy}\PYG{p}{(}\PYG{n}{n}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{da}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{dx}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{incx}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{dy}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{incy}\PYG{p}{)}
-\end{MintedVerbatim}

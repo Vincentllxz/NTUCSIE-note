@@ -1,5 +1,0 @@
-\begin{MintedVerbatim}[commandchars=\\\{\}]
-\PYGZgt{}\PYGZgt{}\PYG{+w}{ }\PYG{n+nv}{A}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }randn\PYG{o}{(}n,n\PYG{o}{)}\PYG{p}{;}\PYG{+w}{ }\PYG{n+nv}{B}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }randn\PYG{o}{(}n,n\PYG{o}{)}\PYG{p}{;}
-\PYGZgt{}\PYGZgt{}\PYG{+w}{ }\PYG{n+nv}{t}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }cputime\PYG{p}{;}\PYG{+w}{ }\PYG{n+nv}{C}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }A*B\PYG{p}{;}\PYG{+w}{ }\PYG{n+nv}{t}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }cputime\PYG{+w}{ }\PYGZhy{}t
-\PYG{n+nv}{t}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m}{1}.3000
-\end{MintedVerbatim}
