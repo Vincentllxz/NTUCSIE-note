@@ -7,20 +7,6 @@ typeset with **XeLaTeX** (CJK support via `xeCJK`), bibliographies via
 `biblatex`/`biber`, code listings via `minted`, and figures via the `svg`
 package.
 
-## Courses
-
-| Course | Code | Term | Instructor | Notes |
-| --- | --- | --- | --- | --- |
-| [Algorithm Design and Analysis](ADA/) | CSIE2136 | 2025 Fall | 呂學一 | |
-| [Linear Algebra](Linear%20Algebra/) | CSIE2120 | 2025 Fall | 李明穗 (Amy Lee) | |
-| [Introduction to Computation Theory](IntroComputation/) | CSIE3110 | 2025 Fall | | also a beamer slide deck under `Slides/` |
-| [Deep Learning Algorithms and Implementations](Deep%20Learning%20Algorithms%20and%20Implementations/) | CSIE7435 | 2025 Fall | 林智仁 | |
-| [Numerical Method](Numerical%20Method/) | CSIE5123 | 2026 Spring | 林智仁 | |
-| [Fundamentals of Artificial Intelligence](Fundemental%20of%20Artificial%20intellegent/) | | 2026 Spring | | |
-| [System Programming](System%20Programming/) | CSIE2210 | | | full notes on [HackMD](https://hackmd.io/@AE0brit5REKA2sI8nPDKBA/H1W-YjgRee) |
-| Computer Networking | CSIE3510 | | | notes on [HackMD](https://hackmd.io/@AE0brit5REKA2sI8nPDKBA/B1iBl6SAgl) |
-| [Calculus (TA)](Calculus%20TA/) | | | | per-homework "common mistakes" handouts I wrote as a TA |
-
 ## Repository layout
 
 A typical course folder looks like this:
