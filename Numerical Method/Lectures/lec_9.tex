@@ -452,9 +452,9 @@ The only unknowns are $c_j$, $j = 0,1,\cdots,n$. Once we solve $c_j$, we can sol
     s''_0(x) = 2c_0 + 6d_0(x - x_0)
 \]
 \[
-    s''_0(x_0) = 2c_0 = 0 \implies c_0 = 0
+    s''_0(x_0) = 2c_0 = 0 \implies c_0 = 0, c_{n} = 0
 \]
-Solving $c_j,\ j = 0,1,\cdots,n$ using $(n+1)$ equalities: \ref{ajdiff} and the above boundary conditions.
+Solving $c_j,\ j = 0,1,\cdots,n$ using $(n+1)$ equalities: \ref{ajdiff} and the above boundary conditions. (with Thomas algorithm for banded linear system)
 
 \begin{remark}
     We can use other boundary conditions, such as \[

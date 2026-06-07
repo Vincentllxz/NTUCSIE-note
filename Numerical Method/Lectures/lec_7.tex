@@ -663,9 +663,9 @@ From (\ref{eq:rw}), we have the equivalent \[
     \left\| \left( 1 + \frac{\mu}{\alpha_{k-1}} \right) r_{k-1} \right\|^2 + \left\| - \frac{\mu}{\alpha_{k-1}} r_{k-2} - AP_{k-2}\mathbf{w} \right\|^2
 \]
 If an optimal solution is $(\mu^*, \mathbf{w}^*)$, then \[
-    \left\| - \frac{\mu^*}{\alpha_{k-1}} r_{k-2} - AP_{k-2}\mathbf{w}^* \right\|^2 = \left| -\frac{\mu^*}{\alpha_{k-1}} \right|^2 \left\| r_{k-2} - AP_{k-2} \frac{\mathbf{w}^*}{-\mu^* / \alpha_{k-1}} \right\|^2
+    \left\| - \frac{\mu^*}{\alpha_{k-1}} r_{k-2} - AP_{k-2}\mathbf{w}^* \right\|^2 = \left| -\frac{\mu^*}{\alpha_{k-1}} \right|^2 \left\| r_{k-2} - AP_{k-2} \boxed{\frac{\mathbf{w}^*}{-\mu^* / \alpha_{k-1}}} \right\|^2
 \]
-and \[
+(The boxed term is the optimization problem to find $p$ at $k-1$ steps) and \[
     -\mu^* / \alpha_{k-1}
 \]
 must be the optimal solution of \[
